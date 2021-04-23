@@ -1,5 +1,13 @@
 package com.chauffeur.repository;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -7,6 +15,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import com.chauffeur.dto.ChauffeurDto;
+import com.chauffeur.dto.PermisDto;
+import com.chauffeur.models.Chauffeur;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -17,122 +27,156 @@ public class ChauffeurRepositoryTest {
 
     @Test
     @Rollback(false)
-    public void testCreateCategory() {
+    public void testCreateChauffeur() {
+    	String typePermis = "A";
+    	String designation = "Poids Legers"; int validite = 10;
+    	PermisDto permisDto = new PermisDto();
+    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	permisDto.setValidite(validite);
+    	
     	String reference = "CH1"; String firstName = "Tairou"; String lastName = "Diallo";
-    	String sexe = "M"; String addressActuel = "ADD1"; String email = "ch1@gmail.com";
-    	String phoneChauffeur = "779330410"; int nbreAnneeExperience = 7; 
-    	double pretentionSalaire = 200000;String cvChauffeur = "cv1"; 
-    	String mobilite = "Dk - Thies - Kaolack"; String photoChauffeur = "photo1";
-    	
+    	String sexe = "M"; String addressActuel = "ADD1"; String mobilite = "Dk - Thies - Kaolack";
     	ChauffeurDto chauffeurDto = new ChauffeurDto();
+    	chauffeurDto.setReference(reference); chauffeurDto.setFirstName(firstName);
+    	chauffeurDto.setLastName(lastName); chauffeurDto.setSexe(sexe);
+    	chauffeurDto.setAddressActuel(addressActuel); chauffeurDto.setMobilite(mobilite);
+    	chauffeurDto.setPermisDto(permisDto);
     	
-        CategorieDto categorieDto = new CategorieDto(1,"sac", "sac a mai");
-        CategorieDto categoryDtoResult = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto)
+     
+    	ChauffeurDto chauffeurDtoResult = ChauffeurDto.fromEntityToDto(
+                chauffeurRepository.save(
+                		ChauffeurDto.fromDtoToEntity(chauffeurDto)
                 )
         );
 
-        assertNotNull(categoryDtoResult);
+        assertNotNull(chauffeurDtoResult);
 
     }
 
     @Test
     @Rollback(false)
-    public void TestUpdateCategory() {
-        CategorieDto categorieDto = new CategorieDto(1,"sac", "PAPIER RAM");
-        CategorieDto categoryDtoResult = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto)
+    public void TestUpdateChauffeur() {
+    	String typePermis = "A";
+    	String designation = "Poids Legers"; int validite = 10;
+    	PermisDto permisDto = new PermisDto();
+    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	permisDto.setValidite(validite);
+    	
+    	String reference = "CH1"; String firstName = "Tairou"; String lastName = "Diallo";
+    	String sexe = "M"; String addressActuel = "ADD1"; String mobilite = "Dk - Thies - Kaolack";
+    	ChauffeurDto chauffeurDto = new ChauffeurDto();
+    	chauffeurDto.setReference(reference); chauffeurDto.setFirstName(firstName);
+    	chauffeurDto.setLastName(lastName); chauffeurDto.setSexe(sexe);
+    	chauffeurDto.setAddressActuel(addressActuel); chauffeurDto.setMobilite(mobilite);
+    	chauffeurDto.setPermisDto(permisDto);
+    	
+    	ChauffeurDto.fromEntityToDto(
+                chauffeurRepository.save(
+                		ChauffeurDto.fromDtoToEntity(chauffeurDto)
                 )
         );
 
-        String categoryDesignation = "Bureau";
-        CategorieDto categorieUpdateDto = new CategorieDto(1,"Bureau", categoryDesignation);
+        String firstNameChauffeur = "DialloDiallo";
+        chauffeurDto.setFirstName(firstNameChauffeur);
+        chauffeurDto.setId((long) 1);
+        ChauffeurDto.fromEntityToDto(chauffeurRepository.save(ChauffeurDto.fromDtoToEntity(chauffeurDto)));
 
-        categorieUpdateDto.setId((long) 1);
-        CategorieDto.fromEntityToDto(categorieRepository.save(CategorieDto.fromDtoToEntity(categorieUpdateDto)));
-
-        assertThat(categorieUpdateDto.getDesignation()).isEqualTo(categoryDesignation);
+        assertThat(chauffeurDto.getFirstName()).isEqualTo(firstNameChauffeur);
 
     }
 
     @Test
     public void testFindById() {
-
-        CategorieDto categorieDto = new CategorieDto(1,"sac", "sac a mai");
-        CategorieDto categoryDtoResult = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto)
+    	String typePermis = "A";
+    	String designation = "Poids Legers";
+    	PermisDto permisDto = new PermisDto();
+    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	
+    	String reference = "CH1"; String firstName = "Tairou"; String lastName = "Diallo";
+    	String sexe = "M"; String addressActuel = "ADD1"; String mobilite = "Dk - Thies - Kaolack";
+    	ChauffeurDto chauffeurDto = new ChauffeurDto();
+    	chauffeurDto.setReference(reference); chauffeurDto.setFirstName(firstName);
+    	chauffeurDto.setLastName(lastName); chauffeurDto.setSexe(sexe);
+    	chauffeurDto.setAddressActuel(addressActuel); chauffeurDto.setMobilite(mobilite);
+    	chauffeurDto.setPermisDto(permisDto);
+    	
+    	ChauffeurDto chauffeurDtoResult = ChauffeurDto.fromEntityToDto(
+                chauffeurRepository.save(
+                		ChauffeurDto.fromDtoToEntity(chauffeurDto)
                 )
         );
 
-        Long cat_id = (long) 1;
-        Optional<Categorie> categorie = categorieRepository.findById(categoryDtoResult.getId());
+        Optional<Chauffeur> chauffeur = chauffeurRepository.findById(chauffeurDtoResult.getId());
 
-        assertNotNull(categorie);
-    }
-
-    @Test
-    public void testFindByDesignation() {
-        CategorieDto categorieDto = new CategorieDto(1,"Robe", "RobeMariage");
-        CategorieDto categoryDtoResult = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto)
-                )
-        );
-        String catDesignation = "RobeMariage";
-        assertThat(categoryDtoResult.getDesignation()).isEqualTo(catDesignation);
+        assertNotNull(chauffeur);
     }
 
     @Test
     public void testFindAll() {
-        CategorieDto categorieDto = new CategorieDto(1,"Robe", "sac a mai");
-        CategorieDto categoryDtoResult = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto)
+    	String typePermis = "A";
+    	String designation = "Poids Legers";
+    	PermisDto permisDto = new PermisDto();
+    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	
+    	String reference = "CH1"; String firstName = "Tairou"; String lastName = "Diallo";
+    	String sexe = "M"; String addressActuel = "ADD1"; String mobilite = "Dk - Thies - Kaolack";
+    	ChauffeurDto chauffeurDto = new ChauffeurDto();
+    	chauffeurDto.setReference(reference); chauffeurDto.setFirstName(firstName);
+    	chauffeurDto.setLastName(lastName); chauffeurDto.setSexe(sexe);
+    	chauffeurDto.setAddressActuel(addressActuel); chauffeurDto.setMobilite(mobilite);
+    	chauffeurDto.setPermisDto(permisDto);
+    	
+    	ChauffeurDto.fromEntityToDto(
+                chauffeurRepository.save(
+                		ChauffeurDto.fromDtoToEntity(chauffeurDto)
                 )
         );
-        CategorieDto categorieDto1 = new CategorieDto(1,"Panthalon", "Panthalon homme");
-        CategorieDto categoryDtoResult1 = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto1)
+    	
+    	String reference2 = "CH1"; String firstName2 = "Tairou"; String lastName2 = "Diallo";
+    	ChauffeurDto chauffeurDto2 = new ChauffeurDto();
+    	chauffeurDto2.setReference(reference2); chauffeurDto2.setFirstName(firstName2);
+    	chauffeurDto2.setLastName(lastName2); chauffeurDto.setSexe(sexe);
+    	chauffeurDto2.setPermisDto(permisDto);
+    	
+    	ChauffeurDto.fromEntityToDto(
+                chauffeurRepository.save(
+                		ChauffeurDto.fromDtoToEntity(chauffeurDto2)
                 )
         );
 
-        CategorieDto categorieDto2 = new CategorieDto(1,"Chemise", "Chemise Femme");
-        CategorieDto categoryDtoResult2 = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto2)
-                )
-        );
+        List<?> chauffeurs = chauffeurRepository.findAll();
 
-        List<?> categories = categorieRepository.findAll();
-
-        assertThat(categories).size().isGreaterThan(0);
+        assertThat(chauffeurs).size().isGreaterThan(0);
 
     }
 
     @Test
     @Rollback(false)
     public void testDelete() {
-
-        CategorieDto categorieDto = new CategorieDto(1,"Chemise", "Chemise Femme");
-        CategorieDto categoryDtoResult2 = CategorieDto.fromEntityToDto(
-                categorieRepository.save(
-                        CategorieDto.fromDtoToEntity(categorieDto)
+    	String typePermis = "A";
+    	String designation = "Poids Legers";
+    	PermisDto permisDto = new PermisDto();
+    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	
+    	String reference = "CH1"; String firstName = "Tairou"; String lastName = "Diallo";
+    	String sexe = "M"; String addressActuel = "ADD1"; String mobilite = "Dk - Thies - Kaolack";
+    	ChauffeurDto chauffeurDto = new ChauffeurDto();
+    	chauffeurDto.setReference(reference); chauffeurDto.setFirstName(firstName);
+    	chauffeurDto.setLastName(lastName); chauffeurDto.setSexe(sexe);
+    	chauffeurDto.setAddressActuel(addressActuel); chauffeurDto.setMobilite(mobilite);
+    	chauffeurDto.setPermisDto(permisDto);
+    	
+    	ChauffeurDto chauffeurDtoResult = ChauffeurDto.fromEntityToDto(
+                chauffeurRepository.save(
+                		ChauffeurDto.fromDtoToEntity(chauffeurDto)
                 )
         );
 
-        Optional<Categorie> categorie = categorieRepository.findById(categoryDtoResult2.getId());
+        boolean isExistBeforeDelete = chauffeurRepository.findById(chauffeurDtoResult.getId()).isPresent();
 
-        Long id = (long) 1;
+        chauffeurRepository.deleteById(chauffeurDtoResult.getId());
 
-        boolean isExistBeforeDelete = categorieRepository.findById(categoryDtoResult2.getId()).isPresent();
-
-        categorieRepository.deleteById(categoryDtoResult2.getId());
-
-        boolean notExistAfterDelete = categorieRepository.findById(categoryDtoResult2.getId()).isPresent();
+        boolean notExistAfterDelete = chauffeurRepository.findById(chauffeurDtoResult.getId()).isPresent();
 
         assertTrue(isExistBeforeDelete);
 

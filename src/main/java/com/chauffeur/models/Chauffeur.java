@@ -65,7 +65,7 @@ public class Chauffeur implements Serializable {
 	private String photoChauffeur;
 	
 	@ManyToOne
-	@JoinColumn(name = "permId", nullable = false)
+	@JoinColumn(name = "permId")
 	private Permis permis;
 
 }
