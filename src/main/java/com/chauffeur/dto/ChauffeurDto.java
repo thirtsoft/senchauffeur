@@ -19,7 +19,7 @@ public class ChauffeurDto {
 	
 	private String sexe;
 	
-	private double addressActuel;
+	private String addressActuel;
 
 	private String email;
 	

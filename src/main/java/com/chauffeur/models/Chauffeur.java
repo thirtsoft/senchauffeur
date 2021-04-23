@@ -41,7 +41,7 @@ public class Chauffeur implements Serializable {
 	private String sexe;
 	
 	@Column(name = "addressActuel", length = 90)
-	private double addressActuel;
+	private String addressActuel;
 
 	@Column(name = "email", length = 50)
 	private String email;
