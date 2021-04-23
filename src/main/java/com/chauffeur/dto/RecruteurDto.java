@@ -2,11 +2,15 @@ package com.chauffeur.dto;
 
 import com.chauffeur.models.Recruteur;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RecruteurDto {
 	
 	private long id;
@@ -35,6 +39,7 @@ public class RecruteurDto {
 		}
 		
 		return RecruteurDto.builder()
+				.id(recruteur.getId())
 				.firstName(recruteur.getFirstName())
 				.lastName(recruteur.getLastName())
 				.addressRecruteur(recruteur.getAddressRecruteur())
