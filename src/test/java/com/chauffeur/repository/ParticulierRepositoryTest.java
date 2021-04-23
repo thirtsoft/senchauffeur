@@ -6,9 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.Column;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +13,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.dto.ParticulierDto;
-import com.chauffeur.dto.PermisDto;
-import com.chauffeur.models.Permis;
 
 
 @DataJpaTest
@@ -27,126 +21,128 @@ import com.chauffeur.models.Permis;
 public class ParticulierRepositoryTest {
 	
 	@Autowired
-    private PermisRepository permisRepository;
+    private ParticulierRepository particulierRepository;
 
     @Test
     @Rollback(false)
-    public void testCreatePermis() {
-    	String reference = "CH1"; String firstName = "Tairou"; String lastName = "Diallo";
-    	String email = "P@yahoo.fr"; String phoneParticulier = "56789087"; String mobileParticulier = "567890";
-    	String addressParticulier = "P1"; String villeParticulier = "V1";
+    public void testCreateParticulier() {
+    	String firstName = "Tairou"; String lastName = "Diallo";
+    	String phoneParticulier = "56789087"; String addressParticulier = "P1";
     	ParticulierDto particulierDto = new ParticulierDto();
-    	particulierDto.setFirstName(firstName);
-    	particulierDto.setLastName(lastName); chauffeurDto.setSexe(sexe);
-    	chauffeurDto.setAddressActuel(addressActuel); chauffeurDto.setMobilite(mobilite);
+    	particulierDto.setFirstName(firstName); particulierDto.setLastName(lastName);
+    	particulierDto.setAddressParticulier(addressParticulier); 
+    	particulierDto.setPhoneParticulier(phoneParticulier);
     	
-    	PermisDto permisDtoResult = PermisDto.fromEntityToDto(
-                permisRepository.save(
-                		PermisDto.fromDtoToEntity(permisDto)
+    	ParticulierDto particulierDtoResult = ParticulierDto.fromEntityToDto(
+                particulierRepository.save(
+                		ParticulierDto.fromDtoToEntity(particulierDto)
                 )
         );
 
-        assertNotNull(permisDtoResult);
+        assertNotNull(particulierDtoResult);
 
     }
 
     @Test
     @Rollback(false)
-    public void TestUpdatePermis() {
-    	String typePermis = "A";
-    	String designation = "Poids Legers"; int validite = 10;
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
-    	permisDto.setValidite(validite);
+    public void TestUpdateParticulier() {
+    	String firstName = "Tairou"; String lastName = "Diallo";
+    	String phoneParticulier = "56789087"; String addressParticulier = "P1";
+    	ParticulierDto particulierDto = new ParticulierDto();
+    	particulierDto.setFirstName(firstName); particulierDto.setLastName(lastName);
+    	particulierDto.setAddressParticulier(addressParticulier); 
+    	particulierDto.setPhoneParticulier(phoneParticulier);
     	
-    	PermisDto.fromEntityToDto(
-                permisRepository.save(
-                		PermisDto.fromDtoToEntity(permisDto)
+    	ParticulierDto.fromEntityToDto(
+                particulierRepository.save(
+                		ParticulierDto.fromDtoToEntity(particulierDto)
                 )
         );
     	
-        String designationPermis = "Poids Leger";
-        permisDto.setDesignation(designationPermis);
-        permisDto.setId((long) 1);
+        String firstNameParticulier = "Poids Leger";
+        particulierDto.setFirstName(firstNameParticulier);
+        particulierDto.setId((long) 1);
         
-        PermisDto.fromEntityToDto(permisRepository.save(PermisDto.fromDtoToEntity(permisDto)));
+        ParticulierDto.fromEntityToDto(particulierRepository.save(ParticulierDto.fromDtoToEntity(particulierDto)));
 
-        assertThat(permisDto.getDesignation()).isEqualTo(designationPermis);
+        assertThat(particulierDto.getFirstName()).isEqualTo(firstNameParticulier);
 
     }
 
     @Test
     public void testFindById() {
-    	String typePermis = "A";
-    	String designation = "Poids Legers"; int validite = 10;
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
-    	permisDto.setValidite(validite);
+    	String firstName = "Tairou"; String lastName = "Diallo";
+    	String phoneParticulier = "56789087"; String addressParticulier = "P1";
+    	ParticulierDto particulierDto = new ParticulierDto();
+    	particulierDto.setFirstName(firstName); particulierDto.setLastName(lastName);
+    	particulierDto.setAddressParticulier(addressParticulier); 
+    	particulierDto.setPhoneParticulier(phoneParticulier);
     	
-    	PermisDto permisDtoResult = PermisDto.fromEntityToDto(
-                permisRepository.save(
-                		PermisDto.fromDtoToEntity(permisDto)
+    	ParticulierDto particulierDtoResult = ParticulierDto.fromEntityToDto(
+                particulierRepository.save(
+                		ParticulierDto.fromDtoToEntity(particulierDto)
                 )
         );
         
-        Optional<Permis> permis = permisRepository.findById(permisDtoResult.getId());
+    	 boolean isExistParticulier = particulierRepository.findById(particulierDtoResult.getId()).isPresent();
 
-        assertNotNull(permis);
+         assertTrue(isExistParticulier);
+
+        
     }
 
    
     @Test
     public void testFindAll() {
-    	String typePermis = "A";
-    	String designation = "Poids Legers"; int validite = 10;
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
-    	permisDto.setValidite(validite);
+    	String firstName = "Tairou"; String lastName = "Diallo";
+    	String phoneParticulier = "56789087"; String addressParticulier = "P1";
+    	ParticulierDto particulierDto = new ParticulierDto();
+    	particulierDto.setFirstName(firstName); particulierDto.setLastName(lastName);
+    	particulierDto.setAddressParticulier(addressParticulier); 
+    	particulierDto.setPhoneParticulier(phoneParticulier);
     	
-    	PermisDto.fromEntityToDto(
-                permisRepository.save(
-                		PermisDto.fromDtoToEntity(permisDto)
+    	ParticulierDto.fromEntityToDto(
+                particulierRepository.save(
+                		ParticulierDto.fromDtoToEntity(particulierDto)
                 )
         );
     	
-    	String typePermis2 = "A";
-    	String designation2 = "Poids Legers"; int validite2 = 10;
-    	PermisDto permisDto2 = new PermisDto();
-    	permisDto2.setTypePermis(typePermis2); permisDto2.setDesignation(designation2);
-    	permisDto2.setValidite(validite2);
+    	String firstName2 = "Tairou"; String lastName2 = "Diallo";
+    	ParticulierDto particulierDto2 = new ParticulierDto();
+    	particulierDto2.setFirstName(firstName2); particulierDto2.setLastName(lastName2);
     	
-    	PermisDto.fromEntityToDto(
-                permisRepository.save(
-                		PermisDto.fromDtoToEntity(permisDto2)
+    	ParticulierDto.fromEntityToDto(
+                particulierRepository.save(
+                		ParticulierDto.fromDtoToEntity(particulierDto)
                 )
         );
 
-        List<?> permis = permisRepository.findAll();
+        List<?> particuliers = particulierRepository.findAll();
 
-        assertThat(permis).size().isGreaterThan(0);
+        assertThat(particuliers).size().isGreaterThan(1);
 
     }
 
     @Test
     @Rollback(false)
     public void testDelete() {
-    	String typePermis = "A";
-    	String designation = "Poids Legers"; int validite = 10;
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
-    	permisDto.setValidite(validite);
+    	String firstName = "Tairou"; String lastName = "Diallo";
+    	String phoneParticulier = "56789087"; String addressParticulier = "P1";
+    	ParticulierDto particulierDto = new ParticulierDto();
+    	particulierDto.setFirstName(firstName); particulierDto.setLastName(lastName);
+    	particulierDto.setAddressParticulier(addressParticulier); 
+    	particulierDto.setPhoneParticulier(phoneParticulier);
     	
-    	PermisDto permisDtoResult = PermisDto.fromEntityToDto(
-                permisRepository.save(
-                		PermisDto.fromDtoToEntity(permisDto)
+    	ParticulierDto particulierDtoResult = ParticulierDto.fromEntityToDto(
+                particulierRepository.save(
+                		ParticulierDto.fromDtoToEntity(particulierDto)
                 )
         );
+        boolean isExistBeforeDelete = particulierRepository.findById(particulierDtoResult.getId()).isPresent();
 
-        boolean isExistBeforeDelete = permisRepository.findById(permisDtoResult.getId()).isPresent();
+        particulierRepository.deleteById(particulierDtoResult.getId());
 
-        permisRepository.deleteById(permisDtoResult.getId());
-
-        boolean notExistAfterDelete = permisRepository.findById(permisDtoResult.getId()).isPresent();
+        boolean notExistAfterDelete = particulierRepository.findById(particulierDtoResult.getId()).isPresent();
 
         assertTrue(isExistBeforeDelete);
 
