@@ -1,0 +1,59 @@
+package com.chauffeur.dto;
+
+import com.chauffeur.models.Addresse;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class AddresseDto {
+	
+	private long id;
+
+	private String reference;
+
+	private String quartier;
+
+	private String rue;
+
+	private String codePostal;
+
+	private String ville;
+
+	private String pays;
+	
+	public static AddresseDto fromEntityToDto(Addresse addresse) {
+		if (addresse == null) {
+			return null;
+		}
+		
+		return AddresseDto.builder()
+				.reference(addresse.getReference())
+				.quartier(addresse.getQuartier())
+				.rue(addresse.getRue())
+				.codePostal(addresse.getCodePostal())
+				.ville(addresse.getVille())
+				.pays(addresse.getPays())
+				.build();
+		
+	}
+	
+	public static Addresse fromDtoToEntity(AddresseDto addresseDto) {
+		if (addresseDto == null) {
+			return null;
+		}
+		Addresse addresse = new Addresse();
+		addresse.setReference(addresseDto.getReference());
+		addresse.setQuartier(addresseDto.getQuartier());
+		addresse.setQuartier(addresseDto.getQuartier());
+		addresse.setRue(addresseDto.getReference());
+		addresse.setCodePostal(addresseDto.getCodePostal());
+		addresse.setVille(addresseDto.getVille());
+		addresse.setPays(addresseDto.getPays());
+		
+		return addresse;
+	}
+	
+
+}
