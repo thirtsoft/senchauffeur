@@ -38,7 +38,7 @@ public class Notification implements Serializable {
     private String observation;
 
     @ManyToOne
-    @JoinColumn(name = "prodId", nullable = false)
+    @JoinColumn(name = "prodId")
     private Chauffeur chauffeur;
 
     @ManyToOne

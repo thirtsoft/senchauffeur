@@ -5,11 +5,15 @@ import java.time.LocalDate;
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Annonce;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AnnonceDto {
 	
 	private long id;
@@ -38,6 +42,7 @@ public class AnnonceDto {
 		}
 		
 		return AnnonceDto.builder()
+				.id(annonce.getId())
 				.reference(annonce.getReference())
 				.lieuPoste(annonce.getLieuPoste())
 				.salaire(annonce.getSalaire())
@@ -45,6 +50,8 @@ public class AnnonceDto {
 				.dateCandidature(annonce.getDateCandidature())
 				.dateCloture(annonce.getDateCloture())
 				.statusAnnonce(annonce.getStatusAnnonce())
+				.permisDto(PermisDto.fromEntityToDto(annonce.getPermis()))
+				.recruteurDto(RecruteurDto.fromEntityToDto(annonce.getRecruteur()))
 				.build();
 		
 	}

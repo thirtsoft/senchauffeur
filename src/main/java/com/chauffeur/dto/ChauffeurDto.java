@@ -60,6 +60,7 @@ public class ChauffeurDto {
 				.cvChauffeur(chauffeur.getCvChauffeur())
 				.mobilite(chauffeur.getMobilite())
 				.photoChauffeur(chauffeur.getPhotoChauffeur())
+				.permisDto(PermisDto.fromEntityToDto(chauffeur.getPermis()))
 				.build();
 		
 	}

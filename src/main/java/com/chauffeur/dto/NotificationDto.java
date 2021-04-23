@@ -1,14 +1,16 @@
 package com.chauffeur.dto;
 
-import com.chauffeur.models.Chauffeur;
 import com.chauffeur.models.Notification;
-import com.chauffeur.models.Utilisateur;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class NotificationDto {
 	
 	private long id;
@@ -19,9 +21,9 @@ public class NotificationDto {
 
     private String observation;
 
-    private Chauffeur chauffeur;
+    private ChauffeurDto chauffeurDto;
 
-    private Utilisateur utilisateur;
+    private UtilisateurDto utilisateurDto;
 	
 	
 	public static NotificationDto fromEntityToDto(Notification notification) {
@@ -30,9 +32,12 @@ public class NotificationDto {
 		}
 		
 		return NotificationDto.builder()
+				.id(notification.getId())
 				.reference(notification.getReference())
 				.nbreEtoile(notification.getNbreEtoile())
 				.observation(notification.getObservation())
+				.chauffeurDto(ChauffeurDto.fromEntityToDto(notification.getChauffeur()))
+				.utilisateurDto(UtilisateurDto.fromEntityToDto(notification.getUtilisateur()))
 				.build();
 		
 	}
