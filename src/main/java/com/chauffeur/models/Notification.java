@@ -42,6 +42,6 @@ public class Notification implements Serializable {
     private Chauffeur chauffeur;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId")
     private Utilisateur utilisateur;
 }

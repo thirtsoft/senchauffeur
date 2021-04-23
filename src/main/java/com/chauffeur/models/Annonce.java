@@ -58,11 +58,11 @@ public class Annonce implements Serializable {
     private StatusAnnonce statusAnnonce;
 
 	@ManyToOne
-	@JoinColumn(name = "permId", nullable = false)
+	@JoinColumn(name = "permId")
 	private Permis permis;
 	 
 	@ManyToOne
-	@JoinColumn(name = "recrId", nullable = false)
+	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
 	
 	

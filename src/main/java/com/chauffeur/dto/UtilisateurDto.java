@@ -2,15 +2,21 @@ package com.chauffeur.dto;
 
 import com.chauffeur.models.Utilisateur;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UtilisateurDto {
 	
 	private long id;
 
+    private String name;
+    
     private String username;
 
     private String mobile;
@@ -25,6 +31,8 @@ public class UtilisateurDto {
 		}
 		
 		return UtilisateurDto.builder()
+				.id(utilisateur.getId())
+				.name(utilisateur.getName())
 				.username(utilisateur.getUsername())
 				.mobile(utilisateur.getMobile())
 				.email(utilisateur.getEmail())
