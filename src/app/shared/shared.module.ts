@@ -5,7 +5,24 @@ import { SharedRoutingModule } from './shared-routing.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    BackendHeaderComponent,
+    BackendSidebarComponent,
+    BackendFooterComponent,
+    MatedialogComponent,
+  ],
+   exports: [
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    BackendHeaderComponent,
+    BackendSidebarComponent,
+    BackendFooterComponent,
+    MatedialogComponent,
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule
