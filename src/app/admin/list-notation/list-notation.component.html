@@ -1,0 +1,51 @@
+<h3><i class="fa fa-angle-right"></i> List of Notations</h3>
+<div>
+
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddScategorie()">Add scategorie</button>
+
+    </div>
+
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th>ID</th>
+                <th>Reference</th>
+                <th>Nombre Etoile</th>
+                <th>Observation</th>
+                <th>Chauffeur</th>
+                <th>Utilisateur</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} "> -->
+            <tr *ngFor="let note of notationList">
+                <td>{{note?.id}}</td>
+                <td>{{note?.reference}}</td>
+                <td>{{note?.nbreEtoile}}</td>
+                <td>{{note?.observation}}</td>
+                <td>{{note?.chauffeur?.firstName}} {{note?.chauffeur?.lastName}}</td>
+                <td>{{note?.utilisateur?.name}}</td>
+
+                <td>
+                    <div class="container ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditNotation(note) ">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteNotation(note)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="pagination ">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>

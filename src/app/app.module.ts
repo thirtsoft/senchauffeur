@@ -5,14 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateRecruteurComponent } from './admin/recruteur/create-recruteur/create-recruteur.component';
-import { ListRecruteurComponent } from './admin/recruteur/list-recruteur/list-recruteur.component';
-import { CreatePermisComponent } from './admin/permis/create-permis/create-permis.component';
-import { ListPermisComponent } from './admin/permis/list-permis/list-permis.component';
-import { CreateChauffeurComponent } from './admin/chauffeur/create-chauffeur/create-chauffeur.component';
-import { ListChauffeurComponent } from './admin/chauffeur/list-chauffeur/list-chauffeur.component';
-import { CreateAnnonceComponent } from './admin/annonce/create-annonce/create-annonce.component';
-import { ListAnnonceComponent } from './admin/annonce/list-annonce/list-annonce.component';
+
 import { AddEmployeComponent } from './customer/emploi/add-employe/add-employe.component';
 import { ListEmployeComponent } from './customer/emploi/list-employe/list-employe.component';
 import { HomeComponent } from './customer/home/home.component';
@@ -33,14 +26,6 @@ import { HeaderComponent } from './shared/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CreateRecruteurComponent,
-    ListRecruteurComponent,
-    CreatePermisComponent,
-    ListPermisComponent,
-    CreateChauffeurComponent,
-    ListChauffeurComponent,
-    CreateAnnonceComponent,
-    ListAnnonceComponent,
     AddEmployeComponent,
     ListEmployeComponent,
     HomeComponent,

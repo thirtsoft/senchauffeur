@@ -22,15 +22,15 @@ export class RecruteurService {
     return this.http.get<Recruteur>(`${this.apiServerUrl}/recruteurs/${recId}`);
   }
 
-  public addPermis(recruteur: Recruteur): Observable<Recruteur> {
+  public addRecruteur(recruteur: Recruteur): Observable<Recruteur> {
     return this.http.post<Recruteur>(`${this.apiServerUrl}/recruteurs/create`, recruteur);
   }
 
-  public updatePermis(recruteur: Recruteur): Observable<Recruteur> {
+  public updateRecruteur(recruteur: Recruteur): Observable<Recruteur> {
     return this.http.put<Recruteur>(`${this.apiServerUrl}/recruteurs/create`, recruteur);
   }
 
-  public deletePermis(recId: number): Observable<void> {
+  public deleteRecruteur(recId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/recruteurs/delete/${recId}`);
   }
 

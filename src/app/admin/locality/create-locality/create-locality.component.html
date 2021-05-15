@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Nouveau Locality</h1>
+            <form #addLocalityForm="ngForm" name="form" (ngSubmit)="onAddLocality()">
+                <div class="form-group">
+                    <label>Reférence</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.reference" name="reference" id="reference" #reference="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (reference.touched || addLocalityForm.submitted) &&
+              reference.errors?.required
+            ">
+            Reférence est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Quartier</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.quartier" name="quartier" id="quartier" #quartier="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (quartier.touched || addLocalityForm.submitted) &&
+              quartier.errors?.required
+            ">
+            quartier est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Ville</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.ville" name="ville" id="ville" #ville="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (ville.touched || addLocalityForm.submitted) &&
+              ville.errors?.required
+            ">
+            ville est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Code Postal</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.codePostal" name="codePostal" id="codePostal" #codePostal="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (codePostal.touched || addLocalityForm.submitted) &&
+              codePostal.errors?.required
+            ">
+            codePostal est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Rue</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.rue" name="rue" id="rue" #rue="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (rue.touched || addLocalityForm.submitted) && rue.errors?.required
+            ">
+            rue est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Pays</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.pays" name="pays" id="pays" #pays="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (pays.touched || addLocalityForm.submitted) &&
+              pays.errors?.required
+            ">
+            pays est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">
+            <i class="fa fa-database"></i>
+            Submit
+          </button>
+                    <button type="button" class="btn btn-danger ml-1">
+            <i class="fa fa-close"></i>
+            Close
+          </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

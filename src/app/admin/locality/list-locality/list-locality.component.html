@@ -4,35 +4,39 @@
     <div class="row">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddScategorie()">Add Permis</button>
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddScategorie()">Add Locality</button>
 
     </div>
 
     <table class="table table-striped">
-
         <thead class="thead-inverse">
             <tr>
-                <th>ID</th>
-                <th>type Permis</th>
-                <th>Designation</th>
-                <th>Validite</th>
+                <th>Reference</th>
+                <th>Quartier</th>
+                <th>Rue</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
+
             <!-- <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} "> -->
-            <tr *ngFor="let permis of permisList">
-                <td>{{permis?.id}}</td>
-                <td>{{permis?.typePermis}}</td>
-                <td>{{permis?.designation}}</td>
-                <td>{{permis?.validite}}</td>
+            <tr *ngFor="let locality of localityList">
+                <td>{{locality?.reference}}</td>
+                <td>{{locality?.quartier}}</td>
+                <td>{{locality?.ville}}</td>
+                <td>{{locality?.rue}}</td>
+                <td>{{locality?.codePostal}}</td>
+                <td>{{locality?.pays}}</td>
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditPermis(permis) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditLocality(locality) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeletePermis(permis)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteLocality(locality)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

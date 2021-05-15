@@ -1,1 +1,55 @@
-<p>list-recruteur works!</p>
+<h3><i class="fa fa-angle-right"></i> List of Recruteurs</h3>
+<div>
+
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddRecruteur()">Add Recruteur</button>
+
+    </div>
+
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Entreprise</th>
+                <th>Recruteur</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Ville</th>
+                <th>Addresse</th>
+                <th>Secteur Activité</th>
+                <th>Website</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} "> -->
+            <tr *ngFor="let recruteur of recruteurList">
+                <td>{{recruteur?.nomEntreprise}}</td>
+                <td>{{recruteur?.firstName}} {{recruteur?.lastName}}</td>
+                <td>{{recruteur?.phoneRecruteur}}</td>
+                <td>{{recruteur?.email}}</td>
+                <td>{{recruteur?.villeRecruteur}}</td>
+                <td>{{recruteur?.addressRecruteur}}</td>
+                <td>{{recruteur?.secteurActivite}}</td>
+                <td>{{recruteur?.website}}</td>
+
+                <td>
+                    <div class="container ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditRecruteur(note) ">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteRecruteur(note)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="pagination ">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>

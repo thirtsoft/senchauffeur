@@ -1,1 +1,52 @@
-<p>create-permis works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Nouveau Permis</h1>
+            <form #addPermisForm="ngForm" name="form" (ngSubmit)="onAddPermis()">
+                <div class="form-group">
+                    <label>Type Permis</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataPermis.typePermis" name="typePermis" id="typePermis" #typePermis="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (typePermis.touched || addPermisForm.submitted) &&
+              typePermis.errors?.required
+            ">
+            TypePermis est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Validité</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataPermis.designation" name="designation" id="designation" #designation="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (designation.touched || addPermisForm.submitted) &&
+              designation.errors?.required
+            ">
+            designation est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Validité</label>
+                    <input type="text" class="form-control" [(ngModel)]="formDataPermis.validite" name="validite" id="validite" #validite="ngModel" required />
+                    <span class="text-danger" *ngIf="
+              (validite.touched || addPermisForm.submitted) &&
+              validite.errors?.required
+            ">
+            validite est obligatoire
+          </span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">
+            <i class="fa fa-database"></i>
+            Submit
+          </button>
+                    <button type="button" class="btn btn-danger ml-1">
+            <i class="fa fa-close"></i>
+            Close
+          </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

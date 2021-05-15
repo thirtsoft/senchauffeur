@@ -1,1 +1,61 @@
-<p>list-chauffeur works!</p>
+<h3><i class="fa fa-angle-right"></i> List of Chauffeurs</h3>
+<div>
+
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddScategorie()">Add Chauffeur</button>
+
+    </div>
+
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Photo</th>
+                <th>Reference</th>
+                <th>Permis</th>
+                <th>Chauffeur</th>
+                <th>Addresse</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Expérience</th>
+                <th>Salaire</th>
+                <th>Mobilité</th>
+                <th>CV</th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} "> -->
+            <tr *ngFor="let chauff of chauffeurList">
+                <td>{{chauff?.photoChauffeur}}</td>
+                <td>{{chauff?.reference}}</td>
+                <td>{{chauff?.permis?.designation}}</td>
+                <td>{{chauff?.firstName}} {{chauff?.lastName}}</td>
+                <td>{{chauff?.addressActuel}}</td>
+                <td>{{chauff?.phoneChauffeur}}</td>
+                <td>{{chauff?.email}}</td>
+                <td>{{chauff?.nbreAnneeExperience}}</td>
+                <td>{{chauff?.pretentionSalaire}}</td>
+                <td>{{chauff?.mobilite}}</td>
+                <td>{{chauff?.cvChauffeur}}</td>
+                <td>
+                    <div class=" container ">
+                        <button mat-raised-button class="action-button btn-primary " (click)="addEditChauffeur(note) ">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteChauffeur(note) ">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="pagination ">
+        <pagination-controls (pageChange)="p=$event "></pagination-controls>
+    </div>
+</div>
