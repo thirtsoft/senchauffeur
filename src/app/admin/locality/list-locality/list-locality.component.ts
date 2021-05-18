@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { CreateLocalityComponent } from './../create-locality/create-locality.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class ListLocalityComponent implements OnInit {
   searchText;
 
   constructor(private localiteService: LocalityService,
-   //           private dialog: MatDialog,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
@@ -32,7 +33,6 @@ export class ListLocalityComponent implements OnInit {
     this.localiteService.getLocalites().subscribe(
       (response: Locality[]) => {
         this.localityList = response;
-     //   console.log(this.categories[0].idCategory);
         console.log(this.localityList);
       },
       (error: HttpErrorResponse) => {

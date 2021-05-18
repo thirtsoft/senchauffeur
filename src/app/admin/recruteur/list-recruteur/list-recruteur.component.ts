@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { CreateRecruteurComponent } from './../create-recruteur/create-recruteur.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class ListRecruteurComponent implements OnInit {
   searchText;
 
   constructor(private recruteurService: RecruteurService,
-   //           private dialog: MatDialog,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
@@ -32,7 +33,6 @@ export class ListRecruteurComponent implements OnInit {
     this.recruteurService.getRecruteurs().subscribe(
       (response: Recruteur[]) => {
         this.recruteurList = response;
-     //   console.log(this.categories[0].idCategory);
         console.log(this.recruteurList);
       },
       (error: HttpErrorResponse) => {

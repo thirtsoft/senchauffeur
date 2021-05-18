@@ -15,7 +15,7 @@ export class AnnonceService {
   }
 
   public getAnnonces(): Observable<Annonce[]> {
-    return this.http.get<Annonce[]>(`${this.apiServerUrl}/chauffeurs/all`);
+    return this.http.get<Annonce[]>(`${this.apiServerUrl}/annonces/all`);
   }
 
   public getAnnonceById(annonceId: number): Observable<Annonce> {

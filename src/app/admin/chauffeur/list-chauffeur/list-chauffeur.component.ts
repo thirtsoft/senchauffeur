@@ -1,9 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CreateChauffeurComponent } from './../create-chauffeur/create-chauffeur.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
 import { Chauffeur } from './../../../models/chauffeur';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-chauffeur',
@@ -21,7 +22,7 @@ export class ListChauffeurComponent implements OnInit {
   searchText;
 
   constructor(private chauffeurService: ChauffeurService,
-   //           private dialog: MatDialog,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {

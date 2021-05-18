@@ -1,1 +1,99 @@
-<p>backend-sidebar works!</p>
+<aside>
+
+    <div id="sidebar" class="nav-collapse nicescroll-rails" tabindex="5000" style="overflow-y: scroll;
+outline: none; margin-left: 0px;
+z-index: 1;
+/* overflow-x: hidden; */
+
+">
+        <!-- *ngIf="isLoggedIn";-->
+
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            <p class="centered">
+                <!--        <a><img src="http://localhost:8080/avatar/{{id}}" class="img-circle" width="80" routerLink="/profil" *ngIf="img"></a> -->
+                <a><img src="../../../assets/admin/img/avatar.jpg" class="img-circle" width="80" routerLink="/profil"></a>
+            </p>
+            <h5 class="centered">
+                <!-- <h2>{{username}}</h2> -->
+                <h2>tairou</h2>
+            </h5>
+
+            <li class="mt">
+                <a routerLink="/backend/dashboard">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span routerLink="/backend/admin/chauffeurs">Chauffeurs</span>
+                    <span class="dcjq-icon"></span></a>
+
+            </li>
+
+            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span routerLink="/backend/admin/recruteurs">Recruteurs</span>
+                    <span class="dcjq-icon"></span></a>
+
+            </li>
+
+            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
+                <a href="javascript:;">
+                    <i class="fa fa-group"></i>
+                    <span routerLink="/backend/admin/annonces">Annonces</span>
+                    <span class="dcjq-icon"></span></a>
+
+            </li>
+
+            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
+                <a href="javascript:;">
+                    <i class="fa fa-user"></i>
+                    <span routerLink="/backend/admin/permis">Permis</span>
+                    <span class="dcjq-icon"></span></a>
+
+            </li>
+
+            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
+                <a href="javascript:;">
+                    <i class="fa fa-user"></i>
+                    <span routerLink="/backend/admin/localites">Localities</span>
+                    <span class="dcjq-icon"></span></a>
+
+            </li>
+
+
+            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
+                <a href="javascript:;">
+                    <i class="fa fa-bell"></i>
+                    <span routerLink="/backend/admin/notifications">Notifications</span>
+                    <span class="dcjq-icon"></span></a>
+
+            </li>
+
+            <mat-accordion class="sidebar" routerLinkActive="active">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="margin-left: -7%;margin-bottom: -3px;width: 30px;">
+                            <i class="fa fa-group"></i> <span style="margin-left: 7px;">Utilisateurs</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="vacation-sub-menu">
+                        <li><a style="margin-bottom:-10px" routerLink="/backend/admin/utilisateurs"><i class="fa fa-book"></i> List Users </a></li>
+                        <li><a routerLink="/backend/admin/scategories"><i class="fa fa-group"></i>Signup</a></li>
+                        <li><a routerLink="/backend/admin/articles"><i class="fa fa-group"></i>Edit Profil</a></li>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>

@@ -4,7 +4,7 @@
     <div class="row">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddScategorie()">Add Chauffeur</button>
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddChauffeur()">Add Chauffeur</button>
 
     </div>
 
@@ -27,8 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} "> -->
-            <tr *ngFor="let chauff of chauffeurList">
+            <tr *ngFor="let chauff of chauffeurList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
                 <td>{{chauff?.photoChauffeur}}</td>
                 <td>{{chauff?.reference}}</td>
                 <td>{{chauff?.permis?.designation}}</td>
@@ -42,10 +41,10 @@
                 <td>{{chauff?.cvChauffeur}}</td>
                 <td>
                     <div class=" container ">
-                        <button mat-raised-button class="action-button btn-primary " (click)="addEditChauffeur(note) ">
+                        <button mat-raised-button class="action-button btn-primary " (click)="addEditChauffeur(chauff) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteChauffeur(note) ">
+                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteChauffeur(chauff) ">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

@@ -1,10 +1,10 @@
-<h3><i class="fa fa-angle-right"></i> List of Permis</h3>
+<h3><i class="fa fa-angle-right"></i> List of Localities</h3>
 <div>
 
     <div class="row">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddScategorie()">Add Locality</button>
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddLocality()">Add Locality</button>
 
     </div>
 
@@ -22,8 +22,7 @@
         </thead>
         <tbody>
 
-            <!-- <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} "> -->
-            <tr *ngFor="let locality of localityList">
+            <tr *ngFor="let locality of localityList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
                 <td>{{locality?.reference}}</td>
                 <td>{{locality?.quartier}}</td>
                 <td>{{locality?.ville}}</td>

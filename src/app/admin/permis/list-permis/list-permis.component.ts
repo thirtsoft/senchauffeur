@@ -22,7 +22,7 @@ export class ListPermisComponent implements OnInit {
   searchText;
 
   constructor(private permisService: PermisService,
-   //           private dialog: MatDialog,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
@@ -33,7 +33,6 @@ export class ListPermisComponent implements OnInit {
     this.permisService.getPermis().subscribe(
       (response: Permis[]) => {
         this.permisList = response;
-     //   console.log(this.categories[0].idCategory);
         console.log(this.permisList);
       },
       (error: HttpErrorResponse) => {

@@ -3,6 +3,24 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination' ;
+
+import { SharedModule } from '..//shared/shared.module';
+
 import { CustomerRoutingModule } from './customer-routing.module';
 import { DetailChauffeurComponent } from './detail-chauffeur/detail-chauffeur.component';
 import { SearchChauffeurComponent } from './search-chauffeur/search-chauffeur.component';
@@ -22,9 +40,24 @@ import { ListNotificationComponent } from './notation/list-notification/list-not
   imports: [
     CommonModule,
     CustomerRoutingModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    FlexLayoutModule,
+    MatDialogModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatExpansionModule,
+
+    MatPaginatorModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
 
   ]
 })

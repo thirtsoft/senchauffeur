@@ -1,1 +1,15 @@
-<p>admin-layout works!</p>
+<div>
+    <section id="container">
+        <app-backend-header></app-backend-header>
+        <app-backend-sidebar></app-backend-sidebar>
+        <section id="main-content">
+            <section class="wrapper">
+
+                <div class="container-fluid">
+                    <router-outlet></router-outlet>
+                </div>
+            </section>
+        </section>
+        <app-backend-footer></app-backend-footer>
+    </section>
+</div>

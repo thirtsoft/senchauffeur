@@ -4,8 +4,6 @@
     <div class="row">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddScategorie()">Add scategorie</button>
-
     </div>
 
     <table class="table table-striped">
@@ -21,15 +19,13 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} "> -->
-            <tr *ngFor="let note of notationList">
+            <tr *ngFor="let note of notationList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
                 <td>{{note?.id}}</td>
                 <td>{{note?.reference}}</td>
                 <td>{{note?.nbreEtoile}}</td>
                 <td>{{note?.observation}}</td>
                 <td>{{note?.chauffeur?.firstName}} {{note?.chauffeur?.lastName}}</td>
                 <td>{{note?.utilisateur?.name}}</td>
-
                 <td>
                     <div class="container ">
                         <button mat-raised-button class="action-button btn-primary" (click)="addEditNotation(note) ">
