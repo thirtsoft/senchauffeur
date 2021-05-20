@@ -1,13 +1,21 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { ListNotificationComponent } from './notation/list-notification/list-notification.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { AideComponent } from './aide/aide.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CandidatebrowerComponent } from './candidatebrower/candidatebrower.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
+import { JobbrowserComponent } from './jobbrowser/jobbrowser.component';
+import { ContactComponent } from './contact/contact.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
-import { ListNotationComponent } from './../admin/list-notation/list-notation.component';
 import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
 import { SearchChauffeurComponent } from './search-chauffeur/search-chauffeur.component';
 import { DetailChauffeurComponent } from './detail-chauffeur/detail-chauffeur.component';
 import { AddEmployeComponent } from './emploi/add-employe/add-employe.component';
 import { ListEmployeComponent } from './emploi/list-employe/list-employe.component';
 import { HomeComponent } from './home/home.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
@@ -32,16 +40,44 @@ const routes: Routes = [
     component: SearchChauffeurComponent
   },
   {
+    path: 'browse-job',
+    component: JobbrowserComponent
+  },
+  {
+    path: 'browse-candidate',
+    component: CandidatebrowerComponent
+  },
+  {
+    path: 'job-detail',
+    component: JobDetailComponent
+  },
+  {
     path: 'search-offre',
     component: SearchOffreEmployeComponent
   },
   {
     path: 'wishes',
-    component: ListNotationComponent
+    component: ListNotificationComponent
   },
   {
     path: 'newWishe',
     component: CreateNotificationComponent
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent
+  },
+  {
+    path: 'contact-us',
+    component: ContactComponent
+  },
+  {
+    path: 'faq',
+    component: AideComponent
+  },
+  {
+    path: '404',
+    component: PageNotFoundComponent
   },
 
 

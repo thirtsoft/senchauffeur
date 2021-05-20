@@ -27,6 +27,13 @@ import { SearchChauffeurComponent } from './search-chauffeur/search-chauffeur.co
 import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
 import { ListNotificationComponent } from './notation/list-notification/list-notification.component';
+import { ContactComponent } from './contact/contact.component';
+import { JobbrowserComponent } from './jobbrowser/jobbrowser.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
+import { CandidatebrowerComponent } from './candidatebrower/candidatebrower.component';
+import { AideComponent } from './aide/aide.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -35,7 +42,14 @@ import { ListNotificationComponent } from './notation/list-notification/list-not
     SearchChauffeurComponent,
     SearchOffreEmployeComponent,
     CreateNotificationComponent,
-    ListNotificationComponent
+    ListNotificationComponent,
+    ContactComponent,
+    JobbrowserComponent,
+    JobDetailComponent,
+    CandidatebrowerComponent,
+    AideComponent,
+    PageNotFoundComponent,
+    AboutUsComponent
   ],
   imports: [
     CommonModule,

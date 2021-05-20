@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="text-center">
-                        <h1>Directory Listing Template</h1>
-                        <p class="mb20">Create your own directory website with finder that included modern features for directory websites</p>
+                        <h1>Plateforme de Recharche de Chauffeur</h1>
+                        <p class="mb20 text-center">Plateforme de mise en relation entre chauffeur et recruteur ou chauffeur et particulier</p>
                         <div class='form-hero-multi'>
                             <form>
                                 <div class='row'>
@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-6">
                                         <div class="form-group">
-                                            <select class="form-control" title="Location">                                       
+                                            <select class="form-control" title="Location">
                                         <option>Paris</option>
                                         <option>London</option>
                                         <option>New York</option>
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-6">
                                         <div class="form-group">
-                                            <select class="form-control" title="Category">                                       
+                                            <select class="form-control" title="Category">
                                         <option>Restaurants</option>
                                         <option>Jobs</option>
                                         <option>Property</option>
@@ -53,242 +53,83 @@
 
 <div class="gray-bg pt80 pb40">
     <div class="container">
-        <div class="row">
+        <h1 class="text-center" style="font-size: 20px;">Most Recent Drivers</h1>
+        <!-- <div class="row">
             <div class="col-sm-6 col-sm-offset-3 text-center center-heading mb40">
-                <h2>Most Recent Places</h2>
+                <h1>Most Recent Drivers</h1>
                 <p>
                     List most recent places are submitted by our users. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                 </p>
             </div>
-        </div>
+        </div> -->
         <!--/row-->
-        <div class="row">
-            <div class="col-sm-6 col-md-3 mb30">
+        <div class="row" *ngIf="chauffeurList">
+            <div class="col-sm-6 col-md-3 mb30" *ngFor="let chauff of chauffeurList">
                 <div class="card-overlay">
-                    <img src="assets/customer/images/img1.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Drinks</a>
-                            <h3><a href="#">Tasty Coffee</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star-half-empty text-warning"></i></li>
+                    <img (click)="getChauffeurDetails(chauff)" style=" cursor: pointer; " src="assets/customer/images/img1.jpg " class="img-responsive " alt=" ">
+                    <div class="card-hover ">
+                        <div class="card-content ">
+                            <a class="label label-primary " href="# ">Drinks</a>
+                            <h3>
+                                <a href="# ">{{chauff?.firstName}} {{chauff?.lastName}}</a>
+                            </h3>
+                            <ul class="list-inline mb0 rating-list ">
+                                <li><i class="fa fa-star text-warning "></i></li>
+                                <li><i class="fa fa-star text-warning "></i></li>
+                                <li><i class="fa fa-star text-warning "></i></li>
+                                <li><i class="fa fa-star text-warning "></i></li>
+                                <li><i class="fa fa-star-half-empty text-warning "></i></li>
                             </ul>
                         </div>
                         <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb30">
-                <div class="card-overlay">
-                    <img src="assets/customer/images/img2.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Restaurant</a>
-                            <h3><a href="#">Italian Food</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star-half-empty text-warning"></i></li>
-                            </ul>
-                        </div>
-                        <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb30">
-                <div class="card-overlay">
-                    <img src="assets/customer/images/img3.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Vacation</a>
-                            <h3><a href="#">Beach Life</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                            </ul>
-                        </div>
-                        <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb30">
-                <div class="card-overlay">
-                    <img src="assets/customer/images/img4.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Property</a>
-                            <h3><a href="#">House Rent</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star-half-empty text-warning"></i></li>
-                            </ul>
-                        </div>
-                        <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
+                        <div class="card-icons ">
+                            <a href="# " title="Add to Wishlist "><i class="fa fa-heart-o "></i></a>
+                            <a href="# " title="View Detail "><i class="fa fa-search "></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-3 mb30">
-                <div class="card-overlay">
-                    <img src="assets/customer/images/img5.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Bars</a>
-                            <h3><a href="#">Soft Drink</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star-half-empty text-warning"></i></li>
-                            </ul>
-                        </div>
-                        <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb30">
-                <div class="card-overlay">
-                    <img src="assets/customer/images/img6.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Swimming</a>
-                            <h3><a href="#">Swimming Pools</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star-half-empty text-warning"></i></li>
-                            </ul>
-                        </div>
-                        <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb30">
-                <div class="card-overlay">
-                    <img src="assets/customer/images/img7.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Electronics</a>
-                            <h3><a href="#">Mobile Stores</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star-half-empty text-warning"></i></li>
-                            </ul>
-                        </div>
-                        <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb30">
-                <div class="card-overlay">
-                    <img src="assets/customer/images/img8.jpg" class="img-responsive" alt="">
-                    <div class="card-hover">
-                        <div class="card-content">
-                            <a class="label label-primary" href="#">Shop</a>
-                            <h3><a href="#">Cloth Stores</a></h3>
-                            <ul class="list-inline mb0 rating-list">
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star text-warning"></i></li>
-                                <li><i class="fa fa-star-half-empty text-warning"></i></li>
-                            </ul>
-                        </div>
-                        <!--/card-content-->
-                        <div class="card-icons">
-                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" title="View Detail"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mb30">
-            <a href="#" class="btn btn-lg btn-rounded btn-primary">View All Listing</a>
+
+        <div class="text-center mb30 ">
+            <a href="# " class="btn btn-lg btn-rounded btn-primary ">View All Listing</a>
         </div>
     </div>
 </div>
 
 <div class="bg-faded pt80 pb40 mb70 ">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 mb30">
-                <div class="icon-center-card">
-                    <i class="fa fa-envelope-o"></i>
+    <div class="container ">
+        <div class="row ">
+            <div class="col-sm-4 mb30 ">
+                <div class="icon-center-card ">
+                    <i class="fa fa-envelope-o "></i>
                     <h3>Full support</h3>
                     <p>
                         Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </p>
-                    <a href="#">Read More</a>
+                    <a href="# ">Read More</a>
                 </div>
             </div>
             <!--/col-->
-            <div class="col-sm-4 mb30">
-                <div class="icon-center-card">
-                    <i class="fa fa-map-marker"></i>
+            <div class="col-sm-4 mb30 ">
+                <div class="icon-center-card ">
+                    <i class="fa fa-map-marker "></i>
                     <h3>More than 1000 places</h3>
                     <p>
                         Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </p>
-                    <a href="#">Read More</a>
+                    <a href="# ">Read More</a>
                 </div>
             </div>
             <!--/col-->
-            <div class="col-sm-4 mb30">
-                <div class="icon-center-card">
-                    <i class="fa fa-code"></i>
+            <div class="col-sm-4 mb30 ">
+                <div class="icon-center-card ">
+                    <i class="fa fa-code "></i>
                     <h3>Free updated</h3>
                     <p>
                         Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </p>
-                    <a href="#">Read More</a>
+                    <a href="# ">Read More</a>
                 </div>
             </div>
             <!--/col-->
@@ -296,72 +137,72 @@
     </div>
 </div>
 
-<div class="container text-center mb70">
-    <h3 class="font300 mb20">Want to Promote your location</h3>
-    <a href="#" class="btn btn-rounded btn-lg btn-dark">Promote Here</a>
+<div class="container text-center mb70 ">
+    <h3 class="font300 mb20 ">Want to Promote your location</h3>
+    <a href="# " class="btn btn-rounded btn-lg btn-dark ">Promote Here</a>
 </div>
 
-<div class="dark-bg pt80 pb40 mb70 bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url(assets/customer/images/bg3.jpg)'>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3 text-center center-heading mb40">
+<div class="dark-bg pt80 pb40 mb70 bg-parallax parallax-overlay " data-jarallax='{"speed ": 0.2}' style='background-image: url(assets/customer/images/bg3.jpg)'>
+    <div class="container ">
+        <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3 text-center center-heading mb40 ">
                 <h2>Events near you</h2>
                 <p>
                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                 </p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4 mb40">
-                <div class="event-card">
-                    <div class="date-icon">
-                        <div class="text-center">
+        <div class="row ">
+            <div class="col-sm-4 mb40 ">
+                <div class="event-card ">
+                    <div class="date-icon ">
+                        <div class="text-center ">
                             25 <span>March</span>
                         </div>
                     </div>
-                    <span><i class="fa fa-clock-o"></i> 8:00 Am - 11:00 Pm</span>
-                    <h4 class="mt10"><a href="#">Nulla faucibus convallis dui</a></h4>
+                    <span><i class="fa fa-clock-o "></i> 8:00 Am - 11:00 Pm</span>
+                    <h4 class="mt10 "><a href="# ">Nulla faucibus convallis dui</a></h4>
                     <p>
                         Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque.
                     </p>
-                    <div class="text-left more-link">
-                        <a href="#">View Detail</a>
+                    <div class="text-left more-link ">
+                        <a href="# ">View Detail</a>
                     </div>
                 </div>
             </div>
             <!--/col-->
-            <div class="col-sm-4 mb40">
-                <div class="event-card">
-                    <div class="date-icon">
-                        <div class="text-center">
+            <div class="col-sm-4 mb40 ">
+                <div class="event-card ">
+                    <div class="date-icon ">
+                        <div class="text-center ">
                             25 <span>March</span>
                         </div>
                     </div>
-                    <span><i class="fa fa-clock-o"></i> 8:00 Am - 11:00 Pm</span>
-                    <h4 class="mt10"><a href="#">Nulla faucibus convallis dui</a></h4>
+                    <span><i class="fa fa-clock-o "></i> 8:00 Am - 11:00 Pm</span>
+                    <h4 class="mt10 "><a href="# ">Nulla faucibus convallis dui</a></h4>
                     <p>
                         Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque.
                     </p>
-                    <div class="text-left more-link">
-                        <a href="#">View Detail</a>
+                    <div class="text-left more-link ">
+                        <a href="# ">View Detail</a>
                     </div>
                 </div>
             </div>
             <!--/col-->
-            <div class="col-sm-4 mb40">
-                <div class="event-card">
-                    <div class="date-icon">
-                        <div class="text-center">
+            <div class="col-sm-4 mb40 ">
+                <div class="event-card ">
+                    <div class="date-icon ">
+                        <div class="text-center ">
                             25 <span>March</span>
                         </div>
                     </div>
-                    <span><i class="fa fa-clock-o"></i> 8:00 Am - 11:00 Pm</span>
-                    <h4 class="mt10"><a href="#">Nulla faucibus convallis dui</a></h4>
+                    <span><i class="fa fa-clock-o "></i> 8:00 Am - 11:00 Pm</span>
+                    <h4 class="mt10 "><a href="# ">Nulla faucibus convallis dui</a></h4>
                     <p>
                         Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque.
                     </p>
-                    <div class="text-left more-link">
-                        <a href="#">View Detail</a>
+                    <div class="text-left more-link ">
+                        <a href="# ">View Detail</a>
                     </div>
                 </div>
             </div>
@@ -369,66 +210,19 @@
         </div>
     </div>
 </div>
-<div class="container mb40">
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 text-center center-heading mb40">
-            <h2>Latest from blog</h2>
-            <p>
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4 mb40">
-            <div class="post-card">
-                <a href="#"><img src="assets/customer/images/img2.jpg" alt="" class="img-responsive mb15"></a>
-                <div class="post-content">
-                    <h4><a href="#">Standard post with image</a></h4>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!--/col-->
-        <div class="col-sm-4 mb40">
-            <div class="post-card">
-                <a href="#"><img src="assets/customer/images/img3.jpg" alt="" class="img-responsive mb15"></a>
-                <div class="post-content">
-                    <h4><a href="#">Standard post with image</a></h4>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!--/col-->
-        <div class="col-sm-4 mb40">
-            <div class="post-card">
-                <a href="#"><img src="assets/customer/images/img4.jpg" alt="" class="img-responsive mb15"></a>
-                <div class="post-content">
-                    <h4><a href="#">Standard post with image</a></h4>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!--/col-->
-    </div>
-</div>
-<div class="gray-bg pt40 pb40 newsletter-form">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
+
+<div class="gray-bg pt40 pb40 newsletter-form ">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-sm-6 ">
                 <h2>
                     Subscribe and be notified about new locations</h2>
             </div>
-            <div class="col-sm-6">
-                <div class="newsletter-card">
+            <div class="col-sm-6 ">
+                <div class="newsletter-card ">
                     <form>
-                        <input type="text" class="form-control" placeholder="Enter your Email...">
-                        <input type="submit" value="Subscribe" class="newsletter-submit">
+                        <input type="text " class="form-control " placeholder="Enter your Email... ">
+                        <input type="submit " value="Subscribe " class="newsletter-submit ">
                     </form>
                 </div>
             </div>
