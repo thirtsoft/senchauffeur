@@ -11,7 +11,9 @@
     <table class="table table-striped">
         <thead class="thead-inverse">
             <tr>
-               <th>Reference</th>
+                <th>Reference</th>
+                <th>Entreprise</th>
+                <th>Recruteur</th>
                 <th>Permis</th>
                 <th>Salaire</th>
                 <th>Mode Candidature</th>
@@ -20,26 +22,26 @@
                 <th>Date Cloture</th>
                 <th>Status</th>
                 <th>Action</th>
-
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-             <tr *ngFor="let annonce of annonceList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{annonce?.reference}}</td>
-                <td>{{annonce?.permis?.designation}}</td>
-                <td>{{annonce?.salaire}}</td>
-                <td>{{annonce?.modeCandidature}}</td>
-                <td>{{annonce?.lieuPoste}}</td>
-                <td>{{annonce?.dateCandidature}}</td>
-                <td>{{annonce?.dateCloture}}</td>
-                <td>{{annonce?.statusAnnonce}}</td>
+            <tr *ngFor="let annonceDTO of annonceListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{annonceDTO?.reference}}</td>
+                <td>{{annonceDTO?.recruteurDto?.nomEntreprise}}</td>
+                <td>{{annonceDTO?.recruteurDto?.firstName}} {{annonceDTO?.recruteurDto?.lastName}}</td>
+                <td>{{annonceDTO?.permisDto?.designation}}</td>
+                <td>{{annonceDTO?.salaire}}</td>
+                <td>{{annonceDTO?.modeCandidature}}</td>
+                <td>{{annonceDTO?.lieuPoste}}</td>
+                <td>{{annonceDTO?.dateCandidature}}</td>
+                <td>{{annonceDTO?.dateCloture}}</td>
+                <td>{{annonceDTO?.statusAnnonce}}</td>
                 <td>
                     <div class=" container ">
-                        <button mat-raised-button class="action-button btn-primary " (click)="addEditAnnonce(annonce) ">
+                        <button mat-raised-button class="action-button btn-primary " (click)="addEditAnnonce(annonceDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteAnnonce(annonce) ">
+                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteAnnonce(annonceDTO) ">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

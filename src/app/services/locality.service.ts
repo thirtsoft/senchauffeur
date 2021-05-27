@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Locality } from './../models/locality';
+import { Locality, AddresseDto } from './../models/locality';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -31,6 +31,26 @@ export class LocalityService {
   }
 
   public deleteLocality(noteId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/addresses/delete/${noteId}`);
+  }
+
+  public getLocaliteDTOs(): Observable<AddresseDto[]> {
+    return this.http.get<AddresseDto[]>(`${this.apiServerUrl}/addresses/all`);
+  }
+
+  public getLocalityDTOById(locId: number): Observable<AddresseDto> {
+    return this.http.get<AddresseDto>(`${this.apiServerUrl}/addresses/${locId}`);
+  }
+
+  public addLocalityDTO(localityDTO: AddresseDto): Observable<AddresseDto> {
+    return this.http.post<AddresseDto>(`${this.apiServerUrl}/addresses/create`, localityDTO);
+  }
+
+  public updateLocalityDTO(localityDTO: AddresseDto): Observable<Locality> {
+    return this.http.put<AddresseDto>(`${this.apiServerUrl}/addresses/create`, localityDTO);
+  }
+
+  public deleteLocalityDTO(noteId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/addresses/delete/${noteId}`);
   }
 

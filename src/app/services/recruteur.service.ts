@@ -1,4 +1,4 @@
-import { Recruteur } from './../models/recruteur';
+import { Recruteur, RecruteurDto } from './../models/recruteur';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -33,5 +33,27 @@ export class RecruteurService {
   public deleteRecruteur(recId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/recruteurs/delete/${recId}`);
   }
+
+  /************************ RecruteurDTO ****************/
+  public getRecruteurDTOs(): Observable<RecruteurDto[]> {
+    return this.http.get<RecruteurDto[]>(`${this.apiServerUrl}/recruteurs/all`);
+  }
+
+  public getRecruteurDTOById(recId: number): Observable<RecruteurDto> {
+    return this.http.get<RecruteurDto>(`${this.apiServerUrl}/recruteurs/${recId}`);
+  }
+
+  public addRecruteurDTO(recruteurDTO: RecruteurDto): Observable<RecruteurDto> {
+    return this.http.post<RecruteurDto>(`${this.apiServerUrl}/recruteurs/create`, recruteurDTO);
+  }
+
+  public updateRecruteurDTO(recruteurDTO: RecruteurDto): Observable<Recruteur> {
+    return this.http.put<RecruteurDto>(`${this.apiServerUrl}/recruteurs/create`, recruteurDTO);
+  }
+
+  public deleteRecruteurDTO(recId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/recruteurs/delete/${recId}`);
+  }
+
 
 }

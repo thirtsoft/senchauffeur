@@ -2,7 +2,7 @@ import { CreateAnnonceComponent } from './../create-annonce/create-annonce.compo
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AnnonceService } from './../../../services/annonce.service';
-import { Annonce } from './../../../models/annonce';
+import { Annonce, AnnonceDto } from './../../../models/annonce';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListAnnonceComponent implements OnInit {
 
   annonceList: Annonce[];
+  annonceListDTO: AnnonceDto[];
   editAnnonce: Annonce;
   deleteAnnonce: Annonce;
 
@@ -27,6 +28,19 @@ export class ListAnnonceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListAnnonces();
+    this.getListAnnonceDTOs();
+  }
+
+  public getListAnnonceDTOs() {
+    this.annonceService.getAnnonceDTOs().subscribe(
+      (response: AnnonceDto[]) => {
+        this.annonceListDTO = response;
+        console.log(this.annonceListDTO);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public getListAnnonces(): void {
@@ -55,7 +69,7 @@ export class ListAnnonceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.annonceList.push(result);
+        this.annonceListDTO.push(result);
       }
       // this.refreshData();
     });
@@ -65,10 +79,10 @@ export class ListAnnonceComponent implements OnInit {
 
   }
   public onDeleteAnnonce(annonceId: number): void {
-    this.annonceService.deleteAnnonce(annonceId).subscribe(
+    this.annonceService.deleteAnnonceDTO(annonceId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getListAnnonces();
+        this.getListAnnonceDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

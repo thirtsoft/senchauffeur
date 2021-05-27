@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Annonce } from './../models/annonce';
+import { Annonce, AnnonceDto } from './../models/annonce';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -31,6 +31,27 @@ export class AnnonceService {
   }
 
   public deleteAnnonce(annonceId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/annonces/delete/${annonceId}`);
+  }
+
+  /**************************** ChauffeurDTO ******************/
+  public getAnnonceDTOs(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/all`);
+  }
+
+  public getAnnonceDTOById(annonceId: number): Observable<AnnonceDto> {
+    return this.http.get<AnnonceDto>(`${this.apiServerUrl}/annonces/${annonceId}`);
+  }
+
+  public addAnnonceDTO(annonceDTO: AnnonceDto): Observable<AnnonceDto> {
+    return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
+  }
+
+  public updateAnnonceDTO(annonceDTO: AnnonceDto): Observable<AnnonceDto> {
+    return this.http.put<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
+  }
+
+  public deleteAnnonceDTO(annonceId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/annonces/delete/${annonceId}`);
   }
 

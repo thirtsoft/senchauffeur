@@ -22,20 +22,20 @@
         </thead>
         <tbody>
 
-            <tr *ngFor="let locality of localityList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{locality?.reference}}</td>
-                <td>{{locality?.quartier}}</td>
-                <td>{{locality?.ville}}</td>
-                <td>{{locality?.rue}}</td>
-                <td>{{locality?.codePostal}}</td>
-                <td>{{locality?.pays}}</td>
+            <tr *ngFor="let localityDTO of localityListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{localityDTO?.reference}}</td>
+                <td>{{localityDTO?.quartier}}</td>
+                <td>{{localityDTO?.ville}}</td>
+                <td>{{localityDTO?.rue}}</td>
+                <td>{{localityDTO?.codePostal}}</td>
+                <td>{{localityDTO?.pays}}</td>
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditLocality(locality) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditLocality(localityDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteLocality(locality)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteLocality(localityDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

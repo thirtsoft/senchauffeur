@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Utilisateur } from './../models/utilisateur';
+import { Utilisateur, UtilisateurDto } from './../models/utilisateur';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -31,6 +31,27 @@ export class UtilisateurService {
   }
 
   public deleteUtilisateur(userId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${userId}`);
+  }
+
+  /************************* UtilisateurDTO *****************/
+  public getUtilisateurDTOs(): Observable<UtilisateurDto[]> {
+    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/all`);
+  }
+
+  public getUtilisateurDTOById(userId: number): Observable<UtilisateurDto> {
+    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/${userId}`);
+  }
+
+  public addUtilisateurDTO(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
+  }
+
+  public updateUtilisateurDTO(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
+  }
+
+  public deleteUtilisateurDTO(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${userId}`);
   }
 

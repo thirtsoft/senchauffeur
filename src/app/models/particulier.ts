@@ -9,3 +9,14 @@ export class Particulier {
   villeParticulier: string;
 
 }
+
+export class ParticulierDto {
+  id: number;
+  firstName: string;
+	lastName: string;
+  email: string;
+  phoneParticulier: string;
+	mobileParticulier: string;
+	addressParticulier: string;
+  villeParticulier: string;
+}

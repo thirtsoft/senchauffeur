@@ -1,4 +1,4 @@
-import { Permis } from './../models/permis';
+import { Permis, PermisDto } from './../models/permis';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -31,6 +31,27 @@ export class PermisService {
   }
 
   public deletePermis(permisId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/permis/delete/${permisId}`);
+  }
+
+  /************************  PermisDTO ****************/
+  public getPermisDTOs(): Observable<PermisDto[]> {
+    return this.http.get<PermisDto[]>(`${this.apiServerUrl}/permis/all`);
+  }
+
+  public getPermisDTOById(permisId: number): Observable<PermisDto> {
+    return this.http.get<PermisDto>(`${this.apiServerUrl}/permis/${permisId}`);
+  }
+
+  public addPermisDTO(permisDTO: PermisDto): Observable<PermisDto> {
+    return this.http.post<PermisDto>(`${this.apiServerUrl}/permis/create`, permisDTO);
+  }
+
+  public updatePermisDTO(permisDTO: PermisDto): Observable<PermisDto> {
+    return this.http.put<PermisDto>(`${this.apiServerUrl}/permis/create`, permisDTO);
+  }
+
+  public deletePermisDTO(permisId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/permis/delete/${permisId}`);
   }
 

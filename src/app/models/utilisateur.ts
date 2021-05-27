@@ -7,3 +7,12 @@ export class Utilisateur {
   password: string;
 
 }
+
+export class UtilisateurDto {
+  id: number;
+  name: string;
+  username: string;
+  mobile: string;
+  email: string;
+  password: string;
+}

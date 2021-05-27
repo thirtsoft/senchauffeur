@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Particulier } from './../models/particulier';
+import { Particulier, ParticulierDto } from './../models/particulier';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -33,5 +33,27 @@ export class ParticulierService {
   public deleteParticulier(partId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/particuliers/delete/${partId}`);
   }
+
+  /************************ ParticulierDTO ****************/
+  public getParticulierDTOs(): Observable<ParticulierDto[]> {
+    return this.http.get<ParticulierDto[]>(`${this.apiServerUrl}/particuliers/all`);
+  }
+
+  public getParticulierDTOById(partId: number): Observable<ParticulierDto> {
+    return this.http.get<ParticulierDto>(`${this.apiServerUrl}/particuliers/${partId}`);
+  }
+
+  public addParticulierDTO(particulierDTO: ParticulierDto): Observable<ParticulierDto> {
+    return this.http.post<ParticulierDto>(`${this.apiServerUrl}/particuliers/create`, particulierDTO);
+  }
+
+  public updateParticulierDTO(utilisateurDTO: ParticulierDto): Observable<ParticulierDto> {
+    return this.http.put<ParticulierDto>(`${this.apiServerUrl}/particuliers/create`, utilisateurDTO);
+  }
+
+  public deleteParticulierDTO(partId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/particuliers/delete/${partId}`);
+  }
+
 
 }

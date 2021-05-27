@@ -27,24 +27,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let chauff of chauffeurList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{chauff?.photoChauffeur}}</td>
-                <td>{{chauff?.reference}}</td>
-                <td>{{chauff?.permis?.designation}}</td>
-                <td>{{chauff?.firstName}} {{chauff?.lastName}}</td>
-                <td>{{chauff?.addressActuel}}</td>
-                <td>{{chauff?.phoneChauffeur}}</td>
-                <td>{{chauff?.email}}</td>
-                <td>{{chauff?.nbreAnneeExperience}}</td>
-                <td>{{chauff?.pretentionSalaire}}</td>
-                <td>{{chauff?.mobilite}}</td>
-                <td>{{chauff?.cvChauffeur}}</td>
+            <tr *ngFor="let chauffDTO of chauffeurListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{chauffDTO?.photoChauffeur}}</td>
+                <td>{{chauffDTO?.reference}}</td>
+                <td>{{chauffDTO?.permisDto?.designation}}</td>
+                <td>{{chauffDTO?.firstName}} {{chauffDTO?.lastName}}</td>
+                <td>{{chauffDTO?.addressActuel}}</td>
+                <td>{{chauffDTO?.phoneChauffeur}}</td>
+                <td>{{chauffDTO?.email}}</td>
+                <td>{{chauffDTO?.nbreAnneeExperience}}</td>
+                <td>{{chauffDTO?.pretentionSalaire}}</td>
+                <td>{{chauffDTO?.mobilite}}</td>
+                <td>{{chauffDTO?.cvChauffeur}}</td>
                 <td>
                     <div class=" container ">
-                        <button mat-raised-button class="action-button btn-primary " (click)="addEditChauffeur(chauff) ">
+                        <button mat-raised-button class="action-button btn-primary " (click)="addEditChauffeur(chauffDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteChauffeur(chauff) ">
+                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteChauffeur(chauffDTO) ">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

@@ -4,7 +4,7 @@ import { CreateChauffeurComponent } from './../create-chauffeur/create-chauffeur
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
-import { Chauffeur } from './../../../models/chauffeur';
+import { Chauffeur, ChauffeurDto } from './../../../models/chauffeur';
 
 @Component({
   selector: 'app-list-chauffeur',
@@ -14,6 +14,7 @@ import { Chauffeur } from './../../../models/chauffeur';
 export class ListChauffeurComponent implements OnInit {
 
   chauffeurList: Chauffeur[];
+  chauffeurListDTO: ChauffeurDto[];
   editChauffeur: Chauffeur;
   deleteChauffeur: Chauffeur;
 
@@ -27,13 +28,25 @@ export class ListChauffeurComponent implements OnInit {
 
   ngOnInit(): void {
     this.getlistChauffeurs();
+    this.getListChauffeurDTOs();
+  }
+
+  public getListChauffeurDTOs() {
+    this.chauffeurService.getChauffeurDTOs().subscribe(
+      (response: ChauffeurDto[]) => {
+        this.chauffeurListDTO = response;
+        console.log(this.chauffeurListDTO);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public getlistChauffeurs(): void {
     this.chauffeurService.getChauffeurs().subscribe(
       (response: Chauffeur[]) => {
         this.chauffeurList = response;
-     //   console.log(this.categories[0].idCategory);
         console.log(this.chauffeurList);
       },
       (error: HttpErrorResponse) => {
@@ -56,7 +69,7 @@ export class ListChauffeurComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.chauffeurList.push(result);
+        this.chauffeurListDTO.push(result);
       }
       // this.refreshData();
     });
@@ -66,10 +79,10 @@ export class ListChauffeurComponent implements OnInit {
 
   }
   public onDeleteChauffeur(chauffId: number): void {
-    this.chauffeurService.deleteChauffeur(chauffId).subscribe(
+    this.chauffeurService.deleteChauffeurDTO(chauffId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getlistChauffeurs();
+        this.getListChauffeurDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -3,7 +3,7 @@ import { CreateLocalityComponent } from './../create-locality/create-locality.co
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LocalityService } from './../../../services/locality.service';
-import { Locality } from './../../../models/locality';
+import { Locality, AddresseDto } from './../../../models/locality';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListLocalityComponent implements OnInit {
 
   localityList: Locality[];
+  localityListDTO: AddresseDto[];
   editLocality: Locality;
   deleteLocality: Locality;
 
@@ -27,8 +28,21 @@ export class ListLocalityComponent implements OnInit {
 
   ngOnInit(): void {
     this.getlistLocalities();
+    this.getListLocalitieDTOs();
   }
 
+  public getListLocalitieDTOs() {
+    this.localiteService.getLocaliteDTOs().subscribe(
+      (response: AddresseDto[]) => {
+        this.localityListDTO = response;
+        console.log(this.localityListDTO);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+  }
   public getlistLocalities(): void {
     this.localiteService.getLocalites().subscribe(
       (response: Locality[]) => {
@@ -55,7 +69,7 @@ export class ListLocalityComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.localityList.push(result);
+        this.localityListDTO.push(result);
       }
       // this.refreshData();
     });
@@ -65,10 +79,10 @@ export class ListLocalityComponent implements OnInit {
 
   }
   public onDeleteLocality(locId: number): void {
-    this.localiteService.deleteLocality(locId).subscribe(
+    this.localiteService.deleteLocalityDTO(locId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getlistLocalities();
+        this.getListLocalitieDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

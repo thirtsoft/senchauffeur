@@ -20,18 +20,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let permis of permisList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{permis?.id}}</td>
-                <td>{{permis?.typePermis}}</td>
-                <td>{{permis?.designation}}</td>
-                <td>{{permis?.validite}}</td>
+            <tr *ngFor="let permisDTO of permisListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{permisDTO?.id}}</td>
+                <td>{{permisDTO?.typePermis}}</td>
+                <td>{{permisDTO?.designation}}</td>
+                <td>{{permisDTO?.validite}}</td>
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditPermis(permis) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditPermis(permisDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeletePermis(permis)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeletePermis(permisDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

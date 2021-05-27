@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotationService } from './../../services/notation.service';
-import { Notation } from './../../models/notation';
+import { Notation, NotificationDto } from './../../models/notation';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListNotationComponent implements OnInit {
 
   notationList: Notation[];
+  notationListDTO: NotificationDto[];
   editNotation: Notation;
   deleteNotation: Notation;
 
@@ -24,6 +25,20 @@ export class ListNotationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getlistNotations();
+    this.getListNotificationDTOs();
+  }
+
+  public getListNotificationDTOs() {
+    this.noteService.getNotationDTOs().subscribe(
+      (response: NotificationDto[]) => {
+        this.notationListDTO = response;
+        console.log(this.notationListDTO);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
   }
 
   public getlistNotations(): void {
@@ -42,10 +57,10 @@ export class ListNotationComponent implements OnInit {
 
   }
   public onDeleteNotation(noteId: number): void {
-    this.noteService.deleteNotation(noteId).subscribe(
+    this.noteService.deleteNotationDTO(noteId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getlistNotations();
+        this.getListNotificationDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

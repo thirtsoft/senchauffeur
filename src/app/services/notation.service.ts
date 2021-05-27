@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Notation } from './../models/notation';
+import { Notation, NotificationDto } from './../models/notation';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -31,6 +31,27 @@ export class NotationService {
   }
 
   public deleteNotation(noteId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete/${noteId}`);
+  }
+
+  /*********************** NotationDTO *****************/
+  public getNotationDTOs(): Observable<NotificationDto[]> {
+    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/all`);
+  }
+
+  public getNotationDTOById(noteId: number): Observable<NotificationDto> {
+    return this.http.get<NotificationDto>(`${this.apiServerUrl}/notifications/${noteId}`);
+  }
+
+  public addNotationDTO(notationDTO: NotificationDto): Observable<NotificationDto> {
+    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/create`, notationDTO);
+  }
+
+  public updateNotationDTO(notationDTO: NotificationDto): Observable<NotificationDto> {
+    return this.http.put<NotificationDto>(`${this.apiServerUrl}/notifications/create`, notationDTO);
+  }
+
+  public deleteNotationDTO(noteId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete/${noteId}`);
   }
 

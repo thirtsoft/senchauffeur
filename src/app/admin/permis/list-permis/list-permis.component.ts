@@ -1,6 +1,6 @@
 import { CreatePermisComponent } from './../create-permis/create-permis.component';
 import { PermisService } from './../../../services/permis.service';
-import { Permis } from './../../../models/permis';
+import { Permis, PermisDto } from './../../../models/permis';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ListPermisComponent implements OnInit {
 
   permisList: Permis[];
+  permisListDTO: PermisDto[];
   editPermis: Permis;
   deletePermis: Permis;
 
@@ -27,6 +28,20 @@ export class ListPermisComponent implements OnInit {
 
   ngOnInit(): void {
     this.getlistPermis();
+    this.getListPermisDTOs();
+  }
+
+  public getListPermisDTOs() {
+    this.permisService.getPermisDTOs().subscribe(
+      (response: PermisDto[]) => {
+        this.permisListDTO = response;
+        console.log(this.permisListDTO);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
   }
 
   public getlistPermis(): void {
@@ -65,10 +80,10 @@ export class ListPermisComponent implements OnInit {
 
   }
   public onDeletePermis(perId: number): void {
-    this.permisService.deletePermis(perId).subscribe(
+    this.permisService.deletePermisDTO(perId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getlistPermis();
+        this.getListPermisDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
