@@ -1,3 +1,6 @@
+import { CompaniesComponent } from './companies/companies.component';
+import { FaqComponent } from './faq/faq.component';
+import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -28,6 +31,14 @@ const routes: Routes = [
     component: ListEmployeComponent
   },
   {
+    path: 'browse-candidates',
+    component: CandidatebrowerComponent
+  },
+  {
+    path: 'submit-resume',
+    component: SubmitResumeComponent
+  },
+  {
     path: 'newEmploi',
     component: AddEmployeComponent
   },
@@ -52,6 +63,10 @@ const routes: Routes = [
     component: JobDetailComponent
   },
   {
+    path: 'companies',
+    component: CompaniesComponent
+  },
+  {
     path: 'search-offre',
     component: SearchOffreEmployeComponent
   },
@@ -73,7 +88,7 @@ const routes: Routes = [
   },
   {
     path: 'faq',
-    component: AideComponent
+    component: FaqComponent
   },
   {
     path: '404',

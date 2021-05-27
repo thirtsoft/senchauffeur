@@ -6,9 +6,15 @@ import { DEFAULT_ROUTES } from './routes/default-layout-routes';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
+import { AccueilComponent } from './layouts/accueil/accueil.component';
 
 
 const routes: Routes = [
+  /* {
+    path: '',
+    component: AccueilComponent
+
+  }, */
   {
     path: '',
     component: DefaultLayoutComponent,

@@ -10,8 +10,12 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
 
   {
-    path: 'signup',
+    path: 'signUp',
     component: RegisterComponent
+  },
+  {
+    path: 'signIn',
+    component: LoginComponent
   },
   {
     path: 'profil',

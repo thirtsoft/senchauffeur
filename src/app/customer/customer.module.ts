@@ -34,6 +34,9 @@ import { CandidatebrowerComponent } from './candidatebrower/candidatebrower.comp
 import { AideComponent } from './aide/aide.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { FaqComponent } from './faq/faq.component';
+import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { AboutUsComponent } from './about-us/about-us.component';
     CandidatebrowerComponent,
     AideComponent,
     PageNotFoundComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    CompaniesComponent,
+    FaqComponent,
+    SubmitResumeComponent
   ],
   imports: [
     CommonModule,

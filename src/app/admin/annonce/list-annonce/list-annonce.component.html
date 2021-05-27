@@ -1,17 +1,17 @@
-<h3><i class="fa fa-angle-right"></i> List of annonces</h3>
+<h3><i class="fa fa-angle-right"></i> List of Chauffeurs</h3>
 <div>
-    <div>
 
+    <div class="row">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="width: 30%;" (click)="onAddAnnonce()">Add Annonce</button>
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddAnnonce()">Add Annonce</button>
 
     </div>
 
     <table class="table table-striped">
         <thead class="thead-inverse">
             <tr>
-                <th>Reference</th>
+               <th>Reference</th>
                 <th>Permis</th>
                 <th>Salaire</th>
                 <th>Mode Candidature</th>
@@ -20,10 +20,12 @@
                 <th>Date Cloture</th>
                 <th>Status</th>
                 <th>Action</th>
+
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let annonce of annonceList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+             <tr *ngFor="let annonce of annonceList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
                 <td>{{annonce?.reference}}</td>
                 <td>{{annonce?.permis?.designation}}</td>
                 <td>{{annonce?.salaire}}</td>
@@ -32,7 +34,6 @@
                 <td>{{annonce?.dateCandidature}}</td>
                 <td>{{annonce?.dateCloture}}</td>
                 <td>{{annonce?.statusAnnonce}}</td>
-
                 <td>
                     <div class=" container ">
                         <button mat-raised-button class="action-button btn-primary " (click)="addEditAnnonce(annonce) ">

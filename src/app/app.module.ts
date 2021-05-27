@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
+import { AccueilComponent } from './layouts/accueil/accueil.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.
 
     AdminLayoutComponent,
     DefaultLayoutComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
