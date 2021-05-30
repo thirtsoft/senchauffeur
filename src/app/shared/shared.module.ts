@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
+
+import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule, MatDialogRef, } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -18,6 +22,7 @@ import { BackendHeaderComponent } from './backend-header/backend-header.componen
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
+import { MatdialogComponent } from './matdialog/matdialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,7 @@ import { HeaderComponent } from './header/header.component';
     BackendHeaderComponent,
     BackendSidebarComponent,
     BackendFooterComponent,
+    MatdialogComponent,
 
   ],
    exports: [
@@ -49,6 +55,23 @@ import { HeaderComponent } from './header/header.component';
     MatSnackBarModule,
     MatCardModule,
     MatExpansionModule,
-  ]
+    ToastrModule.forRoot(),
+    MatDialogModule,
+    MatDialogRef,
+    MatIconModule,
+  ],
+  providers: [
+    DatePipe,
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {} ,
+    },
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+
+  ],
 })
 export class SharedModule { }
+

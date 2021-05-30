@@ -5,7 +5,7 @@
             <form #addChauffeurForm="ngForm" name="form" (ngSubmit)="onAddChauffeur()">
                 <div class="form-group">
                     <label>FirstName</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.firstName" name="firstName" id="firstName" #firstName="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.firstName" name="firstName" id="firstName" #firstName="ngModel" required />
                     <span class="text-danger" *ngIf="
             (firstName.touched || addChauffeurForm.submitted) &&
             firstName.errors?.required
@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label>LastName</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.lastName" name="lastName" id="lastName" #lastName="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.lastName" name="lastName" id="lastName" #lastName="ngModel" required />
                     <span class="text-danger" *ngIf="
             (lastName.touched || addChauffeurForm.submitted) &&
             lastName.errors?.required
@@ -28,16 +28,16 @@
                 <div class="form-group">
                     <label>Permis</label>
                     <div class="form-group">
-                        <select name="permis" [(ngModel)]="formDataChauffeur.permis" class="form-control">
+                        <select name="permis" [(ngModel)]="formDataChauffeurDTO.permisDto" class="form-control">
             <option *ngFor="let art of listPermisData"
-              [ngValue]="art.id == formDataChauffeur.permis?.id ? formDataChauffeur.permis : art">{{art.designation}}</option>
+              [ngValue]="art.id == formDataChauffeurDTO.permisDto?.id ? formDataChauffeurDTO.permisDto : art">{{art.designation}}</option>
           </select>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>addressActuel</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.addressActuel" name="addressActuel" id="addressActuel" #addressActuel="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.addressActuel" name="addressActuel" id="addressActuel" #addressActuel="ngModel" required />
                     <span class="text-danger" *ngIf="
             (addressActuel.touched || addChauffeurForm.submitted) &&
             addressActuel.errors?.required
@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <label>Phone Chauffeur</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.phoneChauffeur" name="phoneChauffeur" id="phoneChauffeur" #phoneChauffeur="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.phoneChauffeur" name="phoneChauffeur" id="phoneChauffeur" #phoneChauffeur="ngModel" required />
                     <span class="text-danger" *ngIf="
           (phoneChauffeur.touched || addChauffeurForm.submitted) &&
           phoneChauffeur.errors?.required
@@ -59,7 +59,7 @@
 
                 <div class="form-group">
                     <label>Email </label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.email" name="email" id="email" #email="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.email" name="email" id="email" #email="ngModel" required />
                     <span class="text-danger" *ngIf="
         (email.touched || addChauffeurForm.submitted) &&
         email.errors?.required
@@ -70,7 +70,7 @@
 
                 <div class="form-group">
                     <label>Experience </label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.nbreAnneeExperience" name="nbreAnneeExperience" id="nbreAnneeExperience" #nbreAnneeExperience="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.nbreAnneeExperience" name="nbreAnneeExperience" id="nbreAnneeExperience" #nbreAnneeExperience="ngModel" required />
                     <span class="text-danger" *ngIf="
       (nbreAnneeExperience.touched || addChauffeurForm.submitted) &&
       nbreAnneeExperience.errors?.required
@@ -81,7 +81,7 @@
 
                 <div class="form-group">
                     <label>pretention Salaire </label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.pretentionSalaire" name="pretentionSalaire" id="pretentionSalaire" #pretentionSalaire="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.pretentionSalaire" name="pretentionSalaire" id="pretentionSalaire" #pretentionSalaire="ngModel" required />
                     <span class="text-danger" *ngIf="
     (pretentionSalaire.touched || addChauffeurForm.submitted) &&
     pretentionSalaire.errors?.required
@@ -92,7 +92,7 @@
 
                 <div class="form-group">
                     <label>photoChauffeur </label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.photoChauffeur" name="photoChauffeur" id="photoChauffeur" #photoChauffeur="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.photoChauffeur" name="photoChauffeur" id="photoChauffeur" #photoChauffeur="ngModel" required />
                     <span class="text-danger" *ngIf="
 (photoChauffeur.touched || addChauffeurForm.submitted) &&
 photoChauffeur.errors?.required
@@ -103,7 +103,7 @@ photoChauffeur est obligatoire
 
                 <div class="form-group">
                     <label>mobilite </label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeur.mobilite" name="mobilite" id="mobilite" #mobilite="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.mobilite" name="mobilite" id="mobilite" #mobilite="ngModel" required />
                     <span class="text-danger" *ngIf="
   (mobilite.touched || addChauffeurForm.submitted) &&
   mobilite.errors?.required
@@ -114,7 +114,7 @@ mobilite est obligatoire
 
                 <div class="form-group">
                     <label>CV </label>
-                    <input type="file" class="form-control" [(ngModel)]="formDataChauffeur.cvChauffeur" name="cvChauffeur" id="cvChauffeur" #cvChauffeur="ngModel" required />
+                    <input type="file" class="form-control" [(ngModel)]="formDataChauffeurDTO.cvChauffeur" name="cvChauffeur" id="cvChauffeur" #cvChauffeur="ngModel" required />
                     <span class="text-danger" *ngIf="
 (cvChauffeur.touched || addChauffeurForm.submitted) &&
 cvChauffeur.errors?.required

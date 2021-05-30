@@ -1,10 +1,12 @@
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { PermisService } from './../../../services/permis.service';
-import { Permis } from './../../../models/permis';
+import { Permis, PermisDto } from './../../../models/permis';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
-import { Chauffeur } from './../../../models/chauffeur';
-import { Component, OnInit } from '@angular/core';
+import { Chauffeur, ChauffeurDto } from './../../../models/chauffeur';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-create-chauffeur',
@@ -13,22 +15,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateChauffeurComponent implements OnInit {
 
-  formDataChauffeur: Chauffeur = new Chauffeur();
-  listPermisData: Permis[];
+  formDataChauffeurDTO: ChauffeurDto = new ChauffeurDto();
+  listPermisData: PermisDto[];
 
   constructor(private chauffeurService: ChauffeurService,
               private permisService: PermisService,
-              private router: Router
-              )
-              {}
+              private toastr: ToastrService,
+              private router: Router,
+              @Inject(MAT_DIALOG_DATA)  public data,
+              public dialogRef:MatDialogRef<CreateChauffeurComponent>,
+  ){}
 
   ngOnInit(): void {
-    this.getListPermis();
+    this.getListPermisDTOs();
   }
 
-  getListPermis() {
-    this.permisService.getPermis().subscribe(
-      (response: Permis[]) => {
+  getListPermisDTOs() {
+    this.permisService.getPermisDTOs().subscribe(
+      (response: PermisDto[]) => {
         this.listPermisData = response;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
@@ -37,10 +41,11 @@ export class CreateChauffeurComponent implements OnInit {
   }
 
   public onAddChauffeur() {
-    this.chauffeurService.addChauffeur(this.formDataChauffeur).subscribe(
-      (response: Chauffeur) => {
-       console.log("Add Chauffeur successfully");
-        this.router.navigate(['/chauffeurs']);
+    this.chauffeurService.addChauffeurDTO(this.formDataChauffeurDTO).subscribe(
+      (response: ChauffeurDto) => {
+        this.dialogRef.close();
+        this.toastr.success("Chauffeur Ajouté avec Succès");
+        this.router.navigate(['/backend/admin/chauffeurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

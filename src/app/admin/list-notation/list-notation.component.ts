@@ -1,3 +1,6 @@
+import { FormBuilder } from '@angular/forms';
+import { DialogService } from './../../services/dialog.service';
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotationService } from './../../services/notation.service';
@@ -11,20 +14,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListNotationComponent implements OnInit {
 
-  notationList: Notation[];
   notationListDTO: NotificationDto[];
-  editNotation: Notation;
-  deleteNotation: Notation;
+  addEditNotationDTO: NotificationDto;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(private noteService: NotationService,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              private fb: FormBuilder
+  ){}
 
   ngOnInit(): void {
-    this.getlistNotations();
     this.getListNotificationDTOs();
   }
 
@@ -41,31 +45,24 @@ export class ListNotationComponent implements OnInit {
 
   }
 
-  public getlistNotations(): void {
-    this.noteService.getNotations().subscribe(
-      (response: Notation[]) => {
-        this.notationList = response;
-        console.log(this.notationList);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+  addEditNotation(i) {}
+
+  onDeleteNotation(note: NotificationDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.noteService.deleteNotationDTO(note.id).subscribe(data => {
+          this.toastr.warning('Notification supprimé avec succès!');
+          this.notationListDTO = this.notationListDTO.filter(u => u !== note);
+          this.getListNotificationDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
 
-  addEditNotation(i) {
-
-  }
-  public onDeleteNotation(noteId: number): void {
-    this.noteService.deleteNotationDTO(noteId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getListNotificationDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
 
 }

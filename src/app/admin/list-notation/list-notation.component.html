@@ -19,19 +19,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let note of notationList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{note?.id}}</td>
-                <td>{{note?.reference}}</td>
-                <td>{{note?.nbreEtoile}}</td>
-                <td>{{note?.observation}}</td>
-                <td>{{note?.chauffeur?.firstName}} {{note?.chauffeur?.lastName}}</td>
-                <td>{{note?.utilisateur?.name}}</td>
+            <tr *ngFor="let noteDTO of notationListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{noteDTO?.id}}</td>
+                <td>{{noteDTO?.reference}}</td>
+                <td>{{noteDTO?.nbreEtoile}}</td>
+                <td>{{noteDTO?.observation}}</td>
+                <td>{{noteDTO?.chauffeurDto?.firstName}} {{noteDTO?.chauffeurDto?.lastName}}</td>
+                <td>{{noteDTO?.utilisateurDto?.name}}</td>
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditNotation(note) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditNotation(noteDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteNotation(note)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteNotation(noteDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

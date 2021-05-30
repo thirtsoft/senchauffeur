@@ -1,8 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LocalityService } from './../../../services/locality.service';
-import { Locality } from './../../../models/locality';
-import { Component, OnInit } from '@angular/core';
+import { Locality, AddresseDto } from './../../../models/locality';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-create-locality',
@@ -11,21 +13,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateLocalityComponent implements OnInit {
 
-  formDataLocality: Locality = new Locality();
-  deleteLocality: Locality;
+  formDataLocalityDTO: AddresseDto = new AddresseDto();
+  deleteLocalityDTO: AddresseDto;
 
   constructor(private localiteService: LocalityService,
-              private router: Router
-              )
-              {}
+              private router: Router,
+              private toastr: ToastrService,
+              @Inject(MAT_DIALOG_DATA)  public data,
+              public dialogRef:MatDialogRef<CreateLocalityComponent>,
+  ){}
 
   ngOnInit(): void {}
-
   public onAddLocality() {
-    this.localiteService.addLocality(this.formDataLocality).subscribe(
-      (response: Locality) => {
-       console.log("Add Locality successfully");
-        this.router.navigate(['/localities']);
+    this.localiteService.addLocalityDTO(this.formDataLocalityDTO).subscribe(
+      (response: AddresseDto) => {
+        this.dialogRef.close();
+        this.toastr.success("Addresse Ajouté avec Succès");
+        this.router.navigate(['/backend/admin/localities']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

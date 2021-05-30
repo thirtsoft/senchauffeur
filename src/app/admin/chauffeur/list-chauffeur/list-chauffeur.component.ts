@@ -1,3 +1,6 @@
+import { FormBuilder } from '@angular/forms';
+import { DialogService } from './../../../services/dialog.service';
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateChauffeurComponent } from './../create-chauffeur/create-chauffeur.component';
@@ -13,10 +16,8 @@ import { Chauffeur, ChauffeurDto } from './../../../models/chauffeur';
 })
 export class ListChauffeurComponent implements OnInit {
 
-  chauffeurList: Chauffeur[];
   chauffeurListDTO: ChauffeurDto[];
-  editChauffeur: Chauffeur;
-  deleteChauffeur: Chauffeur;
+  addEditChauffeurDTO: ChauffeurDto;
 
   id : number;
   p : number=1;
@@ -24,10 +25,13 @@ export class ListChauffeurComponent implements OnInit {
 
   constructor(private chauffeurService: ChauffeurService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              private fb: FormBuilder
+  ){}
 
   ngOnInit(): void {
-    this.getlistChauffeurs();
     this.getListChauffeurDTOs();
   }
 
@@ -36,18 +40,6 @@ export class ListChauffeurComponent implements OnInit {
       (response: ChauffeurDto[]) => {
         this.chauffeurListDTO = response;
         console.log(this.chauffeurListDTO);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  public getlistChauffeurs(): void {
-    this.chauffeurService.getChauffeurs().subscribe(
-      (response: Chauffeur[]) => {
-        this.chauffeurList = response;
-        console.log(this.chauffeurList);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -75,18 +67,22 @@ export class ListChauffeurComponent implements OnInit {
     });
   }
 
-  addEditChauffeur(i) {
+  addEditChauffeur(i) {}
 
-  }
-  public onDeleteChauffeur(chauffId: number): void {
-    this.chauffeurService.deleteChauffeurDTO(chauffId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getListChauffeurDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+  onDeleteChauffeur(chauffeurDTO: ChauffeurDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.chauffeurService.deleteChauffeurDTO(chauffeurDTO.id).subscribe(data => {
+          this.toastr.warning('Chauffeur supprimé avec succès!');
+          this.chauffeurListDTO = this.chauffeurListDTO.filter(u => u !== chauffeurDTO);
+          this.getListChauffeurDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
 

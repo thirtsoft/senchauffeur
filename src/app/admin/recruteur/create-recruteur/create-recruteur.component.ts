@@ -1,8 +1,10 @@
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RecruteurService } from './../../../services/recruteur.service';
-import { Recruteur } from './../../../models/recruteur';
-import { Component, OnInit } from '@angular/core';
+import { Recruteur, RecruteurDto } from './../../../models/recruteur';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-create-recruteur',
@@ -11,27 +13,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateRecruteurComponent implements OnInit {
 
-  formDataRecruteur: Recruteur = new Recruteur();
+  formDataRecruteurDTO: RecruteurDto = new RecruteurDto();
 
   constructor(private recruteurService: RecruteurService,
-              private router: Router
-              )
-              {}
+              private router: Router,
+              private toastr: ToastrService,
+              @Inject(MAT_DIALOG_DATA)  public data,
+              public dialogRef:MatDialogRef<CreateRecruteurComponent>,
+  ){}
 
   ngOnInit(): void {}
 
   public onAddRecruteur() {
-    this.recruteurService.addRecruteur(this.formDataRecruteur).subscribe(
-      (response: Recruteur) => {
-       console.log("Add Recruteur successfully");
-        this.router.navigate(['/recruteurs']);
+    this.recruteurService.addRecruteurDTO(this.formDataRecruteurDTO).subscribe(
+      (response: RecruteurDto) => {
+        this.dialogRef.close();
+        this.toastr.success("Recruteur Ajouté avec Succès");
+        this.router.navigate(['/backend/admin/recruteurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
   }
-
 
 
 }

@@ -1,10 +1,13 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
+import { DialogService } from './../../../services/dialog.service';
+import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateLocalityComponent } from './../create-locality/create-locality.component';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { LocalityService } from './../../../services/locality.service';
-import { Locality, AddresseDto } from './../../../models/locality';
-import { Component, OnInit } from '@angular/core';
+import { AddresseDto } from './../../../models/locality';
 
 @Component({
   selector: 'app-list-locality',
@@ -13,10 +16,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListLocalityComponent implements OnInit {
 
-  localityList: Locality[];
   localityListDTO: AddresseDto[];
-  editLocality: Locality;
-  deleteLocality: Locality;
+  addEditLocalityDTO: AddresseDto;
 
   id : number;
   p : number=1;
@@ -24,10 +25,13 @@ export class ListLocalityComponent implements OnInit {
 
   constructor(private localiteService: LocalityService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              private fb: FormBuilder
+  ){}
 
   ngOnInit(): void {
-    this.getlistLocalities();
     this.getListLocalitieDTOs();
   }
 
@@ -42,17 +46,6 @@ export class ListLocalityComponent implements OnInit {
       }
     );
 
-  }
-  public getlistLocalities(): void {
-    this.localiteService.getLocalites().subscribe(
-      (response: Locality[]) => {
-        this.localityList = response;
-        console.log(this.localityList);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
   }
 
   onAddLocality() {
@@ -75,18 +68,22 @@ export class ListLocalityComponent implements OnInit {
     });
   }
 
-  addEditLocality(i) {
+  addEditLocality(i) {}
 
-  }
-  public onDeleteLocality(locId: number): void {
-    this.localiteService.deleteLocalityDTO(locId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getListLocalitieDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+  public onDeleteLocality(locityDTO: AddresseDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.localiteService.deleteLocalityDTO(locityDTO.id).subscribe(data => {
+          this.toastr.warning('Addresse supprimé avec succès!');
+          this.localityListDTO = this.localityListDTO.filter(u => u !== locityDTO);
+          this.getListLocalitieDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
 

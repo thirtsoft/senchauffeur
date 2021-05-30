@@ -1,3 +1,6 @@
+import { FormBuilder } from '@angular/forms';
+import { DialogService } from './../../../services/dialog.service';
+import { ToastrService } from 'ngx-toastr';
 import { CreateAnnonceComponent } from './../create-annonce/create-annonce.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,10 +16,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListAnnonceComponent implements OnInit {
 
-  annonceList: Annonce[];
   annonceListDTO: AnnonceDto[];
-  editAnnonce: Annonce;
-  deleteAnnonce: Annonce;
+  editAnnonceDTO: AnnonceDto;
 
   id : number;
   p : number=1;
@@ -24,10 +25,13 @@ export class ListAnnonceComponent implements OnInit {
 
   constructor(private annonceService: AnnonceService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              private fb: FormBuilder
+  ){}
 
   ngOnInit(): void {
-    this.getListAnnonces();
     this.getListAnnonceDTOs();
   }
 
@@ -36,18 +40,6 @@ export class ListAnnonceComponent implements OnInit {
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
         console.log(this.annonceListDTO);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  public getListAnnonces(): void {
-    this.annonceService.getAnnonces().subscribe(
-      (response: Annonce[]) => {
-        this.annonceList = response;
-        console.log(this.annonceList);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -75,20 +67,25 @@ export class ListAnnonceComponent implements OnInit {
     });
   }
 
-  addEditAnnonce(i) {
-
-  }
-  public onDeleteAnnonce(annonceId: number): void {
-    this.annonceService.deleteAnnonceDTO(annonceId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getListAnnonceDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+  onDeleteAnnonce(annonceDTO: AnnonceDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.annonceService.deleteAnnonceDTO(annonceDTO.id).subscribe(data => {
+          this.toastr.warning('Annonce supprimé avec succès!');
+          this.annonceListDTO = this.annonceListDTO.filter(u => u !== annonceDTO);
+          this.getListAnnonceDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
+
+  addEditAnnonce(i) {}
+
 
 
 }

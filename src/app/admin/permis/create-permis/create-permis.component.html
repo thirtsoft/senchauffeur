@@ -5,7 +5,7 @@
             <form #addPermisForm="ngForm" name="form" (ngSubmit)="onAddPermis()">
                 <div class="form-group">
                     <label>Type Permis</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataPermis.typePermis" name="typePermis" id="typePermis" #typePermis="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataPermisDTO.typePermis" name="typePermis" id="typePermis" #typePermis="ngModel" required />
                     <span class="text-danger" *ngIf="
               (typePermis.touched || addPermisForm.submitted) &&
               typePermis.errors?.required
@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label>Validité</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataPermis.designation" name="designation" id="designation" #designation="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataPermisDTO.designation" name="designation" id="designation" #designation="ngModel" required />
                     <span class="text-danger" *ngIf="
               (designation.touched || addPermisForm.submitted) &&
               designation.errors?.required
@@ -27,7 +27,7 @@
 
                 <div class="form-group">
                     <label>Validité</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataPermis.validite" name="validite" id="validite" #validite="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataPermisDTO.validite" name="validite" id="validite" #validite="ngModel" required />
                     <span class="text-danger" *ngIf="
               (validite.touched || addPermisForm.submitted) &&
               validite.errors?.required

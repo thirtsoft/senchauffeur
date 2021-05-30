@@ -1,3 +1,6 @@
+import { FormBuilder } from '@angular/forms';
+import { DialogService } from './../../../services/dialog.service';
+import { ToastrService } from 'ngx-toastr';
 import { CreatePermisComponent } from './../create-permis/create-permis.component';
 import { PermisService } from './../../../services/permis.service';
 import { Permis, PermisDto } from './../../../models/permis';
@@ -13,10 +16,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListPermisComponent implements OnInit {
 
-  permisList: Permis[];
   permisListDTO: PermisDto[];
-  editPermis: Permis;
-  deletePermis: Permis;
+  addEditPermisDTO: PermisDto;
 
   id : number;
   p : number=1;
@@ -24,10 +25,13 @@ export class ListPermisComponent implements OnInit {
 
   constructor(private permisService: PermisService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              private fb: FormBuilder
+  ){}
 
   ngOnInit(): void {
-    this.getlistPermis();
     this.getListPermisDTOs();
   }
 
@@ -44,18 +48,6 @@ export class ListPermisComponent implements OnInit {
 
   }
 
-  public getlistPermis(): void {
-    this.permisService.getPermis().subscribe(
-      (response: Permis[]) => {
-        this.permisList = response;
-        console.log(this.permisList);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
   onAddPermis() {
     this.openNoteDialog(null);
   }
@@ -70,26 +62,30 @@ export class ListPermisComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.permisList.push(result);
+        this.permisListDTO.push(result);
       }
       // this.refreshData();
     });
   }
 
   addEditPermis(i) {
-
   }
-  public onDeletePermis(perId: number): void {
-    this.permisService.deletePermisDTO(perId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getListPermisDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+
+  onDeletePermis(permis: PermisDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.permisService.deletePermisDTO(permis.id).subscribe(data => {
+          this.toastr.warning('Permis supprimé avec succès!');
+          this.permisListDTO = this.permisListDTO.filter(u => u !== permis);
+          this.getListPermisDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
-
 
 }

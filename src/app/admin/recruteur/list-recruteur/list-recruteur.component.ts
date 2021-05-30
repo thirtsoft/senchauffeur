@@ -1,10 +1,13 @@
-import { MatDialog } from '@angular/material/dialog';
-import { CreateRecruteurComponent } from './../create-recruteur/create-recruteur.component';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { RecruteurService } from './../../../services/recruteur.service';
-import { Recruteur } from './../../../models/recruteur';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DialogService } from './../../../services/dialog.service';
+import { ToastrService } from 'ngx-toastr';
+import { RecruteurService } from './../../../services/recruteur.service';
+import { RecruteurDto } from './../../../models/recruteur';
+import { CreateRecruteurComponent } from './../create-recruteur/create-recruteur.component';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-list-recruteur',
@@ -13,9 +16,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListRecruteurComponent implements OnInit {
 
-  recruteurList: Recruteur[];
-  editRecruteur: Recruteur;
-  deleteRecruteur: Recruteur;
+  recruteurListDTO: RecruteurDto[];
+  addEditRecruteurDTO: RecruteurDto;
 
   id : number;
   p : number=1;
@@ -23,17 +25,21 @@ export class ListRecruteurComponent implements OnInit {
 
   constructor(private recruteurService: RecruteurService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              private fb: FormBuilder
+  ){}
 
   ngOnInit(): void {
-    this.getlistRecruteurs();
+    this.getListRecruteurDTOs();
   }
 
-  public getlistRecruteurs(): void {
-    this.recruteurService.getRecruteurs().subscribe(
-      (response: Recruteur[]) => {
-        this.recruteurList = response;
-        console.log(this.recruteurList);
+  public getListRecruteurDTOs(): void {
+    this.recruteurService.getRecruteurDTOs().subscribe(
+      (response: RecruteurDto[]) => {
+        this.recruteurListDTO = response;
+        console.log(this.recruteurListDTO);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -45,7 +51,6 @@ export class ListRecruteurComponent implements OnInit {
     this.openNoteDialog(null);
   }
 
-
   openNoteDialog(data?: any){
     const dialogRef = this.dialog.open(CreateRecruteurComponent, {
       disableClose: true,
@@ -56,24 +61,29 @@ export class ListRecruteurComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.recruteurList.push(result);
+        this.recruteurListDTO.push(result);
       }
       // this.refreshData();
     });
   }
 
   addEditRecruteur(i) {
-
   }
-  public onDeleteRecruteur(recId: number): void {
-    this.recruteurService.deleteRecruteur(recId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getlistRecruteurs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+
+  onDeleteRecruteur(recruteur: RecruteurDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.recruteurService.deleteRecruteurDTO(recruteur.id).subscribe(data => {
+          this.toastr.warning('Recruteur supprimé avec succès!');
+          this.recruteurListDTO = this.recruteurListDTO.filter(u => u !== recruteur);
+          this.getListRecruteurDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
 

@@ -5,7 +5,7 @@
             <form #addLocalityForm="ngForm" name="form" (ngSubmit)="onAddLocality()">
                 <div class="form-group">
                     <label>Reférence</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.reference" name="reference" id="reference" #reference="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocalityDTO.reference" name="reference" id="reference" #reference="ngModel" required />
                     <span class="text-danger" *ngIf="
               (reference.touched || addLocalityForm.submitted) &&
               reference.errors?.required
@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label>Quartier</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.quartier" name="quartier" id="quartier" #quartier="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocalityDTO.quartier" name="quartier" id="quartier" #quartier="ngModel" required />
                     <span class="text-danger" *ngIf="
               (quartier.touched || addLocalityForm.submitted) &&
               quartier.errors?.required
@@ -27,7 +27,7 @@
 
                 <div class="form-group">
                     <label>Ville</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.ville" name="ville" id="ville" #ville="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocalityDTO.ville" name="ville" id="ville" #ville="ngModel" required />
                     <span class="text-danger" *ngIf="
               (ville.touched || addLocalityForm.submitted) &&
               ville.errors?.required
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label>Code Postal</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.codePostal" name="codePostal" id="codePostal" #codePostal="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocalityDTO.codePostal" name="codePostal" id="codePostal" #codePostal="ngModel" required />
                     <span class="text-danger" *ngIf="
               (codePostal.touched || addLocalityForm.submitted) &&
               codePostal.errors?.required
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                     <label>Rue</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.rue" name="rue" id="rue" #rue="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocalityDTO.rue" name="rue" id="rue" #rue="ngModel" required />
                     <span class="text-danger" *ngIf="
               (rue.touched || addLocalityForm.submitted) && rue.errors?.required
             ">
@@ -59,7 +59,7 @@
 
                 <div class="form-group">
                     <label>Pays</label>
-                    <input type="text" class="form-control" [(ngModel)]="formDataLocality.pays" name="pays" id="pays" #pays="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="formDataLocalityDTO.pays" name="pays" id="pays" #pays="ngModel" required />
                     <span class="text-danger" *ngIf="
               (pays.touched || addLocalityForm.submitted) &&
               pays.errors?.required
