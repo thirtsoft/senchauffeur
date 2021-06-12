@@ -47,8 +47,8 @@ export class RecruteurService {
     return this.http.post<RecruteurDto>(`${this.apiServerUrl}/recruteurs/create`, recruteurDTO);
   }
 
-  public updateRecruteurDTO(recruteurDTO: RecruteurDto): Observable<Recruteur> {
-    return this.http.put<RecruteurDto>(`${this.apiServerUrl}/recruteurs/create`, recruteurDTO);
+  public updateRecruteurDTO(permisId: number, recruteurDTO: RecruteurDto): Observable<RecruteurDto> {
+    return this.http.put<RecruteurDto>(`${this.apiServerUrl}/recruteurs/update/${permisId}`, recruteurDTO);
   }
 
   public deleteRecruteurDTO(recId: number): Observable<void> {

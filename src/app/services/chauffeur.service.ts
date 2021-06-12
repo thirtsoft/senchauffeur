@@ -47,8 +47,8 @@ export class ChauffeurService {
     return this.http.post<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/create`, chauffeurDTO);
   }
 
-  public updateChauffeurDTO(chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {
-    return this.http.put<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/create`, chauffeurDTO);
+  public updateChauffeurDTO(chauffId: number, chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {
+    return this.http.put<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/update/${chauffId}`, chauffeurDTO);
   }
 
   public deleteChauffeurDTO(chauffId: number): Observable<void> {

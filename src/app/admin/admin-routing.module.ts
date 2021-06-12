@@ -21,7 +21,11 @@ const routes: Routes = [
     component: ListChauffeurComponent
   },
   {
-    path: 'newChauffeur',
+    path: 'chauffeur',
+    component: CreateChauffeurComponent
+  },
+  {
+    path: 'chauffeur/:id',
     component: CreateChauffeurComponent
   },
   {
@@ -29,7 +33,11 @@ const routes: Routes = [
     component: ListPermisComponent
   },
   {
-    path: 'newPermis',
+    path: 'permis',
+    component: CreatePermisComponent
+  },
+  {
+    path: 'permis/:id',
     component: CreatePermisComponent
   },
   {
@@ -37,7 +45,11 @@ const routes: Routes = [
     component: ListRecruteurComponent
   },
   {
-    path: 'newRecruteur',
+    path: 'recruteur',
+    component: CreateRecruteurComponent
+  },
+  {
+    path: 'recruteur/:id',
     component: CreateRecruteurComponent
   },
   {
@@ -45,7 +57,11 @@ const routes: Routes = [
     component: ListAnnonceComponent
   },
   {
-    path: 'newAnnonce',
+    path: 'annonce',
+    component: CreateAnnonceComponent
+  },
+  {
+    path: 'annonce/:id',
     component: CreateAnnonceComponent
   },
   {
@@ -61,7 +77,11 @@ const routes: Routes = [
     component: ListUtilisateurComponent
   },
   {
-    path: 'newUtilisateur',
+    path: 'utilisateur',
+    component: CreateUtilisateurComponent
+  },
+  {
+    path: 'utilisateur/:id',
     component: CreateUtilisateurComponent
   },
 

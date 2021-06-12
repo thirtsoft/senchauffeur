@@ -46,8 +46,8 @@ export class LocalityService {
     return this.http.post<AddresseDto>(`${this.apiServerUrl}/addresses/create`, localityDTO);
   }
 
-  public updateLocalityDTO(localityDTO: AddresseDto): Observable<Locality> {
-    return this.http.put<AddresseDto>(`${this.apiServerUrl}/addresses/create`, localityDTO);
+  public updateLocalityDTO(locId: number, localityDTO: AddresseDto): Observable<AddresseDto> {
+    return this.http.put<AddresseDto>(`${this.apiServerUrl}/addresses/update/${locId}`, localityDTO);
   }
 
   public deleteLocalityDTO(noteId: number): Observable<void> {

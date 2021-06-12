@@ -47,8 +47,8 @@ export class UtilisateurService {
     return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
   }
 
-  public updateUtilisateurDTO(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
-    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
+  public updateUtilisateurDTO(userId: number, utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${userId}`, utilisateurDTO);
   }
 
   public deleteUtilisateurDTO(userId: number): Observable<void> {

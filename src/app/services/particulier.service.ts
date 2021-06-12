@@ -47,8 +47,8 @@ export class ParticulierService {
     return this.http.post<ParticulierDto>(`${this.apiServerUrl}/particuliers/create`, particulierDTO);
   }
 
-  public updateParticulierDTO(utilisateurDTO: ParticulierDto): Observable<ParticulierDto> {
-    return this.http.put<ParticulierDto>(`${this.apiServerUrl}/particuliers/create`, utilisateurDTO);
+  public updateParticulierDTO(partId: number, particulierDTO: ParticulierDto): Observable<ParticulierDto> {
+    return this.http.put<ParticulierDto>(`${this.apiServerUrl}/particuliers/update/${partId}`, particulierDTO);
   }
 
   public deleteParticulierDTO(partId: number): Observable<void> {

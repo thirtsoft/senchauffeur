@@ -47,8 +47,8 @@ export class AnnonceService {
     return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
   }
 
-  public updateAnnonceDTO(annonceDTO: AnnonceDto): Observable<AnnonceDto> {
-    return this.http.put<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
+  public updateAnnonceDTO(annonceId: number, annonceDTO: AnnonceDto): Observable<AnnonceDto> {
+    return this.http.put<AnnonceDto>(`${this.apiServerUrl}/annonces/update/${annonceId}`, annonceDTO);
   }
 
   public deleteAnnonceDTO(annonceId: number): Observable<void> {

@@ -48,9 +48,12 @@ export class ListRecruteurComponent implements OnInit {
   }
 
   onAddRecruteur() {
+    this.router.navigate(['/backend/chauffeur']);
+  }
+/*
+  onAddRecruteur() {
     this.openNoteDialog(null);
   }
-
   openNoteDialog(data?: any){
     const dialogRef = this.dialog.open(CreateRecruteurComponent, {
       disableClose: true,
@@ -58,25 +61,21 @@ export class ListRecruteurComponent implements OnInit {
       width : "50%",
       data: data
     } );
-
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
         this.recruteurListDTO.push(result);
       }
-      // this.refreshData();
+
     });
   }
-
-  addEditRecruteur(i) {
-  }
-
-  onDeleteRecruteur(recruteur: RecruteurDto): void{
+*/
+  onDeleteRecruteur(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.recruteurService.deleteRecruteurDTO(recruteur.id).subscribe(data => {
+        this.recruteurService.deleteRecruteurDTO(id).subscribe(data => {
           this.toastr.warning('Recruteur supprimé avec succès!');
-          this.recruteurListDTO = this.recruteurListDTO.filter(u => u !== recruteur);
+  //        this.recruteurListDTO = this.recruteurListDTO.filter(u => u !== recruteur);
           this.getListRecruteurDTOs();
         });
       }

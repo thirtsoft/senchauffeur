@@ -47,8 +47,8 @@ export class PermisService {
     return this.http.post<PermisDto>(`${this.apiServerUrl}/permis/create`, permisDTO);
   }
 
-  public updatePermisDTO(permisDTO: PermisDto): Observable<PermisDto> {
-    return this.http.put<PermisDto>(`${this.apiServerUrl}/permis/create`, permisDTO);
+  public updatePermisDTO(permisId: number, permisDTO: PermisDto): Observable<PermisDto> {
+    return this.http.put<PermisDto>(`${this.apiServerUrl}/chauffeurs/update/${permisId}`, permisDTO);
   }
 
   public deletePermisDTO(permisId: number): Observable<void> {

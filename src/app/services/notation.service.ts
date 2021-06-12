@@ -47,8 +47,8 @@ export class NotationService {
     return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/create`, notationDTO);
   }
 
-  public updateNotationDTO(notationDTO: NotificationDto): Observable<NotificationDto> {
-    return this.http.put<NotificationDto>(`${this.apiServerUrl}/notifications/create`, notationDTO);
+  public updateNotationDTO(noteId: number, notationDTO: NotificationDto): Observable<NotificationDto> {
+    return this.http.put<NotificationDto>(`${this.apiServerUrl}/notifications/update/${noteId}`, notationDTO);
   }
 
   public deleteNotationDTO(noteId: number): Observable<void> {
