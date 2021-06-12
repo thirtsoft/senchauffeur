@@ -41,10 +41,10 @@
                 <td>{{chauffDTO?.cvChauffeur}}</td>
                 <td>
                     <div class=" container ">
-                        <button mat-raised-button class="action-button btn-primary " (click)="addEditChauffeur(chauffDTO) ">
+                        <button mat-raised-button class="action-button btn-primary" [routerLink]="['/backend/admin/chauffeur', chauffDTO.id]">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteChauffeur(chauffDTO) ">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteChauffeur(chauffDTO.id)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

@@ -48,6 +48,10 @@ export class ListAnnonceComponent implements OnInit {
   }
 
   onAddAnnonce() {
+    this.router.navigate(['/backend/admin/annonce']);
+  }
+/*
+  onAddAnnonce() {
     this.openNoteDialog(null);
   }
 
@@ -66,14 +70,14 @@ export class ListAnnonceComponent implements OnInit {
       // this.refreshData();
     });
   }
-
-  onDeleteAnnonce(annonceDTO: AnnonceDto): void{
+*/
+  onDeleteAnnonce(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.annonceService.deleteAnnonceDTO(annonceDTO.id).subscribe(data => {
+        this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
           this.toastr.warning('Annonce supprimé avec succès!');
-          this.annonceListDTO = this.annonceListDTO.filter(u => u !== annonceDTO);
+  //        this.annonceListDTO = this.annonceListDTO.filter(u => u !== annonceDTO);
           this.getListAnnonceDTOs();
         });
       }
@@ -83,9 +87,6 @@ export class ListAnnonceComponent implements OnInit {
     }
     );
   }
-
-  addEditAnnonce(i) {}
-
 
 
 }

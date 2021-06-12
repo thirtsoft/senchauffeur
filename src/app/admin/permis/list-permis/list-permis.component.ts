@@ -1,13 +1,13 @@
-import { FormBuilder } from '@angular/forms';
-import { DialogService } from './../../../services/dialog.service';
-import { ToastrService } from 'ngx-toastr';
-import { CreatePermisComponent } from './../create-permis/create-permis.component';
-import { PermisService } from './../../../services/permis.service';
-import { Permis, PermisDto } from './../../../models/permis';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
+
+import { FormBuilder } from '@angular/forms';
+import { DialogService } from './../../../services/dialog.service';
+import { ToastrService } from 'ngx-toastr';
+import { PermisService } from './../../../services/permis.service';
+import { PermisDto } from './../../../models/permis';
 
 @Component({
   selector: 'app-list-permis',
@@ -49,6 +49,11 @@ export class ListPermisComponent implements OnInit {
   }
 
   onAddPermis() {
+    this.router.navigate(['/backend/admin/permis']);
+  }
+/*
+
+  onAddPermis() {
     this.openNoteDialog(null);
   }
 
@@ -64,20 +69,17 @@ export class ListPermisComponent implements OnInit {
       if(result && data == null){
         this.permisListDTO.push(result);
       }
-      // this.refreshData();
     });
   }
+*/
 
-  addEditPermis(i) {
-  }
-
-  onDeletePermis(permis: PermisDto): void{
+  onDeletePermis(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.permisService.deletePermisDTO(permis.id).subscribe(data => {
+        this.permisService.deletePermisDTO(id).subscribe(data => {
           this.toastr.warning('Permis supprimé avec succès!');
-          this.permisListDTO = this.permisListDTO.filter(u => u !== permis);
+    //      this.permisListDTO = this.permisListDTO.filter(u => u !== permis);
           this.getListPermisDTOs();
         });
       }

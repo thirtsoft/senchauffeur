@@ -48,6 +48,10 @@ export class ListChauffeurComponent implements OnInit {
   }
 
   onAddChauffeur() {
+    this.router.navigate(['/backend/admin/chauffeur']);
+  }
+/*
+  onAddChauffeur() {
     this.openNoteDialog(null);
   }
 
@@ -63,19 +67,17 @@ export class ListChauffeurComponent implements OnInit {
       if(result && data == null){
         this.chauffeurListDTO.push(result);
       }
-      // this.refreshData();
     });
   }
+*/
 
-  addEditChauffeur(i) {}
-
-  onDeleteChauffeur(chauffeurDTO: ChauffeurDto): void{
+  onDeleteChauffeur(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.chauffeurService.deleteChauffeurDTO(chauffeurDTO.id).subscribe(data => {
+        this.chauffeurService.deleteChauffeurDTO(id).subscribe(data => {
           this.toastr.warning('Chauffeur supprimé avec succès!');
-          this.chauffeurListDTO = this.chauffeurListDTO.filter(u => u !== chauffeurDTO);
+  //        this.chauffeurListDTO = this.chauffeurListDTO.filter(u => u !== chauffeurDTO);
           this.getListChauffeurDTOs();
         });
       }

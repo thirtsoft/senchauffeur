@@ -1,12 +1,12 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { PermisService } from './../../../services/permis.service';
-import { Permis, PermisDto } from './../../../models/permis';
+import { PermisDto } from './../../../models/permis';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
-import { Chauffeur, ChauffeurDto } from './../../../models/chauffeur';
-import { Component, OnInit, Inject } from '@angular/core';
+import { ChauffeurDto } from './../../../models/chauffeur';
 
 @Component({
   selector: 'app-create-chauffeur',
@@ -18,16 +18,49 @@ export class CreateChauffeurComponent implements OnInit {
   formDataChauffeurDTO: ChauffeurDto = new ChauffeurDto();
   listPermisData: PermisDto[];
 
+  data;
+  paramId :any = 0;
+  mySubscription: any;
+
   constructor(private chauffeurService: ChauffeurService,
               private permisService: PermisService,
               private toastr: ToastrService,
+              public dialog: MatDialog,
+              private actRoute: ActivatedRoute,
               private router: Router,
-              @Inject(MAT_DIALOG_DATA)  public data,
-              public dialogRef:MatDialogRef<CreateChauffeurComponent>,
-  ){}
+  ){
+    //--for reload componant
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
 
   ngOnInit(): void {
+    this.paramId = this.actRoute.snapshot.paramMap.get('id');
+    console.log('Param--', this.paramId);
+    if(this.paramId  && this.paramId  > 0){
+      this.getChauffeurDTOById(this.paramId);
+    }
+
     this.getListPermisDTOs();
+  }
+
+  getChauffeurDTOById(id: number) {
+    console.log('getOne');
+    this.chauffeurService.getChauffeurDTOById(id).subscribe(
+      (response: ChauffeurDto) => {
+        console.log('data--', response);
+        this.formDataChauffeurDTO = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
   }
 
   getListPermisDTOs() {
@@ -43,7 +76,7 @@ export class CreateChauffeurComponent implements OnInit {
   public onAddChauffeur() {
     this.chauffeurService.addChauffeurDTO(this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
-        this.dialogRef.close();
+  //      this.dialogRef.close();
         this.toastr.success("Chauffeur Ajouté avec Succès");
         this.router.navigate(['/backend/admin/chauffeurs']);
       },
@@ -52,6 +85,20 @@ export class CreateChauffeurComponent implements OnInit {
       }
     );
   }
+
+  public onUpdateChauffeur() {
+    this.chauffeurService.updateChauffeurDTO(this.formDataChauffeurDTO.id, this.formDataChauffeurDTO).subscribe(
+      (response: ChauffeurDto) => {
+  //      this.dialogRef.close();
+        this.toastr.warning("Chauffeur Update avec Succès");
+        this.router.navigate(['/backend/admin/chauffeurs']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
 
 
 }

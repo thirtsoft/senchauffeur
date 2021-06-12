@@ -38,10 +38,10 @@
                 <td>{{annonceDTO?.statusAnnonce}}</td>
                 <td>
                     <div class=" container ">
-                        <button mat-raised-button class="action-button btn-primary " (click)="addEditAnnonce(annonceDTO) ">
+                        <button mat-raised-button class="action-button btn-primary" [routerLink]="['/backend/admin/annonce', annonceDTO.id]">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteAnnonce(annonceDTO) ">
+                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteAnnonce(annonceDTO.id)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

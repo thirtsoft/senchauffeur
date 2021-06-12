@@ -49,6 +49,11 @@ export class ListLocalityComponent implements OnInit {
   }
 
   onAddLocality() {
+    this.router.navigate(['/backend/admin/localite']);
+  }
+
+  /*
+  onAddLocality() {
     this.openNoteDialog(null);
   }
 
@@ -64,19 +69,19 @@ export class ListLocalityComponent implements OnInit {
       if(result && data == null){
         this.localityListDTO.push(result);
       }
-      // this.refreshData();
+
     });
   }
 
-  addEditLocality(i) {}
+  */
 
-  public onDeleteLocality(locityDTO: AddresseDto): void{
+  public onDeleteLocality(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.localiteService.deleteLocalityDTO(locityDTO.id).subscribe(data => {
+        this.localiteService.deleteLocalityDTO(id).subscribe(data => {
           this.toastr.warning('Addresse supprimé avec succès!');
-          this.localityListDTO = this.localityListDTO.filter(u => u !== locityDTO);
+  //        this.localityListDTO = this.localityListDTO.filter(u => u !== locityDTO);
           this.getListLocalitieDTOs();
         });
       }

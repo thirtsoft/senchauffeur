@@ -1,8 +1,9 @@
-import { CreateUtilisateurComponent } from './utilisateur/create-utilisateur/create-utilisateur.component';
-import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CreateLocalityComponent } from './locality/create-locality/create-locality.component';
+import { CreateUtilisateurComponent } from './utilisateur/create-utilisateur/create-utilisateur.component';
+import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { ListNotationComponent } from './list-notation/list-notation.component';
 import { ListLocalityComponent } from './locality/list-locality/list-locality.component';
 import { CreateAnnonceComponent } from './annonce/create-annonce/create-annonce.component';
@@ -67,6 +68,14 @@ const routes: Routes = [
   {
     path: 'localites',
     component: ListLocalityComponent
+  },
+  {
+    path: 'localite',
+    component: CreateLocalityComponent
+  },
+  {
+    path: 'localite/:id',
+    component: CreateLocalityComponent
   },
   {
     path: 'notifications',

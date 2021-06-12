@@ -19,7 +19,6 @@ export class CreateRecruteurComponent implements OnInit {
   paramId :any = 0;
   mySubscription: any;
 
-
   constructor(private recruteurService: RecruteurService,
               private router: Router,
               private toastr: ToastrService,
@@ -77,7 +76,7 @@ export class CreateRecruteurComponent implements OnInit {
     this.recruteurService.updateRecruteurDTO(this.formDataRecruteurDTO.id, this.formDataRecruteurDTO).subscribe(
       (response: RecruteurDto) => {
   //      this.dialogRef.close();
-        this.toastr.success("Recruteur Update avec Succès");
+        this.toastr.warning("Recruteur Update avec Succès");
         this.router.navigate(['/backend/admin/recruteurs']);
       },
       (error: HttpErrorResponse) => {

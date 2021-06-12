@@ -4,7 +4,7 @@
     <div class="row">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddPermis()">Add Permis</button>
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;">Add Permis</button>
 
     </div>
 
@@ -28,10 +28,10 @@
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditPermis(permisDTO) ">
+                        <button mat-raised-button class="action-button btn-primary" [routerLink]="['/backend/admin/permis', permisDTO.id]">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeletePermis(permisDTO)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeletePermis(permisDTO.id)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

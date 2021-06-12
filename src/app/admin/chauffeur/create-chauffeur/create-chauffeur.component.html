@@ -2,27 +2,27 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Nouveau Chaffeur</h1>
-            <form #addChauffeurForm="ngForm" name="form" (ngSubmit)="onAddChauffeur()">
+            <form #addChauffeurForm="ngForm" name="form">
                 <div class="form-group">
                     <label>FirstName</label>
                     <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.firstName" name="firstName" id="firstName" #firstName="ngModel" required />
                     <span class="text-danger" *ngIf="
-            (firstName.touched || addChauffeurForm.submitted) &&
-            firstName.errors?.required
-          ">
-          firstName est obligatoire
-        </span>
+                        (firstName.touched || addChauffeurForm.submitted) &&
+                        firstName.errors?.required
+                    ">
+                    firstName est obligatoire
+                    </span>
                 </div>
 
                 <div class="form-group">
                     <label>LastName</label>
                     <input type="text" class="form-control" [(ngModel)]="formDataChauffeurDTO.lastName" name="lastName" id="lastName" #lastName="ngModel" required />
                     <span class="text-danger" *ngIf="
-            (lastName.touched || addChauffeurForm.submitted) &&
-            lastName.errors?.required
-          ">
-          lastName est obligatoire
-        </span>
+                      (lastName.touched || addChauffeurForm.submitted) &&
+                      lastName.errors?.required
+                    ">
+                      lastName est obligatoire
+                    </span>
                 </div>
 
                 <div class="form-group">
@@ -125,14 +125,9 @@ cvChauffeur est obligatoire
 
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">
-          <i class="fa fa-database"></i>
-          Submit
-        </button>
-                    <button type="button" class="btn btn-danger ml-1">
-          <i class="fa fa-close"></i>
-          Close
-        </button>
+                    <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onAddChauffeur()"><i class="fa fa-database"></i> Submit</button>&nbsp;
+                    <button *ngIf="paramId" class="btn btn-warning" (click)="onUpdateChauffeur()"><i class="fa fa-database"></i>Update</button>
+                    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
                 </div>
             </form>
         </div>

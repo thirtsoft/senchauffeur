@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Nouveau Annonce</h1>
-            <form #addAnnonceForm="ngForm" name="form" (ngSubmit)="onAddAnnonce()">
+            <form #addAnnonceForm="ngForm" name="form">
                 <div class="form-group">
                     <label>Reference</label>
                     <input type="text" class="form-control" [(ngModel)]="annonceDTO.reference" name="reference" id="reference" #reference="ngModel" required />
@@ -104,14 +104,9 @@ statusAnnonce est obligatoire
 
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">
-        <i class="fa fa-database"></i>
-        Submit
-      </button>
-                    <button type="button" class="btn btn-danger ml-1">
-        <i class="fa fa-close"></i>
-        Close
-      </button>
+                    <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onUpdateAnnonce()"><i class="fa fa-database"></i> Submit</button>&nbsp;
+                    <button *ngIf="paramId" class="btn btn-warning" (click)="onAddAnnonce()"><i class="fa fa-database"></i>Update</button>
+                    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
                 </div>
             </form>
         </div>

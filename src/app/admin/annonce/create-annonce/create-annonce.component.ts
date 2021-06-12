@@ -1,6 +1,7 @@
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RecruteurService } from './../../../services/recruteur.service';
 import { PermisService } from './../../../services/permis.service';
@@ -8,7 +9,7 @@ import { AnnonceService } from './../../../services/annonce.service';
 import { RecruteurDto } from './../../../models/recruteur';
 import { PermisDto } from './../../../models/permis';
 import { AnnonceDto } from './../../../models/annonce';
-import { Component, OnInit, Inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-create-annonce',
@@ -21,17 +22,53 @@ export class CreateAnnonceComponent implements OnInit {
   listPermisData: PermisDto[];
   listRecruteurData: RecruteurDto[];
 
+  data;
+  paramId :any = 0;
+  mySubscription: any;
+
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
               private recruteurService: RecruteurService,
               private toastr: ToastrService,
+              public dialog: MatDialog,
+              private actRoute: ActivatedRoute,
               private router: Router,
-              @Inject(MAT_DIALOG_DATA)  public data,
-              public dialogRef:MatDialogRef<CreateAnnonceComponent>,
-  ){}
+  ){
+    //--for reload componant
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
 
   ngOnInit(): void {
+    this.paramId = this.actRoute.snapshot.paramMap.get('id');
+    console.log('Param--', this.paramId);
+    if(this.paramId  && this.paramId  > 0){
+      this.getAnnonceDTOById(this.paramId);
+    }
+
     this.getListPermisDTOs();
+
+    this.getListRecruteurDTOs();
+
+  }
+
+  getAnnonceDTOById(id: number) {
+    console.log('getOne');
+    this.annonceService.getAnnonceDTOById(id).subscribe(
+      (response: AnnonceDto) => {
+        console.log('data--', response);
+        this.annonceDTO = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
   }
 
   getListPermisDTOs() {
@@ -57,8 +94,21 @@ export class CreateAnnonceComponent implements OnInit {
   public onAddAnnonce() {
     this.annonceService.addAnnonceDTO(this.annonceDTO).subscribe(
       (response: AnnonceDto) => {
-        this.dialogRef.close();
+    //    this.dialogRef.close();
         this.toastr.success("Annonce Ajouté avec Succès");
+        this.router.navigate(['/backend/admin/annonces']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onUpdateAnnonce() {
+    this.annonceService.updateAnnonceDTO(this.annonceDTO.id, this.annonceDTO).subscribe(
+      (response: AnnonceDto) => {
+  //      this.dialogRef.close();
+        this.toastr.warning("Annonce Update avec Succès");
         this.router.navigate(['/backend/admin/annonces']);
       },
       (error: HttpErrorResponse) => {
