@@ -13,10 +13,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import com.chauffeur.dto.AnnonceDto;
-import com.chauffeur.dto.PermisDto;
-import com.chauffeur.dto.RecruteurDto;
 import com.chauffeur.enumeration.StatusAnnonce;
+import com.chauffeur.models.Annonce;
+import com.chauffeur.models.Permis;
+import com.chauffeur.models.Recruteur;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -24,31 +24,29 @@ public class AnnonceRepositoryTest {
 	
 	@Autowired
     private AnnonceRepository annonceRepository;
+	
+	@Autowired
+    private PermisRepository permisRepository;
+	
+	@Autowired
+    private RecruteurRepository recruteurRepository;
 
     @Test
     @Rollback(false)
     public void testCreateAnnonce() {
-    	String typePermis = "A"; String designation = "Poids Legers";
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	Long catId = (long) 1;
+    	Permis permis = permisRepository.findById(catId).orElse(null);
     	
-    	String firstName = "Tairou"; String lastName = "Diallo";
-    	RecruteurDto recruteurDto = new RecruteurDto();
-    	recruteurDto.setFirstName(firstName); recruteurDto.setLastName(lastName);
+    	Long recId = (long) 1;
+    	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
-    	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
-    	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
-    	AnnonceDto annonceDto = new AnnonceDto();
+    	String reference = "CH1"; String lieuPoste = "Tairou";
+    	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
-    	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermisDto(permisDto); annonceDto.setRecruteurDto(recruteurDto);
+    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
-    	AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(
-    			annonceRepository.save(
-    					AnnonceDto.fromDtoToEntity(annonceDto)
-                )
-        );
-    	
+    	Annonce annonceDtoResult = annonceRepository.save(annonceDto);
+    
         assertNotNull(annonceDtoResult);
 
     }
@@ -56,58 +54,47 @@ public class AnnonceRepositoryTest {
     @Test
     @Rollback(false)
     public void TestUpdateAnnonce() {
-    	String typePermis = "A"; String designation = "Poids Legers";
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	Long catId = (long) 1;
+    	Permis permis = permisRepository.findById(catId).orElse(null);
     	
-    	String firstName = "Tairou"; String lastName = "Diallo";
-    	RecruteurDto recruteurDto = new RecruteurDto();
-    	recruteurDto.setFirstName(firstName); recruteurDto.setLastName(lastName);
+    	Long recId = (long) 1;
+    	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
     	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
-    	AnnonceDto annonceDto = new AnnonceDto();
+    	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermisDto(permisDto); annonceDto.setRecruteurDto(recruteurDto);
+    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
-    	AnnonceDto.fromEntityToDto(
-    			annonceRepository.save(
-    					AnnonceDto.fromDtoToEntity(annonceDto)
-                )
-        );
+    	annonceRepository.save(annonceDto);
+    	
     	
         String referenceChauffeur = "DialloDiallo";
         annonceDto.setReference(referenceChauffeur);
-        annonceDto.setId((long) 1);
-        AnnonceDto.fromEntityToDto(annonceRepository.save(AnnonceDto.fromDtoToEntity(annonceDto)));
-
-        assertThat(annonceDto.getReference()).isEqualTo(referenceChauffeur);
+//        annonceDto.setId(2L);
+        Annonce annonceUpdate = annonceRepository.save(annonceDto); 
+     
+        assertThat(annonceUpdate.getReference()).isEqualTo(referenceChauffeur);
 
     }
 
     @Test
     public void testFindById() {
-    	String typePermis = "A"; String designation = "Poids Legers";
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	Long catId = (long) 1;
+    	Permis permis = permisRepository.findById(catId).orElse(null);
     	
-    	String firstName = "Tairou"; String lastName = "Diallo";
-    	RecruteurDto recruteurDto = new RecruteurDto();
-    	recruteurDto.setFirstName(firstName); recruteurDto.setLastName(lastName);
+    	Long recId = (long) 1;
+    	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
     	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
-    	AnnonceDto annonceDto = new AnnonceDto();
+    	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermisDto(permisDto); annonceDto.setRecruteurDto(recruteurDto);
+    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
-    	AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(
-    			annonceRepository.save(
-    					AnnonceDto.fromDtoToEntity(annonceDto)
-                )
-        );
+    	Annonce annonceDtoResult = annonceRepository.save(annonceDto);
     	
     	boolean isExistAnnonce = annonceRepository.findById(annonceDtoResult.getId()).isPresent();
 
@@ -117,39 +104,28 @@ public class AnnonceRepositoryTest {
 
     @Test
     public void testFindAll() {
-    	String typePermis = "A"; String designation = "Poids Legers";
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	Long catId = (long) 1;
+    	Permis permis = permisRepository.findById(catId).orElse(null);
     	
-    	String firstName = "Tairou"; String lastName = "Diallo";
-    	RecruteurDto recruteurDto = new RecruteurDto();
-    	recruteurDto.setFirstName(firstName); recruteurDto.setLastName(lastName);
+    	Long recId = (long) 1;
+    	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
     	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
-    	AnnonceDto annonceDto = new AnnonceDto();
+    	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermisDto(permisDto); annonceDto.setRecruteurDto(recruteurDto);
+    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
-    	AnnonceDto.fromEntityToDto(
-    			annonceRepository.save(
-    					AnnonceDto.fromDtoToEntity(annonceDto)
-                )
-        );
+    	annonceRepository.save(annonceDto);
     	
     	String reference2 = "CH1"; StatusAnnonce statusAnnonce2 = StatusAnnonce.VALIDEE;
-    	AnnonceDto annonceDto2 = new AnnonceDto();
+    	Annonce annonceDto2 = new Annonce();
     	annonceDto2.setReference(reference2); annonceDto2.setStatusAnnonce(statusAnnonce2);
-    	annonceDto.setPermisDto(permisDto); annonceDto.setRecruteurDto(recruteurDto);
+    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
+    	annonceRepository.save(annonceDto);
     	
-    	AnnonceDto.fromEntityToDto(
-    			annonceRepository.save(
-    					AnnonceDto.fromDtoToEntity(annonceDto)
-                )
-        );
-    	
-        List<?> notifications = annonceRepository.findAll();
+        List<Annonce> notifications = annonceRepository.findAll();
 
         assertThat(notifications).size().isGreaterThan(0);
 
@@ -158,26 +134,20 @@ public class AnnonceRepositoryTest {
     @Test
     @Rollback(false)
     public void testDelete() {
-    	String typePermis = "A"; String designation = "Poids Legers";
-    	PermisDto permisDto = new PermisDto();
-    	permisDto.setTypePermis(typePermis); permisDto.setDesignation(designation);
+    	Long catId = (long) 1;
+    	Permis permis = permisRepository.findById(catId).orElse(null);
     	
-    	String firstName = "Tairou"; String lastName = "Diallo";
-    	RecruteurDto recruteurDto = new RecruteurDto();
-    	recruteurDto.setFirstName(firstName); recruteurDto.setLastName(lastName);
+    	Long recId = (long) 1;
+    	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
     	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
-    	AnnonceDto annonceDto = new AnnonceDto();
+    	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermisDto(permisDto); annonceDto.setRecruteurDto(recruteurDto);
+    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
-    	AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(
-    			annonceRepository.save(
-    					AnnonceDto.fromDtoToEntity(annonceDto)
-                )
-        );
+    	Annonce annonceDtoResult = annonceRepository.save(annonceDto);
     	
         boolean isExistBeforeDelete = annonceRepository.findById(annonceDtoResult.getId()).isPresent();
 

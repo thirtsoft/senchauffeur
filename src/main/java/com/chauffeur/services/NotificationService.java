@@ -7,6 +7,8 @@ import com.chauffeur.dto.NotificationDto;
 public interface NotificationService {
 	
 	NotificationDto save(NotificationDto notificationDto);
+	
+	NotificationDto update(Long idNotification, NotificationDto notificationDto);
 
 	NotificationDto findById(Long id);
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chauffeur.dto.AnnonceDto;
+import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Annonce;
 import com.chauffeur.repository.AnnonceRepository;
@@ -71,5 +72,35 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceRepository.deleteById(id);
 
     }
+
+	@Override
+	public AnnonceDto update(Long idAnnonce, AnnonceDto annonceDto) {
+		if (!annonceRepository.existsById(idAnnonce)) {
+            throw new ResourceNotFoundException("Annonce not found");
+        }
+
+        Optional<Annonce> annonce = annonceRepository.findById(idAnnonce);
+
+        if (!annonce.isPresent()) {
+            throw new ResourceNotFoundException("Annonce not found");
+        }
+
+        AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(annonce.get());
+        annonceDtoResult.setReference(annonceDto.getReference());
+        annonceDtoResult.setModeCandidature(annonceDto.getModeCandidature());
+        annonceDtoResult.setLieuPoste(annonceDto.getLieuPoste());
+        annonceDtoResult.setSalaire(annonceDto.getSalaire());
+        annonceDtoResult.setStatusAnnonce(StatusAnnonce.ENCOURS);
+        annonceDtoResult.setDateCandidature(annonceDto.getDateCandidature());
+        annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
+        annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
+        annonceDtoResult.setRecruteurDto(annonceDto.getRecruteurDto());
+       
+        return AnnonceDto.fromEntityToDto(
+        		annonceRepository.save(
+        				AnnonceDto.fromDtoToEntity(annonceDtoResult)
+                )
+        );
+	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.AddresseApi;
@@ -11,6 +12,7 @@ import com.chauffeur.dto.AddresseDto;
 import com.chauffeur.services.AddressService;
 
 @RestController
+@CrossOrigin
 public class AddresseController implements AddresseApi {
 	
 	private AddressService addressService;
@@ -24,6 +26,13 @@ public class AddresseController implements AddresseApi {
 	public ResponseEntity<AddresseDto> save(AddresseDto addresseDto) {
 		return ResponseEntity.ok(addressService.save(addresseDto));
 	}
+	
+	@Override
+	public ResponseEntity<AddresseDto> update(Long id, AddresseDto addresseDto) {
+		addresseDto.setId(id);
+		return ResponseEntity.ok(addressService.save(addresseDto));
+	}
+
 
 	@Override
 	public ResponseEntity<AddresseDto> findById(Long id) {
@@ -41,4 +50,5 @@ public class AddresseController implements AddresseApi {
 		
 	}
 
+	
 }

@@ -32,7 +32,7 @@ public class Annonce implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "reference", length = 50)
 	private String reference;
@@ -58,11 +58,11 @@ public class Annonce implements Serializable {
     private StatusAnnonce statusAnnonce;
 
 	@ManyToOne
-	@JoinColumn(name = "permId", nullable = false)
+	@JoinColumn(name = "permId")
 	private Permis permis;
 	 
 	@ManyToOne
-	@JoinColumn(name = "recrId", nullable = false)
+	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
 	
 	

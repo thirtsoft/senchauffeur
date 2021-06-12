@@ -38,6 +38,34 @@ public class ParticulierServiceImpl implements ParticulierService {
                 )
         );
     }
+    
+    @Override
+	public ParticulierDto update(Long idParticulier, ParticulierDto particulierDto) {
+		if (!particulierRepository.existsById(idParticulier)) {
+            throw new ResourceNotFoundException("Particulier not found");
+        }
+
+        Optional<Particulier> particulier = particulierRepository.findById(idParticulier);
+
+        if (!particulier.isPresent()) {
+            throw new ResourceNotFoundException("Particulier not found");
+        }
+
+        ParticulierDto particulierDtoResult = ParticulierDto.fromEntityToDto(particulier.get());
+        particulierDtoResult.setFirstName(particulierDto.getFirstName());
+        particulierDtoResult.setLastName(particulierDto.getLastName());
+        particulierDtoResult.setMobileParticulier(particulierDto.getMobileParticulier());
+        particulierDtoResult.setMobileParticulier(particulierDto.getMobileParticulier());
+        particulierDtoResult.setEmail(particulierDto.getEmail());
+        particulierDtoResult.setAddressParticulier(particulierDto.getAddressParticulier());
+        particulierDtoResult.setVilleParticulier(particulierDto.getVilleParticulier());
+       
+        return ParticulierDto.fromEntityToDto(
+        		particulierRepository.save(
+        				ParticulierDto.fromDtoToEntity(particulierDtoResult)
+                )
+        );
+	}
 
     @Override
     public ParticulierDto findById(Long id) {
@@ -71,5 +99,7 @@ public class ParticulierServiceImpl implements ParticulierService {
         particulierRepository.deleteById(id);
 
     }
+
+	
 
 }

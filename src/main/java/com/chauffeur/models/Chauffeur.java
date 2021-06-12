@@ -26,7 +26,7 @@ public class Chauffeur implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "reference", length = 50)
 	private String reference;
@@ -41,7 +41,7 @@ public class Chauffeur implements Serializable {
 	private String sexe;
 	
 	@Column(name = "addressActuel", length = 90)
-	private double addressActuel;
+	private String addressActuel;
 
 	@Column(name = "email", length = 50)
 	private String email;
@@ -65,7 +65,7 @@ public class Chauffeur implements Serializable {
 	private String photoChauffeur;
 	
 	@ManyToOne
-	@JoinColumn(name = "permId", nullable = false)
+	@JoinColumn(name = "permId")
 	private Permis permis;
 
 }

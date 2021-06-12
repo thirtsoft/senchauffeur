@@ -7,6 +7,8 @@ import com.chauffeur.dto.PermisDto;
 public interface PermisService {
 	
 	PermisDto save(PermisDto permisDto);
+	
+	PermisDto update(Long idPermis, PermisDto permisDto);
 
 	PermisDto findById(Long id);
 

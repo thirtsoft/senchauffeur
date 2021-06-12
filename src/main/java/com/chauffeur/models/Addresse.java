@@ -24,7 +24,7 @@ public class Addresse implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "reference", length = 50)
 	private String reference;

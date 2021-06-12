@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.AnnonceApi;
@@ -11,6 +12,7 @@ import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.services.AnnonceService;
 
 @RestController
+@CrossOrigin
 public class AnnonceController implements AnnonceApi {
 	
 	private AnnonceService annonceService;
@@ -23,6 +25,13 @@ public class AnnonceController implements AnnonceApi {
 	@Override
 	public ResponseEntity<AnnonceDto> save(AnnonceDto annonceDto) {
 		return ResponseEntity.ok(annonceService.save(annonceDto));
+	}
+	
+	@Override
+	public ResponseEntity<AnnonceDto> update(Long idAnnonce, AnnonceDto annonceDto) {
+		annonceDto.setId(idAnnonce);
+		return ResponseEntity.ok(annonceService.save(annonceDto));
+	
 	}
 
 	@Override
@@ -39,5 +48,7 @@ public class AnnonceController implements AnnonceApi {
 	public void delete(Long id) {
 		annonceService.delete(id);
 	}
+
+	
 
 }

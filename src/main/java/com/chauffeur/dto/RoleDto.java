@@ -11,7 +11,7 @@ import lombok.Data;
 @Builder
 public class RoleDto {
 	
-	private long id;
+	private Long id;
 	
     private RoleName name;
 	

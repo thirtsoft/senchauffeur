@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder
 public class AddresseDto {
 	
-	private long id;
+	private Long id;
 
 	private String reference;
 

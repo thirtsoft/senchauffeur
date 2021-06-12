@@ -24,7 +24,7 @@ public class Recruteur implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "firstName", length = 90)
 	private String firstName;

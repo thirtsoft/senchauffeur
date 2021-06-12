@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UtilisateurDto {
 	
-	private long id;
+	private Long id;
 
-	private String name;
-	
+    private String name;
+    
     private String username;
 
     private String mobile;

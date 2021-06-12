@@ -38,6 +38,33 @@ public class AddressServiceImpl implements AddressService {
                 )
         );
     }
+    
+    @Override
+	public AddresseDto update(Long idAddress, AddresseDto addresseDto) {
+    	if (!addressRepository.existsById(idAddress)) {
+            throw new ResourceNotFoundException("Address not found");
+        }
+
+        Optional<Addresse> addresse = addressRepository.findById(idAddress);
+
+        if (!addresse.isPresent()) {
+            throw new ResourceNotFoundException("Address not found");
+        }
+
+        AddresseDto addressDtoResult = AddresseDto.fromEntityToDto(addresse.get());
+        addressDtoResult.setReference(addresseDto.getReference());
+        addressDtoResult.setCodePostal(addresseDto.getCodePostal());
+        addressDtoResult.setPays(addresseDto.getPays());
+        addressDtoResult.setVille(addresseDto.getVille());
+        addressDtoResult.setQuartier(addresseDto.getQuartier());
+        addressDtoResult.setRue(addresseDto.getRue());
+       
+        return AddresseDto.fromEntityToDto(
+        		addressRepository.save(
+        				AddresseDto.fromDtoToEntity(addressDtoResult)
+                )
+        );
+	}
 
     @Override
     public AddresseDto findById(Long id) {
@@ -71,5 +98,7 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.deleteById(id);
 
     }
+
+	
 
 }

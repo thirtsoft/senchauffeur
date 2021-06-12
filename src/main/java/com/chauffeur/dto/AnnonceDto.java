@@ -1,3 +1,4 @@
+
 package com.chauffeur.dto;
 
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AnnonceDto {
 	
-	private long id;
+	private Long id;
 
 	private String reference;
 	

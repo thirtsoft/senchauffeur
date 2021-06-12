@@ -38,6 +38,32 @@ public class NotificationServiceImpl implements NotificationService {
                 )
         );
     }
+    
+    @Override
+	public NotificationDto update(Long idNotification, NotificationDto notificationDto) {
+		if (!notificationRepository.existsById(idNotification)) {
+            throw new ResourceNotFoundException("Notification not found");
+        }
+
+        Optional<Notification> notification = notificationRepository.findById(idNotification);
+
+        if (!notification.isPresent()) {
+            throw new ResourceNotFoundException("Notification not found");
+        }
+
+        NotificationDto notificationDtoResult = NotificationDto.fromEntityToDto(notification.get());
+        notificationDtoResult.setReference(notificationDto.getReference());
+        notificationDtoResult.setNbreEtoile(notificationDto.getNbreEtoile());
+        notificationDtoResult.setObservation(notificationDto.getObservation());
+        notificationDtoResult.setChauffeurDto(notificationDto.getChauffeurDto());
+        notificationDtoResult.setUtilisateurDto(notificationDto.getUtilisateurDto());
+       
+        return NotificationDto.fromEntityToDto(
+        		notificationRepository.save(
+        				NotificationDto.fromDtoToEntity(notificationDtoResult)
+                )
+        );
+	}
 
     @Override
     public NotificationDto findById(Long id) {
@@ -72,4 +98,5 @@ public class NotificationServiceImpl implements NotificationService {
 
     }
 
+	
 }

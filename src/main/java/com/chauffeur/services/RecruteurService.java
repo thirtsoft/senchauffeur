@@ -7,6 +7,8 @@ import com.chauffeur.dto.RecruteurDto;
 public interface RecruteurService {
 	
 	RecruteurDto save(RecruteurDto recruteurDto);
+	
+	RecruteurDto update(Long idRecruteur, RecruteurDto recruteurDto);
 
 	RecruteurDto findById(Long id);
 

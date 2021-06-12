@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.chauffeur.dto.AnnonceDto;
@@ -18,14 +19,18 @@ public interface AnnonceApi {
 	
 	@PostMapping(value = APP_ROOT + "/annonces/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto annonceDto);
+	
+	@PutMapping(value = APP_ROOT + "/annonces/update/{idAnnonce}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<AnnonceDto> update(@PathVariable("idAnnonce") Long idAnnonce, @RequestBody AnnonceDto annonceDto);
+
 
 	@GetMapping(value = APP_ROOT + "/annonces/{idAnnonce}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<AnnonceDto> findById(@PathVariable("idAnnonce") Long id);
+	ResponseEntity<AnnonceDto> findById(@PathVariable("idAnnonce") Long idAnnonce);
 
 	@GetMapping(value = APP_ROOT + "/annonces/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> findAll();
 
 	@DeleteMapping(value = APP_ROOT + "/annonces/delete/{idAnnonce}")
-	void delete(@PathVariable("idAnnonce") Long id);
+	void delete(@PathVariable("idAnnonce") Long idAnnonce);
 
 }

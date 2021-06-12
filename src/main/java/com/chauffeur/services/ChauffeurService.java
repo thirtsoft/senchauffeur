@@ -8,6 +8,8 @@ import com.chauffeur.dto.ChauffeurDto;
 public interface ChauffeurService {
 	
 	ChauffeurDto save(ChauffeurDto chauffeurDto);
+	
+	ChauffeurDto update(Long idChauffeur, ChauffeurDto chauffeurDto);
 
 	ChauffeurDto findById(Long id);
 

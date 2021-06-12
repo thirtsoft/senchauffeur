@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PermisDto {
 	
-	private long id;
+	private Long id;
 	
 	private String typePermis;
 

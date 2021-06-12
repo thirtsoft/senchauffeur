@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.chauffeur.dto.UtilisateurDto;
@@ -18,6 +19,10 @@ public interface UtilisateurApi {
 	
 	@PostMapping(value = APP_ROOT + "/utilisateurs/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<UtilisateurDto> save(@RequestBody UtilisateurDto utilisateurDto);
+	
+	@PutMapping(value = APP_ROOT + "/utilisateurs/update/{idUtilisateur}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<UtilisateurDto> update(@PathVariable("idUtilisateur") Long id, @RequestBody UtilisateurDto utilisateurDto);
+
 
 	@GetMapping(value = APP_ROOT + "/utilisateurs/{idUtilisateur}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<UtilisateurDto> findById(@PathVariable("idUtilisateur") Long id);

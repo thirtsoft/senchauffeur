@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "permis")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Permis implements Serializable {
@@ -24,7 +26,7 @@ public class Permis implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "typePermis", length = 50)
 	private String typePermis;

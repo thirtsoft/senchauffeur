@@ -38,6 +38,40 @@ public class ChauffeurServiceImpl implements ChauffeurService {
                 )
         );
     }
+    
+    @Override
+	public ChauffeurDto update(Long idChauffeur, ChauffeurDto chauffeurDto) {
+		if (!chauffeurRepository.existsById(idChauffeur)) {
+            throw new ResourceNotFoundException("Chauffeur not found");
+        }
+
+        Optional<Chauffeur> chauffeur = chauffeurRepository.findById(idChauffeur);
+
+        if (!chauffeur.isPresent()) {
+            throw new ResourceNotFoundException("Chauffeur not found");
+        }
+
+        ChauffeurDto chauffeurDtoResult = ChauffeurDto.fromEntityToDto(chauffeur.get());
+        chauffeurDtoResult.setReference(chauffeurDto.getReference());
+        chauffeurDtoResult.setFirstName(chauffeurDto.getFirstName());
+        chauffeurDtoResult.setLastName(chauffeurDto.getLastName());
+        chauffeurDtoResult.setSexe(chauffeurDto.getSexe());
+        chauffeurDtoResult.setAddressActuel(chauffeurDto.getAddressActuel());
+        chauffeurDtoResult.setEmail(chauffeurDto.getEmail());
+        chauffeurDtoResult.setPhoneChauffeur(chauffeurDto.getPhoneChauffeur());
+        chauffeurDtoResult.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());
+        chauffeurDtoResult.setPretentionSalaire(chauffeurDto.getPretentionSalaire());
+        chauffeurDtoResult.setCvChauffeur(chauffeurDto.getCvChauffeur());
+        chauffeurDtoResult.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
+        chauffeurDtoResult.setMobilite(chauffeurDto.getMobilite());
+        chauffeurDtoResult.setPermisDto(chauffeurDto.getPermisDto());
+        
+        return ChauffeurDto.fromEntityToDto(
+        		chauffeurRepository.save(
+        				ChauffeurDto.fromDtoToEntity(chauffeurDtoResult)
+                )
+        );
+	}
 
     @Override
     public ChauffeurDto findById(Long id) {
@@ -71,5 +105,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeurRepository.deleteById(id);
 
     }
+
+	
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.PermisApi;
@@ -11,6 +12,7 @@ import com.chauffeur.dto.PermisDto;
 import com.chauffeur.services.PermisService;
 
 @RestController
+@CrossOrigin
 public class PermisController implements PermisApi{
 	
 	private PermisService permisService;
@@ -38,6 +40,11 @@ public class PermisController implements PermisApi{
 	public void delete(Long id) {
 		permisService.delete(id);
 		
+	}
+	@Override
+	public ResponseEntity<PermisDto> update(Long id, PermisDto permisDto) {
+		permisDto.setId(id);
+		return ResponseEntity.ok(permisService.save(permisDto));
 	}
 
 }

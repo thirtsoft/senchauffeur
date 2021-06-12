@@ -1,7 +1,6 @@
 package com.chauffeur.dto;
 
 import com.chauffeur.models.Notification;
-import com.chauffeur.models.Utilisateur;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NotificationDto {
 	
-	private long id;
+	private Long id;
 
     private String reference;
 

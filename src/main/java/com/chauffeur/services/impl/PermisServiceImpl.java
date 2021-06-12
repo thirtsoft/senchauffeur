@@ -22,9 +22,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PermisServiceImpl implements PermisService {
 	
-	@Autowired
+	
     private final PermisRepository permisRepository;
 
+    @Autowired
     public PermisServiceImpl(PermisRepository permisRepository) {
         this.permisRepository = permisRepository;
     }
@@ -71,5 +72,29 @@ public class PermisServiceImpl implements PermisService {
         permisRepository.deleteById(id);
 
     }
+
+	@Override
+	public PermisDto update(Long idPermis, PermisDto permisDto) {
+		if (!permisRepository.existsById(idPermis)) {
+            throw new ResourceNotFoundException("Permis not found");
+        }
+
+        Optional<Permis> permis = permisRepository.findById(idPermis);
+
+        if (!permis.isPresent()) {
+            throw new ResourceNotFoundException("Permis not found");
+        }
+
+        PermisDto permisDtoResult = PermisDto.fromEntityToDto(permis.get());
+        permisDtoResult.setTypePermis(permisDto.getTypePermis());
+        permisDtoResult.setDesignation(permisDto.getDesignation());
+        permisDtoResult.setValidite(permisDto.getValidite());
+       
+        return PermisDto.fromEntityToDto(
+        		permisRepository.save(
+        				PermisDto.fromDtoToEntity(permisDtoResult)
+                )
+        );
+	}
 
 }

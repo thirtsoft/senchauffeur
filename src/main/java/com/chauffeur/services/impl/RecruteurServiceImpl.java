@@ -72,4 +72,35 @@ public class RecruteurServiceImpl implements RecruteurService {
 
     }
 
+	@Override
+	public RecruteurDto update(Long idRecruteur, RecruteurDto recruteurDto) {
+		if (!recruteurRepository.existsById(idRecruteur)) {
+            throw new ResourceNotFoundException("Recruteur not found");
+        }
+
+        Optional<Recruteur> recruteur = recruteurRepository.findById(idRecruteur);
+
+        if (!recruteur.isPresent()) {
+            throw new ResourceNotFoundException("Recruteur not found");
+        }
+
+        RecruteurDto recruteurDtoResult = RecruteurDto.fromEntityToDto(recruteur.get());
+        recruteurDtoResult.setFirstName(recruteurDto.getFirstName());
+        recruteurDtoResult.setLastName(recruteurDto.getLastName());
+        recruteurDtoResult.setAddressRecruteur(recruteurDto.getAddressRecruteur());
+        recruteurDtoResult.setNomEntreprise(recruteurDto.getNomEntreprise());
+        recruteurDtoResult.setPhoneRecruteur(recruteurDto.getPhoneRecruteur());
+        recruteurDtoResult.setEmail(recruteurDto.getEmail());
+        recruteurDtoResult.setSecteurActivite(recruteurDto.getSecteurActivite());
+        recruteurDtoResult.setVilleRecruteur(recruteurDto.getVilleRecruteur());
+        recruteurDtoResult.setWebsite(recruteurDto.getVilleRecruteur());
+        
+       
+        return RecruteurDto.fromEntityToDto(
+        		recruteurRepository.save(
+        				RecruteurDto.fromDtoToEntity(recruteurDtoResult)
+                )
+        );
+	}
+
 }

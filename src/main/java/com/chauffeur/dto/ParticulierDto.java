@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ParticulierDto {
 	
-	private long id;
+	private Long id;
 	
 	private String firstName;
 

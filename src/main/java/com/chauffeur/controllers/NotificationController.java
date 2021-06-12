@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.NotificationApi;
@@ -11,6 +12,7 @@ import com.chauffeur.dto.NotificationDto;
 import com.chauffeur.services.NotificationService;
 
 @RestController
+@CrossOrigin
 public class NotificationController implements NotificationApi {
 	
 	private NotificationService notificationService;
@@ -21,6 +23,12 @@ public class NotificationController implements NotificationApi {
 	}
 	@Override
 	public ResponseEntity<NotificationDto> save(NotificationDto notificationDto) {
+		return ResponseEntity.ok(notificationService.save(notificationDto));
+	}
+	
+	@Override
+	public ResponseEntity<NotificationDto> update(Long id, NotificationDto notificationDto) {
+		notificationDto.setId(id);
 		return ResponseEntity.ok(notificationService.save(notificationDto));
 	}
 
@@ -39,5 +47,6 @@ public class NotificationController implements NotificationApi {
 		notificationService.delete(id);
 		
 	}
+	
 
 }

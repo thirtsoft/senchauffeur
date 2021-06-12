@@ -26,7 +26,7 @@ public class Notification implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "reference", length = 60)
     private String reference;
@@ -38,10 +38,10 @@ public class Notification implements Serializable {
     private String observation;
 
     @ManyToOne
-    @JoinColumn(name = "prodId", nullable = false)
+    @JoinColumn(name = "prodId")
     private Chauffeur chauffeur;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId")
     private Utilisateur utilisateur;
 }

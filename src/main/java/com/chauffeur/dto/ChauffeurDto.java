@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ChauffeurDto {
 	
-	private long id;
+	private Long id;
 	
 	private String reference;
 
@@ -52,7 +52,6 @@ public class ChauffeurDto {
 				.firstName(chauffeur.getFirstName())
 				.lastName(chauffeur.getLastName())
 				.sexe(chauffeur.getSexe())
-				.addressActuel(chauffeur.getAddressActuel())
 				.email(chauffeur.getEmail())
 				.phoneChauffeur(chauffeur.getPhoneChauffeur())
 				.nbreAnneeExperience(chauffeur.getNbreAnneeExperience())
@@ -74,7 +73,6 @@ public class ChauffeurDto {
 		chauffeur.setFirstName(chauffeurDto.getFirstName());
 		chauffeur.setLastName(chauffeurDto.getLastName());
 		chauffeur.setSexe(chauffeurDto.getSexe());
-		chauffeur.setAddressActuel(chauffeurDto.getAddressActuel());
 		chauffeur.setEmail(chauffeurDto.getEmail());
 		chauffeur.setPhoneChauffeur(chauffeurDto.getPhoneChauffeur());
 		chauffeur.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
@@ -88,3 +86,4 @@ public class ChauffeurDto {
 
 
 }
+
