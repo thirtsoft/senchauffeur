@@ -8,17 +8,19 @@ import { ListNotificationComponent } from './notation/list-notification/list-not
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AideComponent } from './aide/aide.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { CandidatebrowerComponent } from './candidatebrower/candidatebrower.component';
-import { JobDetailComponent } from './job-detail/job-detail.component';
-import { JobbrowserComponent } from './jobbrowser/jobbrowser.component';
+import { JobDetailComponent } from './job/job-detail/job-detail.component';
+import { JobbrowserComponent } from './job/jobbrowser/jobbrowser.component';
 import { ContactComponent } from './contact/contact.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
 import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
-import { SearchChauffeurComponent } from './search-chauffeur/search-chauffeur.component';
-import { DetailChauffeurComponent } from './detail-chauffeur/detail-chauffeur.component';
+import { SearchChauffeurComponent } from './candidate/search-chauffeur/search-chauffeur.component';
+import { DetailChauffeurComponent } from './candidate/detail-chauffeur/detail-chauffeur.component';
 import { AddEmployeComponent } from './emploi/add-employe/add-employe.component';
 import { ListEmployeComponent } from './emploi/list-employe/list-employe.component';
 import { HomeComponent } from './home/home.component';
+import { CandidatebrowerComponent } from './candidate/candidatebrower/candidatebrower.component';
+import { ListJobComponent } from './job/list-job/list-job.component';
+import { CreateJobComponent } from './job/create-job/create-job.component';
 
 
 const routes: Routes = [
@@ -53,6 +55,18 @@ const routes: Routes = [
   {
     path: 'browse-job',
     component: JobbrowserComponent
+  },
+  {
+    path: 'jobs',
+    component: ListJobComponent
+  },
+  {
+    path: 'createJob',
+    component: CreateJobComponent
+  },
+  {
+    path: 'createJob/:id',
+    component: CreateJobComponent
   },
   {
     path: 'browse-candidate',

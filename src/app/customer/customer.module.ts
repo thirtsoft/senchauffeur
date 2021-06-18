@@ -22,21 +22,26 @@ import { NgxPaginationModule } from 'ngx-pagination' ;
 import { SharedModule } from '..//shared/shared.module';
 
 import { CustomerRoutingModule } from './customer-routing.module';
-import { DetailChauffeurComponent } from './detail-chauffeur/detail-chauffeur.component';
-import { SearchChauffeurComponent } from './search-chauffeur/search-chauffeur.component';
+
 import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
 import { ListNotificationComponent } from './notation/list-notification/list-notification.component';
 import { ContactComponent } from './contact/contact.component';
-import { JobbrowserComponent } from './jobbrowser/jobbrowser.component';
-import { JobDetailComponent } from './job-detail/job-detail.component';
-import { CandidatebrowerComponent } from './candidatebrower/candidatebrower.component';
+
 import { AideComponent } from './aide/aide.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { FaqComponent } from './faq/faq.component';
 import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
+import { DetailChauffeurComponent } from './candidate/detail-chauffeur/detail-chauffeur.component';
+import { SearchChauffeurComponent } from './candidate/search-chauffeur/search-chauffeur.component';
+import { JobbrowserComponent } from './job/jobbrowser/jobbrowser.component';
+import { JobDetailComponent } from './job/job-detail/job-detail.component';
+import { CandidatebrowerComponent } from './candidate/candidatebrower/candidatebrower.component';
+import { CreateJobComponent } from './job/create-job/create-job.component';
+import { ListJobComponent } from './job/list-job/list-job.component';
+
 
 
 @NgModule({
@@ -55,7 +60,9 @@ import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
     AboutUsComponent,
     CompaniesComponent,
     FaqComponent,
-    SubmitResumeComponent
+    SubmitResumeComponent,
+    CreateJobComponent,
+    ListJobComponent
   ],
   imports: [
     CommonModule,

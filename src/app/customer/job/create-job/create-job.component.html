@@ -1,0 +1,221 @@
+<!-- Content -->
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(assets/customer/images/banner/bnr1.jpg);">
+        <div class="container">
+            <div class="dez-bnr-inr-entry">
+                <h1 class="text-white">Create Jobs</h1>
+                <!-- Breadcrumb row -->
+                <div class="breadcrumb-row">
+                    <ul class="list-inline">
+                        <li><a href="#">Home</a></li>
+                        <li>Create Job</li>
+                    </ul>
+                </div>
+                <!-- Breadcrumb row END -->
+            </div>
+        </div>
+    </div>
+    <!-- inner page banner END -->
+    <!-- contact area -->
+    <div class="content-block">
+        <!-- Browse Jobs -->
+        <div class="section-full bg-white browse-job content-inner-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4" style="margin-left: -50px;">
+                        <div class="sticky-top">
+                            <div class="clearfix m-b10">
+                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
+                                <div class="">
+                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
+                                    <a type="button" class="btn btn-primary btn-lg btn-block" style="color: white;">Annonces</a>
+                                </div>
+                            </div>
+                            <div class="clearfix m-b10">
+                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
+                                <div class="">
+                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
+                                    <a type="button" class="btn btn-success btn-lg btn-block" style="color: white;">Jetons</a>
+                                </div>
+                            </div>
+                            <div class="clearfix m-b10">
+                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
+                                <div class="">
+                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
+                                    <a type="button" class="btn btn-primary btn-lg btn-block" style="color: white;">Informations</a>
+                                </div>
+                            </div>
+                            <div class="clearfix m-b10">
+                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
+                                <div class="">
+                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
+                                    <a type="button" class="btn btn-warning btn-lg btn-block" style="color: white;">Autres</a>
+                                </div>
+                            </div>
+                            <div class="clearfix m-b10">
+                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
+                                <div class="">
+                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
+                                    <a type="button" class="btn btn-danger btn-lg btn-block" style="color: white;">Logout</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-9 col-lg-8" style="margin-left: 20px;">
+                        <!-- <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5> -->
+                        <h3 class="widget-title font-weight-700 text-uppercase">
+                            <i class="fa fa-angle-right"></i> Add New Jobs
+                        </h3>
+
+                        <form #addJobForm="ngForm" name="form">
+                            <div class="form-group">
+                                <label>Reference</label>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" required>
+                                <span class="text-danger" *ngIf="
+                                    (reference.touched || addJobForm.submitted) &&
+                                    reference.errors?.required
+                                  ">
+                                  Reference Obligatoire
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Candidature</label>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.modeCandidature" name="modeCandidature" id="modeCandidature" #modeCandidature="ngModel" required />
+                                <span class="text-danger" *ngIf="
+                                    (modeCandidature.touched || addJobForm.submitted) &&
+                                    modeCandidature.errors?.required
+                                  ">
+                                  modeCandidature est obligatoire
+                                </span>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>Your email</label>
+                                <input type="email" class="form-control" placeholder="info@gmail.com">
+                            </div> -->
+                            <div class="form-group">
+                                <label>Permis</label>
+                                <div class="form-group">
+                                    <select name="permis" [(ngModel)]="addEditAnnonceDTO.permisDto" class="form-control">
+                                      <option *ngFor="let permis of listPermisDTOs" class="form-control"
+                                        [ngValue]="permis.id == addEditAnnonceDTO.permisDto?.id ? addEditAnnonceDTO.permisDto : permis">{{permis.designation}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lieu Poste</label>
+                                <select [(ngModel)]="addEditAnnonceDTO.lieuPoste" name="lieuPoste" id="lieuPoste" #lieuPoste="ngModel" required>
+                                  <option>New York</option>
+                                  <option>London</option>
+                                  <option>Los Angeles</option>
+                                </select>
+                                <span class="text-danger" *ngIf="
+                                    (lieuPoste.touched || addJobForm.submitted) &&
+                                    lieuPoste.errors?.required
+                                  ">
+                                  lieuPoste est obligatoire
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Recruteur</label>
+                                <!-- <div class="form-group"> -->
+                                <select name="permis" [(ngModel)]="addEditAnnonceDTO.recruteurDto" class="form-control">
+                                  <option *ngFor="let recrutDTO of listRecruteurDTOs" class="form-control"
+                                    [ngValue]="recrutDTO.id == addEditAnnonceDTO.recruteurDto?.id ? addEditAnnonceDTO.recruteurDto : recrutDTO">{{recrutDTO.nomEntreprise}}</option>
+                                </select>
+                                <!--  </div> -->
+                            </div>
+                            <div class="form-group">
+                                <label>Salaire</label>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" required />
+                                <span class="text-danger" *ngIf="
+                                    (salaire.touched || addJobForm.submitted) &&
+                                    salaire.errors?.required
+                                  ">
+                                  salaire est obligatoire
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Description Job</label>
+                                <input type="text" class="form-control" placeholder="Web Designer">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" class="form-control" placeholder="London">
+                            </div> -->
+                            <div class="form-group">
+                                <label>Date Candidate </label>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCandidature" name="dateCandidature" id="dateCandidature" #dateCandidature="ngModel" required />
+                                <span class="text-danger" *ngIf="
+                                      (dateCandidature.touched || addJobForm.submitted) &&
+                                      dateCandidature.errors?.required
+                                    ">
+                                    dateCandidature est obligatoire
+                                  </span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Date Cloture </label>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" required />
+                                <span class="text-danger" *ngIf="
+                                  (dateCloture.touched || addJobForm.submitted) &&
+                                  dateCloture.errors?.required
+                                ">
+                                dateCloture est obligatoire
+                              </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Photo (optional)</label>
+                                <div class="custom-file">
+                                    <input type="file" class="site-button" id="customFile">
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>Video (optional)</label>
+                                <input type="text" class="form-control" placeholder="Video Link">
+                            </div>
+                            <div class="form-group">
+                                <label>Minimum rate/h ($) (optional)</label>
+                                <input type="text" class="form-control" placeholder="50 ($)">
+                            </div>
+                            <div class="form-group">
+                                <label>Resume category</label>
+                                <select>
+                                <option>Designe</option>
+                                <option>Construct</option>
+                                <option>Food Service</option>
+                              </select>
+                            </div> -->
+                            <div class="form-group">
+                                <label>Nombre d'années Expérience</label>
+                                <textarea class="form-control" placeholder="Your Content"></textarea>
+                            </div>
+                            <!--  <div class="form-group">
+                                <label>Skills (optional)</label>
+                                <input type="text" class="form-control" placeholder="Your Skills">
+                            </div> -->
+                            <div class="form-group">
+                                <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onAddJob()">
+                                  <i class="fa fa-database"></i> Submit
+                                </button>&nbsp;
+                                <button *ngIf="paramId" class="btn btn-warning" (click)="onUpdateJob()">
+                                  <i class="fa fa-database"></i>Update</button>
+                                <button type="button" class="btn btn-danger ml-1">
+                                  <i class="fa fa-close"></i> Close</button>
+                            </div>
+                            <!--  <button type="submit" class="site-button">Submit</button> -->
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Browse Jobs END -->
+    </div>
+</div>
+<!-- Content END-->

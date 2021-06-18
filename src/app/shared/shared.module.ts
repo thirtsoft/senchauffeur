@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 
-import { ToastrModule } from 'ngx-toastr';
-import { MatDialogModule, MatDialogRef, } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -55,9 +53,6 @@ import { MatdialogComponent } from './matdialog/matdialog.component';
     MatSnackBarModule,
     MatCardModule,
     MatExpansionModule,
-    ToastrModule.forRoot(),
-    MatDialogModule,
-    MatDialogRef,
     MatIconModule,
   ],
   providers: [
@@ -65,10 +60,6 @@ import { MatdialogComponent } from './matdialog/matdialog.component';
     {
       provide: MAT_DIALOG_DATA,
       useValue: {} ,
-    },
-    {
-      provide: MatDialogRef,
-      useValue: {}
     },
 
   ],
