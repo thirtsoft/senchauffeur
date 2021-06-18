@@ -3,6 +3,7 @@ package com.chauffeur.models;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -57,11 +58,13 @@ public class Annonce implements Serializable {
     @Column(length = 90)
     private StatusAnnonce statusAnnonce;
 
-	@ManyToOne
+//	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "permId")
 	private Permis permis;
 	 
-	@ManyToOne
+//	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
 	

@@ -1,0 +1,55 @@
+package com.chauffeur.dto;
+
+
+import com.chauffeur.models.Ville;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class VilleDto {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private Long id;
+
+    private String reference;
+
+    private String nom;
+
+    private String pays;
+    
+	
+	public static VilleDto fromEntityToDto(Ville ville) {
+		if (ville == null) {
+			return null;
+		}
+		
+		return VilleDto.builder()
+				.id(ville.getId())
+				.reference(ville.getReference())
+				.nom(ville.getNom())
+				.pays(ville.getPays())
+				.build();
+		
+	}
+	
+	public static Ville fromDtoToEntity(VilleDto villeDto) {
+		if (villeDto == null) {
+			return null;
+		}
+		Ville ville = new Ville();
+		ville.setReference(villeDto.getReference());
+		ville.setNom(villeDto.getNom());
+		ville.setPays(villeDto.getPays());
+	
+		return ville;
+	}
+
+
+}

@@ -69,7 +69,9 @@ public class AnnonceDto {
 		annonce.setDateCandidature(annonceDto.getDateCandidature());
 		annonce.setDateCloture(annonceDto.getDateCloture());
 		annonce.setStatusAnnonce(annonceDto.getStatusAnnonce());
-		
+		annonce.setPermis(PermisDto.fromDtoToEntity(annonceDto.getPermisDto()));
+		annonce.setRecruteur(RecruteurDto.fromDtoToEntity(annonceDto.getRecruteurDto()));
+
 		return annonce;
 	}
 

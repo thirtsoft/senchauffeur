@@ -50,7 +50,9 @@ public class NotificationDto {
 		notification.setReference(notificationDto.getReference());
 		notification.setNbreEtoile(notificationDto.getNbreEtoile());
 		notification.setObservation(notificationDto.getObservation());
-	
+		notification.setChauffeur(ChauffeurDto.fromDtoToEntity(notificationDto.getChauffeurDto()));
+		notification.setUtilisateur(UtilisateurDto.fromDtoToEntity(notificationDto.getUtilisateurDto()));
+		
 		return notification;
 	}
 

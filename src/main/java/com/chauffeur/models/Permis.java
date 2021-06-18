@@ -1,12 +1,15 @@
 package com.chauffeur.models;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -36,6 +39,14 @@ public class Permis implements Serializable {
 	
 	@Column(name = "validite", length = 90)
 	private int validite;
+	
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy="permis", orphanRemoval =
+	 * true) private Set<Chauffeur> chauffeur;
+	 * 
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy="permis", orphanRemoval =
+	 * true) private Set<Annonce> annonce;
+	 */
 
 	
 

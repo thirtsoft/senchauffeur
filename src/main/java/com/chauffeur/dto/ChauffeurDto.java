@@ -80,6 +80,7 @@ public class ChauffeurDto {
 		chauffeur.setCvChauffeur(chauffeurDto.getCvChauffeur());
 		chauffeur.setMobilite(chauffeurDto.getMobilite());
 		chauffeur.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());
+		chauffeur.setPermis(PermisDto.fromDtoToEntity(chauffeurDto.getPermisDto()));
 		
 		return chauffeur;
 	}

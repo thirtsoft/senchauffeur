@@ -39,8 +39,8 @@ public class PermisController implements PermisApi{
 	@Override
 	public void delete(Long id) {
 		permisService.delete(id);
-		
 	}
+	
 	@Override
 	public ResponseEntity<PermisDto> update(Long id, PermisDto permisDto) {
 		permisDto.setId(id);
