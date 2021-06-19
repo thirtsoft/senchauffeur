@@ -34,6 +34,8 @@ public class AnnonceDto {
 
 	private String modeCandidature;
 	
+	private String time;
+	
 	private String anneeExperience;
 	
 	private String description;
@@ -55,6 +57,9 @@ public class AnnonceDto {
 				.lieuPoste(annonce.getLieuPoste())
 				.salaire(annonce.getSalaire())
 				.modeCandidature(annonce.getModeCandidature())
+				.time(annonce.getTime())
+				.anneeExperience(annonce.getAnneeExperience())
+				.description(annonce.getDescription())
 				.dateCandidature(annonce.getDateCandidature())
 				.dateCloture(annonce.getDateCloture())
 				.statusAnnonce(annonce.getStatusAnnonce())
@@ -73,6 +78,9 @@ public class AnnonceDto {
 		annonce.setLieuPoste(annonceDto.getLieuPoste());
 		annonce.setSalaire(annonceDto.getSalaire());
 		annonce.setModeCandidature(annonceDto.getModeCandidature());
+		annonce.setTime(annonceDto.getTime());
+		annonce.setAnneeExperience(annonce.getAnneeExperience());
+		annonce.setDescription(annonceDto.getAnneeExperience());
 		annonce.setDateCandidature(annonceDto.getDateCandidature());
 		annonce.setDateCloture(annonceDto.getDateCloture());
 		annonce.setStatusAnnonce(annonceDto.getStatusAnnonce());

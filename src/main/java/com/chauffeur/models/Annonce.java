@@ -54,6 +54,9 @@ public class Annonce implements Serializable {
 	@Column(name = "modeCandidature", length = 50)
 	private String modeCandidature;
 	
+	@Column(name = "time", length = 50)
+	private String time;
+	
 	@Column(name = "anneeExperience")
 	private String anneeExperience;
 	
