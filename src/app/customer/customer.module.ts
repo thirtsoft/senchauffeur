@@ -41,6 +41,9 @@ import { JobDetailComponent } from './job/job-detail/job-detail.component';
 import { CandidatebrowerComponent } from './candidate/candidatebrower/candidatebrower.component';
 import { CreateJobComponent } from './job/create-job/create-job.component';
 import { ListJobComponent } from './job/list-job/list-job.component';
+import { RecentJobComponent } from './job/recent-job/recent-job.component';
+import { HomeComponent } from './home/home.component';
+import { JobersComponent } from './job/jobers/jobers.component';
 
 
 
@@ -62,7 +65,10 @@ import { ListJobComponent } from './job/list-job/list-job.component';
     FaqComponent,
     SubmitResumeComponent,
     CreateJobComponent,
-    ListJobComponent
+    ListJobComponent,
+    RecentJobComponent,
+    HomeComponent,
+    JobersComponent
   ],
   imports: [
     CommonModule,

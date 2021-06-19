@@ -55,4 +55,12 @@ export class AnnonceService {
     return this.http.delete<void>(`${this.apiServerUrl}/annonces/delete/${annonceId}`);
   }
 
+  public getListAnnonceDTOByPageable(page: number, size: number): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByPageables?page=`+page+"&size="+size);
+  }
+
+  public getListAnnonceDTOByKeyword(keyword: string): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByKeyword?keyword=`+keyword);
+  }
+
 }
