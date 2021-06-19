@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.chauffeur.dto.AnnonceDto;
@@ -101,6 +103,22 @@ public class AnnonceServiceImpl implements AnnonceService {
         				AnnonceDto.fromDtoToEntity(annonceDtoResult)
                 )
         );
+	}
+
+	@Override
+	public List<AnnonceDto> findListAnnonceByKeyword(String keyword) {
+		if (keyword == null) {
+            log.error("Article not found");
+        }
+        return annonceRepository.findAnnonceByKeyword(keyword).stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
+		return annonceRepository.findAll(pageable)
+                .map(AnnonceDto::fromEntityToDto);
 	}
 
 }

@@ -3,6 +3,9 @@ package com.chauffeur.dto;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Lob;
+
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Annonce;
 
@@ -30,6 +33,10 @@ public class AnnonceDto {
 	private LocalDate dateCloture;
 
 	private String modeCandidature;
+	
+	private String anneeExperience;
+	
+	private String description;
 	
     private StatusAnnonce statusAnnonce;
 

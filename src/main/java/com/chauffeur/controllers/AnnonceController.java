@@ -3,6 +3,9 @@ package com.chauffeur.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +50,17 @@ public class AnnonceController implements AnnonceApi {
 	@Override
 	public void delete(Long id) {
 		annonceService.delete(id);
+	}
+
+	@Override
+	public List<AnnonceDto> getListArticleByKeyword(String keyword) {
+		return annonceService.findListAnnonceByKeyword("%" + keyword + "%");
+	}
+
+	@Override
+	public Page<AnnonceDto> getListAnnonceByPageable(int page, int size) {
+		final Pageable pageable = PageRequest.of(page, size);
+        return annonceService.findAnnonceByPageable(pageable);
 	}
 
 	
