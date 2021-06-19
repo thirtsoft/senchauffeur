@@ -1,3 +1,4 @@
+import { VilleDto } from './ville';
 import { Permis, PermisDto } from './permis';
 import { Recruteur, RecruteurDto } from './recruteur';
 import { StatusAnnonce } from './status';
@@ -23,13 +24,20 @@ export class AnnonceDto {
   reference: string;
   lieuPoste: string;
   salaire: string;
-  dateCandidature: Date;
-	dateCloture: Date;
+  emailPoste: string;
   modeCandidature: string;
+  time: string;
+  anneeExperience: string;
+  description: string;
+  dateCandidature: Date;
+  dateCloture: Date;
 
   statusAnnonce: StatusAnnonce
 
   permisDto: PermisDto;
 
-	recruteurDto: RecruteurDto;
+  recruteurDto: RecruteurDto;
+
+  villeDto: VilleDto;
+
 }

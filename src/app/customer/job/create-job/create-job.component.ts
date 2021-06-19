@@ -1,3 +1,5 @@
+import { VilleService } from './../../../services/ville.service';
+import { VilleDto } from './../../../models/ville';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -19,6 +21,7 @@ export class CreateJobComponent implements OnInit {
   addEditAnnonceDTO: AnnonceDto = new AnnonceDto();
   listPermisDTOs: PermisDto[];
   listRecruteurDTOs: RecruteurDto[];
+  listVilleDTOs: VilleDto[];
 
   data;
   paramId :any = 0;
@@ -28,6 +31,7 @@ export class CreateJobComponent implements OnInit {
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
               private recruteurService: RecruteurService,
+              private villeService: VilleService,
               private actRoute: ActivatedRoute,
               private router: Router
   ) {
@@ -51,6 +55,8 @@ export class CreateJobComponent implements OnInit {
     this.getListPermisDTOs();
 
     this.getListRecruteurDTOs();
+
+    this.getListVilleDTOs();
   }
 
   getAnnonceDTOById(id: number) {
@@ -87,16 +93,21 @@ export class CreateJobComponent implements OnInit {
     )
   }
 
+  getListVilleDTOs() {
+    this.villeService.getVilleDTOs().subscribe(
+      (response: VilleDto[]) => {
+        this.listVilleDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
   public onAddJob() {
     console.log(this.addEditAnnonceDTO);
-
     this.annonceService.addAnnonceDTO(this.addEditAnnonceDTO).subscribe(
       (response: AnnonceDto) => {
         alert("Job Ajouté avec success");
-
-    //    this.dialogRef.close();
-   //     this.toastr.success("Job Ajouté avec Succès");
-
         this.router.navigate(['/jobs']);
       },
       (error: HttpErrorResponse) => {
@@ -110,8 +121,6 @@ export class CreateJobComponent implements OnInit {
     this.annonceService.updateAnnonceDTO(this.addEditAnnonceDTO.id, this.addEditAnnonceDTO).subscribe(
       (response: AnnonceDto) => {
         alert("Job update avec success");
-  //      this.dialogRef.close();
-  //      this.toastr.warning("Job Update avec Succès");
         this.router.navigate(['/jobs']);
       },
       (error: HttpErrorResponse) => {
