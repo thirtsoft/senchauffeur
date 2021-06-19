@@ -90,6 +90,9 @@ public class AnnonceServiceImpl implements AnnonceService {
         AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(annonce.get());
         annonceDtoResult.setReference(annonceDto.getReference());
         annonceDtoResult.setModeCandidature(annonceDto.getModeCandidature());
+        annonceDtoResult.setTime(annonceDto.getTime());
+        annonceDtoResult.setAnneeExperience(annonceDto.getAnneeExperience());
+        annonceDtoResult.setDescription(annonceDto.getDescription());
         annonceDtoResult.setLieuPoste(annonceDto.getLieuPoste());
         annonceDtoResult.setSalaire(annonceDto.getSalaire());
         annonceDtoResult.setStatusAnnonce(StatusAnnonce.ENCOURS);

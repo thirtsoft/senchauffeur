@@ -1,5 +1,6 @@
 package com.chauffeur.controllers.api;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.MediaType;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.chauffeur.dto.ChauffeurDto;
 
@@ -19,6 +23,12 @@ public interface ChauffeurApi {
 	    
     @PostMapping(value = APP_ROOT + "/chauffeurs/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ChauffeurDto> save(@RequestBody ChauffeurDto chauffeurDto);
+    
+    @PostMapping(value = APP_ROOT + "/chauffeurs/createWithFiles")
+    ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(
+    		@RequestPart(name = "chauffeur") String chauffeurDto,
+            @RequestParam(name = "photoChauffeur") MultipartFile photoChauffeur,
+            @RequestParam(name = "cvChauffeur") MultipartFile cvChauffeur) throws IOException;
     
     @PutMapping(value = APP_ROOT + "/chauffeurs/update/{idChauffeur}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ChauffeurDto> update(@PathVariable("idChauffeur") Long id, @RequestBody ChauffeurDto chauffeurDto);

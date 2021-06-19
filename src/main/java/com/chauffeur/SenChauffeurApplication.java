@@ -42,13 +42,27 @@ public class SenChauffeurApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SenChauffeurApplication.class, args);
 		
-		createChauffeursDirectoryIfItDoesntExist();
+		createChauffeursDirectoryPhotoIfItDoesntExist();
+		
+		createChauffeursDirectoryCvIfItDoesntExist();
 		
 		createAnnonceDirectoryIfItDoesntExist();
 	}
 	
-	 private static void createChauffeursDirectoryIfItDoesntExist() {
-	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeurphotos/");
+	 private static void createChauffeursDirectoryPhotoIfItDoesntExist() {
+	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/");
+
+	        if (Files.notExists(path)) {
+	            try {
+	                Files.createDirectories(path);
+	            } catch (IOException ie) {
+	                LOG.error(String.format("Problem creating directory %s", path));
+	            }
+	        }
+	   }
+	 
+	 private static void createChauffeursDirectoryCvIfItDoesntExist() {
+	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/");
 
 	        if (Files.notExists(path)) {
 	            try {

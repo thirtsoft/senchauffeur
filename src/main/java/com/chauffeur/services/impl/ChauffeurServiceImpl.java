@@ -1,5 +1,6 @@
 package com.chauffeur.services.impl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,12 +9,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Chauffeur;
 import com.chauffeur.repository.ChauffeurRepository;
 import com.chauffeur.services.ChauffeurService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -105,6 +108,23 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeurRepository.deleteById(id);
 
     }
+
+	@Override
+	public ChauffeurDto saveChauffeurWithFiles(String chauffeurDto, MultipartFile photoChauffeur,
+			MultipartFile cvChauffeur) throws IOException {
+		ChauffeurDto chauffeurDtoMapper = new ObjectMapper().readValue(chauffeurDto, ChauffeurDto.class);
+        System.out.println(chauffeurDtoMapper);
+
+        chauffeurDtoMapper.setPhotoChauffeur(photoChauffeur.getOriginalFilename());
+        
+        chauffeurDtoMapper.setCvChauffeur(cvChauffeur.getOriginalFilename());
+
+        return ChauffeurDto.fromEntityToDto(
+        		chauffeurRepository.save(
+        				ChauffeurDto.fromDtoToEntity(chauffeurDtoMapper)
+                )
+        );
+	}
 
 	
 
