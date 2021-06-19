@@ -2,6 +2,13 @@ package com.chauffeur;
 
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +28,8 @@ import com.chauffeur.repository.RecruteurRepository;
 @SpringBootApplication
 public class SenChauffeurApplication implements CommandLineRunner {
 	
+	 private static final Logger LOG = LoggerFactory.getLogger(SenChauffeurApplication.class);
+	
 	@Autowired
 	private PermisRepository permisRepository;
 	@Autowired
@@ -32,7 +41,35 @@ public class SenChauffeurApplication implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SenChauffeurApplication.class, args);
+		
+		createChauffeursDirectoryIfItDoesntExist();
+		
+		createAnnonceDirectoryIfItDoesntExist();
 	}
+	
+	 private static void createChauffeursDirectoryIfItDoesntExist() {
+	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeurphotos/");
+
+	        if (Files.notExists(path)) {
+	            try {
+	                Files.createDirectories(path);
+	            } catch (IOException ie) {
+	                LOG.error(String.format("Problem creating directory %s", path));
+	            }
+	        }
+	    }
+	 
+	 private static void createAnnonceDirectoryIfItDoesntExist() {
+	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/annoncephotos/");
+
+	        if (Files.notExists(path)) {
+	            try {
+	                Files.createDirectories(path);
+	            } catch (IOException ie) {
+	                LOG.error(String.format("Problem creating directory %s", path));
+	            }
+	        }
+	    }
 
 	@Override
 	public void run(String... args) throws Exception {

@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -52,6 +53,13 @@ public class Annonce implements Serializable {
 
 	@Column(name = "modeCandidature", length = 50)
 	private String modeCandidature;
+	
+	@Column(name = "anneeExperience")
+	private String anneeExperience;
+	
+	@Column(name = "description")
+	@Lob
+	private String description;
 	
 	@Enumerated(EnumType.STRING)
     @NaturalId
