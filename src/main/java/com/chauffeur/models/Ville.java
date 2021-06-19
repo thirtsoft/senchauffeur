@@ -32,7 +32,7 @@ public class Ville implements Serializable {
     @Column(name = "nom", length = 60)
     private String nom;
     
-    @Column(name = "nom", length = 60)
+    @Column(name = "pays", length = 60)
     private String pays;
 
 

@@ -40,7 +40,7 @@ public interface AnnonceApi {
 	 List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "keyword") String keyword);
 	 
 
-	 @GetMapping(value = APP_ROOT + "/articles/searchArticleByPageables", 
+	 @GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPageables", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	Page<AnnonceDto> getListAnnonceByPageable(@RequestParam(name = "page") int page, @RequestParam(name = "size") int size);
 
