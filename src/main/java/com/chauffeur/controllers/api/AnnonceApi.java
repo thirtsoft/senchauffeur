@@ -22,9 +22,10 @@ public interface AnnonceApi {
 	@PostMapping(value = APP_ROOT + "/annonces/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto annonceDto);
 	
-	@PutMapping(value = APP_ROOT + "/annonces/update/{idAnnonce}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<AnnonceDto> update(@PathVariable("idAnnonce") Long idAnnonce, @RequestBody AnnonceDto annonceDto);
-
+	@PutMapping(value = APP_ROOT + "/annonces/update/{idAnnonce}", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<AnnonceDto> update(@PathVariable("idAnnonce") Long idAnnonce, 
+			@RequestBody AnnonceDto annonceDto);
 
 	@GetMapping(value = APP_ROOT + "/annonces/{idAnnonce}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> findById(@PathVariable("idAnnonce") Long idAnnonce);

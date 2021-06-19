@@ -24,7 +24,7 @@ public interface NotificationApi {
 	ResponseEntity<NotificationDto> update(@PathVariable("idNotification") Long id, @RequestBody NotificationDto notificationDto);
 
 
-	@GetMapping(value = APP_ROOT + "/annonces/{idNotification}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/notifications/{idNotification}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<NotificationDto> findById(@PathVariable("idNotification") Long id);
 
 	@GetMapping(value = APP_ROOT + "/notifications/all", produces = MediaType.APPLICATION_JSON_VALUE)

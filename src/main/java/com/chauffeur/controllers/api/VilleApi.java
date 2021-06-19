@@ -17,21 +17,21 @@ import static com.chauffeur.utils.Constants.APP_ROOT;
 
 public interface VilleApi {
 	
-	@PostMapping(value = APP_ROOT + "/ville/create", 
+	@PostMapping(value = APP_ROOT + "/villes/create", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<VilleDto> save(@RequestBody VilleDto villeDto);
 	
-	@PutMapping(value = APP_ROOT + "/ville/update/{idVille}", 
+	@PutMapping(value = APP_ROOT + "/villes/update/{idVille}", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<VilleDto> update(@PathVariable("idVille") Long id, @RequestBody VilleDto villeDto);
 
-	@GetMapping(value = APP_ROOT + "/ville/{idVille}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/villes/{idVille}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<VilleDto> findById(@PathVariable("idVille") Long id);
 
-	@GetMapping(value = APP_ROOT + "/ville/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/villes/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<VilleDto> findAll();
 
-	@DeleteMapping(value = APP_ROOT + "/ville/delete/{idVille}")
+	@DeleteMapping(value = APP_ROOT + "/villes/delete/{idVille}")
 	void delete(@PathVariable("idVille") Long id);
 
 }

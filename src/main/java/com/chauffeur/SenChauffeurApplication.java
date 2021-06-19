@@ -19,11 +19,13 @@ import com.chauffeur.models.Annonce;
 import com.chauffeur.models.Chauffeur;
 import com.chauffeur.models.Permis;
 import com.chauffeur.models.Recruteur;
+import com.chauffeur.models.Ville;
 import com.chauffeur.repository.AnnonceRepository;
 import com.chauffeur.repository.ChauffeurRepository;
 
 import com.chauffeur.repository.PermisRepository;
 import com.chauffeur.repository.RecruteurRepository;
+import com.chauffeur.repository.VilleRepository;
 
 @SpringBootApplication
 public class SenChauffeurApplication implements CommandLineRunner {
@@ -38,6 +40,9 @@ public class SenChauffeurApplication implements CommandLineRunner {
 	private RecruteurRepository recruteurRepository;
 	@Autowired
 	private AnnonceRepository annonceRepository;
+	
+	@Autowired
+	private VilleRepository villeRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SenChauffeurApplication.class, args);
@@ -87,10 +92,15 @@ public class SenChauffeurApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Permis p1 = permisRepository.save(new Permis(1L, "P1","P1",10));
-		Permis p2 = permisRepository.save(new Permis(2L, "P2","P2",5));
-		Permis p3 = permisRepository.save(new Permis(3L, "P3","P3",15));
-		Permis p4 = permisRepository.save(new Permis(4L, "P4","P4",20));
+		Permis p1 = permisRepository.save(new Permis(1L, "P1","Permis Poids Legere",10));
+		Permis p2 = permisRepository.save(new Permis(2L, "P2","Permis Professionnel",5));
+		Permis p3 = permisRepository.save(new Permis(3L, "P3","Permis Tracteur",15));
+		Permis p4 = permisRepository.save(new Permis(4L, "P4","Permis Transport",20));
+		
+		Ville v1 = villeRepository.save(new Ville(1L, "v1","Ziguinchor, Casamance","Senegal"));
+		Ville v2 = villeRepository.save(new Ville(2L, "v2","Hann-Mariste 2, Dakar","Senegal"));
+		Ville v3 = villeRepository.save(new Ville(3L, "v3","California","USA"));
+		Ville v4 = villeRepository.save(new Ville(4L, "v4","Bignona, Casamance","Senegal"));
 		
 		Chauffeur ch1 = new Chauffeur(1L, "ch1","tairou","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
 				600000,"Dk-Zig-Thies","cv1","photo1",p1);
@@ -131,18 +141,23 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a1.setId(1L); a1.setLieuPoste("Hann-Mariste 2, Dakar"); a1.setModeCandidature("Email");
 		a1.setSalaire("$1200 - $ 2500"); a1.setReference("Digital Marketing Executive"); a1.setStatusAnnonce(StatusAnnonce.ENCOURS);
-		a1.setPermis(p1); a1.setRecruteur(r1);
+		a1.setPermis(p1); a1.setRecruteur(r1); a1.setVille(v1);
 		annonceRepository.save(a1);
 		
 		a2.setId(2L); a2.setLieuPoste("Ziguinchor, Casamance"); a2.setModeCandidature("Email");
 		a2.setSalaire("200M"); a2.setReference("Chauffeur Particulier"); a2.setStatusAnnonce(StatusAnnonce.REJETEE);
-		a2.setPermis(p2); a2.setRecruteur(r2);
+		a2.setPermis(p2); a2.setRecruteur(r2);a2.setVille(v2);
 		annonceRepository.save(a2);
 		
 		a3.setId(3L); a3.setLieuPoste("Parcelle, Dakar"); a3.setModeCandidature("Email");
 		a3.setSalaire("$1800 - $3500"); a3.setReference("Conducteur Poids Lours"); a3.setStatusAnnonce(StatusAnnonce.VALIDEE);
-		a3.setPermis(p3); a3.setRecruteur(r3);
+		a3.setPermis(p3); a3.setRecruteur(r3); a3.setVille(v3);
 		annonceRepository.save(a3);
+		
+		a4.setId(4L); a4.setLieuPoste("Parcelle, Dakar"); a4.setModeCandidature("Email");
+		a4.setSalaire("$1800 - $3500"); a4.setReference("Conducteur Poids Lours");
+		a4.setPermis(p3); a4.setRecruteur(r3); a4.setVille(v4);
+		annonceRepository.save(a4);
 	/*	
 		a4.setId(4L); a4.setLieuPoste("Sebikhotane, Dakar"); a4.setModeCandidature("Email");
 		a4.setSalaire("$1500 - $ 3000"); a4.setReference("Chauffeur Particulier"); a4.setStatusAnnonce(StatusAnnonce.ENCOURS);

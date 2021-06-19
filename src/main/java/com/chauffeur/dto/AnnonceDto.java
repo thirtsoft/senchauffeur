@@ -25,13 +25,11 @@ public class AnnonceDto {
 	private String reference;
 	
 	private String lieuPoste;
-
-	private String salaire;
-
-	private LocalDate dateCandidature;
 	
-	private LocalDate dateCloture;
-
+	private String emailPoste;
+	
+	private String salaire;
+	
 	private String modeCandidature;
 	
 	private String time;
@@ -39,12 +37,18 @@ public class AnnonceDto {
 	private String anneeExperience;
 	
 	private String description;
+
+	private LocalDate dateCandidature;
 	
+	private LocalDate dateCloture;
+
     private StatusAnnonce statusAnnonce;
 
 	private PermisDto permisDto;
 
 	private RecruteurDto recruteurDto;
+	
+	private VilleDto villeDto;
 	
 	public static AnnonceDto fromEntityToDto(Annonce annonce) {
 		if (annonce == null) {
@@ -57,6 +61,7 @@ public class AnnonceDto {
 				.lieuPoste(annonce.getLieuPoste())
 				.salaire(annonce.getSalaire())
 				.modeCandidature(annonce.getModeCandidature())
+				.emailPoste(annonce.getEmailPoste())
 				.time(annonce.getTime())
 				.anneeExperience(annonce.getAnneeExperience())
 				.description(annonce.getDescription())
@@ -65,6 +70,7 @@ public class AnnonceDto {
 				.statusAnnonce(annonce.getStatusAnnonce())
 				.permisDto(PermisDto.fromEntityToDto(annonce.getPermis()))
 				.recruteurDto(RecruteurDto.fromEntityToDto(annonce.getRecruteur()))
+				.villeDto(VilleDto.fromEntityToDto(annonce.getVille()))
 				.build();
 		
 	}
@@ -79,13 +85,15 @@ public class AnnonceDto {
 		annonce.setSalaire(annonceDto.getSalaire());
 		annonce.setModeCandidature(annonceDto.getModeCandidature());
 		annonce.setTime(annonceDto.getTime());
+		annonce.setEmailPoste(annonceDto.getEmailPoste());
 		annonce.setAnneeExperience(annonce.getAnneeExperience());
-		annonce.setDescription(annonceDto.getAnneeExperience());
+		annonce.setDescription(annonceDto.getDescription());
 		annonce.setDateCandidature(annonceDto.getDateCandidature());
 		annonce.setDateCloture(annonceDto.getDateCloture());
 		annonce.setStatusAnnonce(annonceDto.getStatusAnnonce());
 		annonce.setPermis(PermisDto.fromDtoToEntity(annonceDto.getPermisDto()));
 		annonce.setRecruteur(RecruteurDto.fromDtoToEntity(annonceDto.getRecruteurDto()));
+		annonce.setVille(VilleDto.fromDtoToEntity(annonceDto.getVilleDto()));
 
 		return annonce;
 	}

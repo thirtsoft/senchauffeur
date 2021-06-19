@@ -44,12 +44,9 @@ public class Annonce implements Serializable {
 
 	@Column(name = "salaire", length = 90)
 	private String salaire;
-
-	@Column(name = "dateCandidature", length = 70)
-	private LocalDate dateCandidature;
 	
-	@Column(name = "dateCloture", length = 70)
-	private LocalDate dateCloture;
+	@Column(name = "emailPoste", length = 90)
+	private String emailPoste;
 
 	@Column(name = "modeCandidature", length = 50)
 	private String modeCandidature;
@@ -63,6 +60,13 @@ public class Annonce implements Serializable {
 	@Column(name = "description")
 	@Lob
 	private String description;
+	
+	@Column(name = "dateCandidature", length = 70)
+	private LocalDate dateCandidature;
+	
+	@Column(name = "dateCloture", length = 70)
+	private LocalDate dateCloture;
+
 	
 	@Enumerated(EnumType.STRING)
     @NaturalId
@@ -78,6 +82,10 @@ public class Annonce implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "villeId")
+	private Ville ville;
 	
 	
 
