@@ -73,7 +73,7 @@ const routes: Routes = [
     component: CandidatebrowerComponent
   },
   {
-    path: 'job-detail',
+    path: 'job-detail/:reference',
     component: JobDetailComponent
   },
   {

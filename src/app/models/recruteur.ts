@@ -23,5 +23,6 @@ export class RecruteurDto {
   phoneRecruteur: string;
   addressRecruteur: string;
   villeRecruteur: string;
+  information: string;
 
 }

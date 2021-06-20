@@ -5,14 +5,14 @@
             <h5 class="fw4 m-b0">20+ Recently Added Jobs</h5>
         </div>
         <div class="align-self-end">
-            <a href="#" class="site-button button-sm">Browse All Jobs <i class="fa fa-long-arrow-right"></i></a>
+            <a routerLink="/browse-job" class="site-button button-sm">Browse All Jobs <i class="fa fa-long-arrow-right"></i></a>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-9">
             <ul class="post-job-bx">
                 <li *ngFor="let annononceDTO of annonceListDTO; let i = index">
-                    <a href="#">
+                    <a [routerLink]="['/job-detail', annononceDTO.reference]">
                         <div class="d-flex m-b30">
                             <div class="job-post-company">
                                 <span><img src="assets/customer/images/logo/icon1.png"/></span>

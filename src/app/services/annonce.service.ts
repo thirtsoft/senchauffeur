@@ -43,6 +43,10 @@ export class AnnonceService {
     return this.http.get<AnnonceDto>(`${this.apiServerUrl}/annonces/${annonceId}`);
   }
 
+  public getAnnonceDTOByReference(reference: string): Observable<AnnonceDto> {
+    return this.http.get<AnnonceDto>(`${this.apiServerUrl}/annonces/searchbyReference/${reference}`);
+  }
+
   public addAnnonceDTO(annonceDTO: AnnonceDto): Observable<AnnonceDto> {
     return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
   }
@@ -56,7 +60,9 @@ export class AnnonceService {
   }
 
   public getListAnnonceDTOByPageable(page: number, size: number): Observable<AnnonceDto[]> {
-    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByPageables?page=`+page+"&size="+size);
+    const searchUrl = (this.apiServerUrl+"/annonces/searchAnnonceByPageables?page="+page+"&size="+size);
+    return this.http.get<AnnonceDto[]>(searchUrl);
+  //  return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByPageables?page=`+page+"&size="+size);
   }
 
   public getListAnnonceDTOByKeyword(keyword: string): Observable<AnnonceDto[]> {

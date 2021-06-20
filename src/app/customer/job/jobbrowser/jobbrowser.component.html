@@ -8,7 +8,7 @@
                 <!-- Breadcrumb row -->
                 <div class="breadcrumb-row">
                     <ul class="list-inline">
-                        <li><a href="#">Home</a></li>
+                        <li><a routerLink="/">Home</a></li>
                         <li>Browse Jobs</li>
                     </ul>
                 </div>
@@ -26,7 +26,34 @@
                     <div class="col-xl-9 col-lg-8">
                         <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5>
                         <ul class="post-job-bx">
-                            <li>
+                            <li *ngFor="let annonceDTO of annonceListDTO; let i=index;">
+                                <a [routerLink]="['/job-detail', annonceDTO.reference]">
+                                    <div class="d-flex m-b30">
+                                        <div class="job-post-company">
+                                            <span><img src="assets/customer/images/logo/icon1.png"/></span>
+                                        </div>
+                                        <div class="job-post-info">
+                                            <!-- <h4>Digital Marketing Executive</h4> -->
+                                            <h4>{{annonceDTO.reference}}</h4>
+                                            <ul>
+                                                <li><i class="fa fa-map-marker"></i>{{annonceDTO.villeDto?.nom}}</li>
+                                                <li><i class="fa fa-bookmark-o"></i>{{annonceDTO.time}}</li>
+                                                <li><i class="fa fa-clock-o"></i>{{annonceDTO.dateCandidature}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="job-time mr-auto">
+                                            <span>{{annonceDTO.time}}</span>
+                                        </div>
+                                        <div class="salary-bx">
+                                            <span>{{annonceDTO.salaire}}</span>
+                                        </div>
+                                    </div>
+                                    <span class="post-like fa fa-heart-o"></span>
+                                </a>
+                            </li>
+                            <!--   <li>
                                 <a href="#">
                                     <div class="d-flex m-b30">
                                         <div class="job-post-company">
@@ -155,40 +182,16 @@
                                     </div>
                                     <span class="post-like fa fa-heart-o"></span>
                                 </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="d-flex m-b30">
-                                        <div class="job-post-company">
-                                            <span><img src="assets/customer/images/logo/icon1.png"/></span>
-                                        </div>
-                                        <div class="job-post-info">
-                                            <h4>Digital Marketing Executive</h4>
-                                            <ul>
-                                                <li><i class="fa fa-map-marker"></i> Sacramento, California</li>
-                                                <li><i class="fa fa-bookmark-o"></i> Full Time</li>
-                                                <li><i class="fa fa-clock-o"></i> Published 11 months ago</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <div class="job-time mr-auto">
-                                            <span>Full Time</span>
-                                        </div>
-                                        <div class="salary-bx">
-                                            <span>$1200 - $ 2500</span>
-                                        </div>
-                                    </div>
-                                    <span class="post-like fa fa-heart-o"></span>
-                                </a>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="pagination-bx m-t30">
-                            <ul class="pagination">
+                            <ul class="pagination" *ngIf="pages">
                                 <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
+                                <li class="active" class="clikable" [ngClass]="i==this.currentPage?'active':''" *ngFor="let p of pages; let i=index">
+                                    <a (click)="onPageArticle(i)" style="cursor:pointer">{{i}}</a>
+                                </li>
+                                <!--  <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li> -->
                                 <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
                             </ul>
                         </div>

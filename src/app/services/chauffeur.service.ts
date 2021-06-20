@@ -55,4 +55,14 @@ export class ChauffeurService {
     return this.http.delete<void>(`${this.apiServerUrl}/chauffeurs/delete/${chauffId}`);
   }
 
+  public getListChauffeurDTOByPageable(page: number, size: number): Observable<ChauffeurDto[]> {
+    const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByPageables?page="+page+"&size="+size);
+    return this.http.get<ChauffeurDto[]>(searchUrl);
+  //  return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByPageables?page=`+page+"&size="+size);
+  }
+
+  public getListChauffeurDTOByKeyword(keyword: string): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByKeyword?keyword=`+keyword);
+  }
+
 }
