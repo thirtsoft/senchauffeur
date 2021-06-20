@@ -2,6 +2,7 @@ package com.chauffeur.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -62,10 +63,10 @@ public class Annonce implements Serializable {
 	private String description;
 	
 	@Column(name = "dateCandidature", length = 70)
-	private LocalDate dateCandidature;
+	private Date dateCandidature;
 	
 	@Column(name = "dateCloture", length = 70)
-	private LocalDate dateCloture;
+	private Date dateCloture;
 
 	
 	@Enumerated(EnumType.STRING)

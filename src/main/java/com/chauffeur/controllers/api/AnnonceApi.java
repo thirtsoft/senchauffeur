@@ -19,7 +19,8 @@ import static com.chauffeur.utils.Constants.APP_ROOT;
 
 public interface AnnonceApi {
 	
-	@PostMapping(value = APP_ROOT + "/annonces/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = APP_ROOT + "/annonces/create", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto annonceDto);
 	
 	@PutMapping(value = APP_ROOT + "/annonces/update/{idAnnonce}", 
@@ -29,6 +30,10 @@ public interface AnnonceApi {
 
 	@GetMapping(value = APP_ROOT + "/annonces/{idAnnonce}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> findById(@PathVariable("idAnnonce") Long idAnnonce);
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchbyReference/{reference}", 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<AnnonceDto> findByReference(@PathVariable("reference") String reference);
 
 	@GetMapping(value = APP_ROOT + "/annonces/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> findAll();

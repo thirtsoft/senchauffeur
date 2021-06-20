@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.enumeration.StatusAnnonce;
@@ -56,6 +57,21 @@ public class AnnonceServiceImpl implements AnnonceService {
                         "Aucnun Annonce avec l'Id = " + id + "n'a été trouvé")
         );
     }
+    
+    @Override
+	public AnnonceDto findByReference(String reference) {
+    	if (!StringUtils.hasLength(reference)) {
+            log.error("Annonce REFERENCE is null");
+        }
+
+        Optional<Annonce> annonce = annonceRepository.findAnnonceByReference(reference);
+
+        return Optional.of(AnnonceDto.fromEntityToDto(annonce.get())).orElseThrow(() ->
+                new ResourceNotFoundException(
+                        "Aucnun Annonce avec l'Id = " + reference + "n'a été trouvé")
+        );
+
+	}
 
     
     @Override
@@ -124,4 +140,5 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto);
 	}
 
+	
 }

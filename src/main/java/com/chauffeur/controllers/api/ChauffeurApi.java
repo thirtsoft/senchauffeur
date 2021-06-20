@@ -3,6 +3,7 @@ package com.chauffeur.controllers.api;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
@@ -41,5 +43,13 @@ public interface ChauffeurApi {
    
     @DeleteMapping(value = APP_ROOT + "/chauffeurs/delete/{idChauffeur}")
     void delete(@PathVariable("idChauffeur") Long id);
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByKeyword", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	List<ChauffeurDto> getListChauffeurByKeyword(@RequestParam(name = "keyword") String keyword);
+	 
+	@GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByPageables", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	Page<ChauffeurDto> getListChauffeurByPageable(@RequestParam(name = "page") int page, @RequestParam(name = "size") int size);
 
 }

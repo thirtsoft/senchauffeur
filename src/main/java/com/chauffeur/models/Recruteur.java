@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class Recruteur implements Serializable {
 	
 	@Column(name = "website", length = 90)
 	private String website;
-
+	
 	@Column(name = "secteurActivite", length = 100)
 	private String secteurActivite;
 
@@ -52,5 +53,9 @@ public class Recruteur implements Serializable {
 	
 	@Column(name = "villeRecruteur", length = 30)
 	private String villeRecruteur;
+
+	@Lob
+	@Column(name = "information")
+	private String information;
 
 }

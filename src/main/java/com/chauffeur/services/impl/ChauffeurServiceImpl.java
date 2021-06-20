@@ -8,9 +8,12 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Chauffeur;
@@ -124,6 +127,22 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         				ChauffeurDto.fromDtoToEntity(chauffeurDtoMapper)
                 )
         );
+	}
+
+	@Override
+	public List<ChauffeurDto> findListChauffeurByKeyword(String keyword) {
+		if (keyword == null) {
+            log.error("Article not found");
+        }
+        return chauffeurRepository.findChauffeurByKeyword(keyword).stream()
+                .map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public Page<ChauffeurDto> findChauffeurByPageable(Pageable pageable) {
+		return chauffeurRepository.findAllChauffeurByPageable(pageable)
+                .map(ChauffeurDto::fromEntityToDto);
 	}
 
 	

@@ -23,7 +23,7 @@ public class ChauffeurDto {
 	
 	private String sexe;
 	
-	private double addressActuel;
+	private String addressActuel;
 
 	private String email;
 	
@@ -56,6 +56,7 @@ public class ChauffeurDto {
 				.phoneChauffeur(chauffeur.getPhoneChauffeur())
 				.nbreAnneeExperience(chauffeur.getNbreAnneeExperience())
 				.pretentionSalaire(chauffeur.getPretentionSalaire())
+				.addressActuel(chauffeur.getAddressActuel())
 				.cvChauffeur(chauffeur.getCvChauffeur())
 				.mobilite(chauffeur.getMobilite())
 				.photoChauffeur(chauffeur.getPhotoChauffeur())
@@ -78,6 +79,7 @@ public class ChauffeurDto {
 		chauffeur.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
 		chauffeur.setPretentionSalaire(chauffeurDto.getPretentionSalaire());
 		chauffeur.setCvChauffeur(chauffeurDto.getCvChauffeur());
+		chauffeur.setAddressActuel(chauffeurDto.getAddressActuel());
 		chauffeur.setMobilite(chauffeurDto.getMobilite());
 		chauffeur.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());
 		chauffeur.setPermis(PermisDto.fromDtoToEntity(chauffeurDto.getPermisDto()));

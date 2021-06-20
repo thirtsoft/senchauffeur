@@ -1,6 +1,7 @@
 package com.chauffeur.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,8 @@ import com.chauffeur.models.Annonce;
 
 @Repository
 public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
+	
+	Optional<Annonce> findAnnonceByReference(String reference);
 	
 	 @Query("select p from Annonce p")
 	 Page<Annonce> findAnnonce(Pageable pageable);

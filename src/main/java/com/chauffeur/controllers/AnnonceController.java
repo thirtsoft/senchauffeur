@@ -41,6 +41,12 @@ public class AnnonceController implements AnnonceApi {
 	public ResponseEntity<AnnonceDto> findById(Long id) {
 		return ResponseEntity.ok(annonceService.findById(id));
 	}
+	
+	@Override
+	public ResponseEntity<AnnonceDto> findByReference(String reference) {
+		return ResponseEntity.ok(annonceService.findByReference(reference));
+	}
+
 
 	@Override
 	public List<AnnonceDto> findAll() {
@@ -63,6 +69,7 @@ public class AnnonceController implements AnnonceApi {
         return annonceService.findAnnonceByPageable(pageable);
 	}
 
+	
 	
 
 }

@@ -14,6 +14,8 @@ public interface AnnonceService {
 	AnnonceDto update(Long idAnnonce, AnnonceDto annonceDto);
 
 	AnnonceDto findById(Long id);
+	
+	AnnonceDto findByReference(String reference);
 
     List<AnnonceDto> findAll();
     
