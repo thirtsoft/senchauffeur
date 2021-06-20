@@ -106,25 +106,25 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		Ville v4 = villeRepository.save(new Ville(4L, "v4","Bignona, Casamance","Senegal"));
 		
 		Chauffeur ch1 = new Chauffeur(1L, "ch1","tairou","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
-				600000,"Dk-Zig-Thies","cv1","photo1",p1);
+				600000,"Dk-Zig-Thies","cv1.pdf","photo1.jpg",p1);
 		Chauffeur ch2 = new Chauffeur(2L, "ch2","Ablaye","Kanel","M","Rufisque","ablaye@gmail.com","777440310",7,
-				600000,"Dk-TAMBA","cv2","photo2",p2);
+				600000,"Dk-TAMBA","cv2.pdf","photo2.jpg",p2);
 		Chauffeur ch3 = new Chauffeur(3L, "ch3","Kalidou","Badji","M","Parcelle","kalidou@gmail.com","776440310",10,
-				600000,"Dk-Zig","cv3","photo3",p3);
+				600000,"Dk-Zig","cv3.pdf","photo3.jpg",p3);
 		Chauffeur ch4 = new Chauffeur(4L, "ch4","Fatou","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				600000,"Dk-Thies","cv4","photo4",p4);
+				600000,"Dk-Thies","cv4.pdf","photo4.jpg",p4);
 		Chauffeur ch5 = new Chauffeur(5L, "ch1","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
-				600000,"Dk-Zig-Thies","cv5","photo5",p1);
+				600000,"Dk-Zig-Thies","cv5.pdf","photo5.jpg",p1);
 		Chauffeur ch6 = new Chauffeur(6L, "ch6","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310",7,
-				600000,"Dk-TAMBA","cv6","photo2",p2);
+				600000,"Dk-TAMBA","cv6.pdf","photo6.jpg",p2);
 		Chauffeur ch7 = new Chauffeur(7L, "ch7","Marie","Sane","M","Parcelle","kalidou@gmail.com","776440310",10,
-				600000,"Dk-Zig","cv3","photo7",p3);
+				600000,"Dk-Zig","cv7.pdf","photo7.jpg",p3);
 		Chauffeur ch8 = new Chauffeur(8L, "ch8","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				600000,"Dk-Thies","cv8","photo8",p4);
+				600000,"Dk-Thies","cv8.pdf","photo1.jpg",p4);
 		Chauffeur ch9 = new Chauffeur(8L, "ch8","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				600000,"Dk-Thies","cv8","photo8",p4);
+				600000,"Dk-Thies","cv3.pdf","photo3.jpg",p4);
 		Chauffeur ch10 = new Chauffeur(8L, "ch8","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				600000,"Dk-Thies","cv8","photo8",p4);
+				600000,"Dk-Thies","cv5.pdf","photo4.jpg",p4);
 		
 		chauffeurRepository.save(ch1); chauffeurRepository.save(ch2);
 		chauffeurRepository.save(ch3); chauffeurRepository.save(ch4);

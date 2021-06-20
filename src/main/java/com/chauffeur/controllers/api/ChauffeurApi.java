@@ -3,6 +3,9 @@ package com.chauffeur.controllers.api;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,5 +55,25 @@ public interface ChauffeurApi {
 	@GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByPageables", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	Page<ChauffeurDto> getListChauffeurByPageable(@RequestParam(name = "page") int page, @RequestParam(name = "size") int size);
+	
+	
+	@GetMapping(value = APP_ROOT + "/chauffeurs/photoChauffeur/{idChauffeur}")
+    byte[] getPhotoChauffeur(@PathVariable("idChauffeur") Long id) throws Exception;
+
+    @PostMapping(path = APP_ROOT + "/chauffeurs/uploadChauffeurPhoto/{idChauffeur}")
+    void uploadPhotoChauffeur(@RequestParam(name = "photoArticle") MultipartFile photoChauffeur, 
+    		@PathVariable("idChauffeur") Long idChauffeur) throws IOException;
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/cvChauffeur/{idChauffeur}")
+    byte[] getCvChauffeur(@PathVariable("idChauffeur") Long id) throws Exception;
+
+    @PostMapping(path = APP_ROOT + "/chauffeurs/uploadChauffeurCv/{idChauffeur}")
+    void uploadCvChauffeur(@RequestParam(name = "cvChauffeur") MultipartFile cvChauffeur, 
+    		@PathVariable("idChauffeur") Long idChauffeur) throws IOException;
+    
+    @RequestMapping(value = "/downloadContratFile/{fileName:.+}")
+    public void downloadChauffeurFile(HttpServletRequest request, HttpServletResponse response,
+            @PathVariable("fileName") String fileName) throws IOException;
+
 
 }
