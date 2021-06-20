@@ -18,6 +18,7 @@ export class RecentJobComponent implements OnInit {
   id : number;
   p : number=1;
   searchText;
+  permId;
 
   public size: number = 6;
   public currentPage: number = 1;
@@ -41,6 +42,7 @@ export class RecentJobComponent implements OnInit {
   ngOnInit(): void {
     this.getAnnonceListDTOs();
 
+    this.getAnnonceListDTOsByPermiss();
 
   }
 
@@ -49,6 +51,20 @@ export class RecentJobComponent implements OnInit {
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
         console.log(this.annonceListDTO);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+  }
+
+  public getAnnonceListDTOsByPermiss() {
+    const hasPermId: boolean = this.route.snapshot.paramMap.has('id');
+    this.annonceService.getListAnnonceDTOByPermis(this.permId).subscribe(
+      (response: AnnonceDto[]) => {
+        this.annonceListDTO = response;
+        console.log("Annonce By Permis ID", this.annonceListDTO);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

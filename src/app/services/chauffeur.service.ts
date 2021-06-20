@@ -74,6 +74,10 @@ export class ChauffeurService {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByKeyword?keyword=`+keyword);
   }
 
+  public getListChauffeurDTOByPermis(pId: number): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeursByPermis/${pId}`);
+  }
+
   uploadPhotoChauffeurDto(filePhoto: File, idChauffeur): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('photoArticle', filePhoto);
@@ -104,6 +108,10 @@ export class ChauffeurService {
 
   public getCvChauffeur() {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/cvChauffeur`);
+  }
+
+  public countNumberOfChauffeurs(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/chauffeurs/NumbersOfChauffeurs`);
   }
 
 }

@@ -69,4 +69,12 @@ export class AnnonceService {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByKeyword?keyword=`+keyword);
   }
 
+  public getListAnnonceDTOByPermis(pId: number): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnoncesByPermis/${pId}`);
+  }
+
+  public countNumberOfAnnonces(): Observable<any>  {
+    return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonces`);
+  }
+
 }

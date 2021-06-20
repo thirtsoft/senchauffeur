@@ -1,3 +1,4 @@
+import { AnnonceService } from './../../../services/annonce.service';
 import { Component, OnInit } from '@angular/core';
 import { ChauffeurDto } from './../../../models/chauffeur';
 
@@ -16,13 +17,16 @@ import { ChauffeurService } from './../../../services/chauffeur.service';
 export class JobersComponent implements OnInit {
 
   chauffeurListDTO: ChauffeurDto[];
-  addEditChauffeurDTO: ChauffeurDto;
+
+  numberOfChauffeur;
+  numberOfAnnonce;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(private chauffeurService: ChauffeurService,
+              private annonceService: AnnonceService,
               private router: Router,
               private fb: FormBuilder
   ) {
@@ -30,6 +34,10 @@ export class JobersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListChauffeurDTOs();
+
+    this.getNumberOfAnnonces();
+
+    this.getNumberOfChauffeurs();
   }
 
   public getListChauffeurDTOs() {
@@ -43,5 +51,19 @@ export class JobersComponent implements OnInit {
       }
     );
   }
+
+  getNumberOfChauffeurs(): void {
+    this.chauffeurService.countNumberOfChauffeurs().subscribe(data => {
+      this.numberOfChauffeur = data;
+    });
+  }
+
+  getNumberOfAnnonces(): void {
+    this.annonceService.countNumberOfAnnonces().subscribe(data => {
+      this.numberOfAnnonce = data;
+    });
+  }
+
+
 
 }
