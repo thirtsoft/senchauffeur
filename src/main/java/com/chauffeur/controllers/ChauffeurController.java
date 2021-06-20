@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -159,6 +160,14 @@ public class ChauffeurController implements ChauffeurApi {
 	    		cvChauffeur.getBytes());
 
 	    chauffeurService.save(chauffeurDto);
+	}
+	@Override
+	public List<ChauffeurDto> getListChauffeurByPermis(Long pId) {
+		return chauffeurService.findListChauffeurByPermis(pId);
+	}
+	@Override
+	public BigDecimal getNumbersOfChauffeurs() {
+		return chauffeurService.countNumbersOfChauffeurs();
 	}
 	
 

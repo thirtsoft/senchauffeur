@@ -1,6 +1,7 @@
 package com.chauffeur.services.impl;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Chauffeur;
@@ -108,6 +109,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
             log.error("chauffeur Id is null");
             return;
         }
+        
         chauffeurRepository.deleteById(id);
 
     }
@@ -134,6 +136,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 		if (keyword == null) {
             log.error("Article not found");
         }
+		
         return chauffeurRepository.findChauffeurByKeyword(keyword).stream()
                 .map(ChauffeurDto::fromEntityToDto)
                 .collect(Collectors.toList());
@@ -143,6 +146,32 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 	public Page<ChauffeurDto> findChauffeurByPageable(Pageable pageable) {
 		return chauffeurRepository.findAllChauffeurByPageable(pageable)
                 .map(ChauffeurDto::fromEntityToDto);
+	}
+
+	@Override
+	public List<ChauffeurDto> findListChauffeurByPermis(Long pId) {
+		return chauffeurRepository.findChauffeurByPermis(pId).stream()
+				.map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public ChauffeurDto findByReference(String reference) {
+		if (!StringUtils.hasLength(reference)) {
+            log.error("Annonce REFERENCE is null");
+        }
+
+        Optional<Chauffeur> chauffeur = chauffeurRepository.findChauffeurByReference(reference);
+
+        return Optional.of(ChauffeurDto.fromEntityToDto(chauffeur.get())).orElseThrow(() ->
+                new ResourceNotFoundException(
+                        "Aucnun Annonce avec l'Id = " + reference + "n'a été trouvé")
+        );
+	}
+
+	@Override
+	public BigDecimal countNumbersOfChauffeurs() {
+		return chauffeurRepository.countNumberOfChauffeurs();
 	}
 
 	

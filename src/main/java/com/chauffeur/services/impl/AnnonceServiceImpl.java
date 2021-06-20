@@ -1,5 +1,6 @@
 package com.chauffeur.services.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -138,6 +139,18 @@ public class AnnonceServiceImpl implements AnnonceService {
 	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
 		return annonceRepository.findAll(pageable)
                 .map(AnnonceDto::fromEntityToDto);
+	}
+
+	@Override
+	public List<AnnonceDto> findListAnnonceByPermis(Long pId) {
+		return annonceRepository.findAnnonceByPermis(pId).stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public BigDecimal countNumbersOfAnnonces() {
+		return annonceRepository.countNumberOfAnnonces();
 	}
 
 	

@@ -1,5 +1,6 @@
 package com.chauffeur.controllers.api;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -41,13 +42,20 @@ public interface AnnonceApi {
 	@DeleteMapping(value = APP_ROOT + "/annonces/delete/{idAnnonce}")
 	void delete(@PathVariable("idAnnonce") Long idAnnonce);
 	
-	 @GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByKeyword", 
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByKeyword", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	 List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "keyword") String keyword);
+	List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "keyword") String keyword);
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnoncesByPermis/{pId}", 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	List<AnnonceDto> getListAnnonceByPermis(@PathVariable("pId") Long pId);
 	 
-
-	 @GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPageables", 
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPageables", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	Page<AnnonceDto> getListAnnonceByPageable(@RequestParam(name = "page") int page, @RequestParam(name = "size") int size);
+	Page<AnnonceDto> getListAnnonceByPageable(@RequestParam(name = "page") int page, 
+			@RequestParam(name = "size") int size);
+	
+	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonces")
+    public BigDecimal getNumbersOfAnnoncess();
 
 }

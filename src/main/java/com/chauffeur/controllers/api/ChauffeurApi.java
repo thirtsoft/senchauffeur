@@ -1,6 +1,7 @@
 package com.chauffeur.controllers.api;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
@@ -48,6 +48,10 @@ public interface ChauffeurApi {
     @DeleteMapping(value = APP_ROOT + "/chauffeurs/delete/{idChauffeur}")
     void delete(@PathVariable("idChauffeur") Long id);
     
+    @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeursByPermis/{pId}", 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	List<ChauffeurDto> getListChauffeurByPermis(@PathVariable("pId") Long pId);
+    
     @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByKeyword", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<ChauffeurDto> getListChauffeurByKeyword(@RequestParam(name = "keyword") String keyword);
@@ -71,9 +75,12 @@ public interface ChauffeurApi {
     void uploadCvChauffeur(@RequestParam(name = "cvChauffeur") MultipartFile cvChauffeur, 
     		@PathVariable("idChauffeur") Long idChauffeur) throws IOException;
     
-    @RequestMapping(value = "/downloadContratFile/{fileName:.+}")
+    @RequestMapping(value = APP_ROOT + "/chauffeurs/downloadContratFile/{fileName:.+}")
     public void downloadChauffeurFile(HttpServletRequest request, HttpServletResponse response,
             @PathVariable("fileName") String fileName) throws IOException;
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/NumbersOfChauffeurs")
+    public BigDecimal getNumbersOfChauffeurs();
 
 
 }

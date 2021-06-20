@@ -1,5 +1,6 @@
 package com.chauffeur.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -20,7 +21,10 @@ public interface AnnonceService {
     List<AnnonceDto> findAll();
     
     List<AnnonceDto> findListAnnonceByKeyword(String keyword);
-
+    
+    List<AnnonceDto> findListAnnonceByPermis(Long pId);
+    
+    BigDecimal countNumbersOfAnnonces();
 
     Page<AnnonceDto> findAnnonceByPageable(Pageable pageable);
 

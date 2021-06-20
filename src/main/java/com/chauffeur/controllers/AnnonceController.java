@@ -1,5 +1,6 @@
 package com.chauffeur.controllers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,12 @@ public class AnnonceController implements AnnonceApi {
 	public void delete(Long id) {
 		annonceService.delete(id);
 	}
+	
+	@Override
+	public List<AnnonceDto> getListAnnonceByPermis(Long pId) {
+		return annonceService.findListAnnonceByPermis(pId);
+	}
+
 
 	@Override
 	public List<AnnonceDto> getListArticleByKeyword(String keyword) {
@@ -69,7 +76,10 @@ public class AnnonceController implements AnnonceApi {
         return annonceService.findAnnonceByPageable(pageable);
 	}
 
-	
-	
+	@Override
+	public BigDecimal getNumbersOfAnnoncess() {
+		return annonceService.countNumbersOfAnnonces();
+	}
 
+	
 }

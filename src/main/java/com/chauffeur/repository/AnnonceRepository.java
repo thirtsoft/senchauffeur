@@ -1,5 +1,6 @@
 package com.chauffeur.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +18,16 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	
 	Optional<Annonce> findAnnonceByReference(String reference);
 	
-	 @Query("select p from Annonce p")
-	 Page<Annonce> findAnnonce(Pageable pageable);
+	@Query("select count(p) from Annonce p ")
+	BigDecimal countNumberOfAnnonces();
 	 
 	 @Query("select art from Annonce art where art.reference like :x")
 	 List<Annonce> findAnnonceByKeyword(@Param("x") String mc);
+	 
+	 @Query("select p from Annonce p where p.permis.id =:pId")
+	 List<Annonce> findAnnonceByPermis(@Param("pId") Long permisId);
+	 
+	 @Query("select p from Annonce p")
+	 Page<Annonce> findAnnonce(Pageable pageable);
 
 }
