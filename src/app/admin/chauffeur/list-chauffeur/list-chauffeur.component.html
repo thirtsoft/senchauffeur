@@ -12,7 +12,7 @@
         <thead class="thead-inverse">
             <tr>
                 <th>Photo</th>
-                <th>Reference</th>
+                <th>CV</th>
                 <th>Permis</th>
                 <th>Chauffeur</th>
                 <th>Addresse</th>
@@ -21,15 +21,19 @@
                 <th>Expérience</th>
                 <th>Salaire</th>
                 <th>Mobilité</th>
-                <th>CV</th>
+                <th>Reference</th>
 
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let chauffDTO of chauffeurListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{chauffDTO?.photoChauffeur}}</td>
-                <td>{{chauffDTO?.reference}}</td>
+                <!-- <td>{{chauffDTO?.photoChauffeur}}</td> -->
+                <td><img height="90" width="90" class="img-circle" src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chauffDTO.id}}"></td>
+
+                <td>
+                    <a href="{{this.chauffeurService.apiServerUrl+ '/chauffeurs/cvChauffeur/'+chauffDTO.id}} "></a>
+                </td>
                 <td>{{chauffDTO?.permisDto?.designation}}</td>
                 <td>{{chauffDTO?.firstName}} {{chauffDTO?.lastName}}</td>
                 <td>{{chauffDTO?.addressActuel}}</td>
@@ -38,13 +42,15 @@
                 <td>{{chauffDTO?.nbreAnneeExperience}}</td>
                 <td>{{chauffDTO?.pretentionSalaire}}</td>
                 <td>{{chauffDTO?.mobilite}}</td>
-                <td>{{chauffDTO?.cvChauffeur}}</td>
+                <td>{{chauffDTO?.reference}}</td>
+
+
                 <td>
                     <div class=" container ">
-                        <button mat-raised-button class="action-button btn-primary" [routerLink]="['/backend/admin/chauffeur', chauffDTO.id]">
+                        <button mat-raised-button class="action-button btn-primary " [routerLink]="[ '/backend/admin/chauffeur', chauffDTO.id] ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteChauffeur(chauffDTO.id)">
+                        <button mat-raised-button class="action-button btn-danger " (click)="onDeleteChauffeur(chauffDTO.id) ">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

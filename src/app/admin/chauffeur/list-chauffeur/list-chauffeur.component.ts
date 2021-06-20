@@ -1,6 +1,5 @@
 import { FormBuilder } from '@angular/forms';
 import { DialogService } from './../../../services/dialog.service';
-import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateChauffeurComponent } from './../create-chauffeur/create-chauffeur.component';
@@ -23,11 +22,11 @@ export class ListChauffeurComponent implements OnInit {
   p : number=1;
   searchText;
 
-  constructor(private chauffeurService: ChauffeurService,
+  constructor(public chauffeurService: ChauffeurService,
               private dialog: MatDialog,
               private router: Router,
-              public toastr: ToastrService,
-              private dialogService: DialogService,
+        //      public toastr: ToastrService,
+     //         private dialogService: DialogService,
               private fb: FormBuilder
   ){}
 
@@ -72,16 +71,11 @@ export class ListChauffeurComponent implements OnInit {
 */
 
   onDeleteChauffeur(id: number): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.chauffeurService.deleteChauffeurDTO(id).subscribe(data => {
-          this.toastr.warning('Chauffeur supprimé avec succès!');
-  //        this.chauffeurListDTO = this.chauffeurListDTO.filter(u => u !== chauffeurDTO);
-          this.getListChauffeurDTOs();
-        });
-      }
-    },
+    this.chauffeurService.deleteChauffeurDTO(id).subscribe(data => {
+      this.getListChauffeurDTOs();
+        }
+
+    ,
     (error: HttpErrorResponse) => {
       alert(error.message);
     }

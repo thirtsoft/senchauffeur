@@ -18,13 +18,16 @@ export class CreateChauffeurComponent implements OnInit {
   formDataChauffeurDTO: ChauffeurDto = new ChauffeurDto();
   listPermisData: PermisDto[];
 
+  chauffeurPhotoFile: any = File;
+  chauffeurCvFile: any = File;
+
   data;
   paramId :any = 0;
   mySubscription: any;
 
   constructor(private chauffeurService: ChauffeurService,
               private permisService: PermisService,
-              private toastr: ToastrService,
+           //   private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -77,7 +80,7 @@ export class CreateChauffeurComponent implements OnInit {
     this.chauffeurService.addChauffeurDTO(this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
   //      this.dialogRef.close();
-        this.toastr.success("Chauffeur Ajouté avec Succès");
+    //    this.toastr.success("Chauffeur Ajouté avec Succès");
         this.router.navigate(['/backend/admin/chauffeurs']);
       },
       (error: HttpErrorResponse) => {
@@ -90,7 +93,38 @@ export class CreateChauffeurComponent implements OnInit {
     this.chauffeurService.updateChauffeurDTO(this.formDataChauffeurDTO.id, this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
   //      this.dialogRef.close();
-        this.toastr.warning("Chauffeur Update avec Succès");
+  //      this.toastr.warning("Chauffeur Update avec Succès");
+        this.router.navigate(['/backend/admin/chauffeurs']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  onSelectPhotoFile(event) {
+    const file = event.target.files[0];
+    this.chauffeurPhotoFile = file;
+  }
+
+  onSelectCvFile(event) {
+    const file = event.target.files[0];
+    this.chauffeurCvFile = file;
+  }
+
+   // Ajouter un produits avec sa photo
+  onSaveChauffeurWithFiles() {
+    let formData = new FormData();
+    formData.append('chauffeur', JSON.stringify(this.formDataChauffeurDTO));
+    console.log("Chauffeur--", this.formDataChauffeurDTO);
+
+    formData.append('photoChauffeur', this.chauffeurPhotoFile);
+    formData.append('cvChauffeur', this.chauffeurCvFile);
+    console.log("FormData--", formData);
+    this.chauffeurService.addChauffeurDTOWithFiles(formData)
+      .subscribe((response: ChauffeurDto)=> {
+        console.log('Response--', response);
+    //    this.toastr.success("Chauffeur Ajouté avec Succès");
         this.router.navigate(['/backend/admin/chauffeurs']);
       },
       (error: HttpErrorResponse) => {

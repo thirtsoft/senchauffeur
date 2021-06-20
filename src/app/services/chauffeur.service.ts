@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Chauffeur, ChauffeurDto } from './../models/chauffeur';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ChauffeurService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
   }
@@ -47,6 +47,15 @@ export class ChauffeurService {
     return this.http.post<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/create`, chauffeurDTO);
   }
 
+  public addChauffeurDTOWithFiles(formData: FormData): Observable<any> {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/createWithFiles`, formData, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
+
+  }
+
   public updateChauffeurDTO(chauffId: number, chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {
     return this.http.put<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/update/${chauffId}`, chauffeurDTO);
   }
@@ -63,6 +72,38 @@ export class ChauffeurService {
 
   public getListChauffeurDTOByKeyword(keyword: string): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByKeyword?keyword=`+keyword);
+  }
+
+  uploadPhotoChauffeurDto(filePhoto: File, idChauffeur): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('photoArticle', filePhoto);
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurPhoto/${idChauffeur}`, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+
+  }
+
+  public getPhotoChauffeur() {
+    return this.http.get(`${this.apiServerUrl}/chauffeurs/photoChauffeur`);
+  }
+
+  uploadCvChauffeurDto(fileCV: File, idChauffeur): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('cvChauffeur', fileCV);
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurCv/${idChauffeur}`, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+
+  }
+
+  public getCvChauffeur() {
+    return this.http.get(`${this.apiServerUrl}/chauffeurs/cvChauffeur`);
   }
 
 }
