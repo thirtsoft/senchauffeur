@@ -25,7 +25,7 @@ export class JobersComponent implements OnInit {
   p : number=1;
   searchText;
 
-  constructor(private chauffeurService: ChauffeurService,
+  constructor(public chauffeurService: ChauffeurService,
               private annonceService: AnnonceService,
               private router: Router,
               private fb: FormBuilder
