@@ -29,8 +29,7 @@ export class JobersComponent implements OnInit {
               private annonceService: AnnonceService,
               private router: Router,
               private fb: FormBuilder
-  ) {
-   }
+  ) {}
 
   ngOnInit(): void {
     this.getListChauffeurDTOs();
