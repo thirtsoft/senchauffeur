@@ -24,18 +24,13 @@ import { CreateJobComponent } from './job/create-job/create-job.component';
 
 
 const routes: Routes = [
-  { path: '',   redirectTo: 'home', pathMatch: 'full' }, // redirect to
+  { path: '',   redirectTo: 'home', pathMatch: 'full' },
 
   {
     path: '',
     component: HomeComponent
   },
-  /*
-  {
-    path: 'permis/:id',
-    component: HomeComponent
-  },
-  */
+
   {
     path: 'emploies',
     component: ListEmployeComponent
