@@ -1,8 +1,10 @@
-import { Ville, VilleDto } from './../models/ville';
-import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Ville, VilleDto } from './../models/ville';
+import { environment } from 'src/environments/environment.prod';
+//import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'

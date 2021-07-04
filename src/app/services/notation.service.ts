@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Notation, NotificationDto } from './../models/notation';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+/* import { environment } from 'src/environments/environment'; */
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,10 @@
-import { Permis, PermisDto } from './../models/permis';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Permis, PermisDto } from './../models/permis';
+/* import { environment } from './../../environments/environment'; */
+
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
