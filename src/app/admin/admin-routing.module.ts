@@ -1,3 +1,5 @@
+import { CreateVilleComponent } from './ville/create-ville/create-ville.component';
+import { ListVilleComponent } from './ville/list-ville/list-ville.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -76,6 +78,18 @@ const routes: Routes = [
   {
     path: 'localite/:id',
     component: CreateLocalityComponent
+  },
+  {
+    path: 'villes',
+    component: ListVilleComponent
+  },
+  {
+    path: 'ville',
+    component: CreateVilleComponent
+  },
+  {
+    path: 'ville/:id',
+    component: CreateVilleComponent
   },
   {
     path: 'notifications',

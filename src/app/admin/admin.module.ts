@@ -37,6 +37,8 @@ import { ListLocalityComponent } from './locality/list-locality/list-locality.co
 import { ListNotationComponent } from './list-notation/list-notation.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { CreateUtilisateurComponent } from './utilisateur/create-utilisateur/create-utilisateur.component';
+import { CreateVilleComponent } from './ville/create-ville/create-ville.component';
+import { ListVilleComponent } from './ville/list-ville/list-ville.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { CreateUtilisateurComponent } from './utilisateur/create-utilisateur/cre
     ListLocalityComponent,
     ListNotationComponent,
     ListUtilisateurComponent,
-    CreateUtilisateurComponent
+    CreateUtilisateurComponent,
+    CreateVilleComponent,
+    ListVilleComponent
   ],
   imports: [
     CommonModule,

@@ -22,7 +22,6 @@ export class CreatePermisComponent implements OnInit {
 
   constructor(private permisService: PermisService,
               private router: Router,
-              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
 
@@ -62,8 +61,6 @@ export class CreatePermisComponent implements OnInit {
   public onAddPermis() {
     this.permisService.addPermisDTO(this.formDataPermisDTO).subscribe(
       (response: PermisDto) => {
-  //      this.dialogRef.close();
-        this.toastr.success("Permis Ajouté avec Succès");
         this.router.navigate(['/backend/admin/permis']);
       },
       (error: HttpErrorResponse) => {
@@ -75,8 +72,6 @@ export class CreatePermisComponent implements OnInit {
   public onUpdatePermis() {
     this.permisService.updatePermisDTO(this.formDataPermisDTO.id, this.formDataPermisDTO).subscribe(
       (response: PermisDto) => {
-  //      this.dialogRef.close();
-        this.toastr.warning("Permis Update avec Succès");
         this.router.navigate(['/backend/admin/permis']);
       },
       (error: HttpErrorResponse) => {

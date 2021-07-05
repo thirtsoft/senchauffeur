@@ -21,7 +21,6 @@ export class CreateRecruteurComponent implements OnInit {
 
   constructor(private recruteurService: RecruteurService,
               private router: Router,
-              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
 
@@ -62,8 +61,6 @@ export class CreateRecruteurComponent implements OnInit {
   public onAddRecruteur() {
     this.recruteurService.addRecruteurDTO(this.formDataRecruteurDTO).subscribe(
       (response: RecruteurDto) => {
-  //      this.dialogRef.close();
-        this.toastr.success("Recruteur Ajouté avec Succès");
         this.router.navigate(['/backend/admin/recruteurs']);
       },
       (error: HttpErrorResponse) => {
@@ -76,7 +73,6 @@ export class CreateRecruteurComponent implements OnInit {
     this.recruteurService.updateRecruteurDTO(this.formDataRecruteurDTO.id, this.formDataRecruteurDTO).subscribe(
       (response: RecruteurDto) => {
   //      this.dialogRef.close();
-        this.toastr.warning("Recruteur Update avec Succès");
         this.router.navigate(['/backend/admin/recruteurs']);
       },
       (error: HttpErrorResponse) => {

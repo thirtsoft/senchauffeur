@@ -27,7 +27,7 @@ export class CreateChauffeurComponent implements OnInit {
 
   constructor(private chauffeurService: ChauffeurService,
               private permisService: PermisService,
-              private toastr: ToastrService,
+
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -79,9 +79,7 @@ export class CreateChauffeurComponent implements OnInit {
   public onAddChauffeur() {
     this.chauffeurService.addChauffeurDTO(this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
-  //      this.dialogRef.close();
-    //    this.toastr.success("Chauffeur Ajouté avec Succès");
-    this.toastr.success("Annonce Ajouté avec Succès");
+        alert('Chauffeur created');
         this.router.navigate(['/backend/admin/chauffeurs']);
       },
       (error: HttpErrorResponse) => {
@@ -93,8 +91,6 @@ export class CreateChauffeurComponent implements OnInit {
   public onUpdateChauffeur() {
     this.chauffeurService.updateChauffeurDTO(this.formDataChauffeurDTO.id, this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
-  //      this.dialogRef.close();
-  //      this.toastr.warning("Chauffeur Update avec Succès");
         this.router.navigate(['/backend/admin/chauffeurs']);
       },
       (error: HttpErrorResponse) => {
