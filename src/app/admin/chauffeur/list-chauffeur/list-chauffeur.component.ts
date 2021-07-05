@@ -71,15 +71,15 @@ export class ListChauffeurComponent implements OnInit {
 */
 
   onDeleteChauffeur(id: number): void{
-    this.chauffeurService.deleteChauffeurDTO(id).subscribe(data => {
-      this.getListChauffeurDTOs();
+    if (window.confirm('Etes-vous sure de vouloir supprimer ce Chauffeur ?')) {
+      this.chauffeurService.deleteChauffeurDTO(id).subscribe(data => {
+        this.getListChauffeurDTOs();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
         }
-
-    ,
-    (error: HttpErrorResponse) => {
-      alert(error.message);
+      );
     }
-    );
   }
 
 
