@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.chauffeur.models.Annonce;
+import com.chauffeur.models.Chauffeur;
 
 @Repository
 public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
@@ -29,5 +30,11 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	 
 	 @Query("select p from Annonce p")
 	 Page<Annonce> findAnnonce(Pageable pageable);
+	 
+	 @Query("select annonce from Annonce annonce where annonce.permis.id =:permId")
+	 Page<Annonce> findAnnonceByPermisPageables(@Param("permId") Long permisId, Pageable pageable);
+		
+		
+		
 
 }

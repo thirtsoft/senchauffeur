@@ -148,8 +148,8 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		Annonce a1 = new Annonce();Annonce a2 = new Annonce();Annonce a3 = new Annonce();
 		Annonce a4 = new Annonce();Annonce a5 = new Annonce();Annonce a6 = new Annonce();
-		Annonce a7 = new Annonce(); 
-		Annonce a8 = new Annonce();
+		Annonce a7 = new Annonce(); Annonce a8 = new Annonce(); Annonce a9 = new Annonce();
+		Annonce a10 = new Annonce(); Annonce a11 = new Annonce();
 		
 		a1.setId(1L); a1.setLieuPoste("Hann-Mariste 2, Dakar"); a1.setModeCandidature("Email");
 		a1.setSalaire("$1200 - $ 2500"); a1.setReference("Digital Marketing Executive"); a1.setStatusAnnonce(StatusAnnonce.ENCOURS);
@@ -176,34 +176,64 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		annonceRepository.save(a4); a4.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a8.setId(8L); a8.setLieuPoste("Sebikhotane, Dakar"); a8.setModeCandidature("Email");
-		a8.setSalaire("$1500 - $ 3000"); a8.setReference("Chauffeur Saisonniere"); 
+		a8.setSalaire("$1500 - $ 3000"); a8.setReference("Digital Marketing Executive"); 
 		a8.setPermis(p4); a8.setRecruteur(r2);
 		a8.setTime("Full-Time");a8.setDateCandidature(new Date());
 		a8.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a5.setId(5L); a5.setLieuPoste("Ziguinchor, Casamance"); a5.setModeCandidature("Email");
-		a5.setSalaire("$1500 - $3000"); a5.setReference("Chauffeur ONG"); 
+		a5.setSalaire("$1500 - $3000"); a5.setReference("Chauffeur Particulier"); 
 		a5.setPermis(p1); a5.setRecruteur(r2);
 		a5.setTime("Partial-Time");a5.setDateCandidature(new Date());
 		a5.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a6.setId(6L); a6.setLieuPoste("Thies, Senegal"); a6.setModeCandidature("Email");
-		a6.setSalaire("$1500 - $3000"); a6.setReference("Chauffeur camion"); 
+		a6.setSalaire("$1500 - $3000"); a6.setReference("Conducteur Poids Lours"); 
 		a6.setPermis(p3); a6.setRecruteur(r3);
 		a6.setTime("Full-Time");
 		a6.setDateCandidature(new Date());
 		a6.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a7.setId(7L); a7.setLieuPoste("DK"); a7.setModeCandidature("Email");
-		a7.setSalaire("200M"); a7.setReference("Chauffeur Taxi");
+		a7.setSalaire("200M"); a7.setReference("Conducteur Poids Legere");
 		a7.setPermis(p3); a7.setRecruteur(r3);
 		a7.setTime("Full-Time");
 		a7.setDateCandidature(new Date());
 		a7.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
+		a8.setId(8L); a8.setLieuPoste("DK"); a8.setModeCandidature("Email");
+		a8.setSalaire("800M"); a8.setReference("Digital Marketing Executive");
+		a8.setPermis(p2); a8.setRecruteur(r2);
+		a8.setTime("Partial-Time");
+		a8.setDateCandidature(new Date());
+		a8.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		
+		a9.setId(9L); a9.setLieuPoste("DK"); a9.setModeCandidature("Email");
+		a9.setSalaire("900M"); a9.setReference("Chauffeur Particulier");
+		a9.setPermis(p1); a9.setRecruteur(r1);
+		a9.setTime("Partial-Time");
+		a9.setDateCandidature(new Date());
+		a9.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		
+		a10.setId(10L); a10.setLieuPoste("DK"); a10.setModeCandidature("Email");
+		a10.setSalaire("1000M"); a7.setReference("Conducteur Poids Legere");
+		a10.setPermis(p2); a10.setRecruteur(r2);
+		a10.setTime("Full-Time");
+		a10.setDateCandidature(new Date());
+		a10.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		
+		a11.setId(11L); a11.setLieuPoste("DK"); a11.setModeCandidature("Email");
+		a11.setSalaire("1100M"); a11.setReference("Chauffeur Particulier");
+		a11.setPermis(p2); a11.setRecruteur(r2);
+		a11.setTime("Full-Time");
+		a11.setDateCandidature(new Date());
+		a11.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		
+		
 		annonceRepository.save(a4); annonceRepository.save(a5);
 		annonceRepository.save(a6);annonceRepository.save(a7);
-		annonceRepository.save(a8);
+		annonceRepository.save(a8);annonceRepository.save(a9);
+		annonceRepository.save(a10);annonceRepository.save(a11);
 		
 		
 		

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.chauffeur.dto.AnnonceDto;
+import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Annonce;
@@ -128,7 +129,7 @@ public class AnnonceServiceImpl implements AnnonceService {
 	@Override
 	public List<AnnonceDto> findListAnnonceByKeyword(String keyword) {
 		if (keyword == null) {
-            log.error("Article not found");
+            log.error("Annonce not found");
         }
         return annonceRepository.findAnnonceByKeyword(keyword).stream()
                 .map(AnnonceDto::fromEntityToDto)
@@ -151,6 +152,12 @@ public class AnnonceServiceImpl implements AnnonceService {
 	@Override
 	public BigDecimal countNumbersOfAnnonces() {
 		return annonceRepository.countNumberOfAnnonces();
+	}
+
+	@Override
+	public Page<AnnonceDto> findAnnonceByPermisByPageable(Long permisId, Pageable pageable) {
+		return annonceRepository.findAnnonceByPermisPageables(permisId, pageable)
+                .map(AnnonceDto::fromEntityToDto);
 	}
 
 	

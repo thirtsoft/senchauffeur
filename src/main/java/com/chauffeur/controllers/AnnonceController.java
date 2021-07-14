@@ -81,5 +81,11 @@ public class AnnonceController implements AnnonceApi {
 		return annonceService.countNumbersOfAnnonces();
 	}
 
+	@Override
+	public Page<AnnonceDto> getAnnonceByPermisPageables(Long permisId, int page, int size) {
+		final Pageable pageable = PageRequest.of(page, size);
+        return annonceService.findAnnonceByPermisByPageable(permisId, pageable);
+	}
+
 	
 }

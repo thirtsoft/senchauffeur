@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import com.chauffeur.dto.AnnonceDto;
+import com.chauffeur.dto.ChauffeurDto;
 
 public interface AnnonceService {
 	
@@ -27,6 +29,10 @@ public interface AnnonceService {
     BigDecimal countNumbersOfAnnonces();
 
     Page<AnnonceDto> findAnnonceByPageable(Pageable pageable);
+    
+    Page<AnnonceDto> findAnnonceByPermisByPageable(Long permisId, Pageable pageable);
+    
+  
 
     void delete(Long id);
 

@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chauffeur.dto.AnnonceDto;
+import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
 
 public interface AnnonceApi {
 	
 	@PostMapping(value = APP_ROOT + "/annonces/create", 
-			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto annonceDto);
 	
 	@PutMapping(value = APP_ROOT + "/annonces/update/{idAnnonce}", 
@@ -44,7 +46,7 @@ public interface AnnonceApi {
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByKeyword", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "keyword") String keyword);
+	List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "reference") String reference);
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnoncesByPermis/{pId}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,5 +59,12 @@ public interface AnnonceApi {
 	
 	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonces")
     public BigDecimal getNumbersOfAnnoncess();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPermisPageables", 
+	    		produces = MediaType.APPLICATION_JSON_VALUE)
+	public Page<AnnonceDto> getAnnonceByPermisPageables(
+	    		@RequestParam("id") Long permisId, 
+	    		@RequestParam(name = "page") int page,
+	    		@RequestParam(name = "size") int size);
 
 }
