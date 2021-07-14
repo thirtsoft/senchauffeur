@@ -29,9 +29,9 @@ public class ChauffeurDto {
 	
 	private String phoneChauffeur;
 	
-	private int nbreAnneeExperience;
+	private Integer nbreAnneeExperience;
 
-	private double pretentionSalaire;
+	private Double pretentionSalaire;
 	
 	private String cvChauffeur;
 	
@@ -40,6 +40,8 @@ public class ChauffeurDto {
 	private String photoChauffeur;
 	
 	private PermisDto permisDto;
+	
+	private AddresseDto addresseDto;
 	
 	public static ChauffeurDto fromEntityToDto(Chauffeur chauffeur) {
 		if (chauffeur == null) {
@@ -61,6 +63,7 @@ public class ChauffeurDto {
 				.mobilite(chauffeur.getMobilite())
 				.photoChauffeur(chauffeur.getPhotoChauffeur())
 				.permisDto(PermisDto.fromEntityToDto(chauffeur.getPermis()))
+				.addresseDto(AddresseDto.fromEntityToDto(chauffeur.getAddresse()))
 				.build();
 		
 	}
@@ -83,6 +86,7 @@ public class ChauffeurDto {
 		chauffeur.setMobilite(chauffeurDto.getMobilite());
 		chauffeur.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());
 		chauffeur.setPermis(PermisDto.fromDtoToEntity(chauffeurDto.getPermisDto()));
+		chauffeur.setAddresse(AddresseDto.fromDtoToEntity(chauffeurDto.getAddresseDto()));
 		
 		return chauffeur;
 	}

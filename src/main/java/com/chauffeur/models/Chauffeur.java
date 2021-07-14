@@ -51,10 +51,10 @@ public class Chauffeur implements Serializable {
 	private String phoneChauffeur;
 	
 	@Column(name = "experience", length = 50)
-	private int nbreAnneeExperience;
+	private Integer nbreAnneeExperience;
 	
 	@Column(name = "pretentionSalaire", length = 90)
-	private double pretentionSalaire;
+	private Double pretentionSalaire;
 	
 	@Column(name = "mobilite", length = 100)
 	private String mobilite;
@@ -69,5 +69,9 @@ public class Chauffeur implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "permId")
 	private Permis permis;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "addressId")
+	private Addresse addresse;
 
 }

@@ -35,8 +35,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ChauffeurController implements ChauffeurApi {
 	
 	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
+	
+//	private final String chauffeurPhotosDir = "src//main//resources//static//images//";
 	 
 	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
+	
+//	private final String chauffeurCvDir = "src//main//resources//static//cvs//";
 	
 	private ChauffeurService chauffeurService;
 
@@ -104,6 +108,8 @@ public class ChauffeurController implements ChauffeurApi {
 
         System.out.println("Article DTO -- " + chauffeurDto);
       
+     //   return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
+        
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
 
 	}
