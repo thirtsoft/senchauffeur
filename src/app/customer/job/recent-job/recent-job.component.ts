@@ -42,7 +42,7 @@ export class RecentJobComponent implements OnInit {
   ngOnInit(): void {
     this.getAnnonceListDTOs();
 
-    this.getAnnonceListDTOsByPermiss();
+  //  this.getAnnonceListDTOsByPermiss();
 
   }
 
