@@ -176,6 +176,23 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 		return chauffeurRepository.countNumberOfChauffeurs();
 	}
 
+	@Override
+	public Page<ChauffeurDto> findChauffeurByKeywordByPageable(String mc, Pageable pageable) {
+		if (mc == null) {
+            log.error("Chauffeur not found");
+        }
+		
+        return chauffeurRepository.findChauffeurByKeywordByPageable(mc, pageable)
+                .map(ChauffeurDto::fromEntityToDto);
+                
+	}
+
+	@Override
+	public Page<ChauffeurDto> findChauffeurByLocalityPageables(Long addId, Pageable pageable) {
+		 return chauffeurRepository.findChauffeurByLocalityPageables(addId, pageable)
+	                .map(ChauffeurDto::fromEntityToDto);
+	}
+
 	
 
 }

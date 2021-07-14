@@ -32,7 +32,7 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 	
 
     @Query("select chauff from Chauffeur chauff where chauff.disponibity like :dispo")
-    Page<Chauffeur> findChauffeurByKeywordByPageable(@Param("dispo") String mc);
+    Page<Chauffeur> findChauffeurByKeywordByPageable(@Param("dispo") String mc, Pageable pageable);
 
 
     @Query("select chauff from Chauffeur chauff where chauff.addresse.id =:add")

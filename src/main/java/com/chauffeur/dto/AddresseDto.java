@@ -1,12 +1,19 @@
 package com.chauffeur.dto;
 
+import java.util.Date;
+
+import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Addresse;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AddresseDto {
 	
 	private Long id;
@@ -29,6 +36,7 @@ public class AddresseDto {
 		}
 		
 		return AddresseDto.builder()
+				.id(addresse.getId())
 				.reference(addresse.getReference())
 				.quartier(addresse.getQuartier())
 				.rue(addresse.getRue())
@@ -44,6 +52,7 @@ public class AddresseDto {
 			return null;
 		}
 		Addresse addresse = new Addresse();
+		addresse.setId(addresseDto.getId());
 		addresse.setReference(addresseDto.getReference());
 		addresse.setQuartier(addresseDto.getQuartier());
 		addresse.setQuartier(addresseDto.getQuartier());

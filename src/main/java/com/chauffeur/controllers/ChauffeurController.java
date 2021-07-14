@@ -175,6 +175,16 @@ public class ChauffeurController implements ChauffeurApi {
 	public BigDecimal getNumbersOfChauffeurs() {
 		return chauffeurService.countNumbersOfChauffeurs();
 	}
+	@Override
+	public Page<ChauffeurDto> getChauffeurByKeywordByPageable(String mc, int page, int size) {
+		 final Pageable pageable = PageRequest.of(page, size);
+	     return chauffeurService.findChauffeurByKeywordByPageable(mc, pageable);
+	}
+	@Override
+	public Page<ChauffeurDto> getChauffeurByLocalityPageables(Long addId, int page, int size) {
+		final Pageable pageable = PageRequest.of(page, size);
+	    return chauffeurService.findChauffeurByLocalityPageables(addId, pageable);
+	}
 	
 
 }
