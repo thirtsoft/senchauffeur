@@ -64,6 +64,10 @@ export class JobersComponent implements OnInit {
     });
   }
 
+  onGetDetailChauffeur(id: number) {
+    this.router.navigate['/detail-chauffeur/'+id];
+  }
+
 
 
 }

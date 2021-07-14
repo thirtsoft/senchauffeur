@@ -53,7 +53,7 @@ const routes: Routes = [
     component: AddEmployeComponent
   },
   {
-    path: 'detail-chauffeur',
+    path: 'detail-chauffeur/:id',
     component: DetailChauffeurComponent
   },
   {
