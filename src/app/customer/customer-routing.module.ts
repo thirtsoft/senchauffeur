@@ -65,6 +65,14 @@ const routes: Routes = [
     component: JobbrowserComponent
   },
   {
+    path: 'jobPermis/:id',
+    component: JobbrowserComponent
+  },
+  {
+    path: 'searchInJob/:reference',
+    component: JobbrowserComponent
+  },
+  {
     path: 'jobs',
     component: ListJobComponent
   },

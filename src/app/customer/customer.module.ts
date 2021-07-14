@@ -46,6 +46,9 @@ import { RecentJobComponent } from './job/recent-job/recent-job.component';
 import { HomeComponent } from './home/home.component';
 import { JobersComponent } from './job/jobers/jobers.component';
 import { SearchInCandidatesComponent } from './candidate/search-in-candidates/search-in-candidates.component';
+import { ListJobParmisComponent } from './job/list-job-parmis/list-job-parmis.component';
+import { SearchJobByReferenceComponent } from './job/search-job-by-reference/search-job-by-reference.component';
+import { ListJobPermisComponent } from './job/list-job-permis/list-job-permis.component';
 
 
 
@@ -73,7 +76,10 @@ import { SearchInCandidatesComponent } from './candidate/search-in-candidates/se
     RecentJobComponent,
     HomeComponent,
     JobersComponent,
-    SearchInCandidatesComponent
+    SearchInCandidatesComponent,
+    ListJobParmisComponent,
+    SearchJobByReferenceComponent,
+    ListJobPermisComponent
   ],
   imports: [
     CommonModule,
