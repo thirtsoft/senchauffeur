@@ -74,6 +74,28 @@ export class ChauffeurService {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByKeyword?keyword=`+keyword);
   }
 
+  public getListChauffeurDTOByDisponibility(disponility: string): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByDisponibilite?disponible=`+disponility);
+  }
+
+  public getListChauffeurDTOByKeywordPageable(mc: string, page: number, size: number): Observable<ChauffeurDto[]> {
+    const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByDisponibityByPageables?id="+mc+"&page="+page+"&size="+size);
+    console.log("Search Url---", searchUrl);
+    return this.http.get<ChauffeurDto[]>(searchUrl);
+  }
+
+  public getListChauffeurDTOByPermisPageable(permisId: number, page: number, size: number): Observable<ChauffeurDto[]> {
+    const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByPermisPageables?id="+permisId+"&page="+page+"&size="+size);
+    console.log("Search Url---", searchUrl);
+    return this.http.get<ChauffeurDto[]>(searchUrl);
+  }
+
+  public getListChauffeurDTOByLocalityPageable(locId: number, page: number, size: number): Observable<ChauffeurDto[]> {
+    const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByLocalityPageables?id="+locId+"&page="+page+"&size="+size);
+    console.log("Search Url---", searchUrl);
+    return this.http.get<ChauffeurDto[]>(searchUrl);
+  }
+
   public getListChauffeurDTOByPermis(pId: number): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeursByPermis/${pId}`);
   }

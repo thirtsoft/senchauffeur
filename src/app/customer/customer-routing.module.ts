@@ -81,6 +81,15 @@ const routes: Routes = [
     component: CandidatebrowerComponent
   },
   {
+    path: 'locality/:id',
+    component: CandidatebrowerComponent
+  },
+  {
+    path: 'searchInCandidates/:disponibility',
+    component: CandidatebrowerComponent
+  },
+
+  {
     path: 'job-detail/:reference',
     component: JobDetailComponent
   },

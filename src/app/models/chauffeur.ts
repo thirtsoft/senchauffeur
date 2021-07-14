@@ -30,6 +30,7 @@ export class ChauffeurDto {
   phoneChauffeur: string;
   nbreAnneeExperience: number;
   pretentionSalaire: number;
+  disponibity: string;
   mobilite: string;
 	cvChauffeur: string;
   photoChauffeur: string;

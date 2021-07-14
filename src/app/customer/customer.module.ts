@@ -39,11 +39,14 @@ import { SearchChauffeurComponent } from './candidate/search-chauffeur/search-ch
 import { JobbrowserComponent } from './job/jobbrowser/jobbrowser.component';
 import { JobDetailComponent } from './job/job-detail/job-detail.component';
 import { CandidatebrowerComponent } from './candidate/candidatebrower/candidatebrower.component';
+import { ListLocalityComponent } from './candidate/list-locality/list-locality.component';
 import { CreateJobComponent } from './job/create-job/create-job.component';
 import { ListJobComponent } from './job/list-job/list-job.component';
 import { RecentJobComponent } from './job/recent-job/recent-job.component';
 import { HomeComponent } from './home/home.component';
 import { JobersComponent } from './job/jobers/jobers.component';
+import { SearchInCandidatesComponent } from './candidate/search-in-candidates/search-in-candidates.component';
+
 
 
 
@@ -58,6 +61,7 @@ import { JobersComponent } from './job/jobers/jobers.component';
     JobbrowserComponent,
     JobDetailComponent,
     CandidatebrowerComponent,
+    ListLocalityComponent,
     AideComponent,
     PageNotFoundComponent,
     AboutUsComponent,
@@ -68,7 +72,8 @@ import { JobersComponent } from './job/jobers/jobers.component';
     ListJobComponent,
     RecentJobComponent,
     HomeComponent,
-    JobersComponent
+    JobersComponent,
+    SearchInCandidatesComponent
   ],
   imports: [
     CommonModule,
