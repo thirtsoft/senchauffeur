@@ -58,6 +58,9 @@ public class Chauffeur implements Serializable {
 	
 	@Column(name = "mobilite", length = 100)
 	private String mobilite;
+	
+	@Column(name = "disponibility", length = 20)
+	private String disponibity;
 
 	@Column(name = "cvChauffeur", length = 30)
 	private String cvChauffeur;

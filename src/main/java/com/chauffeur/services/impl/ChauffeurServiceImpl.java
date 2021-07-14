@@ -70,6 +70,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeurDtoResult.setPretentionSalaire(chauffeurDto.getPretentionSalaire());
         chauffeurDtoResult.setCvChauffeur(chauffeurDto.getCvChauffeur());
         chauffeurDtoResult.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
+        chauffeurDtoResult.setDisponibity(chauffeurDto.getDisponibity());
         chauffeurDtoResult.setMobilite(chauffeurDto.getMobilite());
         chauffeurDtoResult.setPermisDto(chauffeurDto.getPermisDto());
         chauffeurDtoResult.setAddresseDto(chauffeurDto.getAddresseDto());
