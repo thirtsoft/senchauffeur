@@ -33,6 +33,8 @@ public interface ChauffeurService {
     
     List<ChauffeurDto> findListChauffeurByKeyword(String keyword);
     
+    List<ChauffeurDto> findChauffeurByDisponibility(String disponility);
+    
     BigDecimal countNumbersOfChauffeurs();
 
     Page<ChauffeurDto> findChauffeurByPageable(Pageable pageable);
@@ -41,8 +43,9 @@ public interface ChauffeurService {
 
 
     Page<ChauffeurDto> findChauffeurByLocalityPageables(Long addId, Pageable pageable);
+    
+    Page<ChauffeurDto> findChauffeurByPermisPageables(@Param("permId") Long permisId, Pageable pageable);
 	
-
     void delete(Long id);
 
 

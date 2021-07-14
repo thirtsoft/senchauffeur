@@ -185,6 +185,15 @@ public class ChauffeurController implements ChauffeurApi {
 		final Pageable pageable = PageRequest.of(page, size);
 	    return chauffeurService.findChauffeurByLocalityPageables(addId, pageable);
 	}
+	@Override
+	public List<ChauffeurDto> getListChauffeurByDisponibility(String disponibility) {
+		return chauffeurService.findChauffeurByDisponibility("%" + disponibility + "%");
+	}
+	@Override
+	public Page<ChauffeurDto> getChauffeurByPermisPageables(Long permisId, int page, int size) {
+		final Pageable pageable = PageRequest.of(page, size);
+	    return chauffeurService.findChauffeurByPermisPageables(permisId, pageable);
+	}
 	
 
 }

@@ -193,6 +193,19 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 	                .map(ChauffeurDto::fromEntityToDto);
 	}
 
+	@Override
+	public List<ChauffeurDto> findChauffeurByDisponibility(String disponility) {
+		return chauffeurRepository.findChauffeurByDisponibility('%'+disponility+'%').stream()
+				.map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public Page<ChauffeurDto> findChauffeurByPermisPageables(Long permisId, Pageable pageable) {
+		return chauffeurRepository.findChauffeurByPermisPageables(permisId, pageable)
+                .map(ChauffeurDto::fromEntityToDto);
+	}
+
 	
 
 }

@@ -56,6 +56,11 @@ public interface ChauffeurApi {
     @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByKeyword", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<ChauffeurDto> getListChauffeurByKeyword(@RequestParam(name = "keyword") String keyword);
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByDisponibilite", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	List<ChauffeurDto> getListChauffeurByDisponibility(@RequestParam(name = "disponible") String disponibility);
+	 
 	 
 	@GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByPageables", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
@@ -93,6 +98,14 @@ public interface ChauffeurApi {
     public Page<ChauffeurDto> getChauffeurByLocalityPageables(@RequestParam("id") Long addId, 
     														 @RequestParam(name = "page") int page,
     														 @RequestParam(name = "size") int size);
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByPermisPageables", 
+    		produces = MediaType.APPLICATION_JSON_VALUE)
+    public Page<ChauffeurDto> getChauffeurByPermisPageables(
+    		@RequestParam("id") Long permisId, 
+    		@RequestParam(name = "page") int page,
+    		@RequestParam(name = "size") int size);
+
 
 
 }

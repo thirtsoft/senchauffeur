@@ -27,6 +27,9 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 	@Query("select art from Chauffeur art where art.reference like :x")
 	List<Chauffeur> findChauffeurByKeyword(@Param("x") String mc);
 	
+	@Query("select chauff from Chauffeur chauff where chauff.disponibity like :z")
+	List<Chauffeur> findChauffeurByDisponibility(@Param("z") String disponility);
+	
 	@Query("select p from Chauffeur p")
 	Page<Chauffeur> findAllChauffeurByPageable(Pageable pageable);
 	
@@ -37,6 +40,10 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 
     @Query("select chauff from Chauffeur chauff where chauff.addresse.id =:add")
     Page<Chauffeur> findChauffeurByLocalityPageables(@Param("add") Long addId, Pageable pageable);
+    
+    @Query("select chauff from Chauffeur chauff where chauff.permis.id =:permId")
+    Page<Chauffeur> findChauffeurByPermisPageables(@Param("permId") Long permisId, Pageable pageable);
+	
 	
 
 }
