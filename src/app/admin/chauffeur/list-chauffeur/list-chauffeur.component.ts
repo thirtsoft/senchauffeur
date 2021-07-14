@@ -49,6 +49,8 @@ export class ListChauffeurComponent implements OnInit {
   onAddChauffeur() {
     this.router.navigate(['/backend/admin/chauffeur']);
   }
+
+  addEditCvChauffeur(i) {}
 /*
   onAddChauffeur() {
     this.openNoteDialog(null);

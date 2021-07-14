@@ -28,12 +28,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let chauffDTO of chauffeurListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+            <tr *ngFor="let chauffDTO of chauffeurListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p};let i=index; ">
                 <!-- <td>{{chauffDTO?.photoChauffeur}}</td> -->
                 <td><img height="90" width="90" class="img-circle" src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chauffDTO.id}}"></td>
 
-                <td>
-                    <a href="{{this.chauffeurService.apiServerUrl+ '/chauffeurs/cvChauffeur/'+chauffDTO.id}} "></a>
+                <td>{{chauffDTO?.cvChauffeur}} &nbsp;
+                    <a (click)="addEditCvChauffeur(i)" style="cursor:pointer; align-items: flex-end;">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>&nbsp;&nbsp;
+                    <a href="http://localhost:8081/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffDTO.cvChauffeur}}" class="cv">&nbsp;&nbsp;
+                    <i class="fa fa-download" style="cursor:pointer; align-items: flex-end;"></i>&nbsp;&nbsp;
+                  </a>
+
+                    <!-- <a href="{{this.chauffeurService.apiServerUrl+'/chauffeurs/downloadContratFile/'+chauffDTO.id}} "></a> -->
                 </td>
                 <td>{{chauffDTO?.permisDto?.designation}}</td>
                 <td>{{chauffDTO?.firstName}} {{chauffDTO?.lastName}}</td>
