@@ -23,7 +23,7 @@ public class NotificationDto {
 
     private ChauffeurDto chauffeurDto;
 
-    private UtilisateurDto utilisateurDto;
+ //   private UtilisateurDto utilisateurDto;
 	
 	
 	public static NotificationDto fromEntityToDto(Notification notification) {
@@ -37,7 +37,7 @@ public class NotificationDto {
 				.nbreEtoile(notification.getNbreEtoile())
 				.observation(notification.getObservation())
 				.chauffeurDto(ChauffeurDto.fromEntityToDto(notification.getChauffeur()))
-				.utilisateurDto(UtilisateurDto.fromEntityToDto(notification.getUtilisateur()))
+	//			.utilisateurDto(UtilisateurDto.fromEntityToDto(notification.getUtilisateur()))
 				.build();
 		
 	}
@@ -51,7 +51,7 @@ public class NotificationDto {
 		notification.setNbreEtoile(notificationDto.getNbreEtoile());
 		notification.setObservation(notificationDto.getObservation());
 		notification.setChauffeur(ChauffeurDto.fromDtoToEntity(notificationDto.getChauffeurDto()));
-		notification.setUtilisateur(UtilisateurDto.fromDtoToEntity(notificationDto.getUtilisateurDto()));
+	//	notification.setUtilisateur(UtilisateurDto.fromDtoToEntity(notificationDto.getUtilisateurDto()));
 		
 		return notification;
 	}

@@ -149,7 +149,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		Annonce a1 = new Annonce();Annonce a2 = new Annonce();Annonce a3 = new Annonce();
 		Annonce a4 = new Annonce();Annonce a5 = new Annonce();Annonce a6 = new Annonce();
 		Annonce a7 = new Annonce(); Annonce a8 = new Annonce(); Annonce a9 = new Annonce();
-		Annonce a10 = new Annonce(); Annonce a11 = new Annonce();
+		Annonce a10 = new Annonce();  Annonce a11 = new Annonce(); Annonce a12 = new Annonce();
 		
 		a1.setId(1L); a1.setLieuPoste("Hann-Mariste 2, Dakar"); a1.setModeCandidature("Email");
 		a1.setSalaire("$1200 - $ 2500"); a1.setReference("Digital Marketing Executive"); a1.setStatusAnnonce(StatusAnnonce.ENCOURS);
@@ -229,11 +229,19 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a11.setDateCandidature(new Date());
 		a11.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
+		a12.setId(11L); a12.setLieuPoste("DK"); a12.setModeCandidature("Email");
+		a12.setSalaire("1200M"); a12.setReference("Chauffeur Camion");
+		a12.setPermis(p2); a12.setRecruteur(r2);
+		a12.setTime("Full-Time");
+		a12.setDateCandidature(new Date());
+		a12.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		
 		
 		annonceRepository.save(a4); annonceRepository.save(a5);
 		annonceRepository.save(a6);annonceRepository.save(a7);
 		annonceRepository.save(a8);annonceRepository.save(a9);
 		annonceRepository.save(a10);annonceRepository.save(a11);
+		annonceRepository.save(a12);
 		
 		
 		

@@ -48,7 +48,7 @@ public class NotificationRepositoryTest {
     	Notification notificationDto = new Notification();
     	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-    	notificationDto.setUtilisateur(utilisateur);
+    //	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	Notification notificationDtoResult = notificationRepository.save(notificationDto);
     	
@@ -69,7 +69,7 @@ public class NotificationRepositoryTest {
     	Notification notificationDto = new Notification();
     	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-    	notificationDto.setUtilisateur(utilisateur);
+//    	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	notificationRepository.save(notificationDto);
     
@@ -94,7 +94,7 @@ public class NotificationRepositoryTest {
     	Notification notificationDto = new Notification();
     	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-    	notificationDto.setUtilisateur(utilisateur);
+  //  	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	Notification notificationDtoResult = notificationRepository.save(notificationDto);
     
@@ -116,7 +116,7 @@ public class NotificationRepositoryTest {
     	Notification notificationDto = new Notification();
     	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-    	notificationDto.setUtilisateur(utilisateur);
+  //  	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	notificationRepository.save(notificationDto);
     
@@ -144,7 +144,7 @@ public class NotificationRepositoryTest {
     	Notification notificationDto = new Notification();
     	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-    	notificationDto.setUtilisateur(utilisateur);
+ //   	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	Notification notificationDtoResult = notificationRepository.save(notificationDto);
     

@@ -47,6 +47,10 @@ public class NotificationController implements NotificationApi {
 		notificationService.delete(id);
 		
 	}
+	@Override
+	public ResponseEntity<NotificationDto> saveNoteToChauffeur(Long id, NotificationDto notificationDto) {
+		return ResponseEntity.ok(notificationService.saveNoteToChauffeur(id, notificationDto));
+	}
 	
 
 }

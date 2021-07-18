@@ -39,7 +39,7 @@ public class NotificationServiceTest {
         NotificationDto notationDto = NotificationDto.builder()
                 .id(1L)
                 .reference("Libelle")
-                .utilisateurDto(utilisateurDto)
+      //          .utilisateurDto(utilisateurDto)
                 .chauffeurDto(chauffeurDto)
                 .build();
               
@@ -65,7 +65,7 @@ public class NotificationServiceTest {
         notationDto.setReference("AAA");
         notationDto.setNbreEtoile("AAA");
         notationDto.setChauffeurDto(chauffeurDto);
-        notationDto.setUtilisateurDto(utilisateurDto);
+ //       notationDto.setUtilisateurDto(utilisateurDto);
               
         Notification chauffeur = NotificationDto.fromDtoToEntity(notationDto);
         when(scategoryRepository.findAll()).thenReturn(singletonList(chauffeur));
@@ -87,7 +87,7 @@ public class NotificationServiceTest {
         notationDto.setReference("AAA");
         notationDto.setNbreEtoile("AAA");
         notationDto.setChauffeurDto(chauffeurDto);
-        notationDto.setUtilisateurDto(utilisateurDto);
+ //       notationDto.setUtilisateurDto(utilisateurDto);
                
         Optional<Notification> scategorie = Optional.ofNullable(NotificationDto.fromDtoToEntity(notationDto));
         when(scategoryRepository.findById(scategorie.get().getId())).thenReturn(scategorie);

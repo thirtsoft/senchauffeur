@@ -9,10 +9,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.dto.NotificationDto;
 import com.chauffeur.exceptions.ResourceNotFoundException;
+import com.chauffeur.models.Chauffeur;
 import com.chauffeur.models.Notification;
+import com.chauffeur.repository.ChauffeurRepository;
 import com.chauffeur.repository.NotificationRepository;
+import com.chauffeur.services.ChauffeurService;
 import com.chauffeur.services.NotificationService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +26,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NotificationServiceImpl implements NotificationService {
 	
-	@Autowired
+//	@Autowired
     private final NotificationRepository notificationRepository;
+	
+	
+    private final ChauffeurService chauffeurService;
+    
+    private final ChauffeurRepository chauffeurRepository;
 
-    public NotificationServiceImpl(NotificationRepository notificationRepository) {
+    @Autowired
+    public NotificationServiceImpl(NotificationRepository notificationRepository,
+    							   ChauffeurService chauffeurService,
+    							   ChauffeurRepository chauffeurRepository) {
         this.notificationRepository = notificationRepository;
+        this.chauffeurService = chauffeurService;
+        this.chauffeurRepository = chauffeurRepository;
     }
 
     @Override
@@ -56,7 +70,7 @@ public class NotificationServiceImpl implements NotificationService {
         notificationDtoResult.setNbreEtoile(notificationDto.getNbreEtoile());
         notificationDtoResult.setObservation(notificationDto.getObservation());
         notificationDtoResult.setChauffeurDto(notificationDto.getChauffeurDto());
-        notificationDtoResult.setUtilisateurDto(notificationDto.getUtilisateurDto());
+   //     notificationDtoResult.setUtilisateurDto(notificationDto.getUtilisateurDto());
        
         return NotificationDto.fromEntityToDto(
         		notificationRepository.save(
@@ -97,6 +111,22 @@ public class NotificationServiceImpl implements NotificationService {
         notificationRepository.deleteById(id);
 
     }
+
+    @Transactional
+	@Override
+	public NotificationDto saveNoteToChauffeur(Long idChauff, NotificationDto notificationDto) {
+        Optional<Chauffeur> chauffInfo = chauffeurRepository.findById(idChauff);
+		ChauffeurDto chauffeurDto = ChauffeurDto.fromEntityToDto(chauffInfo.get());
+		
+		notificationDto.setChauffeurDto(chauffeurDto);
+		
+		 return NotificationDto.fromEntityToDto(
+	        		notificationRepository.save(
+	        				NotificationDto.fromDtoToEntity(notificationDto)
+	                )
+	        );
+		
+	}
 
 	
 }
