@@ -28,7 +28,7 @@
                         </div> -->
                         <ul class="post-job-bx">
                             <li *ngFor="let chauffDTO of chauffeurListDTO; let i=index;">
-                                <a href="#">
+                                <a [routerLink]="['/detail-chauffeur', chauffDTO.id]">
                                     <div class="d-flex m-b30">
                                         <div class="job-post-company">
                                             <!--  <span><img src="assets/customer/images/testimonials/pic1.jpg"/></span> -->

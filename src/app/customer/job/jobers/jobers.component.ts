@@ -1,3 +1,4 @@
+import { DashboardService } from './../../../services/dashboard.service';
 import { AnnonceService } from './../../../services/annonce.service';
 import { Component, OnInit } from '@angular/core';
 import { ChauffeurDto } from './../../../models/chauffeur';
@@ -26,7 +27,7 @@ export class JobersComponent implements OnInit {
   searchText;
 
   constructor(public chauffeurService: ChauffeurService,
-              private annonceService: AnnonceService,
+              private dashboardService: DashboardService,
               private router: Router,
               private fb: FormBuilder
   ) {
@@ -53,13 +54,13 @@ export class JobersComponent implements OnInit {
   }
 
   getNumberOfChauffeurs(): void {
-    this.chauffeurService.countNumberOfChauffeurs().subscribe(data => {
+    this.dashboardService.countNumberOfChauffeurs().subscribe(data => {
       this.numberOfChauffeur = data;
     });
   }
 
   getNumberOfAnnonces(): void {
-    this.annonceService.countNumberOfAnnonces().subscribe(data => {
+    this.dashboardService.countNumberOfAnnonces().subscribe(data => {
       this.numberOfAnnonce = data;
     });
   }
