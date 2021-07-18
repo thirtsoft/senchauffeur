@@ -1,5 +1,6 @@
 package com.chauffeur.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.chauffeur.dto.RecruteurDto;
@@ -15,5 +16,7 @@ public interface RecruteurService {
     List<RecruteurDto> findAll();
 
     void delete(Long id);
+    
+    BigDecimal countNumbersOfRecruteurs();
 
 }

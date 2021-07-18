@@ -1,5 +1,6 @@
 package com.chauffeur.controllers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,10 @@ public class RecruteurController implements RecruteurApi {
 	public void delete(Long id) {
 		recruteurService.delete(id);
 		
+	}
+	@Override
+	public BigDecimal getNumbersOfRecruteurs() {
+		return recruteurService.countNumbersOfRecruteurs();
 	}
 	
 

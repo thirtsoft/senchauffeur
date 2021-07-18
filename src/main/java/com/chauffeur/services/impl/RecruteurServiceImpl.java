@@ -1,5 +1,6 @@
 package com.chauffeur.services.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,9 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RecruteurServiceImpl implements RecruteurService {
 	
-	@Autowired
     private final RecruteurRepository recruteurRepository;
 
+    @Autowired
     public RecruteurServiceImpl(RecruteurRepository recruteurRepository) {
         this.recruteurRepository = recruteurRepository;
     }
@@ -101,6 +102,11 @@ public class RecruteurServiceImpl implements RecruteurService {
         				RecruteurDto.fromDtoToEntity(recruteurDtoResult)
                 )
         );
+	}
+
+	@Override
+	public BigDecimal countNumbersOfRecruteurs() {
+		return recruteurRepository.countNumberOfRecruteurs();
 	}
 
 }

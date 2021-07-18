@@ -1,5 +1,6 @@
 package com.chauffeur.controllers.api;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.MediaType;
@@ -32,5 +33,8 @@ public interface RecruteurApi {
 
 	@DeleteMapping(value = APP_ROOT + "/recruteurs/delete/{idRecruteur}")
 	void delete(@PathVariable("idRecruteur") Long id);
+	
+	@GetMapping(value = APP_ROOT + "/recruteurs/NumbersOfRecruteurs")
+	public BigDecimal getNumbersOfRecruteurs();
 
 }
