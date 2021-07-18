@@ -39,6 +39,8 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
 import { CreateUtilisateurComponent } from './utilisateur/create-utilisateur/create-utilisateur.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
+import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
+import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeu
     ListUtilisateurComponent,
     CreateUtilisateurComponent,
     DashboardComponent,
-    ViewChauffeurComponent
+    ViewChauffeurComponent,
+    CreateTarifComponent,
+    ListTarifComponent
   ],
   imports: [
     CommonModule,

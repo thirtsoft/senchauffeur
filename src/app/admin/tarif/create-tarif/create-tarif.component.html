@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Nouveau Tarif</h1>
+            <form #addTarifForm="ngForm" name="form">
+
+                <div class="form-group">
+                    <label>Reference</label>
+                    <input type="text" class="form-control" [(ngModel)]="tarifDTO.reference" name="reference" id="reference" #reference="ngModel" required />
+                    <span class="text-danger" *ngIf="
+                              (reference.touched || addTarifForm.submitted) &&
+                              reference.errors?.required
+                    ">
+                      reference est obligatoire
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Montant</label>
+                    <input type="number" class="form-control" [(ngModel)]="tarifDTO.montantTarif" name="montantTarif" id="montantTarif" #montantTarif="ngModel" required />
+                    <span class="text-danger" *ngIf="
+                              (montantTarif.touched || addTarifForm.submitted) &&
+                              montantTarif.errors?.required
+                    ">
+                      montantTarif est obligatoire
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Annonce</label>
+                    <div class="form-group">
+                        <select name="annonceDto" [(ngModel)]="tarifDTO.annonceDto" class="form-control">
+                            <option *ngFor="let annonceDTO of listAnnonceData"
+                              [ngValue]="annonceDTO.id == tarifDTO.annonceDto?.id ? tarifDTO.annonceDto : annonceDTO">{{annonceDTO.reference}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Description </label>
+                            <textarea [(ngModel)]="tarifDTO.description" name="description" id="description" #description="ngModel" class="form-control" cols="30" rows="10"></textarea>
+                            <span class="text-danger" *ngIf="
+                                (description.touched || addTarifForm.submitted) &&
+                                description.errors?.required
+                              ">
+                              description est obligatoire
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onAddTarif()">
+                  <i class="fa fa-database"></i> Submit</button>&nbsp;
+                    <button *ngIf="paramId" class="btn btn-warning" (click)="onUpdateTarif()">
+                  <i class="fa fa-database"></i>Update</button>
+                    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,3 +1,5 @@
+import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
+import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
@@ -80,6 +82,18 @@ const routes: Routes = [
   {
     path: 'annonce/:id',
     component: CreateAnnonceComponent
+  },
+  {
+    path: 'tarifs',
+    component: ListTarifComponent
+  },
+  {
+    path: 'tarif',
+    component: CreateTarifComponent
+  },
+  {
+    path: 'tarif/:id',
+    component: CreateTarifComponent
   },
   {
     path: 'localites',
