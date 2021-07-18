@@ -1,47 +1,51 @@
-<h3><i class="fa fa-angle-right"></i> List of Permis</h3>
-<div>
-
+<div class="container-fluid">
     <div class="row">
-        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> List of Permis</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;">Add Permis</button>
+                        <button class="btn-meeting" type="submit" (click)="onAddPermis()" style="margin-left: 5%; width: 30%;">Add Permis</button>
 
-    </div>
-
-    <table class="table table-striped">
-
-        <thead class="thead-inverse">
-            <tr>
-                <th>ID</th>
-                <th>type Permis</th>
-                <th>Designation</th>
-                <th>Validite</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let permisDTO of permisListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{permisDTO?.id}}</td>
-                <td>{{permisDTO?.typePermis}}</td>
-                <td>{{permisDTO?.designation}}</td>
-                <td>{{permisDTO?.validite}}</td>
-
-                <td>
-                    <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" [routerLink]="['/backend/admin/permis', permisDTO.id]">
-                          <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeletePermis(permisDTO.id)">
-                          <mat-icon>delete_outline</mat-icon>
-                        </button>
                     </div>
-                </td>
 
-            </tr>
-        </tbody>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>type Permis</th>
+                                <th>Designation</th>
+                                <th>Validite</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let permisDTO of permisListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                                <td>{{permisDTO?.id}}</td>
+                                <td>{{permisDTO?.typePermis}}</td>
+                                <td>{{permisDTO?.designation}}</td>
+                                <td>{{permisDTO?.validite}}</td>
 
-    </table>
-    <div class="pagination ">
-        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/backend/admin/permis', permisDTO.id]">
+                                      <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
+                                    <button class="btn btn-danger btn-sm" (click)="onDeletePermis(permisDTO.id)">
+                                            <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 </div>

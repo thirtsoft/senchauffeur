@@ -12,7 +12,7 @@ export class Notation {
 
 }
 
-export class NotificationDto {
+export class NotationDto {
   id: number;
   reference: string;
   nbreEtoile: string;

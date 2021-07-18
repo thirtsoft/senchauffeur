@@ -1,47 +1,55 @@
-<h3><i class="fa fa-angle-right"></i> List of Notations</h3>
-<div>
-
+<div class="container-fluid">
     <div class="row">
-        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-
-    </div>
-
-    <table class="table table-striped">
-        <thead class="thead-inverse">
-            <tr>
-                <th>ID</th>
-                <th>Reference</th>
-                <th>Nombre Etoile</th>
-                <th>Observation</th>
-                <th>Chauffeur</th>
-                <th>Utilisateur</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let noteDTO of notationListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{noteDTO?.id}}</td>
-                <td>{{noteDTO?.reference}}</td>
-                <td>{{noteDTO?.nbreEtoile}}</td>
-                <td>{{noteDTO?.observation}}</td>
-                <td>{{noteDTO?.chauffeurDto?.firstName}} {{noteDTO?.chauffeurDto?.lastName}}</td>
-                <td>{{noteDTO?.utilisateurDto?.name}}</td>
-                <td>
-                    <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditNotation(noteDTO) ">
-                          <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteNotation(noteDTO)">
-                          <mat-icon>delete_outline</mat-icon>
-                        </button>
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> List of Notations</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
                     </div>
-                </td>
 
-            </tr>
-        </tbody>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Reference</th>
+                                <th>Nombre Etoile</th>
+                                <th>Observation</th>
+                                <th>Chauffeur</th>
+                                <th>Utilisateur</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let noteDTO of notationListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                                <td>{{noteDTO?.id}}</td>
+                                <td>{{noteDTO?.reference}}</td>
+                                <td>{{noteDTO?.nbreEtoile}}</td>
+                                <td>{{noteDTO?.observation}}</td>
+                                <td>{{noteDTO?.chauffeurDto?.firstName}} {{noteDTO?.chauffeurDto?.lastName}}</td>
+                                <td>{{noteDTO?.utilisateurDto?.name}}</td>
 
-    </table>
-    <div class="pagination ">
-        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/backend/admin/notation', noteDTO.id]">
+                                  <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
+                                    <button class="btn btn-success btn-sm" [routerLink]="['/backend/admin/viewchauffeur', noteDTO.id]">
+                                          <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
+
+                                    <button class="btn btn-danger btn-sm" (click)="onDeleteNotation(noteDTO.id)">
+                                            <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 </div>

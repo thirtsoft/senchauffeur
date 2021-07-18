@@ -29,7 +29,7 @@ export class CreateAnnonceComponent implements OnInit {
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
               private recruteurService: RecruteurService,
-              private toastr: ToastrService,
+//              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -94,8 +94,6 @@ export class CreateAnnonceComponent implements OnInit {
   public onAddAnnonce() {
     this.annonceService.addAnnonceDTO(this.annonceDTO).subscribe(
       (response: AnnonceDto) => {
-    //    this.dialogRef.close();
-        this.toastr.success("Annonce Ajouté avec Succès");
         this.router.navigate(['/backend/admin/annonces']);
       },
       (error: HttpErrorResponse) => {
@@ -107,8 +105,6 @@ export class CreateAnnonceComponent implements OnInit {
   public onUpdateAnnonce() {
     this.annonceService.updateAnnonceDTO(this.annonceDTO.id, this.annonceDTO).subscribe(
       (response: AnnonceDto) => {
-  //      this.dialogRef.close();
-        this.toastr.warning("Annonce Update avec Succès");
         this.router.navigate(['/backend/admin/annonces']);
       },
       (error: HttpErrorResponse) => {

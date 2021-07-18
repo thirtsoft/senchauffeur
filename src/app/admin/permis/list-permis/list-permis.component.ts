@@ -26,8 +26,8 @@ export class ListPermisComponent implements OnInit {
   constructor(private permisService: PermisService,
               private dialog: MatDialog,
               private router: Router,
-              public toastr: ToastrService,
-              private dialogService: DialogService,
+   //           public toastr: ToastrService,
+   //           private dialogService: DialogService,
               private fb: FormBuilder
   ){}
 
@@ -51,6 +51,18 @@ export class ListPermisComponent implements OnInit {
   onAddPermis() {
     this.router.navigate(['/backend/admin/permis']);
   }
+
+  onDeletePermis(id: number): void{
+    this.permisService.deletePermisDTO(id).subscribe(data => {
+      this.getListPermisDTOs();
+        }
+    ,
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
+  }
+
 /*
 
   onAddPermis() {
@@ -73,13 +85,12 @@ export class ListPermisComponent implements OnInit {
   }
 */
 
-  onDeletePermis(id: number): void{
+ /*  onDeletePermis(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
         this.permisService.deletePermisDTO(id).subscribe(data => {
           this.toastr.warning('Permis supprimé avec succès!');
-    //      this.permisListDTO = this.permisListDTO.filter(u => u !== permis);
           this.getListPermisDTOs();
         });
       }
@@ -88,6 +99,6 @@ export class ListPermisComponent implements OnInit {
       alert(error.message);
     }
     );
-  }
+  } */
 
 }

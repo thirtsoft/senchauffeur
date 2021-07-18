@@ -1,3 +1,5 @@
+import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -18,6 +20,16 @@ import { ListChauffeurComponent } from './chauffeur/list-chauffeur/list-chauffeu
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashborad',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'dashborad',
+    component: DashboardComponent
+  },
+  {
     path: 'chauffeurs',
     component: ListChauffeurComponent
   },
@@ -30,7 +42,11 @@ const routes: Routes = [
     component: CreateChauffeurComponent
   },
   {
-    path: 'permis',
+    path: 'viewchauffeur/:id',
+    component: ViewChauffeurComponent
+  },
+  {
+    path: 'listPermis',
     component: ListPermisComponent
   },
   {

@@ -80,11 +80,70 @@
                             <a href="#" class="site-button">Apply This Job</a>
                         </div>
                     </div>
+
                 </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="page-content bg-white">
+                            <div class="content-block">
+                                <form #addNotationForm="ngForm" name="form">
+                                    <div class="form-group">
+                                        <label>Chauffeur</label>
+                                        <input name="id" [value]="this.chauffeurDTO.id" class="form-control" readonly>
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Reference</label>
+                                        <input type="text " class="form-control" [(ngModel)]="addEditNotationDTO.reference" name="reference " id="reference " #reference="ngModel" required>
+                                        <span class="text-danger " *ngIf=" (reference.touched || addNotationForm.submitted) && reference.errors?.required ">
+                                        Reference Obligatoire
+                                    </span>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Nbre Etoile</label>
+                                        <input type="text " class="form-control " [(ngModel)]="addEditNotationDTO.nbreEtoile " name="nbreEtoile " id="nbreEtoile " #nbreEtoile="ngModel" required />
+                                        <span class="text-danger " *ngIf=" (nbreEtoile.touched || addNotationForm.submitted) && nbreEtoile.errors?.required ">
+                                       nbre etoile est obligatoire
+                                    </span>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label>Observation</label>
+                                        <textarea class="form-control " rows="10 " [(ngModel)]="addEditNotationDTO.observation " name="observation " id="observation " #observation="ngModel"></textarea>
+                                        <!--  <input type="text " class="form-control " [(ngModel)]="addEditNotationDTO.observation " name="observation " id="observation " #observation="ngModel " required /> -->
+                                        <span class="text-danger " *ngIf=" (observation.touched || addNotationForm.submitted) && observation.errors?.required ">
+                                      observation est obligatoire
+                                    </span>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <button type="submit " class="btn btn-success " (click)="onAddNotation() ">
+                                                    <i class="fa fa-database "></i> Submit
+                                                  </button>&nbsp;
+                                        <!--   <button *ngIf="paramId " class="btn btn-warning " (click)="onUpdateNotation() ">
+                                                    <i class="fa fa-database "></i>Update</button> -->
+                                        <button type="button " class="btn btn-danger ml-1 ">
+                                                    <i class="fa fa-close "></i> Close</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 ">
+                    </div>
+                    <div class="col-lg-6 ">
+                        <app-create-notification></app-create-notification>
+                    </div>
+
+                </div>
+
+
             </div>
         </div>
         <!-- Job Detail -->
 
     </div>
 </div>
+
 <!-- Content END-->

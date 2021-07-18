@@ -1,3 +1,6 @@
+import { NgForm } from '@angular/forms';
+import { NotationService } from './../../../services/notation.service';
+import { NotationDto } from './../../../models/notation';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,12 +15,15 @@ import { ChauffeurDto } from './../../../models/chauffeur';
 export class DetailChauffeurComponent implements OnInit {
 
   chauffeurDTO: ChauffeurDto;
+  addEditNotationDTO: NotationDto = new NotationDto();
+  addNotationForm: NgForm;
 
   paramId :any = 0;
 
   searchMode: boolean = false;
 
   constructor(public chauffService: ChauffeurService,
+              private noteService: NotationService,
               private router: Router,
               private route: ActivatedRoute,
   ) { }
@@ -51,6 +57,23 @@ export class DetailChauffeurComponent implements OnInit {
     );
 
   }
+
+  public onAddNotation() {
+    console.log(this.addEditNotationDTO);
+    console.log("Note", +this.chauffeurDTO.id);
+    this.noteService.addNotationDTOToDriver(this.chauffeurDTO.id,
+      this.addEditNotationDTO).subscribe(
+      (response: NotationDto) => {
+        alert("Notation Ajouté avec success");
+        this.router.navigate(['/notations']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+  }
+
 
 
 

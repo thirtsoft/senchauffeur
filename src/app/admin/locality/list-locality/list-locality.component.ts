@@ -17,7 +17,6 @@ import { AddresseDto } from './../../../models/locality';
 export class ListLocalityComponent implements OnInit {
 
   localityListDTO: AddresseDto[];
-  addEditLocalityDTO: AddresseDto;
 
   id : number;
   p : number=1;
@@ -26,8 +25,8 @@ export class ListLocalityComponent implements OnInit {
   constructor(private localiteService: LocalityService,
               private dialog: MatDialog,
               private router: Router,
-              public toastr: ToastrService,
-              private dialogService: DialogService,
+  //            public toastr: ToastrService,
+  //            private dialogService: DialogService,
               private fb: FormBuilder
   ){}
 
@@ -75,13 +74,12 @@ export class ListLocalityComponent implements OnInit {
 
   */
 
-  public onDeleteLocality(id: number): void{
+  /* public onDeleteLocality(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
         this.localiteService.deleteLocalityDTO(id).subscribe(data => {
           this.toastr.warning('Addresse supprimé avec succès!');
-  //        this.localityListDTO = this.localityListDTO.filter(u => u !== locityDTO);
           this.getListLocalitieDTOs();
         });
       }
@@ -90,6 +88,18 @@ export class ListLocalityComponent implements OnInit {
       alert(error.message);
     }
     );
+  } */
+
+  onDeleteLocality(id: number): void{
+    this.localiteService.deleteLocalityDTO(id).subscribe(data => {
+      this.getListLocalitieDTOs();
+        }
+    ,
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
   }
+
 
 }
