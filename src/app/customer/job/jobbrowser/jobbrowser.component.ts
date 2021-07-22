@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AnnonceService } from './../../../services/annonce.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AnnonceDto } from './../../../models/annonce';
 
 @Component({
@@ -13,39 +13,89 @@ import { AnnonceDto } from './../../../models/annonce';
 export class JobbrowserComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
-  editAnnonceDTO: AnnonceDto;
 
-  public size: number = 3;
+  public size: number = 2;
   public currentPage: number = 1;
   public totalPages: number;
   public pages: Array<number>;
 
   public currentTime: number = 0;
 
-  currentCategoryId: number;
+  currentAnnonceId: number;
 
-  previousCategoryId: number = 1;
+  previousAnnonceId: number = 1;
 
   searchMode: boolean = false;
 
   constructor(private annonceService: AnnonceService,
               private router: Router,
+              private route: ActivatedRoute,
               private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.getListAnnonceDTOByPageables();
+    this.route.paramMap.subscribe(()=> {
+      this.getListAnnonceDTOs();
+    });
+  //  this.getListAnnonceDTOByPageables();
+  }
+
+  public getListAnnonceDTOs() {
+    this.searchMode = this.route.snapshot.paramMap.has('reference');
+    if (this.searchMode) {
+      this.getAnnonceListDTOsByReferenceJob();
+    }else {
+      this.handlerListAnnonceDTOs();
+    }
+  }
+
+  handlerListAnnonceDTOs() {
+    const hasLocality: boolean = this.route.snapshot.paramMap.has('id');
+    if (hasLocality) {
+      this.currentAnnonceId = +this.route.snapshot.paramMap.get('id');
+    }else {
+      this.currentAnnonceId = 1;
+    }
+    if (this.previousAnnonceId != this.currentAnnonceId) {
+      this.currentPage = 1;
+    }
+    this.previousAnnonceId = this.currentAnnonceId;
+    this.annonceService.getListAnnonceDTOByPermisPageable(
+      this.currentAnnonceId,
+      this.currentPage - 1,
+      this.size
+    ).subscribe(this.processResult());
+  }
+
+  processResult() {
+    return data => {
+      this.totalPages = data['totalPages'];
+      this.pages = new Array(data['totalPages']);
+      this.annonceListDTO = data['content'];
+    }
+
+  }
+
+  getAnnonceListDTOsByReferenceJob() {
+    const reference: string = this.route.snapshot.paramMap.get('reference');
+    this.annonceService.getListAnnonceDTOByKeyword(reference).subscribe(
+      data  => {
+        this.annonceListDTO = data;
+      }
+
+    )
+
   }
 
   public getListAnnonceDTOByPageables() {
-    this.annonceService.getListAnnonceDTOByPageable(this.currentPage - 1, this.size).subscribe(
+    this.annonceService.getListAnnonceDTOByPageable(
+      this.currentPage - 1,
+      this.size
+      ).subscribe(
       (response: AnnonceDto[]) => {
-//        this.annonceListDTO = response;
-        console.log("Response Pageable--", response);
         this.totalPages = response['totalPages'];
         this.pages = new Array(response['totalPages']);
         this.annonceListDTO = response['content'];
-        console.log("Resultat Annonce Pageable--", this.annonceListDTO);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -57,7 +107,7 @@ export class JobbrowserComponent implements OnInit {
     return this.currentTime;
   }
 
-  onPageArticle(i) {
+  onPageAnnonce(i) {
     this.currentPage = i;
     this.getListAnnonceDTOByPageables();
   }

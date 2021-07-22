@@ -1,3 +1,4 @@
+import { AddresseDto } from './address';
 import { Permis, PermisDto } from './permis';
 export class Chauffeur {
   id: number;
@@ -29,10 +30,13 @@ export class ChauffeurDto {
   phoneChauffeur: string;
   nbreAnneeExperience: number;
   pretentionSalaire: number;
+  disponibity: string;
   mobilite: string;
 	cvChauffeur: string;
   photoChauffeur: string;
 
   permisDto: PermisDto;
+  addresseDto: AddresseDto;
+
 
 }

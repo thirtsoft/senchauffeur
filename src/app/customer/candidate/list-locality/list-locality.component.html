@@ -1,0 +1,15 @@
+<div class="sticky-top">
+    <ul *ngFor="let locDTO of localityListDTO; let i=index;">
+        <div class="clearfix m-b30">
+            <li class="nav-item">
+                <a [routerLink]="['/locality', locDTO.id]" class="nav-link " style="cursor: pointer;">
+                    <i class="fa fa-female "></i>{{locDTO?.quartier}}</a>
+            </li>
+            <!--  <h5 [routerLink]="['/locality', locDTO.id]" class="widget-title font-weight-700 text-uppercase">{{locDTO?.quartier}}</h5> -->
+        </div>
+    </ul>
+
+</div>
+
+
+<!-- Content END-->

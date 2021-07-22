@@ -25,9 +25,9 @@
                 <div class="icon-content">
                     <!--   <div class="icon-md text-primary m-b20"><i class="ti-location-pin"></i></div> -->
                     <!--   <a href="#" class="dez-tilte">Design, Art & Multimedia</a> -->
-                    <img src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chaufDTO.id}}" alt="Product Image">
+                    <img [routerLink]="['/detail-chauffeur', chaufDTO.id]" src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chaufDTO.id}}" alt="Product Image" style="cursor: pointer;">
 
-                    <a href="#" class="dez-tilte">{{chaufDTO.firstName}}, {{chaufDTO.lastName}}</a>
+                    <a [routerLink]="['/detail-chauffeur', chaufDTO.id]" class="dez-tilte" style="cursor: pointer;">{{chaufDTO.firstName}}, {{chaufDTO.lastName}}</a>
                     <a href="#" class="dez-tilte">{{chaufDTO.permisDto?.designation}}</a>
                     <!--  <p class="m-a0">{{chaufDTO.permisDto?.designation}}</p> -->
                     <div class="rotate-icon"><i class="ti-location-pin"></i></div>

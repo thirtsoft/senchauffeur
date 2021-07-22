@@ -1,0 +1,13 @@
+<div class="clearfix m-b10">
+    <ul *ngFor="let perDTO of listPermisDTO; let i=index;">
+        <!--  <div class="clearfix m-b30 "> -->
+        <li class="nav-item ">
+            <a [routerLink]="['/jobPermis', perDTO.id]" class="nav-link" style="cursor: pointer; ">
+                <i class="fa fa-female "></i>{{perDTO?.designation}}</a>
+        </li>
+    </ul>
+
+</div>
+
+
+<!-- Content END-->

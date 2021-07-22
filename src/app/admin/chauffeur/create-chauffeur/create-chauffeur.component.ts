@@ -7,7 +7,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
 import { ChauffeurDto } from './../../../models/chauffeur';
-
+import { AddressService } from './../../../services/address.service';
+import { AddresseDto } from './../../../models/address';
 @Component({
   selector: 'app-create-chauffeur',
   templateUrl: './create-chauffeur.component.html',
@@ -17,6 +18,7 @@ export class CreateChauffeurComponent implements OnInit {
 
   formDataChauffeurDTO: ChauffeurDto = new ChauffeurDto();
   listPermisData: PermisDto[];
+  listAddressDTO: AddresseDto[];
 
   chauffeurPhotoFile: any = File;
   chauffeurCvFile: any = File;
@@ -27,7 +29,12 @@ export class CreateChauffeurComponent implements OnInit {
 
   constructor(private chauffeurService: ChauffeurService,
               private permisService: PermisService,
+<<<<<<< HEAD
 
+=======
+              private addService: AddressService,
+           //   private toastr: ToastrService,
+>>>>>>> dev
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -50,6 +57,8 @@ export class CreateChauffeurComponent implements OnInit {
     }
 
     this.getListPermisDTOs();
+
+    this.getListAddresseDTOs();
   }
 
   getChauffeurDTOById(id: number) {
@@ -70,6 +79,15 @@ export class CreateChauffeurComponent implements OnInit {
     this.permisService.getPermisDTOs().subscribe(
       (response: PermisDto[]) => {
         this.listPermisData = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+  getListAddresseDTOs() {
+    this.addService.getAddresseDtos().subscribe(
+      (response: AddresseDto[]) => {
+        this.listAddressDTO = response;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }

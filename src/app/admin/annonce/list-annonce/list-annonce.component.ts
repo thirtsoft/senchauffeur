@@ -26,8 +26,13 @@ export class ListAnnonceComponent implements OnInit {
   constructor(private annonceService: AnnonceService,
               private dialog: MatDialog,
               private router: Router,
+<<<<<<< HEAD
   //            public toastr: ToastrService,
   //            private dialogService: DialogService,
+=======
+     //         public toastr: ToastrService,
+     //         private dialogService: DialogService,
+>>>>>>> dev
               private fb: FormBuilder
   ){}
 
@@ -71,6 +76,22 @@ export class ListAnnonceComponent implements OnInit {
     });
   }
 */
+<<<<<<< HEAD
+=======
+
+  onDeleteAnnonce(id: number): void{
+    this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
+      this.getListAnnonceDTOs();
+        }
+
+    ,
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
+  }
+
+>>>>>>> dev
  /*  onDeleteAnnonce(id: number): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
@@ -86,6 +107,7 @@ export class ListAnnonceComponent implements OnInit {
     }
     );
   } */
+<<<<<<< HEAD
 
   onDeleteAnnonce(id: number): void{
     if (window.confirm('Etes-vous sure de vouloir supprimer cette annonce ?')) {
@@ -98,6 +120,8 @@ export class ListAnnonceComponent implements OnInit {
       );
     }
   }
+=======
+>>>>>>> dev
 
 
 }

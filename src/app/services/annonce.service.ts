@@ -65,15 +65,20 @@ public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1"
   public getListAnnonceDTOByPageable(page: number, size: number): Observable<AnnonceDto[]> {
     const searchUrl = (this.apiServerUrl+"/annonces/searchAnnonceByPageables?page="+page+"&size="+size);
     return this.http.get<AnnonceDto[]>(searchUrl);
-  //  return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByPageables?page=`+page+"&size="+size);
   }
 
-  public getListAnnonceDTOByKeyword(keyword: string): Observable<AnnonceDto[]> {
-    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByKeyword?keyword=`+keyword);
+  public getListAnnonceDTOByKeyword(reference: string): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByKeyword?reference=`+reference);
   }
 
   public getListAnnonceDTOByPermis(pId: number): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnoncesByPermis/${pId}`);
+  }
+
+  public getListAnnonceDTOByPermisPageable(permisId: number, page: number, size: number): Observable<AnnonceDto[]> {
+    const searchUrl = (this.apiServerUrl+"/annonces/searchAnnonceByPermisPageables?id="+permisId+"&page="+page+"&size="+size);
+    console.log("Search Url---", searchUrl);
+    return this.http.get<AnnonceDto[]>(searchUrl);
   }
 
   public countNumberOfAnnonces(): Observable<any>  {

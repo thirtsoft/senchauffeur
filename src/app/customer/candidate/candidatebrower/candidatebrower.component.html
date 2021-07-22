@@ -22,28 +22,31 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-8">
-                        <div class="m-b30">
+                        <app-search-in-candidates></app-search-in-candidates>
+                        <!--  <div class="m-b30">
                             <input type="text" class="form-control" placeholder="Search freelancer services">
-                        </div>
+                        </div> -->
                         <ul class="post-job-bx">
                             <li *ngFor="let chauffDTO of chauffeurListDTO; let i=index;">
-                                <a href="#">
+                                <a [routerLink]="['/detail-chauffeur', chauffDTO.id]">
                                     <div class="d-flex m-b30">
                                         <div class="job-post-company">
-                                            <span><img src="assets/customer/images/testimonials/pic1.jpg"/></span>
+                                            <!--  <span><img src="assets/customer/images/testimonials/pic1.jpg"/></span> -->
+                                            <span><img width="550" height="450" src="{{this.chauffService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chauffDTO.id}}"></span>
                                         </div>
                                         <div class="job-post-info">
                                             <h4>{{chauffDTO.firstName}}, {{chauffDTO.lastName}}</h4>
                                             <ul>
                                                 <li><i class="fa fa-map-marker"></i>{{chauffDTO.addressActuel}}</li>
                                                 <li><i class="fa fa-usd"></i>{{chauffDTO.permisDto?.designation}}</li>
-                                                <li><i class="fa fa-clock-o"></i>{{chauffDTO.pretentionSalaire}}</li>
+                                                <li><i class="fa fa-clock-o"></i>{{chauffDTO.disponibity}}</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="job-time mr-auto">
-                                            <span>{{chauffDTO.mobilite}}</span>
+                                            <span>{{chauffDTO?.addresseDto?.quartier}}</span>&nbsp;&nbsp;
+                                            <br>&nbsp;&nbsp;
                                             <span>{{chauffDTO.mobilite}}</span>
                                             <!-- <span>HTML</span>
                                             <span>Bootstrap</span> -->
@@ -205,7 +208,7 @@
                             <ul class="pagination" *ngIf="pages">
                                 <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
                                 <li class="active" class="clikable" [ngClass]="i==this.currentPage?'active':''" *ngFor="let p of pages; let i=index">
-                                    <a (click)="onPageArticle(i)" style="cursor:pointer">{{i}}</a>
+                                    <a (click)="onPageChauffeur(i)" style="cursor:pointer">{{i}}</a>
                                 </li>
                                 <!-- <li><a href="#">2</a></li>
                                 <li><a href="#">3</a></li> -->
@@ -214,7 +217,8 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4">
-                        <div class="sticky-top">
+                        <app-list-locality></app-list-locality>
+                        <!--  <div class="sticky-top">
                             <div class="clearfix m-b30">
                                 <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5>
                                 <div class="">
@@ -227,9 +231,9 @@
                                 <div class="input-group m-b20">
                                     <input type="text" class="form-control" placeholder="120">
                                     <select>
-              <option>Km</option>
-              <option>miles</option>
-            </select>
+                                      <option>Km</option>
+                                      <option>miles</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="clearfix m-b30">
@@ -288,18 +292,19 @@
                             <div class="clearfix">
                                 <h5 class="widget-title font-weight-700 text-uppercase">Category</h5>
                                 <select>
-            <option>Any Category</option>
-            <option>Automotive Jobs</option>
-            <option>Construction Facilities</option>
-            <option>Design, Art & Multimedia</option>
-            <option>Food Services</option>
-          </select>
+                                  <option>Any Category</option>
+                                  <option>Automotive Jobs</option>
+                                  <option>Construction Facilities</option>
+                                  <option>Design, Art & Multimedia</option>
+                                  <option>Food Services</option>
+                                </select>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Content END-->

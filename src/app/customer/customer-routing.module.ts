@@ -48,7 +48,7 @@ const routes: Routes = [
     component: AddEmployeComponent
   },
   {
-    path: 'detail-chauffeur',
+    path: 'detail-chauffeur/:id',
     component: DetailChauffeurComponent
   },
   {
@@ -57,6 +57,14 @@ const routes: Routes = [
   },
   {
     path: 'browse-job',
+    component: JobbrowserComponent
+  },
+  {
+    path: 'jobPermis/:id',
+    component: JobbrowserComponent
+  },
+  {
+    path: 'searchInJob/:reference',
     component: JobbrowserComponent
   },
   {
@@ -75,6 +83,15 @@ const routes: Routes = [
     path: 'browse-candidate',
     component: CandidatebrowerComponent
   },
+  {
+    path: 'locality/:id',
+    component: CandidatebrowerComponent
+  },
+  {
+    path: 'searchInCandidates/:disponibility',
+    component: CandidatebrowerComponent
+  },
+
   {
     path: 'job-detail/:reference',
     component: JobDetailComponent

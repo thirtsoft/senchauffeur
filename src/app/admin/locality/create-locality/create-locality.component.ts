@@ -23,7 +23,7 @@ export class CreateLocalityComponent implements OnInit {
 
   constructor(private localiteService: LocalityService,
               private router: Router,
-              private toastr: ToastrService,
+//              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
   ){
@@ -63,7 +63,7 @@ export class CreateLocalityComponent implements OnInit {
     this.localiteService.addLocalityDTO(this.formDataLocalityDTO).subscribe(
       (response: AddresseDto) => {
   //      this.dialogRef.close();
-        this.toastr.success("Addresse Ajouté avec Succès");
+ //       this.toastr.success("Addresse Ajouté avec Succès");
         this.router.navigate(['/backend/admin/localities']);
       },
       (error: HttpErrorResponse) => {
@@ -76,7 +76,7 @@ export class CreateLocalityComponent implements OnInit {
     this.localiteService.updateLocalityDTO(this.formDataLocalityDTO.id, this.formDataLocalityDTO).subscribe(
       (response: AddresseDto) => {
   //      this.dialogRef.close();
-        this.toastr.warning("Addresse Update avec Succès");
+  //      this.toastr.warning("Addresse Update avec Succès");
         this.router.navigate(['/backend/admin/localities']);
       },
       (error: HttpErrorResponse) => {

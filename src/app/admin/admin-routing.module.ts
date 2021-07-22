@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import { CreateVilleComponent } from './ville/create-ville/create-ville.component';
 import { ListVilleComponent } from './ville/list-ville/list-ville.component';
+=======
+import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
+import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
+import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+>>>>>>> dev
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -20,6 +27,16 @@ import { ListChauffeurComponent } from './chauffeur/list-chauffeur/list-chauffeu
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashborad',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'dashborad',
+    component: DashboardComponent
+  },
+  {
     path: 'chauffeurs',
     component: ListChauffeurComponent
   },
@@ -32,7 +49,11 @@ const routes: Routes = [
     component: CreateChauffeurComponent
   },
   {
-    path: 'permis',
+    path: 'viewchauffeur/:id',
+    component: ViewChauffeurComponent
+  },
+  {
+    path: 'listPermis',
     component: ListPermisComponent
   },
   {
@@ -66,6 +87,18 @@ const routes: Routes = [
   {
     path: 'annonce/:id',
     component: CreateAnnonceComponent
+  },
+  {
+    path: 'tarifs',
+    component: ListTarifComponent
+  },
+  {
+    path: 'tarif',
+    component: CreateTarifComponent
+  },
+  {
+    path: 'tarif/:id',
+    component: CreateTarifComponent
   },
   {
     path: 'localites',
