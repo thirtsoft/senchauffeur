@@ -37,15 +37,10 @@ import { ListLocalityComponent } from './locality/list-locality/list-locality.co
 import { ListNotationComponent } from './list-notation/list-notation.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { CreateUtilisateurComponent } from './utilisateur/create-utilisateur/create-utilisateur.component';
-<<<<<<< HEAD
-import { CreateVilleComponent } from './ville/create-ville/create-ville.component';
-import { ListVilleComponent } from './ville/list-ville/list-ville.component';
-=======
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
 import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
->>>>>>> dev
 
 
 @NgModule({
@@ -63,15 +58,10 @@ import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
     ListNotationComponent,
     ListUtilisateurComponent,
     CreateUtilisateurComponent,
-<<<<<<< HEAD
-    CreateVilleComponent,
-    ListVilleComponent
-=======
     DashboardComponent,
     ViewChauffeurComponent,
     CreateTarifComponent,
     ListTarifComponent
->>>>>>> dev
   ],
   imports: [
     CommonModule,

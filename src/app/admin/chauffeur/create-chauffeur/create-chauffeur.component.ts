@@ -29,12 +29,8 @@ export class CreateChauffeurComponent implements OnInit {
 
   constructor(private chauffeurService: ChauffeurService,
               private permisService: PermisService,
-<<<<<<< HEAD
-
-=======
               private addService: AddressService,
            //   private toastr: ToastrService,
->>>>>>> dev
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,

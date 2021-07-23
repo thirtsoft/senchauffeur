@@ -26,12 +26,8 @@ export class ListLocalityComponent implements OnInit {
               private dialog: MatDialog,
               private router: Router,
   //            public toastr: ToastrService,
-<<<<<<< HEAD
  //             private dialogService: DialogService,
-=======
-  //            private dialogService: DialogService,
->>>>>>> dev
-              private fb: FormBuilder
+
   ){}
 
   ngOnInit(): void {
@@ -78,32 +74,8 @@ export class ListLocalityComponent implements OnInit {
 
   */
 
-<<<<<<< HEAD
- /*  public onDeleteLocality(id: number): void{
-=======
-  /* public onDeleteLocality(id: number): void{
->>>>>>> dev
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.localiteService.deleteLocalityDTO(id).subscribe(data => {
-          this.toastr.warning('Addresse supprimé avec succès!');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
-          this.getListLocalitieDTOs();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  } */
 
   onDeleteLocality(id: number): void{
-<<<<<<< HEAD
     if (window.confirm('Etes-vous sure de vouloir supprimer cette Ville ?')) {
       this.localiteService.deleteLocalityDTO(id).subscribe(data => {
         this.getListLocalitieDTOs();
@@ -113,16 +85,7 @@ export class ListLocalityComponent implements OnInit {
         }
       );
     }
-=======
-    this.localiteService.deleteLocalityDTO(id).subscribe(data => {
-      this.getListLocalitieDTOs();
-        }
-    ,
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
->>>>>>> dev
+
   }
 
 

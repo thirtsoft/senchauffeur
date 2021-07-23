@@ -26,13 +26,8 @@ export class ListRecruteurComponent implements OnInit {
   constructor(private recruteurService: RecruteurService,
               private dialog: MatDialog,
               private router: Router,
-<<<<<<< HEAD
-  //            public toastr: ToastrService,
-  //            private dialogService: DialogService,
-=======
       //        public toastr: ToastrService,
         //      private dialogService: DialogService,
->>>>>>> dev
               private fb: FormBuilder
   ){}
 
@@ -74,39 +69,8 @@ export class ListRecruteurComponent implements OnInit {
     });
   }
 */
-<<<<<<< HEAD
- /*  onDeleteRecruteur(id: number): void{
-=======
 
-onDeleteRecruteur(id: number): void{
-  alert("Etes-vous sur de vouloir Supprimer cet donnée ?");
-  this.recruteurService.deleteRecruteurDTO(id).subscribe(data => {
-    this.getListRecruteurDTOs();
-      }
 
-  ,
-  (error: HttpErrorResponse) => {
-    alert(error.message);
-  }
-  );
-}
-/*
-  onDeleteRecruteur(id: number): void{
->>>>>>> dev
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.recruteurService.deleteRecruteurDTO(id).subscribe(data => {
-          this.toastr.warning('Recruteur supprimé avec succès!');
-          this.getListRecruteurDTOs();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  } */
 
   onDeleteRecruteur(id: number): void{
     if (window.confirm('Etes-vous sure de vouloir supprimer ce Recruteur ?')) {
@@ -119,6 +83,6 @@ onDeleteRecruteur(id: number): void{
       );
     }
   }
-*/
+
 
 }

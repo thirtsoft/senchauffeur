@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import { CreateVilleComponent } from './ville/create-ville/create-ville.component';
-import { ListVilleComponent } from './ville/list-ville/list-ville.component';
-=======
 import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
->>>>>>> dev
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -112,7 +107,7 @@ const routes: Routes = [
     path: 'localite/:id',
     component: CreateLocalityComponent
   },
-  {
+ /*  {
     path: 'villes',
     component: ListVilleComponent
   },
@@ -123,7 +118,7 @@ const routes: Routes = [
   {
     path: 'ville/:id',
     component: CreateVilleComponent
-  },
+  }, */
   {
     path: 'notifications',
     component: ListNotationComponent

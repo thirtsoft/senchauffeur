@@ -26,14 +26,10 @@ export class ListAnnonceComponent implements OnInit {
   constructor(private annonceService: AnnonceService,
               private dialog: MatDialog,
               private router: Router,
-<<<<<<< HEAD
-  //            public toastr: ToastrService,
-  //            private dialogService: DialogService,
-=======
+
      //         public toastr: ToastrService,
      //         private dialogService: DialogService,
->>>>>>> dev
-              private fb: FormBuilder
+
   ){}
 
   ngOnInit(): void {
@@ -55,59 +51,6 @@ export class ListAnnonceComponent implements OnInit {
   onAddAnnonce() {
     this.router.navigate(['/backend/admin/annonce']);
   }
-/*
-  onAddAnnonce() {
-    this.openNoteDialog(null);
-  }
-
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(CreateAnnonceComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.annonceListDTO.push(result);
-      }
-      // this.refreshData();
-    });
-  }
-*/
-<<<<<<< HEAD
-=======
-
-  onDeleteAnnonce(id: number): void{
-    this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
-      this.getListAnnonceDTOs();
-        }
-
-    ,
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  }
-
->>>>>>> dev
- /*  onDeleteAnnonce(id: number): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
-          this.toastr.warning('Annonce supprimé avec succès!');
-          this.getListAnnonceDTOs();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  } */
-<<<<<<< HEAD
 
   onDeleteAnnonce(id: number): void{
     if (window.confirm('Etes-vous sure de vouloir supprimer cette annonce ?')) {
@@ -120,8 +63,7 @@ export class ListAnnonceComponent implements OnInit {
       );
     }
   }
-=======
->>>>>>> dev
+
 
 
 }

@@ -10,14 +10,12 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class NotationService {
 
-<<<<<<< HEAD
 //  private apiServerUrl = environment.apiBaseUrl;
 
   public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
-=======
-  private apiServerUrl = environment.apiBaseUrl;
+
+ // private apiServerUrl = environment.apiBaseUrl;
   id;
->>>>>>> dev
 
   constructor(private http: HttpClient) {
   }
