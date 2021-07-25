@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination' ;
 import { SharedModule } from '..//shared/shared.module';
 
 import { CustomerRoutingModule } from './customer-routing.module';
+import { DataTablesModule } from 'angular-datatables';
 
 import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
@@ -98,6 +99,7 @@ import { ListJobPermisComponent } from './job/list-job-permis/list-job-permis.co
     MatSnackBarModule,
     MatCardModule,
     MatExpansionModule,
+    DataTablesModule,
 
     MatPaginatorModule,
     Ng2SearchPipeModule,
