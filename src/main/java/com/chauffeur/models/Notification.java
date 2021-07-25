@@ -2,14 +2,12 @@ package com.chauffeur.models;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -38,7 +36,10 @@ public class Notification implements Serializable {
 
     @Column(name = "observation", length = 200)
     private String observation;
-
+    
+    @ManyToOne(fetch= FetchType.LAZY)
+    private Chauffeur chauffeur;
+/*
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch= FetchType.LAZY)
     @JoinColumn(name = "chauffId", referencedColumnName = "id")
     private Chauffeur chauffeur;

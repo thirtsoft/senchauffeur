@@ -62,6 +62,7 @@ public class RecruteurDto {
 			return null;
 		}
 		Recruteur recruteur = new Recruteur();
+		recruteur.setId(recruteurDto.getId());
 		recruteur.setFirstName(recruteurDto.getFirstName());
 		recruteur.setLastName(recruteurDto.getLastName());
 		recruteur.setAddressRecruteur(recruteurDto.getAddressRecruteur());

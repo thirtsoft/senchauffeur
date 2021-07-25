@@ -77,6 +77,7 @@ public class AnnonceDto {
 			return null;
 		}
 		Annonce annonce = new Annonce();
+		annonce.setId(annonceDto.getId());
 		annonce.setReference(annonceDto.getReference());
 		annonce.setLieuPoste(annonceDto.getLieuPoste());
 		annonce.setSalaire(annonceDto.getSalaire());

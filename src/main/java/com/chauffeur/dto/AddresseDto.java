@@ -1,8 +1,6 @@
 package com.chauffeur.dto;
 
-import java.util.Date;
 
-import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Addresse;
 
 import lombok.AllArgsConstructor;

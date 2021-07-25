@@ -52,6 +52,7 @@ public class ParticulierDto {
 			return null;
 		}
 		Particulier particulier = new Particulier();
+		particulier.setId(particulierDto.getId());
 		particulier.setFirstName(particulierDto.getFirstName());
 		particulier.setLastName(particulierDto.getLastName());
 		particulier.setEmail(particulierDto.getEmail());

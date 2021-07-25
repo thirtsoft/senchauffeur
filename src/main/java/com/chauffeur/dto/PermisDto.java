@@ -40,6 +40,7 @@ public class PermisDto {
 			return null;
 		}
 		Permis permis = new Permis();
+		permis.setId(permisDto.getId());
 		permis.setTypePermis(permisDto.getTypePermis());
 		permis.setDesignation(permisDto.getDesignation());
 		permis.setValidite(permisDto.getValidite());

@@ -76,6 +76,7 @@ public class ChauffeurDto {
 			return null;
 		}
 		Chauffeur chauffeur = new Chauffeur();
+		chauffeur.setId(chauffeurDto.getId());
 		chauffeur.setReference(chauffeurDto.getReference());
 		chauffeur.setFirstName(chauffeurDto.getFirstName());
 		chauffeur.setLastName(chauffeurDto.getLastName());

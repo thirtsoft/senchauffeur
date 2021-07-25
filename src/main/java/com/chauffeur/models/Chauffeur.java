@@ -2,7 +2,6 @@ package com.chauffeur.models;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -69,11 +68,13 @@ public class Chauffeur implements Serializable {
 	private String photoChauffeur;
 	
 //@ManyToOne
-	@ManyToOne(cascade = CascadeType.PERSIST)
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "permId")
 	private Permis permis;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "addressId")
 	private Addresse addresse;
 

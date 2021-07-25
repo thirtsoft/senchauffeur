@@ -47,6 +47,7 @@ public class NotificationDto {
 			return null;
 		}
 		Notification notification = new Notification();
+		notification.setId(notificationDto.getId());
 		notification.setReference(notificationDto.getReference());
 		notification.setNbreEtoile(notificationDto.getNbreEtoile());
 		notification.setObservation(notificationDto.getObservation());

@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VilleDto {
 	
-	private static final long serialVersionUID = 1L;
-	
 	private Long id;
 
     private String reference;
@@ -44,6 +42,7 @@ public class VilleDto {
 			return null;
 		}
 		Ville ville = new Ville();
+		ville.setId(villeDto.getId());
 		ville.setReference(villeDto.getReference());
 		ville.setNom(villeDto.getNom());
 		ville.setPays(villeDto.getPays());

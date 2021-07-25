@@ -2,7 +2,6 @@ package com.chauffeur.models;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +38,8 @@ public class Tarif implements Serializable {
 	@Column(name = "description", length = 100)
 	private String description;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "annonceId")
 	private Annonce annonce;
 
