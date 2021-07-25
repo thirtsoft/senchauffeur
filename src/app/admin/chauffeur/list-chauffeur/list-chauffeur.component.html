@@ -27,7 +27,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let chauffDTO of chauffeurListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p};let i=index; ">
-                                <td><img height="90" width="90" class="img-circle" src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chauffDTO.id}}"></td>
+                                <td><img height="90" width="90" class="img-circle" src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chauffDTO.id}}">
+                                    <a (click)="addEditPhotoChauffeur(i)" style="cursor:pointer;">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                </td>
 
                                 <td>{{chauffDTO?.cvChauffeur}} &nbsp;
                                     <a (click)="addEditCvChauffeur(i)" style="cursor:pointer; align-items: flex-end;">
