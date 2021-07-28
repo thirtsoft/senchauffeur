@@ -50,31 +50,9 @@ export class ListChauffeurComponent implements OnInit {
     this.router.navigate(['/backend/admin/chauffeur']);
   }
 
-  viewChauffeur() {
-
-  }
-
   addEditCvChauffeur(i) {}
-/*
-  onAddChauffeur() {
-    this.openNoteDialog(null);
-  }
 
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(CreateChauffeurComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.chauffeurListDTO.push(result);
-      }
-    });
-  }
-*/
+  addEditPhotoChauffeur(i){}
 
   onDeleteChauffeur(id: number): void{
     if (window.confirm('Etes-vous sure de vouloir supprimer ce Chauffeur ?')) {

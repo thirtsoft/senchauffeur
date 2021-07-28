@@ -74,10 +74,4 @@ export class DetailChauffeurComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
 }

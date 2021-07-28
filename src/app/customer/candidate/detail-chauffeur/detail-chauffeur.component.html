@@ -1,25 +1,19 @@
 <!-- Content -->
 <div class="page-content bg-white">
-    <!-- inner page banner -->
     <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(assets/customer/images/banner/bnr1.jpg);">
         <div class="container">
             <div class="dez-bnr-inr-entry">
                 <h1 class="text-white">Detail Chauffeur</h1>
-                <!-- Breadcrumb row -->
                 <div class="breadcrumb-row">
                     <ul class="list-inline">
                         <li><a routerLink="/">Home</a></li>
                         <li> Detail Chauffeur</li>
                     </ul>
                 </div>
-                <!-- Breadcrumb row END -->
             </div>
         </div>
     </div>
-    <!-- inner page banner END -->
-    <!-- contact area -->
     <div class="content-block">
-        <!-- Job Detail -->
         <div class="section-full content-inner-1">
             <div class="container">
                 <div class="row">
@@ -51,33 +45,42 @@
                     <div class="col-lg-8">
                         <div class="job-info-box">
                             <h3 class="m-t0 m-b10 font-weight-700 title-head">
-                                <a href="#" class="text-secondry m-r30">{{chauffeurDTO?.firstName}} {{chauffeurDTO?.lastName}}</a>
+                                <a href="#" class="text-secondry m-r30"> {{chauffeurDTO?.firstName}} {{chauffeurDTO?.lastName}}</a>
                             </h3>
                             <ul class="job-info">
-                                <li><strong>{{chauffeurDTO?.permisDto?.typePermis}}</strong> {{chauffeurDTO?.permisDto?.designation}}</li>
-                                <li><strong>Deadline : </strong>{{chauffeurDTO?.disponibity}}</li>
-                                <li><i class="ti-location-pin text-black m-r5"></i>{{chauffeurDTO?.addressActuel}}</li>
+                                <li>Sexe : <strong> {{chauffeurDTO?.sexe}} </strong> </li>
+                                <!-- <li>Adress: <strong> {{chauffeurDTO?.addressActuel}} Deadline : </strong>{{chauffeurDTO?.disponibity}}</li>
+                                <li><i class="ti-location-pin text-black m-r5"></i>{{chauffeurDTO?.addressActuel}}</li> -->
                             </ul>
                             <p class="p-t20">
-                                <a href="#">Secteur d'activité: <strong>{{chauffeurDTO?.firstName}}</strong></a>, <strong>{{chauffeurDTO?.lastName}}</strong> {{chauffeurDTO?.mobilite}}</p>
-                            <h5 class="font-weight-600">Job Description</h5>
+                                <a href="#">Adresse: <strong>{{chauffeurDTO?.addressActuel}}</strong></a></p>
+                            <h5 class="font-weight-600">Informations Utiles</h5>
                             <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <p>{{chauffeurDTO?.cvChauffeur}}.</p>
-                            <h5 class="font-weight-600">How to Apply</h5>
+                            <p>Téléphone: <strong>{{chauffeurDTO?.phoneChauffeur}}</strong></p>
+                            <p>Email: <strong>{{chauffeurDTO?.email}}</strong></p>
+                            <a href="">
+                                <p>{{chauffeurDTO?.cvChauffeur}}.</p>
+                            </a>
+
+                            <!-- <p>Disponibilité: <strong>{{chauffeurDTO?.disponibity}}</strong></p>
+                            <p>Mobilité: <strong>{{chauffeurDTO?.mobilite}}</strong></p> -->
+                            <h5 class="font-weight-600">Informations Permis</h5>
                             <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <p>Lorem Ipsum is simply dummy text <strong>Notre Email : {{chauffeurDTO?.email}}</strong> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled <strong>{{chauffeurDTO?.reference}}</strong> it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-                                essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing <strong>{{chauffeurDTO?.addressActuel}}</strong> Lorem Ipsum passages.</p>
-                            <h5 class="font-weight-600">Job Requirements</h5>
+                            <p>Type permis: <strong>{{chauffeurDTO?.permisDto?.typePermis}}</strong></p>
+                            <p>Permis: <strong>{{chauffeurDTO?.permisDto?.designation}}</strong></p>
+                            <h5 class="font-weight-600">Disponilités et Localité</h5>
                             <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <ul class="list-num-count no-round">
+                            <p>Disponilité: <strong>{{chauffeurDTO?.disponibity}}</strong></p>
+                            <p>Quartier: <strong>{{chauffeurDTO?.addresseDto?.quartier}}</strong></p>
+                            <p>Mobilité: <strong>{{chauffeurDTO?.mobilite}}</strong></p>
+                            <!-- <ul class="list-num-count no-round">
                                 <li>Type de Permis: <strong>{{chauffeurDTO?.permisDto.typePermis}}</strong></li>
                                 <li>Who We Are and <strong>{{chauffeurDTO?.permisDto.designation}}</strong></li>
                                 <li>Remaining <strong>{{chauffeurDTO?.permisDto.validite}}</strong> in the 1960s </li>
                                 <li>Lorem Ipsum <strong>{{chauffeurDTO?.nbreAnneeExperience}}</strong> standard dummy text ever since the 1500s,</li>
                                 <li>DexignLab standard dummy text ever since</li>
-                            </ul>
-                            <a href="#" class="site-button">Apply This Job</a>
+                            </ul> -->
+                            <!--  <a href="#" class="site-button">Apply This Job</a> -->
                         </div>
                     </div>
 
@@ -87,43 +90,35 @@
                         <div class="page-content bg-white">
                             <div class="content-block">
                                 <form #addNotationForm="ngForm" name="form">
-                                    <div class="form-group">
-                                        <label>Chauffeur</label>
-                                        <input name="id" [value]="this.chauffeurDTO.id" class="form-control" readonly>
-
-                                    </div>
                                     <div class="form-group ">
                                         <label>Reference</label>
-                                        <input type="text " class="form-control" [(ngModel)]="addEditNotationDTO.reference" name="reference " id="reference " #reference="ngModel" required>
-                                        <span class="text-danger " *ngIf=" (reference.touched || addNotationForm.submitted) && reference.errors?.required ">
-                                        Reference Obligatoire
-                                    </span>
+                                        <input type="text " [(ngModel)]="addEditNotationDTO.reference" name="reference " id="reference" class="form-control" placeholder="reference de la notification" #reference="ngModel" required>
+                                        <span class="text-danger " *ngIf=" (reference.touched || addNotationForm.submitted) && reference.errors?.required">
+                                            Reference Obligatoire
+                                        </span>
                                     </div>
                                     <div class="form-group ">
                                         <label>Nbre Etoile</label>
-                                        <input type="text " class="form-control " [(ngModel)]="addEditNotationDTO.nbreEtoile " name="nbreEtoile " id="nbreEtoile " #nbreEtoile="ngModel" required />
+                                        <input type="text " class="form-control " [(ngModel)]="addEditNotationDTO.nbreEtoile" name="nbreEtoile" id="nbreEtoile" placeholder="nombre étoiles" #nbreEtoile="ngModel" required />
                                         <span class="text-danger " *ngIf=" (nbreEtoile.touched || addNotationForm.submitted) && nbreEtoile.errors?.required ">
-                                       nbre etoile est obligatoire
-                                    </span>
+                                          nbre etoile est obligatoire
+                                        </span>
                                     </div>
 
                                     <div class="form-group ">
                                         <label>Observation</label>
-                                        <textarea class="form-control " rows="10 " [(ngModel)]="addEditNotationDTO.observation " name="observation " id="observation " #observation="ngModel"></textarea>
-                                        <!--  <input type="text " class="form-control " [(ngModel)]="addEditNotationDTO.observation " name="observation " id="observation " #observation="ngModel " required /> -->
+                                        <textarea class="form-control " rows="5" [(ngModel)]="addEditNotationDTO.observation" name="observation" placeholder="commentaire" id="observation " #observation="ngModel"></textarea>
                                         <span class="text-danger " *ngIf=" (observation.touched || addNotationForm.submitted) && observation.errors?.required ">
-                                      observation est obligatoire
-                                    </span>
+                                          observation est obligatoire
+                                        </span>
                                     </div>
 
-                                    <div class="form-group ">
-                                        <button type="submit " class="btn btn-success " (click)="onAddNotation() ">
-                                                    <i class="fa fa-database "></i> Submit
+                                    <div class="form-group">
+                                        <button type="submit " class="btn btn-success btn-block" (click)="onAddNotation() ">
+                                                    <i class="fa fa-database"></i> Submit
                                                   </button>&nbsp;
-                                        <!--   <button *ngIf="paramId " class="btn btn-warning " (click)="onUpdateNotation() ">
-                                                    <i class="fa fa-database "></i>Update</button> -->
-                                        <button type="button " class="btn btn-danger ml-1 ">
-                                                    <i class="fa fa-close "></i> Close</button>
+                                        <!--  <button type="button " class="btn btn-danger ml-1">
+                                                    <i class="fa fa-close"></i> Close</button> -->
                                     </div>
                                 </form>
 
@@ -132,9 +127,9 @@
                     </div>
                     <div class="col-lg-2 ">
                     </div>
-                    <div class="col-lg-6 ">
+                    <!-- <div class="col-lg-6 ">
                         <app-create-notification></app-create-notification>
-                    </div>
+                    </div> -->
 
                 </div>
 

@@ -1,64 +1,42 @@
-<!-- Content -->
 <div class="page-content bg-white">
-    <!-- inner page banner -->
     <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(assets/customer/images/banner/bnr1.jpg);">
         <div class="container">
             <div class="dez-bnr-inr-entry">
                 <h1 class="text-white">Create Jobs</h1>
-                <!-- Breadcrumb row -->
                 <div class="breadcrumb-row">
                     <ul class="list-inline">
-                        <li><a href="#">Home</a></li>
+                        <li><a routerLink="/">Home</a></li>
                         <li>Create Job</li>
                     </ul>
                 </div>
-                <!-- Breadcrumb row END -->
             </div>
         </div>
     </div>
-    <!-- inner page banner END -->
-    <!-- contact area -->
     <div class="content-block">
-        <!-- Browse Jobs -->
         <div class="section-full bg-white browse-job content-inner-2">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-3 col-lg-4" style="margin-left: -50px;">
                         <div class="sticky-top">
                             <div class="clearfix m-b10">
-                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
-                                <div class="">
-                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
-                                    <a type="button" class="btn btn-primary btn-lg btn-block" style="color: white;">Annonces</a>
-                                </div>
+                                <a type="button" routerLink="/jobs" class="btn btn-primary btn-lg btn-block" style="color: white;">Annonces</a>
                             </div>
                             <div class="clearfix m-b10">
-                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
-                                <div class="">
-                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
-                                    <a type="button" class="btn btn-success btn-lg btn-block" style="color: white;">Jetons</a>
-                                </div>
+                                <a type="button" class="btn btn-success btn-lg btn-block" style="color: white;">Jetons</a>
                             </div>
                             <div class="clearfix m-b10">
-                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
-                                <div class="">
-                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
-                                    <a type="button" class="btn btn-primary btn-lg btn-block" style="color: white;">Informations</a>
-                                </div>
+                                <a type="button" class="btn btn-primary btn-lg btn-block" style="color: white;">Informations</a>
                             </div>
                             <div class="clearfix m-b10">
-                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
-                                <div class="">
-                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
-                                    <a type="button" class="btn btn-warning btn-lg btn-block" style="color: white;">Autres</a>
-                                </div>
+                                <a type="button" class="btn btn-warning btn-lg btn-block" style="color: white;">Autres</a>
                             </div>
                             <div class="clearfix m-b10">
-                                <!-- <h5 class="widget-title font-weight-700 text-uppercase">Keywords</h5> -->
-                                <div class="">
-                                    <!-- <input type="text" class="form-control" placeholder="Search"> -->
-                                    <a type="button" class="btn btn-danger btn-lg btn-block" style="color: white;">Logout</a>
-                                </div>
+                                <a type="button" routerLink="/jobs" class="btn btn-secondary btn-lg btn-block" style="color: white;">
+                                    <i class="fa fa-angle-right"></i> Retour</a>
+                            </div>
+
+                            <div class="clearfix m-b10">
+                                <a type="button" class="btn btn-danger btn-lg btn-block" style="color: white;">Logout</a>
                             </div>
 
 
@@ -66,15 +44,14 @@
                     </div>
 
                     <div class="col-xl-9 col-lg-8" style="margin-left: 20px;">
-                        <!-- <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5> -->
-                        <h3 class="widget-title font-weight-700 text-uppercase">
+                        <h5 class="widget-title font-weight-700 text-uppercase">
                             <i class="fa fa-angle-right"></i> Add New Jobs
-                        </h3>
+                        </h5>
 
                         <form #addJobForm="ngForm" name="form">
                             <div class="form-group">
                                 <label>Reference</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" required>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" placeholder="Donnez la référence" required>
                                 <span class="text-danger" *ngIf="
                                     (reference.touched || addJobForm.submitted) &&
                                     reference.errors?.required
@@ -84,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Candidature</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.modeCandidature" name="modeCandidature" id="modeCandidature" #modeCandidature="ngModel" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.modeCandidature" name="modeCandidature" id="modeCandidature" #modeCandidature="ngModel" placeholder="mode de candidature" required />
                                 <span class="text-danger" *ngIf="
                                     (modeCandidature.touched || addJobForm.submitted) &&
                                     modeCandidature.errors?.required
@@ -95,7 +72,7 @@
 
                             <div class="form-group">
                                 <label>Email Post</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.emailPoste" name="emailPoste" id="emailPoste" #emailPoste="ngModel" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.emailPoste" name="emailPoste" id="emailPoste" #emailPoste="ngModel" placeholder="l'email pour le poste" required />
                                 <span class="text-danger" *ngIf="
                                     (emailPoste.touched || addJobForm.submitted) &&
                                     emailPoste.errors?.required
@@ -108,6 +85,7 @@
                                 <label>Permis</label>
                                 <div class="form-group">
                                     <select name="permis" [(ngModel)]="addEditAnnonceDTO.permisDto" class="form-control">
+                                      <option value="0">--choisir Permis--</option>
                                       <option *ngFor="let permis of listPermisDTOs" class="form-control"
                                         [ngValue]="permis.id == addEditAnnonceDTO.permisDto?.id ? addEditAnnonceDTO.permisDto : permis">{{permis.designation}}</option>
                                     </select>
@@ -118,6 +96,7 @@
                                 <label>Ville Poste</label>
                                 <div class="form-group">
                                     <select name="permis" [(ngModel)]="addEditAnnonceDTO.villeDto" class="form-control">
+                                      <option value="0">--choisir Ville--</option>
                                     <option *ngFor="let ville of listVilleDTOs" class="form-control"
                                       [ngValue]="ville.id == addEditAnnonceDTO.villeDto?.id ? addEditAnnonceDTO.villeDto : ville">{{ville.nom}}</option>
                                   </select>
@@ -127,7 +106,8 @@
                             <div class="form-group">
                                 <label>Recruteur</label>
                                 <!-- <div class="form-group"> -->
-                                <select name="permis" [(ngModel)]="addEditAnnonceDTO.recruteurDto" class="form-control">
+                                <select name="recruteurDto" [(ngModel)]="addEditAnnonceDTO.recruteurDto" class="form-control">
+                                  <option [ngValue]="null" disabled>--choisir Recruteur--</option>
                                   <option *ngFor="let recrutDTO of listRecruteurDTOs" class="form-control"
                                     [ngValue]="recrutDTO.id == addEditAnnonceDTO.recruteurDto?.id ? addEditAnnonceDTO.recruteurDto : recrutDTO">{{recrutDTO.nomEntreprise}}</option>
                                 </select>
@@ -135,7 +115,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Salaire</label>
-                                <input type="number" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" required />
+                                <input type="number" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" placeholder="salaire pour ce poste" required />
                                 <span class="text-danger" *ngIf="
                                     (salaire.touched || addJobForm.submitted) &&
                                     salaire.errors?.required
@@ -146,7 +126,7 @@
 
                             <div class="form-group">
                                 <label>Time</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.time" name="time" id="time" #time="ngModel" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.time" name="time" id="time" #time="ngModel" placeholder="disponibilité pour le poste" required />
                                 <span class="text-danger" *ngIf="
                                     (time.touched || addJobForm.submitted) &&
                                     time.errors?.required
@@ -157,7 +137,7 @@
 
                             <div class="form-group">
                                 <label>Années Experience</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.anneeExperience" name="anneeExperience" id="anneeExperience" #anneeExperience="ngModel" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.anneeExperience" name="anneeExperience" id="anneeExperience" #anneeExperience="ngModel" placeholder="nombre année expérience" required />
                                 <span class="text-danger" *ngIf="
                                     (anneeExperience.touched || addJobForm.submitted) &&
                                     anneeExperience.errors?.required
@@ -168,7 +148,7 @@
 
                             <div class="form-group">
                                 <label>Date Candidate </label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCandidature" name="dateCandidature" id="dateCandidature" #dateCandidature="ngModel" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCandidature" name="dateCandidature" id="dateCandidature" #dateCandidature="ngModel" placeholder="date de candidature" required />
                                 <span class="text-danger" *ngIf="
                                       (dateCandidature.touched || addJobForm.submitted) &&
                                       dateCandidature.errors?.required
@@ -179,7 +159,7 @@
 
                             <div class="form-group">
                                 <label>Date Cloture </label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" placeholder="date limite candidature" required />
                                 <span class="text-danger" *ngIf="
                                   (dateCloture.touched || addJobForm.submitted) &&
                                   dateCloture.errors?.required
@@ -196,7 +176,7 @@
 
                             <div class="form-group">
                                 <label>Description Job</label>
-                                <textarea class="form-control" rows="10" [(ngModel)]="addEditAnnonceDTO.description" name="description" id="description" #description="ngModel"></textarea>
+                                <textarea class="form-control" rows="10" cols="10" [(ngModel)]="addEditAnnonceDTO.description" name="description" id="description" #description="ngModel" placeholder="description du poste"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -208,7 +188,7 @@
                                 <button type="button" class="btn btn-danger ml-1">
                                   <i class="fa fa-close"></i> Close</button>
                             </div>
-                            <!--  <button type="submit" class="site-button">Submit</button> -->
+
                         </form>
 
 
@@ -221,3 +201,4 @@
     </div>
 </div>
 <!-- Content END-->
+
