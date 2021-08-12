@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,17 +31,29 @@ import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.services.ChauffeurService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Value;
+
 @RestController
 @CrossOrigin
 public class ChauffeurController implements ChauffeurApi {
 	
-	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
+//	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
 	
-//	private final String chauffeurPhotosDir = "src//main//resources//static//images//";
+//	private final String chauffeurPhotosDir = "../../src//main//resources//static//images//";
 	 
-	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
+//	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
 	
 //	private final String chauffeurCvDir = "src//main//resources//static//cvs//";
+	
+	ServletContext context;
+	
+//	@Value("${chauffeurPhotosDir}")
+	private String chauffeurPhotosDir = new File("src//main//resources//static").getAbsolutePath() + "//images//";
+		
+//	private final String chauffeurCvDir = new File("src//main//resources//static//cvs//").getAbsolutePath();
+	
+	private final String chauffeurCvDir = new File("src//main//resources//static").getAbsolutePath() + "//cvs//";
+	
 	
 	private ChauffeurService chauffeurService;
 
@@ -93,24 +106,37 @@ public class ChauffeurController implements ChauffeurApi {
 		
 		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
 	}
+	
 	@Override
 	public List<ChauffeurDto> getListChauffeurByKeyword(String keyword) {
 		return chauffeurService.findListChauffeurByKeyword("%" + keyword + "%");
 	}
+	
 	@Override
 	public Page<ChauffeurDto> getListChauffeurByPageable(int page, int size) {
 		final Pageable pageable = PageRequest.of(page, size);
         return chauffeurService.findChauffeurByPageable(pageable);
 	}
+	
+	/*
+	@Override
+	public byte[] getPhotoChauffeur(Long id) throws Exception {
+		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
+
+        System.out.println("Article DTO -- " + chauffeurDto);
+         
+        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
+
+	}
+	*/
+	
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
 
         System.out.println("Article DTO -- " + chauffeurDto);
       
-     //   return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
-        
-        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
+        return Files.readAllBytes(Paths.get(System.getProperty("src//main//resources//static") + "//images//" + chauffeurDto.getPhotoChauffeur()));
 
 	}
 	
