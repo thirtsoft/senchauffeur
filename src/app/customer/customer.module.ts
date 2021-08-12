@@ -50,6 +50,7 @@ import { SearchInCandidatesComponent } from './candidate/search-in-candidates/se
 import { ListJobParmisComponent } from './job/list-job-parmis/list-job-parmis.component';
 import { SearchJobByReferenceComponent } from './job/search-job-by-reference/search-job-by-reference.component';
 import { ListJobPermisComponent } from './job/list-job-permis/list-job-permis.component';
+import { PublierOffreComponent } from './publier-offre/publier-offre.component';
 
 
 
@@ -80,7 +81,8 @@ import { ListJobPermisComponent } from './job/list-job-permis/list-job-permis.co
     SearchInCandidatesComponent,
     ListJobParmisComponent,
     SearchJobByReferenceComponent,
-    ListJobPermisComponent
+    ListJobPermisComponent,
+    PublierOffreComponent
   ],
   imports: [
     CommonModule,

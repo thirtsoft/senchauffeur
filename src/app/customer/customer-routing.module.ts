@@ -1,3 +1,4 @@
+import { PublierOffreComponent } from './publier-offre/publier-offre.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { FaqComponent } from './faq/faq.component';
 import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
@@ -104,6 +105,10 @@ const routes: Routes = [
   {
     path: 'companies',
     component: CompaniesComponent
+  },
+  {
+    path: 'publier-offre',
+    component: PublierOffreComponent
   },
   {
     path: 'search-offre',
