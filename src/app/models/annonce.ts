@@ -22,6 +22,7 @@ export class Annonce {
 export class AnnonceDto {
   id: number;
   reference: string;
+  libelle: string;
   lieuPoste: string;
   salaire: string;
   emailPoste: string;
