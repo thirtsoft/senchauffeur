@@ -21,6 +21,8 @@ public class AnnonceDto {
 
 	private String reference;
 	
+	private String libelle;
+	
 	private String lieuPoste;
 	
 	private String emailPoste;
@@ -55,6 +57,7 @@ public class AnnonceDto {
 		return AnnonceDto.builder()
 				.id(annonce.getId())
 				.reference(annonce.getReference())
+				.libelle(annonce.getLibelle())
 				.lieuPoste(annonce.getLieuPoste())
 				.salaire(annonce.getSalaire())
 				.modeCandidature(annonce.getModeCandidature())
@@ -79,6 +82,7 @@ public class AnnonceDto {
 		Annonce annonce = new Annonce();
 		annonce.setId(annonceDto.getId());
 		annonce.setReference(annonceDto.getReference());
+		annonce.setLibelle(annonceDto.getLibelle());
 		annonce.setLieuPoste(annonceDto.getLieuPoste());
 		annonce.setSalaire(annonceDto.getSalaire());
 		annonce.setModeCandidature(annonceDto.getModeCandidature());

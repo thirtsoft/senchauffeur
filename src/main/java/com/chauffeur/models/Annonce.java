@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.NaturalId;
 import com.chauffeur.enumeration.StatusAnnonce;
@@ -24,7 +25,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "annonce")
+@Table(name = "annonce", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "reference")
+})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,6 +41,9 @@ public class Annonce implements Serializable {
 
 	@Column(name = "reference", length = 50)
 	private String reference;
+	
+	@Column(name = "libelle", length = 100)
+	private String libelle;
 	
 	@Column(name = "lieuPoste", length = 90)
 	private String lieuPoste;
