@@ -1,8 +1,8 @@
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './../security/token-storage.service';
 import { AuthService } from './../security/auth.service';
 import { Login } from './../security/login';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenStorage.getUser().roles;
         console.log("Login Success");
         console.log(this.roles);
-        this.router.navigateByUrl("home").then(() => {
-          window.location.reload();
+        this.router.navigateByUrl("").then(() => {
+  //        window.location.reload();
         });
 
       },

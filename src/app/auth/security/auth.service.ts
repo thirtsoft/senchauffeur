@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { Register } from './register';
 import { catchError, map } from 'rxjs/operators';
 
-const AUTH_API = 'http://localhost:8081/shop-mania/v1/auth/';
+const AUTH_API = 'http://localhost:8081/sen-chauffeurs/v1/auth/';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -21,7 +21,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8081/shop-sen-chauffeurs/v1/auth/authenticated';
+  private loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
   private baseUrl = 'http://localhost:8081/api/auth';
   private baseUrl_1 = 'http://localhost:8081/alAmine';
 
