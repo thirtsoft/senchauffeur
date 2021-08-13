@@ -45,13 +45,13 @@
 
                     <div class="col-xl-9 col-lg-8" style="margin-left: 20px;">
                         <h5 class="widget-title font-weight-700 text-uppercase">
-                            <i class="fa fa-angle-right"></i> Add New Jobs
+                            <i class="fa fa-angle-right"></i> Nouvelle Annonce
                         </h5>
 
                         <form #addJobForm="ngForm" name="form">
                             <div class="form-group">
                                 <label>Reference</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" placeholder="Donnez la référence" required>
+                                <input type="text" placeholder="Référence annonce" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" placeholder="Donnez la référence" required>
                                 <span class="text-danger" *ngIf="
                                     (reference.touched || addJobForm.submitted) &&
                                     reference.errors?.required
@@ -60,8 +60,18 @@
                                 </span>
                             </div>
                             <div class="form-group">
+                                <label>Libellé</label>
+                                <input type="text" placeholder="Libellé annonce" class="form-control" [(ngModel)]="addEditAnnonceDTO.libelle" name="libelle" id="libelle" #libelle="ngModel" placeholder="Donnez la référence" required>
+                                <span class="text-danger" *ngIf="
+                                    (libelle.touched || addJobForm.submitted) &&
+                                    libelle.errors?.required
+                                  ">
+                                libelle Obligatoire
+                              </span>
+                            </div>
+                            <div class="form-group">
                                 <label>Candidature</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.modeCandidature" name="modeCandidature" id="modeCandidature" #modeCandidature="ngModel" placeholder="mode de candidature" required />
+                                <input type="text" placeholder="Mode de candidature" class="form-control" [(ngModel)]="addEditAnnonceDTO.modeCandidature" name="modeCandidature" id="modeCandidature" #modeCandidature="ngModel" placeholder="mode de candidature" required />
                                 <span class="text-danger" *ngIf="
                                     (modeCandidature.touched || addJobForm.submitted) &&
                                     modeCandidature.errors?.required
@@ -72,7 +82,7 @@
 
                             <div class="form-group">
                                 <label>Email Post</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.emailPoste" name="emailPoste" id="emailPoste" #emailPoste="ngModel" placeholder="l'email pour le poste" required />
+                                <input type="text" placeholder="Email pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.emailPoste" name="emailPoste" id="emailPoste" #emailPoste="ngModel" placeholder="l'email pour le poste" required />
                                 <span class="text-danger" *ngIf="
                                     (emailPoste.touched || addJobForm.submitted) &&
                                     emailPoste.errors?.required
@@ -115,7 +125,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Salaire</label>
-                                <input type="number" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" placeholder="salaire pour ce poste" required />
+                                <input type="number" placeholder="Salire pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" placeholder="salaire pour ce poste" required />
                                 <span class="text-danger" *ngIf="
                                     (salaire.touched || addJobForm.submitted) &&
                                     salaire.errors?.required
@@ -126,7 +136,7 @@
 
                             <div class="form-group">
                                 <label>Time</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.time" name="time" id="time" #time="ngModel" placeholder="disponibilité pour le poste" required />
+                                <input type="text" placeholder="Disponibilité pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.time" name="time" id="time" #time="ngModel" placeholder="disponibilité pour le poste" required />
                                 <span class="text-danger" *ngIf="
                                     (time.touched || addJobForm.submitted) &&
                                     time.errors?.required
@@ -137,7 +147,7 @@
 
                             <div class="form-group">
                                 <label>Années Experience</label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.anneeExperience" name="anneeExperience" id="anneeExperience" #anneeExperience="ngModel" placeholder="nombre année expérience" required />
+                                <input type="text" placeholder="Nombre année expérience" class="form-control" [(ngModel)]="addEditAnnonceDTO.anneeExperience" name="anneeExperience" id="anneeExperience" #anneeExperience="ngModel" placeholder="nombre année expérience" required />
                                 <span class="text-danger" *ngIf="
                                     (anneeExperience.touched || addJobForm.submitted) &&
                                     anneeExperience.errors?.required
@@ -146,7 +156,7 @@
                                 </span>
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Date Candidate </label>
                                 <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCandidature" name="dateCandidature" id="dateCandidature" #dateCandidature="ngModel" placeholder="date de candidature" required />
                                 <span class="text-danger" *ngIf="
@@ -155,28 +165,28 @@
                                     ">
                                     dateCandidature est obligatoire
                                   </span>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label>Date Cloture </label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" placeholder="date limite candidature" required />
+                                <input type="text" placeholder="Date limite candidature" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" placeholder="date limite candidature" required />
                                 <span class="text-danger" *ngIf="
-                                  (dateCloture.touched || addJobForm.submitted) &&
-                                  dateCloture.errors?.required
-                                ">
-                                dateCloture est obligatoire
-                              </span>
+                                    (dateCloture.touched || addJobForm.submitted) &&
+                                    dateCloture.errors?.required
+                                  ">
+                                  dateCloture est obligatoire
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label>Photo (optional)</label>
                                 <div class="custom-file">
-                                    <input type="file" class="site-button" id="customFile">
+                                    <input type="file" placeholder="choisir logo entreprise" class="site-button" id="customFile">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Description Job</label>
-                                <textarea class="form-control" rows="10" cols="10" [(ngModel)]="addEditAnnonceDTO.description" name="description" id="description" #description="ngModel" placeholder="description du poste"></textarea>
+                                <textarea class="form-control" placeholder="Description de l'offre" rows="10" cols="10" [(ngModel)]="addEditAnnonceDTO.description" name="description" id="description" #description="ngModel" placeholder="description du poste"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -201,4 +211,3 @@
     </div>
 </div>
 <!-- Content END-->
-
