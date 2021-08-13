@@ -65,6 +65,7 @@ public class UtilisateurDto {
 	     utilisateur.setMobile(utilisateurDto.getMobile());
 	     utilisateur.setEmail(utilisateurDto.getEmail());
 	     utilisateur.setPassword(utilisateurDto.getPassword());
+	     utilisateur.setRoles(utilisateur.getRoles());
 
 	     return utilisateur;
 	 }

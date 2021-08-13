@@ -15,12 +15,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.chauffeur.enumeration.RoleName;
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Addresse;
 import com.chauffeur.models.Annonce;
 import com.chauffeur.models.Chauffeur;
 import com.chauffeur.models.Permis;
 import com.chauffeur.models.Recruteur;
+import com.chauffeur.models.Role;
+import com.chauffeur.models.Utilisateur;
 import com.chauffeur.models.Ville;
 import com.chauffeur.repository.AddresseRepository;
 import com.chauffeur.repository.AnnonceRepository;
@@ -28,6 +31,8 @@ import com.chauffeur.repository.ChauffeurRepository;
 
 import com.chauffeur.repository.PermisRepository;
 import com.chauffeur.repository.RecruteurRepository;
+import com.chauffeur.repository.RoleRepository;
+import com.chauffeur.repository.UtilisateurRepository;
 import com.chauffeur.repository.VilleRepository;
 
 @SpringBootApplication
@@ -47,6 +52,10 @@ public class SenChauffeurApplication implements CommandLineRunner {
 	private VilleRepository villeRepository;
 	@Autowired
 	private AddresseRepository addresseRepository;
+	@Autowired
+	private RoleRepository roleRepository;
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SenChauffeurApplication.class, args);
@@ -211,7 +220,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a9.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a10.setId(10L); a10.setLieuPoste("DK"); a10.setModeCandidature("Email");
-		a10.setSalaire("1000M"); a7.setReference("trans");a7.setLibelle("Conducteur de Transport");
+		a10.setSalaire("1000M"); a10.setReference("trans"); a10.setLibelle("Conducteur de Transport");
 		a10.setPermis(p2); a10.setRecruteur(r2);
 		a10.setTime("Full-Time");
 		a10.setDateCandidature(new Date());
@@ -224,19 +233,46 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a11.setDateCandidature(new Date());
 		a11.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a12.setId(11L); a12.setLieuPoste("DK"); a12.setModeCandidature("Email");
+		a12.setId(12L); a12.setLieuPoste("DK"); a12.setModeCandidature("Email");
 		a12.setSalaire("1200M"); a12.setReference("bag"); a12.setLibelle("Chauffeur de Taxi Bagage");
 		a12.setPermis(p2); a12.setRecruteur(r2);
 		a12.setTime("Full-Time");
 		a12.setDateCandidature(new Date());
 		a12.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		
 		annonceRepository.save(a4); annonceRepository.save(a5);
 		annonceRepository.save(a6);annonceRepository.save(a7);
 		annonceRepository.save(a8);annonceRepository.save(a9);
 		annonceRepository.save(a10);annonceRepository.save(a11);
 		annonceRepository.save(a12);
+		
+		Role useRole = new Role(RoleName.ROLE_USER);
+        Role recruteurRole = new Role(RoleName.ROLE_RECRUTEUR);
+        Role adminRole = new Role(RoleName.ROLE_ADMIN);
+        roleRepository.save(useRole);
+        roleRepository.save(recruteurRole);
+        roleRepository.save(adminRole);
+        Utilisateur user = new Utilisateur();
+        user.setId(1L);
+        user.setUsername("User");
+        user.setName("User");
+        user.setPassword("user1234");
+    //    user.setRoles((Set<Role>) useRole);
+        Utilisateur manager = new Utilisateur();
+        manager.setId(2L);
+        manager.setUsername("Manager");
+        manager.setName("Manager");
+        manager.setPassword("manager1234");
+ //       manager.setRoles((Set<Role>) managerRole);
+        Utilisateur admin = new Utilisateur();
+        admin.setId(3L);
+        admin.setUsername("Admin");
+        admin.setName("Admin");
+        admin.setPassword("admin1234");
+ //       admin.setRoles((Set<Role>) adminRole);
+        utilisateurRepository.save(user);
+        utilisateurRepository.save(manager);
+        utilisateurRepository.save(admin);
 		
 		
 		

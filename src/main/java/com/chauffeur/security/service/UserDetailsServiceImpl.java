@@ -2,6 +2,7 @@ package com.chauffeur.security.service;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,7 +14,8 @@ import com.chauffeur.repository.UtilisateurRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
-	UtilisateurRepository userRepository;
+	@Autowired
+    UtilisateurRepository userRepository;
 
     @Override
     @Transactional
@@ -25,6 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         return UserPrinciple.build(utilisateur);
 //               return UserPrinciple.build(UtilisateurPOSTDto.fromEntityToDto(utilisateur));
     }
+
 
 
 }
