@@ -1,7 +1,3 @@
-import { PublierOffreComponent } from './publier-offre/publier-offre.component';
-import { CompaniesComponent } from './companies/companies.component';
-import { FaqComponent } from './faq/faq.component';
-import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -22,7 +18,10 @@ import { HomeComponent } from './home/home.component';
 import { CandidatebrowerComponent } from './candidate/candidatebrower/candidatebrower.component';
 import { ListJobComponent } from './job/list-job/list-job.component';
 import { CreateJobComponent } from './job/create-job/create-job.component';
-
+import { PublierOffreComponent } from './publier-offre/publier-offre.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { FaqComponent } from './faq/faq.component';
+import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: 'home', pathMatch: 'full' }, // redirect to
