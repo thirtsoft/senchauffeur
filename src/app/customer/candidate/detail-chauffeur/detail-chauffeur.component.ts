@@ -22,6 +22,8 @@ export class DetailChauffeurComponent implements OnInit {
 
   searchMode: boolean = false;
 
+  pdfSrc;
+
   constructor(public chauffService: ChauffeurService,
               private noteService: NotationService,
               private router: Router,
@@ -57,6 +59,9 @@ export class DetailChauffeurComponent implements OnInit {
     );
 
   }
+
+  openPDF(){}
+
 
   public onAddNotation() {
     console.log(this.addEditNotationDTO);
