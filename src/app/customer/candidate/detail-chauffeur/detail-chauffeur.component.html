@@ -60,6 +60,14 @@
                             <p>Email: <strong>{{chauffeurDTO?.email}}</strong></p>
                             <a href="">
                                 <p>{{chauffeurDTO?.cvChauffeur}}.</p>
+                                <a class="btn btn-success" href="http://localhost:8081/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
+                                  <i class="fa fa-eye" style="cursor:pointer; align-items: flex-end;"></i>
+                                  Voir CV
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-primary" href="http://localhost:8081/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
+                                  <i class="fa fa-download" style="cursor:pointer; align-items: flex-end;"></i>&nbsp;&nbsp;
+                                  Télécharger CV
+                                </a>
                             </a>
 
                             <!-- <p>Disponibilité: <strong>{{chauffeurDTO?.disponibity}}</strong></p>
