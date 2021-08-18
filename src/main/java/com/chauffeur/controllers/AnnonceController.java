@@ -69,6 +69,12 @@ public class AnnonceController implements AnnonceApi {
 	public List<AnnonceDto> getListArticleByKeyword(String keyword) {
 		return annonceService.findListAnnonceByKeyword("%" + keyword + "%");
 	}
+	
+	@Override
+	public List<AnnonceDto> getListAnnonceByLibelle(String libelle) {
+		return annonceService.findListAnnonceByLibelle("%" + libelle + "%");
+	}
+
 
 	@Override
 	public Page<AnnonceDto> getListAnnonceByPageable(int page, int size) {
@@ -87,5 +93,6 @@ public class AnnonceController implements AnnonceApi {
         return annonceService.findAnnonceByPermisByPageable(permisId, pageable);
 	}
 
+	
 	
 }

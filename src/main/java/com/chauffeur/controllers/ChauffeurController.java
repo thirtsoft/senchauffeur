@@ -37,22 +37,22 @@ import lombok.Value;
 @CrossOrigin
 public class ChauffeurController implements ChauffeurApi {
 	
-//	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
+	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
 	
 //	private final String chauffeurPhotosDir = "../../src//main//resources//static//images//";
 	 
-//	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
+	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
 	
 //	private final String chauffeurCvDir = "src//main//resources//static//cvs//";
 	
 	ServletContext context;
 	
 //	@Value("${chauffeurPhotosDir}")
-	private String chauffeurPhotosDir = new File("src//main//resources//static").getAbsolutePath() + "//images//";
+//	private String chauffeurPhotosDir = new File("src//main//resources//static").getAbsolutePath() + "//images//";
 		
 //	private final String chauffeurCvDir = new File("src//main//resources//static//cvs//").getAbsolutePath();
 	
-	private final String chauffeurCvDir = new File("src//main//resources//static").getAbsolutePath() + "//cvs//";
+//	private final String chauffeurCvDir = new File("src//main//resources//static").getAbsolutePath() + "//cvs//";
 	
 	
 	private ChauffeurService chauffeurService;
@@ -118,7 +118,7 @@ public class ChauffeurController implements ChauffeurApi {
         return chauffeurService.findChauffeurByPageable(pageable);
 	}
 	
-	/*
+	
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -128,8 +128,8 @@ public class ChauffeurController implements ChauffeurApi {
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
 
 	}
-	*/
-	
+
+/*
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -139,6 +139,7 @@ public class ChauffeurController implements ChauffeurApi {
         return Files.readAllBytes(Paths.get(System.getProperty("src//main//resources//static") + "//images//" + chauffeurDto.getPhotoChauffeur()));
 
 	}
+	*/
 	
 	@Override
 	public void uploadPhotoChauffeur(MultipartFile photoChauffeur, Long idChauffeur) throws IOException {

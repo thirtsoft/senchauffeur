@@ -135,6 +135,17 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<AnnonceDto> findListAnnonceByLibelle(String libelle) {
+		if (libelle == null) {
+            log.error("Annonce not found");
+        }
+        return annonceRepository.findListAnnonceByLibelle(libelle)
+        		.stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
 
 	@Override
 	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
@@ -159,6 +170,8 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonceRepository.findAnnonceByPermisPageables(permisId, pageable)
                 .map(AnnonceDto::fromEntityToDto);
 	}
+
+
 
 	
 }

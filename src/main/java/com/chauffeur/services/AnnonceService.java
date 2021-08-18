@@ -24,6 +24,8 @@ public interface AnnonceService {
     
     List<AnnonceDto> findListAnnonceByKeyword(String keyword);
     
+    List<AnnonceDto> findListAnnonceByLibelle(String libelle);
+    
     List<AnnonceDto> findListAnnonceByPermis(Long pId);
     
     BigDecimal countNumbersOfAnnonces();

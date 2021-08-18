@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.chauffeur.models.Annonce;
-import com.chauffeur.models.Chauffeur;
 
 @Repository
 public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
@@ -24,6 +23,9 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	 
 	 @Query("select art from Annonce art where art.reference like :x")
 	 List<Annonce> findAnnonceByKeyword(@Param("x") String mc);
+	 
+	 @Query("select art from Annonce art where art.libelle like :y")
+	 List<Annonce> findListAnnonceByLibelle(@Param("y") String libelle);
 	 
 	 @Query("select p from Annonce p where p.permis.id =:pId")
 	 List<Annonce> findAnnonceByPermis(@Param("pId") Long permisId);
