@@ -13,9 +13,9 @@ export class SearchJobByReferenceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  searchJobByReferenceInAnnonce(reference: string) {
-    console.log("reference+++", reference);
-    this.router.navigateByUrl('/searchInJob/'+reference);
+  searchJobByReferenceInAnnonce(libelle: string) {
+    console.log("reference+++", libelle);
+    this.router.navigateByUrl('/searchInJob/'+libelle);
 }
 
 }

@@ -69,7 +69,7 @@ const routes: Routes = [
     component: JobbrowserComponent
   },
   {
-    path: 'searchInJob/:reference',
+    path: 'searchInJob/:libelle',
     component: JobbrowserComponent
   },
   {
