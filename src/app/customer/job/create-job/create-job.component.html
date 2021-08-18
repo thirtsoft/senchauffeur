@@ -51,7 +51,7 @@
                         <form #addJobForm="ngForm" name="form">
                              <div class="form-group">
                                 <label>Reference</label>
-                                <input type="text" placeholder="Référence annonce" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" placeholder="Donnez la référence" required>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" placeholder="Donnez la référence" required>
                                 <span class="text-danger" *ngIf="
                                     (reference.touched || addJobForm.submitted) &&
                                     reference.errors?.required
@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Libellé</label>
-                                <input type="text" placeholder="Libellé annonce" class="form-control" [(ngModel)]="addEditAnnonceDTO.libelle" name="libelle" id="libelle" #libelle="ngModel" placeholder="Donnez le titre de l'offre" required>
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.libelle" name="libelle" id="libelle" #libelle="ngModel" placeholder="Donnez le titre de l'offre" required>
                                 <span class="text-danger" *ngIf="
                                     (libelle.touched || addJobForm.submitted) &&
                                     libelle.errors?.required
@@ -82,7 +82,7 @@
 
                             <div class="form-group">
                                 <label>Email Post</label>
-                                <input type="text" placeholder="Email pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.emailPoste" name="emailPoste" id="emailPoste" #emailPoste="ngModel" placeholder="l'email pour ce poste" required />
+                                <input type="text" placeholder="Email pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.emailPoste" name="emailPoste" id="emailPoste" #emailPoste="ngModel" required />
                                 <span class="text-danger" *ngIf="
                                     (emailPoste.touched || addJobForm.submitted) &&
                                     emailPoste.errors?.required
@@ -105,13 +105,24 @@
                             <div class="form-group">
                                 <label>Ville Poste</label>
                                 <div class="form-group">
-                                    <select name="permis" [(ngModel)]="addEditAnnonceDTO.villeDto" class="form-control">
+                                    <select name="permis" [(ngModel)]="addEditAnnonceDTO.addresseDto" class="form-control">
                                       <option value="0">--choisir Ville--</option>
-                                    <option *ngFor="let ville of listVilleDTOs" class="form-control"
-                                      [ngValue]="ville.id == addEditAnnonceDTO.villeDto?.id ? addEditAnnonceDTO.villeDto : ville">{{ville.nom}}</option>
+                                    <option *ngFor="let addDTO of listAddressDTOs" class="form-control"
+                                      [ngValue]="addDTO.id == addEditAnnonceDTO.addresseDto?.id ? addEditAnnonceDTO.addresseDto : addDTO">{{addDTO.quartier}}</option>
                                   </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                              <label>Lieu poste</label>
+                              <input type="text" placeholder="Lieu de l'entreprise le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.lieuPoste" name="lieuPoste" id="lieuPoste" #lieuPoste="ngModel" required />
+                              <span class="text-danger" *ngIf="
+                                  (lieuPoste.touched || addJobForm.submitted) &&
+                                  lieuPoste.errors?.required
+                                ">
+                                lieuPoste est obligatoire
+                              </span>
+                          </div>
 
                            <!--  <div class="form-group">
                                 <label>Recruteur</label>
@@ -123,7 +134,7 @@
                             </div> -->
                             <div class="form-group">
                                 <label>Salaire</label>
-                                <input type="number" placeholder="Salire pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" placeholder="salaire pour ce poste" required />
+                                <input type="number" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" placeholder="salaire pour ce poste" required />
                                 <span class="text-danger" *ngIf="
                                     (salaire.touched || addJobForm.submitted) &&
                                     salaire.errors?.required
@@ -134,7 +145,7 @@
 
                             <div class="form-group">
                                 <label>Time</label>
-                                <input type="text" placeholder="Disponibilité pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.time" name="time" id="time" #time="ngModel" placeholder="disponibilité pour le poste" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.time" name="time" id="time" #time="ngModel" placeholder="disponibilité pour le poste" required />
                                 <span class="text-danger" *ngIf="
                                     (time.touched || addJobForm.submitted) &&
                                     time.errors?.required
@@ -145,7 +156,7 @@
 
                             <div class="form-group">
                                 <label>Années Experience</label>
-                                <input type="text" placeholder="Nombre année expérience" class="form-control" [(ngModel)]="addEditAnnonceDTO.anneeExperience" name="anneeExperience" id="anneeExperience" #anneeExperience="ngModel" placeholder="nombre année expérience" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.anneeExperience" name="anneeExperience" id="anneeExperience" #anneeExperience="ngModel" placeholder="nombre année expérience" required />
                                 <span class="text-danger" *ngIf="
                                     (anneeExperience.touched || addJobForm.submitted) &&
                                     anneeExperience.errors?.required
@@ -155,7 +166,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Date Cloture </label>
-                                <input type="text" placeholder="Date limite candidature" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" placeholder="date limite candidature" required />
+                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" placeholder="date limite candidature" required />
                                 <span class="text-danger" *ngIf="
                                     (dateCloture.touched || addJobForm.submitted) &&
                                     dateCloture.errors?.required
@@ -172,7 +183,7 @@
 
                             <div class="form-group">
                                 <label>Description Job</label>
-                                <textarea class="form-control" placeholder="Description de l'offre" rows="30" cols="15" [(ngModel)]="addEditAnnonceDTO.description" name="description" id="description" #description="ngModel" placeholder="description du poste"></textarea>
+                                <textarea class="form-control" rows="30" cols="15" [(ngModel)]="addEditAnnonceDTO.description" name="description" id="description" #description="ngModel" placeholder="description du poste"></textarea>
                             </div>
 
 

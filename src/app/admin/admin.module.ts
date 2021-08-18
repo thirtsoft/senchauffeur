@@ -41,6 +41,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
 import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
+import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteur.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
     DashboardComponent,
     ViewChauffeurComponent,
     CreateTarifComponent,
-    ListTarifComponent
+    ListTarifComponent,
+    ViewRecruteurComponent
   ],
   imports: [
     CommonModule,

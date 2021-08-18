@@ -1,3 +1,5 @@
+import { AddressService } from './../../../services/address.service';
+import { AddresseDto } from './../../../models/locality';
 import { VilleService } from './../../../services/ville.service';
 import { VilleDto } from './../../../models/ville';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -22,6 +24,7 @@ export class CreateJobComponent implements OnInit {
   listPermisDTOs: PermisDto[];
   listRecruteurDTOs: RecruteurDto[];
   listVilleDTOs: VilleDto[];
+  listAddressDTOs: AddresseDto[];
 
   data;
   paramId :any = 0;
@@ -32,6 +35,7 @@ export class CreateJobComponent implements OnInit {
               private permisService: PermisService,
               private recruteurService: RecruteurService,
               private villeService: VilleService,
+              private addressService: AddressService,
               private actRoute: ActivatedRoute,
               private router: Router
   ) {
@@ -56,7 +60,7 @@ export class CreateJobComponent implements OnInit {
 
     this.getListRecruteurDTOs();
 
-    this.getListVilleDTOs();
+    this.getListAddressesDTOs();
   }
 
   getAnnonceDTOById(id: number) {
@@ -77,6 +81,16 @@ export class CreateJobComponent implements OnInit {
     this.permisService.getPermisDTOs().subscribe(
       (response: PermisDto[]) => {
         this.listPermisDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  getListAddressesDTOs() {
+    this.addressService.getAddresseDtos().subscribe(
+      (response: AddresseDto[]) => {
+        this.listAddressDTOs = response;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
