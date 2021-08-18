@@ -118,6 +118,7 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
         annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
         annonceDtoResult.setRecruteurDto(annonceDto.getRecruteurDto());
+        annonceDtoResult.setAddresseDto(annonceDto.getAddresseDto());
        
         return AnnonceDto.fromEntityToDto(
         		annonceRepository.save(

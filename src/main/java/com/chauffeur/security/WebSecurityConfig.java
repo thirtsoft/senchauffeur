@@ -96,6 +96,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/chauffeurs/searchChauffeurByPermisPageables/**").permitAll()
                 .antMatchers("/**/recruteurs/all").permitAll()
                 .antMatchers("/**/recruteurs/create").permitAll()
+                .antMatchers("/**/recruteurs/**").permitAll()
                 .antMatchers("/**/recruteurs/update/**").permitAll()
                 .antMatchers("/**/recruteurs/NumbersOfRecruteurs").permitAll()
                 .antMatchers("/**/annonces/create").permitAll()
