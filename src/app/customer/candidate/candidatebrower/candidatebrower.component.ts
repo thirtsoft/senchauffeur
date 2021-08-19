@@ -14,7 +14,7 @@ export class CandidatebrowerComponent implements OnInit {
 
   chauffeurListDTO: ChauffeurDto[];
 
-  public size: number = 3;
+  public size: number = 4;
   public currentPage: number = 1;
   public totalPages: number;
   public pages: Array<number>;

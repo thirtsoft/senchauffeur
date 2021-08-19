@@ -41,7 +41,7 @@ export class JobbrowserComponent implements OnInit {
   }
 
   public getListAnnonceDTOs() {
-    this.searchMode = this.route.snapshot.paramMap.has('reference');
+    this.searchMode = this.route.snapshot.paramMap.has('libelle');
     if (this.searchMode) {
       this.getAnnonceListDTOsByReferenceJob();
     }else {
@@ -77,8 +77,8 @@ export class JobbrowserComponent implements OnInit {
   }
 
   getAnnonceListDTOsByReferenceJob() {
-    const reference: string = this.route.snapshot.paramMap.get('reference');
-    this.annonceService.getListAnnonceDTOByKeyword(reference).subscribe(
+    const libelle: string = this.route.snapshot.paramMap.get('libelle');
+    this.annonceService.getListAnnonceDTOByLibeele(libelle).subscribe(
       data  => {
         this.annonceListDTO = data;
       }

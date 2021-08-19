@@ -1,3 +1,4 @@
+import { TokenStorageService } from './../../auth/security/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
   searchMode: boolean = false;
 
   constructor(private chauffeurService: ChauffeurService,
+              private tokenService: TokenStorageService,
               private router: Router,
               private fb: FormBuilder,
               private route: ActivatedRoute,

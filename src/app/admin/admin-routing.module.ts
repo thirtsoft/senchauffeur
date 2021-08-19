@@ -1,3 +1,4 @@
+import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteur.component';
 import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
@@ -70,6 +71,10 @@ const routes: Routes = [
   {
     path: 'recruteur/:id',
     component: CreateRecruteurComponent
+  },
+  {
+    path: 'viewrecruteur/:id',
+    component: ViewRecruteurComponent
   },
   {
     path: 'annonces',

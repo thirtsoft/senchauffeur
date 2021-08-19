@@ -1,5 +1,3 @@
-import { PermisService } from './../../../services/permis.service';
-import { AddressService } from './../../../services/address.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
@@ -7,6 +5,8 @@ import { ChauffeurDto } from './../../../models/chauffeur';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddresseDto } from './../../../models/locality';
 import { PermisDto } from './../../../models/permis';
+import { PermisService } from './../../../services/permis.service';
+import { AddressService } from './../../../services/address.service';
 
 
 @Component({

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from './../security/token-storage.service';
 import { AuthService } from './../security/auth.service';
 import { Login } from './../security/login';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
         private authService: AuthService,
         private tokenStorage: TokenStorageService,
         private router: Router,
+        private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit {
         console.log("Login Success");
         console.log(this.roles);
         this.router.navigateByUrl("").then(() => {
-  //        window.location.reload();
+          window.location.reload();
         });
 
       },

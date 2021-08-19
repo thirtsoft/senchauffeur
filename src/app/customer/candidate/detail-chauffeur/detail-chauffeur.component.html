@@ -59,7 +59,23 @@
                             <p>Téléphone: <strong>{{chauffeurDTO?.phoneChauffeur}}</strong></p>
                             <p>Email: <strong>{{chauffeurDTO?.email}}</strong></p>
                             <a href="">
-                                <p>{{chauffeurDTO?.cvChauffeur}}.</p>
+                                <p>CV Chauffeur : </p>
+                                <a (click)="openPDF()" class="btn btn-success">&nbsp;&nbsp;
+                                  <i class="fa fa-eye" style="cursor:pointer; align-items: flex-end;"></i>
+
+                                  Voir CV
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                               <!--  <pdf-viewer src="{{this.chauffService.apiServerUrl+'/chauffeurs/cvChauffeur/'+chauffeurDTO.id}}"
+                                  #pdfViewerOnDemand
+                                  [stick-to-page]="true"
+                                  [original-size]="true"
+                                  [render-text]="true" style="display: block;">
+                                </pdf-viewer> -->
+
+                                <a class="btn btn-primary" href="http://localhost:8081/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
+                                  <i class="fa fa-download" style="cursor:pointer; align-items: flex-end;"></i>&nbsp;&nbsp;
+                                  Télécharger CV
+                                </a>
                             </a>
 
                             <!-- <p>Disponibilité: <strong>{{chauffeurDTO?.disponibity}}</strong></p>

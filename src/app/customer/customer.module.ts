@@ -24,6 +24,8 @@ import { SharedModule } from '..//shared/shared.module';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { DataTablesModule } from 'angular-datatables';
 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
 import { ListNotificationComponent } from './notation/list-notification/list-notification.component';
@@ -106,6 +108,7 @@ import { PublierOffreComponent } from './publier-offre/publier-offre.component';
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    PdfViewerModule,
 
   ]
 })

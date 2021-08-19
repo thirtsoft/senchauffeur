@@ -60,6 +60,10 @@ public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1"
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByKeyword?reference=`+reference);
   }
 
+  public getListAnnonceDTOByLibeele(libelle: string): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByLibelle?libelle=`+libelle);
+  }
+
   public getListAnnonceDTOByPermis(pId: number): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnoncesByPermis/${pId}`);
   }

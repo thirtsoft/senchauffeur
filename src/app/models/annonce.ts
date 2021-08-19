@@ -1,3 +1,4 @@
+import { AddresseDto } from './locality';
 import { VilleDto } from './ville';
 import { Permis, PermisDto } from './permis';
 import { Recruteur, RecruteurDto } from './recruteur';
@@ -40,5 +41,7 @@ export class AnnonceDto {
   recruteurDto: RecruteurDto;
 
   villeDto: VilleDto;
+
+  addresseDto: AddresseDto;
 
 }
