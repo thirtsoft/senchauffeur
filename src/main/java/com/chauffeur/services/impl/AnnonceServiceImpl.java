@@ -118,6 +118,7 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
         annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
         annonceDtoResult.setRecruteurDto(annonceDto.getRecruteurDto());
+        annonceDtoResult.setAddresseDto(annonceDto.getAddresseDto());
        
         return AnnonceDto.fromEntityToDto(
         		annonceRepository.save(
@@ -132,6 +133,17 @@ public class AnnonceServiceImpl implements AnnonceService {
             log.error("Annonce not found");
         }
         return annonceRepository.findAnnonceByKeyword(keyword).stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<AnnonceDto> findListAnnonceByLibelle(String libelle) {
+		if (libelle == null) {
+            log.error("Annonce not found");
+        }
+        return annonceRepository.findListAnnonceByLibelle(libelle)
+        		.stream()
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
@@ -159,6 +171,8 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonceRepository.findAnnonceByPermisPageables(permisId, pageable)
                 .map(AnnonceDto::fromEntityToDto);
 	}
+
+
 
 	
 }

@@ -48,6 +48,10 @@ public interface AnnonceApi {
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "reference") String reference);
 	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByLibelle", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	List<AnnonceDto> getListAnnonceByLibelle(@RequestParam(name = "libelle") String libelle);
+	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnoncesByPermis/{pId}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListAnnonceByPermis(@PathVariable("pId") Long pId);

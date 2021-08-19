@@ -89,9 +89,15 @@ public class Annonce implements Serializable {
 	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
 	
+	/*
+	 * @ManyToOne(cascade = CascadeType.PERSIST)
+	 * 
+	 * @JoinColumn(name = "villeId") private Ville ville;
+	 */
+	
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "villeId")
-	private Ville ville;
+	@JoinColumn(name = "addresseId")
+	private Addresse addresse;
 	
 	
 

@@ -49,6 +49,8 @@ public class AnnonceDto {
 	
 	private VilleDto villeDto;
 	
+	private AddresseDto addresseDto;
+	
 	public static AnnonceDto fromEntityToDto(Annonce annonce) {
 		if (annonce == null) {
 			return null;
@@ -70,7 +72,8 @@ public class AnnonceDto {
 				.statusAnnonce(annonce.getStatusAnnonce())
 				.permisDto(PermisDto.fromEntityToDto(annonce.getPermis()))
 				.recruteurDto(RecruteurDto.fromEntityToDto(annonce.getRecruteur()))
-				.villeDto(VilleDto.fromEntityToDto(annonce.getVille()))
+	//			.villeDto(VilleDto.fromEntityToDto(annonce.getVille()))
+				.addresseDto(AddresseDto.fromEntityToDto(annonce.getAddresse()))
 				.build();
 		
 	}
@@ -95,7 +98,8 @@ public class AnnonceDto {
 		annonce.setStatusAnnonce(annonceDto.getStatusAnnonce());
 		annonce.setPermis(PermisDto.fromDtoToEntity(annonceDto.getPermisDto()));
 		annonce.setRecruteur(RecruteurDto.fromDtoToEntity(annonceDto.getRecruteurDto()));
-		annonce.setVille(VilleDto.fromDtoToEntity(annonceDto.getVilleDto()));
+	//	annonce.setVille(VilleDto.fromDtoToEntity(annonceDto.getVilleDto()));
+		annonce.setAddresse(AddresseDto.fromDtoToEntity(annonceDto.getAddresseDto()));
 
 		return annonce;
 	}
