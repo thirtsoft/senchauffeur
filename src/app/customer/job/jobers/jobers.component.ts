@@ -6,7 +6,7 @@ import { ChauffeurDto } from './../../../models/chauffeur';
 import { FormBuilder } from '@angular/forms';
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
 
 
@@ -24,33 +24,65 @@ export class JobersComponent implements OnInit {
 
   id : number;
   p : number=1;
-  searchText;
+
+  chauffeurListDTOBySelected: ChauffeurDto[];
+
+  public currentTime: number = 0;
+
+  searchText: boolean = false;
 
   constructor(public chauffeurService: ChauffeurService,
               private dashboardService: DashboardService,
+              private activeRoute: ActivatedRoute,
               private router: Router,
               private fb: FormBuilder
   ) {
    }
 
   ngOnInit(): void {
-    this.getListChauffeurDTOs();
+    this.activeRoute.paramMap.subscribe(()=>{
+      this.getListChauffeurDTOs();
+      }
+    );
 
     this.getNumberOfAnnonces();
 
     this.getNumberOfChauffeurs();
   }
 
-  public getListChauffeurDTOs() {
-    this.chauffeurService.getChauffeurDTOs().subscribe(
+  getListChauffeurDTOs() {
+    this.searchText = this.activeRoute.snapshot.paramMap.has('keyword');
+    if (this.searchText) {
+      // do search work
+      this.getChauffeurListDTOsBySearchKeyword();
+    } else {
+      //display product list
+      this.getChauffeurListDTOsBySelectedIsTrue();
+    }
+  }
+
+  public getChauffeurListDTOsBySelectedIsTrue() {
+    this.chauffeurService.getListChauffeurDTOBySelectedIsTrue().subscribe(
       (response: ChauffeurDto[]) => {
-        this.chauffeurListDTO = response;
-        console.log(this.chauffeurListDTO);
+        this.chauffeurListDTOBySelected = response;
+        console.log(this.chauffeurListDTOBySelected);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+
+  }
+
+  getChauffeurListDTOsBySearchKeyword() {
+    const keyword: string = this.activeRoute.snapshot.paramMap.get('keyword');
+    this.chauffeurService.getListChauffeurDTOByKeyword(keyword).subscribe(
+      data  => {
+        this.chauffeurListDTOBySelected = data;
+      }
+
+    )
+
   }
 
   getNumberOfChauffeurs(): void {

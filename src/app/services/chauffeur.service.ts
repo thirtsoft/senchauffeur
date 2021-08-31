@@ -70,6 +70,10 @@ export class ChauffeurService {
   //  return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByPageables?page=`+page+"&size="+size);
   }
 
+  public getListChauffeurDTOBySelectedIsTrue(): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurBySelectedIsTrue`);
+  }
+
   public getListChauffeurDTOByKeyword(keyword: string): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByKeyword?keyword=`+keyword);
   }

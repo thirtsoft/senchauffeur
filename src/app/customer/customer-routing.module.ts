@@ -30,6 +30,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent
   },
+
+  { path: 'search/:keyword',
+    component: HomeComponent
+  },
   /*
   {
     path: 'permis/:id',

@@ -53,6 +53,7 @@ import { ListJobParmisComponent } from './job/list-job-parmis/list-job-parmis.co
 import { SearchJobByReferenceComponent } from './job/search-job-by-reference/search-job-by-reference.component';
 import { ListJobPermisComponent } from './job/list-job-permis/list-job-permis.component';
 import { PublierOffreComponent } from './publier-offre/publier-offre.component';
+import { ListTarifCustomerComponent } from './list-tarif-customer/list-tarif-customer.component';
 
 
 
@@ -84,7 +85,8 @@ import { PublierOffreComponent } from './publier-offre/publier-offre.component';
     ListJobParmisComponent,
     SearchJobByReferenceComponent,
     ListJobPermisComponent,
-    PublierOffreComponent
+    PublierOffreComponent,
+    ListTarifCustomerComponent
   ],
   imports: [
     CommonModule,

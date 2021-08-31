@@ -1,1 +1,22 @@
-<p>search-chauffeur works!</p>
+<div class="find-job-bx">
+  <p class="site-button button-sm">Vous etes chauffeur, trouvez l'emploi de votre reve</p>
+  <h2>Entreprise, Particulier, trouvez plus <br/> <span class="text-primary">{{numberOfChauffeur}},000</span> Chauffeurs inscrits.</h2>
+  <form class="dezPlaceAni">
+      <div class="row">
+          <div class="col-lg-8 col-md-6">
+              <div class="form-group">
+                  <label>Rechercher par, exemple: Chauffeur particulier</label>
+                  <div class="input-group">
+                    <input type="text" #searchInput (keyup.enter)="searchArticle(searchInput.value)" class="form-control" placeholder="">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+              <button type="submit" class="site-button btn-block" (click)="searchArticle(searchInput.value)">Trouver un chauffeur</button>
+          </div>
+      </div>
+  </form>
+</div>
