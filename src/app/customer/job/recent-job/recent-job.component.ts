@@ -1,3 +1,4 @@
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -14,6 +15,7 @@ export class RecentJobComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
   editAnnonceDTO: AnnonceDto;
+  numberOfAnnonce;
 
   id : number;
   p : number=1;
@@ -34,20 +36,23 @@ export class RecentJobComponent implements OnInit {
   searchMode: boolean = false;
 
   constructor(private annonceService: AnnonceService,
+              private dashboardService: DashboardService,
               private router: Router,
               private fb: FormBuilder,
               private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+
     this.getAnnonceListDTOs();
 
-  //  this.getAnnonceListDTOsByPermiss();
+    this.getNumberOfAnnonces();
+
 
   }
 
   public getAnnonceListDTOs() {
-    this.annonceService.getAnnonceDTOs().subscribe(
+    this.annonceService.getListAnnonceDTOBySelectedIsTrue().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
         console.log(this.annonceListDTO);
@@ -58,6 +63,13 @@ export class RecentJobComponent implements OnInit {
     );
 
   }
+
+  getNumberOfAnnonces(): void {
+    this.dashboardService.countNumberOfAnnonces().subscribe(data => {
+      this.numberOfAnnonce = data;
+    });
+  }
+
 
   public getAnnonceListDTOsByPermiss() {
     const hasPermId: boolean = this.route.snapshot.paramMap.has('id');

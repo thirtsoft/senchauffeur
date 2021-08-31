@@ -23,7 +23,7 @@ export class AnnonceService {
   }
 
 
-  /**************************** ChauffeurDTO ******************/
+  /**************************** AnnonceDTO ******************/
   public getAnnonceDTOs(): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/all`);
   }
@@ -51,6 +51,10 @@ export class AnnonceService {
   public getListAnnonceDTOByPageable(page: number, size: number): Observable<AnnonceDto[]> {
     const searchUrl = (this.apiServerUrl+"/annonces/searchAnnonceByPageables?page="+page+"&size="+size);
     return this.http.get<AnnonceDto[]>(searchUrl);
+  }
+
+  public getListAnnonceDTOBySelectedIsTrue(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceBySelectedIsTrue`);
   }
 
   public getListAnnonceDTOByKeyword(reference: string): Observable<AnnonceDto[]> {
