@@ -109,6 +109,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		Permis p2 = permisRepository.save(new Permis(2L, "P2","Permis Professionnel",5));
 		Permis p3 = permisRepository.save(new Permis(3L, "P3","Permis Tracteur",15));
 		Permis p4 = permisRepository.save(new Permis(4L, "P4","Permis Transport",20));
+		Permis p5 = permisRepository.save(new Permis(5L, "P5","Permis Conducteur d’Engin",20));
 		
 		Ville v1 = villeRepository.save(new Ville(1L, "v1","Ziguinchor, Casamance","Senegal"));
 		Ville v2 = villeRepository.save(new Ville(2L, "v2","Dakar, Dakar","Senegal"));
@@ -132,46 +133,46 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		Addresse ad14 = addresseRepository.save(new Addresse(14L, "Diour","Diourbel","Rue 4","4M","Dakar","SENEGAL"));
 		
 		
-		Chauffeur ch1 = new Chauffeur(1L, "ch1","tairou","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
+		Chauffeur ch1 = new Chauffeur(1L, "Chauffeur Personnel","tairou","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
 				60.0000,"Dk-Zig-Thies", "Full-Time", "cv1.pdf","photo1.jpg",p1, ad1);
-		Chauffeur ch2 = new Chauffeur(2L, "ch2","Ablaye","Kanel","M","Rufisque","ablaye@gmail.com","777440310",7,
+		Chauffeur ch2 = new Chauffeur(2L, "Chauffeur particulier","Ablaye","Kanel","M","Rufisque","ablaye@gmail.com","777440310",7,
 				60.0000,"Dk-TAMBA", "Full-Time","cv2.pdf","photo2.jpg",p2, ad2);
-		Chauffeur ch3 = new Chauffeur(3L, "ch3","Kalidou","Badji","M","Parcelle","kalidou@gmail.com","776440310",10,
+		Chauffeur ch3 = new Chauffeur(3L, "Chauffeur Privé","Kalidou","Badji","M","Parcelle","kalidou@gmail.com","776440310",10,
 				60.0000,"Dk-Zig","Partial-Time","cv3.pdf","photo3.jpg",p3, ad1);
-		Chauffeur ch4 = new Chauffeur(4L, "ch4","Fatou","diop","F","Mariste","fatou@gmail.com","774560310",5,
+		Chauffeur ch4 = new Chauffeur(4L, "Chauffeur Livreur","Fatou","diop","F","Mariste","fatou@gmail.com","774560310",5,
 				60.0000,"Dk-Thies", "Partial-Time", "cv4.pdf","photo4.jpg",p4, ad3);
-		Chauffeur ch5 = new Chauffeur(5L, "ch1","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
+		Chauffeur ch5 = new Chauffeur(5L, "Chauffeur Touristique","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
 				60.0000,"Dk-Zig-Thies","Full-Time","cv5.pdf","photo5.jpg",p1, ad2);
-		Chauffeur ch6 = new Chauffeur(6L, "ch6","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310",7,
+		Chauffeur ch6 = new Chauffeur(6L, "Chauffeur Poids Lourds","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310",7,
 				60.0000,"Dk-TAMBA","Partail-Time","cv6.pdf","photo6.jpg",p2, ad1);
-		Chauffeur ch7 = new Chauffeur(7L, "ch7","Marie","Sane","M","Parcelle","kalidou@gmail.com","776440310",10,
-				60.0000,"Dk-Zig","Full-Time","cv7.pdf","photo7.jpg",p3, ad4);
-		Chauffeur ch8 = new Chauffeur(8L, "ch8","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
+		Chauffeur ch7 = new Chauffeur(7L, "Chauffeur Camion","Marie","Sane","M","Parcelle","kalidou@gmail.com","776440310",10,
+				60.0000,"Dk-Zig","Full-Time","cv7.pdf","photo7.jpg",p5, ad4);
+		Chauffeur ch8 = new Chauffeur(8L, "Chauffeur Bus","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
 				60.0000,"Dk-Thies","Partial-Time","cv8.pdf","photo1.jpg",p4, ad3);
-		Chauffeur ch9 = new Chauffeur(9L, "ch9","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
+		Chauffeur ch9 = new Chauffeur(9L, "Chauffeur Taxi","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
 				60.0000,"Dk-Thies","Full-Time","cv3.pdf","photo3.jpg",p4, ad4);
-		Chauffeur ch10 = new Chauffeur(10L, "ch10","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
+		Chauffeur ch10 = new Chauffeur(10L, "Chauffeur Transport","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
 				60.0000,"Dk-Thies","Partial-Time","cv5.pdf","photo4.jpg",p4, ad1);
 		
-		Chauffeur ch11 = new Chauffeur(11L, "ch11","Saliou","diallo","Homme","Mariste 1","s.diallo@gmail.com","779440310",3,
+		Chauffeur ch11 = new Chauffeur(11L, "Chauffeur Engin","Saliou","diallo","Homme","Mariste 1","s.diallo@gmail.com","779440310",3,
 				60.0000,"Dk-Zig-Thies", "Full-Time", "cv1.pdf","photo1.jpg",p1, ad11);
-		Chauffeur ch12 = new Chauffeur(12L, "ch12","Chauffeur12","Chauff12","M","Rufisque","ch@gmail.com","777440310",7,
+		Chauffeur ch12 = new Chauffeur(12L, "Chauffeur particulier","Chauffeur12","Chauff12","M","Rufisque","ch@gmail.com","777440310",7,
 				60.0000,"Dk-TAMBA", "Full-Time","cv2.pdf","photo2.jpg",p2, ad12);
-		Chauffeur ch13 = new Chauffeur(13L, "ch13","Chauffeur13","Chauffeur13","M","Parcelle","Chauffeur12@gmail.com","776440310",10,
+		Chauffeur ch13 = new Chauffeur(13L, "Chauffeur Taxi","Chauffeur13","Chauffeur13","M","Parcelle","Chauffeur12@gmail.com","776440310",10,
 				60.0000,"Dk-Zig","Partial-Time","cv3.pdf","photo3.jpg",p3, ad11);
-		Chauffeur ch14 = new Chauffeur(14L, "ch14","Fatou","diop","F","Mariste","fatou@gmail.com","774560310",5,
+		Chauffeur ch14 = new Chauffeur(14L, "Chauffeur Camion","Fatou","diop","F","Mariste","fatou@gmail.com","774560310",5,
 				60.0000,"Dk-Thies", "Partial-Time", "cv4.pdf","photo4.jpg",p4, ad13);
-		Chauffeur ch15 = new Chauffeur(15L, "ch15","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
+		Chauffeur ch15 = new Chauffeur(15L, "Chauffeur privé","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
 				60.0000,"Dk-Zig-Thies","Full-Time","cv5.pdf","photo5.jpg",p1, ad2);
-		Chauffeur ch16 = new Chauffeur(16L, "ch16","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310",7,
+		Chauffeur ch16 = new Chauffeur(16L, "Chauffeur bus","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310",7,
 				60.0000,"Dk-TAMBA","Partail-Time","cv6.pdf","photo6.jpg",p2, ad1);
-		Chauffeur ch17 = new Chauffeur(17L, "ch17","Marie","Sane","M","Parcelle","mari@gmail.com","776440310",10,
+		Chauffeur ch17 = new Chauffeur(17L, "Chauffeur livreur","Marie","Sane","M","Parcelle","mari@gmail.com","776440310",10,
 				60.0000,"Dk-Zig","Full-Time","cv7.pdf","photo7.jpg",p3, ad14);
-		Chauffeur ch18 = new Chauffeur(18L, "ch18","Saly","diop","F","Mariste","sly@gmail.com","774560310",5,
+		Chauffeur ch18 = new Chauffeur(18L, "Chauffeur transport","Saly","diop","F","Mariste","sly@gmail.com","774560310",5,
 				60.0000,"Dk-Thies","Partial-Time","cv8.pdf","photo1.jpg",p4, ad1);
-		Chauffeur ch19 = new Chauffeur(19L, "ch19","Asma","diop","F","Mariste","fatou@gmail.com","774560310",5,
+		Chauffeur ch19 = new Chauffeur(19L, "Chauffeur particulier","Asma","diop","F","Mariste","fatou@gmail.com","774560310",5,
 				60.0000,"Dk-Thies","Full-Time","cv3.pdf","photo3.jpg",p4, ad10);
-		Chauffeur ch20 = new Chauffeur(20L, "ch20","Salif","diop","Femme","Mariste","fatou@gmail.com","774560310",5,
+		Chauffeur ch20 = new Chauffeur(20L, "Chauffeur taxi","Salif","diop","Femme","Mariste","fatou@gmail.com","774560310",5,
 				60.0000,"Dk-Thies","Partial-Time","cv5.pdf","photo4.jpg",p4, ad9);
 		
 		chauffeurRepository.save(ch1); chauffeurRepository.save(ch2);

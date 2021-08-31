@@ -30,7 +30,7 @@ public class Chauffeur implements Serializable {
 
 	@Column(name = "reference", length = 50)
 	private String reference;
-
+	
 	@Column(name = "firstName", length = 90)
 	private String firstName;
 
