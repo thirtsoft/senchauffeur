@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chauffeur.dto.AnnonceDto;
-
+import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
 
@@ -40,7 +40,10 @@ public interface AnnonceApi {
 
 	@GetMapping(value = APP_ROOT + "/annonces/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> findAll();
-
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceBySelectedIsTrue", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<AnnonceDto> getListAnnonceBySelected();
+	    
 	@DeleteMapping(value = APP_ROOT + "/annonces/delete/{idAnnonce}")
 	void delete(@PathVariable("idAnnonce") Long idAnnonce);
 	

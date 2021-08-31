@@ -22,6 +22,8 @@ public interface AnnonceService {
 
     List<AnnonceDto> findAll();
     
+    List<AnnonceDto> findListAnnonceBySelected();
+    
     List<AnnonceDto> findListAnnonceByKeyword(String keyword);
     
     List<AnnonceDto> findListAnnonceByLibelle(String libelle);

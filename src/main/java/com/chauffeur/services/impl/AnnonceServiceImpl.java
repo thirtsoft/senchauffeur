@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.chauffeur.dto.AnnonceDto;
+import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Annonce;
@@ -107,9 +108,9 @@ public class AnnonceServiceImpl implements AnnonceService {
         AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(annonce.get());
         annonceDtoResult.setReference(annonceDto.getReference());
         annonceDtoResult.setLibelle(annonceDto.getLibelle());
-        annonceDtoResult.setModeCandidature(annonceDto.getModeCandidature());
         annonceDtoResult.setTime(annonceDto.getTime());
         annonceDtoResult.setAnneeExperience(annonceDto.getAnneeExperience());
+        annonceDtoResult.setSelected(annonceDto.isSelected());
         annonceDtoResult.setDescription(annonceDto.getDescription());
         annonceDtoResult.setLieuPoste(annonceDto.getLieuPoste());
         annonceDtoResult.setSalaire(annonceDto.getSalaire());
@@ -125,6 +126,13 @@ public class AnnonceServiceImpl implements AnnonceService {
         				AnnonceDto.fromDtoToEntity(annonceDtoResult)
                 )
         );
+	}
+	
+	@Override
+	public List<AnnonceDto> findListAnnonceBySelected() {
+		return annonceRepository.findAnnonceBySelected().stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
 	}
 
 	@Override
@@ -148,11 +156,7 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .collect(Collectors.toList());
 	}
 
-	@Override
-	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
-		return annonceRepository.findAll(pageable)
-                .map(AnnonceDto::fromEntityToDto);
-	}
+	
 
 	@Override
 	public List<AnnonceDto> findListAnnonceByPermis(Long pId) {
@@ -172,7 +176,12 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto);
 	}
 
-
-
+	@Override
+	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
+		return annonceRepository.findAll(pageable)
+                .map(AnnonceDto::fromEntityToDto);
+	}
+	
+	
 	
 }

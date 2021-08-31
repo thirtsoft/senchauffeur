@@ -29,11 +29,11 @@ public class AnnonceDto {
 	
 	private String salaire;
 	
-	private String modeCandidature;
-	
 	private String time;
 	
 	private String anneeExperience;
+	
+	private boolean selected;
 	
 	private String description;
 
@@ -62,10 +62,10 @@ public class AnnonceDto {
 				.libelle(annonce.getLibelle())
 				.lieuPoste(annonce.getLieuPoste())
 				.salaire(annonce.getSalaire())
-				.modeCandidature(annonce.getModeCandidature())
 				.emailPoste(annonce.getEmailPoste())
 				.time(annonce.getTime())
 				.anneeExperience(annonce.getAnneeExperience())
+				.selected(annonce.isSelected())
 				.description(annonce.getDescription())
 				.dateCandidature(annonce.getDateCandidature())
 				.dateCloture(annonce.getDateCloture())
@@ -88,10 +88,10 @@ public class AnnonceDto {
 		annonce.setLibelle(annonceDto.getLibelle());
 		annonce.setLieuPoste(annonceDto.getLieuPoste());
 		annonce.setSalaire(annonceDto.getSalaire());
-		annonce.setModeCandidature(annonceDto.getModeCandidature());
 		annonce.setTime(annonceDto.getTime());
 		annonce.setEmailPoste(annonceDto.getEmailPoste());
 		annonce.setAnneeExperience(annonce.getAnneeExperience());
+		annonce.setSelected(annonceDto.isSelected());
 		annonce.setDescription(annonceDto.getDescription());
 		annonce.setDateCandidature(annonceDto.getDateCandidature());
 		annonce.setDateCloture(annonceDto.getDateCloture());

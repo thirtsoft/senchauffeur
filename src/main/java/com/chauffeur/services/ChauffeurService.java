@@ -29,6 +29,8 @@ public interface ChauffeurService {
 
     List<ChauffeurDto> findAll();
     
+    List<ChauffeurDto> findListChauffeurBySelected();
+    
     List<ChauffeurDto> findListChauffeurByPermis(Long pId);
     
     List<ChauffeurDto> findListChauffeurByKeyword(String keyword);

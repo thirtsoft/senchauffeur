@@ -48,6 +48,9 @@ public interface ChauffeurApi {
     @DeleteMapping(value = APP_ROOT + "/chauffeurs/delete/{idChauffeur}")
     void delete(@PathVariable("idChauffeur") Long id);
     
+    @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurBySelectedIsTrue", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<ChauffeurDto> getListChauffeurBySelected();
+    
     @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeursByPermis/{pId}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	List<ChauffeurDto> getListChauffeurByPermis(@PathVariable("pId") Long pId);

@@ -68,6 +68,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeurDtoResult.setPhoneChauffeur(chauffeurDto.getPhoneChauffeur());
         chauffeurDtoResult.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());
         chauffeurDtoResult.setPretentionSalaire(chauffeurDto.getPretentionSalaire());
+        chauffeurDtoResult.setSelected(chauffeurDto.isSelected());
         chauffeurDtoResult.setCvChauffeur(chauffeurDto.getCvChauffeur());
         chauffeurDtoResult.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
         chauffeurDtoResult.setDisponibity(chauffeurDto.getDisponibity());
@@ -132,31 +133,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
                 )
         );
 	}
-
-	@Override
-	public List<ChauffeurDto> findListChauffeurByKeyword(String keyword) {
-		if (keyword == null) {
-            log.error("Article not found");
-        }
-		
-        return chauffeurRepository.findChauffeurByKeyword(keyword).stream()
-                .map(ChauffeurDto::fromEntityToDto)
-                .collect(Collectors.toList());
-	}
-
-	@Override
-	public Page<ChauffeurDto> findChauffeurByPageable(Pageable pageable) {
-		return chauffeurRepository.findAllChauffeurByPageable(pageable)
-                .map(ChauffeurDto::fromEntityToDto);
-	}
-
-	@Override
-	public List<ChauffeurDto> findListChauffeurByPermis(Long pId) {
-		return chauffeurRepository.findChauffeurByPermis(pId).stream()
-				.map(ChauffeurDto::fromEntityToDto)
-                .collect(Collectors.toList());
-	}
-
+	
 	@Override
 	public ChauffeurDto findByReference(String reference) {
 		if (!StringUtils.hasLength(reference)) {
@@ -170,10 +147,52 @@ public class ChauffeurServiceImpl implements ChauffeurService {
                         "Aucnun Annonce avec l'Id = " + reference + "n'a été trouvé")
         );
 	}
+	
+	@Override
+	public List<ChauffeurDto> findChauffeurByDisponibility(String disponility) {
+		return chauffeurRepository.findChauffeurByDisponibility('%'+disponility+'%').stream()
+				.map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	
+	@Override
+	public List<ChauffeurDto> findListChauffeurBySelected() {
+		return chauffeurRepository.findChauffeurBySelected().stream()
+                .map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+
+	@Override
+	public List<ChauffeurDto> findListChauffeurByKeyword(String keyword) {
+		if (keyword == null) {
+            log.error("Article not found");
+        }
+		
+        return chauffeurRepository.findChauffeurByKeyword(keyword).stream()
+                .map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	
+	@Override
+	public List<ChauffeurDto> findListChauffeurByPermis(Long pId) {
+		return chauffeurRepository.findChauffeurByPermis(pId).stream()
+				.map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
 
 	@Override
 	public BigDecimal countNumbersOfChauffeurs() {
 		return chauffeurRepository.countNumberOfChauffeurs();
+	}
+	
+	@Override
+	public Page<ChauffeurDto> findChauffeurByPageable(Pageable pageable) {
+		return chauffeurRepository.findAllChauffeurByPageable(pageable)
+                .map(ChauffeurDto::fromEntityToDto);
 	}
 
 	@Override
@@ -192,20 +211,12 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 		 return chauffeurRepository.findChauffeurByLocalityPageables(addId, pageable)
 	                .map(ChauffeurDto::fromEntityToDto);
 	}
-
-	@Override
-	public List<ChauffeurDto> findChauffeurByDisponibility(String disponility) {
-		return chauffeurRepository.findChauffeurByDisponibility('%'+disponility+'%').stream()
-				.map(ChauffeurDto::fromEntityToDto)
-                .collect(Collectors.toList());
-	}
-
+	
 	@Override
 	public Page<ChauffeurDto> findChauffeurByPermisPageables(Long permisId, Pageable pageable) {
 		return chauffeurRepository.findChauffeurByPermisPageables(permisId, pageable)
                 .map(ChauffeurDto::fromEntityToDto);
 	}
 
-	
 
 }

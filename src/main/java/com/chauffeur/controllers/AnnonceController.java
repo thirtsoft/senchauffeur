@@ -60,6 +60,11 @@ public class AnnonceController implements AnnonceApi {
 	}
 	
 	@Override
+	public List<AnnonceDto> getListAnnonceBySelected() {
+		return annonceService.findListAnnonceBySelected();
+	}
+	
+	@Override
 	public List<AnnonceDto> getListAnnonceByPermis(Long pId) {
 		return annonceService.findListAnnonceByPermis(pId);
 	}
@@ -93,6 +98,5 @@ public class AnnonceController implements AnnonceApi {
         return annonceService.findAnnonceByPermisByPageable(permisId, pageable);
 	}
 
-	
 	
 }

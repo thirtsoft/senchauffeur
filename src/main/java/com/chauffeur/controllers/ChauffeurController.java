@@ -31,7 +31,6 @@ import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.services.ChauffeurService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.Value;
 
 @RestController
 @CrossOrigin
@@ -251,6 +250,10 @@ public class ChauffeurController implements ChauffeurApi {
 	public Page<ChauffeurDto> getChauffeurByPermisPageables(Long permisId, int page, int size) {
 		final Pageable pageable = PageRequest.of(page, size);
 	    return chauffeurService.findChauffeurByPermisPageables(permisId, pageable);
+	}
+	@Override
+	public List<ChauffeurDto> getListChauffeurBySelected() {
+		return chauffeurService.findListChauffeurBySelected();
 	}
 	
 

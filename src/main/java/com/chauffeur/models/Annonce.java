@@ -54,14 +54,15 @@ public class Annonce implements Serializable {
 	@Column(name = "emailPoste", length = 90)
 	private String emailPoste;
 
-	@Column(name = "modeCandidature", length = 50)
-	private String modeCandidature;
 	
 	@Column(name = "time", length = 50)
 	private String time;
 	
 	@Column(name = "anneeExperience")
 	private String anneeExperience;
+	
+	@Column(name = "isSelected")
+	private boolean selected;
 	
 	@Column(name = "description")
 	@Lob

@@ -50,7 +50,7 @@ public class Chauffeur implements Serializable {
 	private String phoneChauffeur;
 	
 	@Column(name = "experience", length = 50)
-	private Integer nbreAnneeExperience;
+	private String nbreAnneeExperience;
 	
 	@Column(name = "pretentionSalaire", length = 90)
 	private Double pretentionSalaire;
@@ -60,6 +60,8 @@ public class Chauffeur implements Serializable {
 	
 	@Column(name = "disponibility", length = 20)
 	private String disponibity;
+	
+	 private boolean selected;
 
 	@Column(name = "cvChauffeur", length = 30)
 	private String cvChauffeur;

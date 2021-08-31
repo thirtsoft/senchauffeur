@@ -33,7 +33,7 @@ public class Tarif implements Serializable {
 	private String reference;
 	
 	@Column(name = "montant", length = 50)
-	private Double montantTarif;
+	private String montantTarif;
 	
 	@Column(name = "description", length = 100)
 	private String description;
