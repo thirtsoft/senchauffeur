@@ -1,15 +1,17 @@
+import { TermeConditionsComponent } from './entreprise/terme-conditions/terme-conditions.component';
+import { ListTarifCustomerComponent } from './job/list-tarif-customer/list-tarif-customer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListNotificationComponent } from './notation/list-notification/list-notification.component';
-import { AboutUsComponent } from './about-us/about-us.component';
+import { AboutUsComponent } from './entreprise/about-us/about-us.component';
 import { AideComponent } from './aide/aide.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { JobDetailComponent } from './job/job-detail/job-detail.component';
 import { JobbrowserComponent } from './job/jobbrowser/jobbrowser.component';
-import { ContactComponent } from './contact/contact.component';
+import { ContactComponent } from './entreprise/contact/contact.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
-import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
+import { SearchOffreEmployeComponent } from './job/search-offre-employe/search-offre-employe.component';
 import { SearchChauffeurComponent } from './candidate/search-chauffeur/search-chauffeur.component';
 import { DetailChauffeurComponent } from './candidate/detail-chauffeur/detail-chauffeur.component';
 import { AddEmployeComponent } from './emploi/add-employe/add-employe.component';
@@ -18,9 +20,9 @@ import { HomeComponent } from './home/home.component';
 import { CandidatebrowerComponent } from './candidate/candidatebrower/candidatebrower.component';
 import { ListJobComponent } from './job/list-job/list-job.component';
 import { CreateJobComponent } from './job/create-job/create-job.component';
-import { PublierOffreComponent } from './publier-offre/publier-offre.component';
-import { CompaniesComponent } from './companies/companies.component';
-import { FaqComponent } from './faq/faq.component';
+import { PublierOffreComponent } from './job/publier-offre/publier-offre.component';
+import { CompaniesComponent } from './entreprise/companies/companies.component';
+import { FaqComponent } from './entreprise/faq/faq.component';
 import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
 
 const routes: Routes = [
@@ -136,6 +138,14 @@ const routes: Routes = [
   {
     path: 'faq',
     component: FaqComponent
+  },
+  {
+    path: 'browse-tarifs',
+    component: ListTarifCustomerComponent
+  },
+  {
+    path: 'termesCondition',
+    component: TermeConditionsComponent
   },
   {
     path: '404',

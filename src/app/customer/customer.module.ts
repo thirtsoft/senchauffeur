@@ -26,16 +26,16 @@ import { DataTablesModule } from 'angular-datatables';
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
-import { SearchOffreEmployeComponent } from './search-offre-employe/search-offre-employe.component';
+import { SearchOffreEmployeComponent } from './job/search-offre-employe/search-offre-employe.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
 import { ListNotificationComponent } from './notation/list-notification/list-notification.component';
-import { ContactComponent } from './contact/contact.component';
+import { ContactComponent } from './entreprise/contact/contact.component';
 
 import { AideComponent } from './aide/aide.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { CompaniesComponent } from './companies/companies.component';
-import { FaqComponent } from './faq/faq.component';
+import { AboutUsComponent } from './entreprise/about-us/about-us.component';
+import { CompaniesComponent } from './entreprise/companies/companies.component';
+import { FaqComponent } from './entreprise/faq/faq.component';
 import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
 import { DetailChauffeurComponent } from './candidate/detail-chauffeur/detail-chauffeur.component';
 import { SearchChauffeurComponent } from './candidate/search-chauffeur/search-chauffeur.component';
@@ -52,8 +52,14 @@ import { SearchInCandidatesComponent } from './candidate/search-in-candidates/se
 import { ListJobParmisComponent } from './job/list-job-parmis/list-job-parmis.component';
 import { SearchJobByReferenceComponent } from './job/search-job-by-reference/search-job-by-reference.component';
 import { ListJobPermisComponent } from './job/list-job-permis/list-job-permis.component';
-import { PublierOffreComponent } from './publier-offre/publier-offre.component';
-import { ListTarifCustomerComponent } from './list-tarif-customer/list-tarif-customer.component';
+import { PublierOffreComponent } from './job/publier-offre/publier-offre.component';
+import { ListTarifCustomerComponent } from './job/list-tarif-customer/list-tarif-customer.component';
+import { TermeConditionsComponent } from './entreprise/terme-conditions/terme-conditions.component';
+import { DetailEmployeurComponent } from './employeur/detail-employeur/detail-employeur.component';
+import { JetonEmployeurComponent } from './employeur/jeton-employeur/jeton-employeur.component';
+import { InfoEmployeurComponent } from './employeur/info-employeur/info-employeur.component';
+import { ModifyInfoEmployeurComponent } from './employeur/modify-info-employeur/modify-info-employeur.component';
+import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-employeur/modify-password-employeur.component';
 
 
 
@@ -86,7 +92,13 @@ import { ListTarifCustomerComponent } from './list-tarif-customer/list-tarif-cus
     SearchJobByReferenceComponent,
     ListJobPermisComponent,
     PublierOffreComponent,
-    ListTarifCustomerComponent
+    ListTarifCustomerComponent,
+    TermeConditionsComponent,
+    DetailEmployeurComponent,
+    JetonEmployeurComponent,
+    InfoEmployeurComponent,
+    ModifyInfoEmployeurComponent,
+    ModifyPasswordEmployeurComponent
   ],
   imports: [
     CommonModule,
