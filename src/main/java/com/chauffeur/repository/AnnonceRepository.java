@@ -33,6 +33,11 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	 
 	@Query("select p from Annonce p where p.permis.id =:pId")
 	List<Annonce> findAnnonceByPermis(@Param("pId") Long permisId);
+	
+	List<Annonce> findTop10ByOrderByIdDesc();
+	
+
+//	Page<Vinyl> findTop10ByOrderByVinylIDDescPriceAsc(Pageable pageable);
 	 
 	@Query("select p from Annonce p")
 	Page<Annonce> findAnnonce(Pageable pageable);

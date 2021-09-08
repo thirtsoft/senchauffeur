@@ -55,6 +55,11 @@ public interface AnnonceApi {
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListAnnonceByLibelle(@RequestParam(name = "libelle") String libelle);
 	
+	@GetMapping(value = APP_ROOT + "/annonces/search10LatestAnnonceByIdDesc", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	List<AnnonceDto> get10LatestAnnonceRecordOrderByIdDesc();
+	
+	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnoncesByPermis/{pId}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListAnnonceByPermis(@PathVariable("pId") Long pId);

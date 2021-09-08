@@ -79,7 +79,11 @@ public class AnnonceController implements AnnonceApi {
 	public List<AnnonceDto> getListAnnonceByLibelle(String libelle) {
 		return annonceService.findListAnnonceByLibelle("%" + libelle + "%");
 	}
-
+	
+	@Override
+	public List<AnnonceDto> get10LatestAnnonceRecordOrderByIdDesc() {
+		return annonceService.find10LatestRecordsByOrderByIdDesc();
+	}
 
 	@Override
 	public Page<AnnonceDto> getListAnnonceByPageable(int page, int size) {
@@ -97,6 +101,8 @@ public class AnnonceController implements AnnonceApi {
 		final Pageable pageable = PageRequest.of(page, size);
         return annonceService.findAnnonceByPermisByPageable(permisId, pageable);
 	}
+
+	
 
 	
 }

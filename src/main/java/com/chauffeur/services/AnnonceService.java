@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.dto.ChauffeurDto;
+import com.chauffeur.models.Annonce;
 
 public interface AnnonceService {
 	
@@ -29,6 +30,8 @@ public interface AnnonceService {
     List<AnnonceDto> findListAnnonceByLibelle(String libelle);
     
     List<AnnonceDto> findListAnnonceByPermis(Long pId);
+    
+    List<AnnonceDto> find10LatestRecordsByOrderByIdDesc();
     
     BigDecimal countNumbersOfAnnonces();
 

@@ -155,8 +155,14 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
-
 	
+	@Override
+	public List<AnnonceDto> find10LatestRecordsByOrderByIdDesc() {
+		return annonceRepository.findTop10ByOrderByIdDesc()
+        		.stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
 
 	@Override
 	public List<AnnonceDto> findListAnnonceByPermis(Long pId) {
@@ -181,6 +187,8 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonceRepository.findAll(pageable)
                 .map(AnnonceDto::fromEntityToDto);
 	}
+
+	
 	
 	
 	
