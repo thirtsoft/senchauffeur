@@ -231,12 +231,14 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a4.setSalaire("$1800 - $3500"); a4.setReference("leger"); a4.setLibelle("Conducteur Poids Legere");
 		a4.setPermis(p3); a4.setRecruteur(r3); a4.setAddresse(ad4); a4.setTime("Partial-Time");
 		a4.setDateCandidature(new Date()); a4.setDateCloture(new Date());
+		a4.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		annonceRepository.save(a4); a4.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a5.setId(5L); a5.setLieuPoste("Ziguinchor, Casamance"); a5.setSelected(true);;
 		a5.setSalaire("$1500 - $3000"); a5.setReference("pro"); a5.setLibelle("Chauffeur Professionnel"); 
 		a5.setPermis(p1); a5.setRecruteur(r2); a5.setAddresse(ad5);
 		a5.setTime("Partial-Time");a5.setDateCandidature(new Date()); a5.setDateCloture(new Date());
+		a5.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		a5.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a6.setId(6L); a6.setLieuPoste("Thies, Senegal"); a6.setSelected(false);;
@@ -244,6 +246,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a6.setPermis(p3); a6.setRecruteur(r3); a6.setAddresse(ad6);
 		a6.setTime("Full-Time");
 		a6.setDateCandidature(new Date()); a6.setDateCloture(new Date());
+		a6.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		a6.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a7.setId(7L); a7.setLieuPoste("DK"); a7.setSelected(false);;

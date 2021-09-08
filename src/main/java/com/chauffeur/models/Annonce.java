@@ -61,6 +61,9 @@ public class Annonce implements Serializable {
 	@Column(name = "anneeExperience")
 	private String anneeExperience;
 	
+	@Column(name = "typeContrat")
+	private String typeContrat;
+	
 	@Column(name = "isSelected")
 	private boolean selected;
 	
@@ -76,7 +79,7 @@ public class Annonce implements Serializable {
 
 	
 	@Enumerated(EnumType.STRING)
-    @NaturalId
+//    @NaturalId
     @Column(length = 90)
     private StatusAnnonce statusAnnonce;
 

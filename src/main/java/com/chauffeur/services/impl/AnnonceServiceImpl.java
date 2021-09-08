@@ -37,6 +37,7 @@ public class AnnonceServiceImpl implements AnnonceService {
 
     @Override
     public AnnonceDto save(AnnonceDto annonceDto) {
+    	annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
 
         return AnnonceDto.fromEntityToDto(
         		annonceRepository.save(
@@ -110,6 +111,7 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setLibelle(annonceDto.getLibelle());
         annonceDtoResult.setTime(annonceDto.getTime());
         annonceDtoResult.setAnneeExperience(annonceDto.getAnneeExperience());
+        annonceDtoResult.setTypeContrat(annonceDto.getTypeContrat());
         annonceDtoResult.setSelected(annonceDto.isSelected());
         annonceDtoResult.setDescription(annonceDto.getDescription());
         annonceDtoResult.setLieuPoste(annonceDto.getLieuPoste());
