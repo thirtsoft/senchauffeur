@@ -98,7 +98,7 @@ import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-em
     JetonEmployeurComponent,
     InfoEmployeurComponent,
     ModifyInfoEmployeurComponent,
-    ModifyPasswordEmployeurComponent
+    ModifyPasswordEmployeurComponent,
   ],
   imports: [
     CommonModule,

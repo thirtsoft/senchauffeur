@@ -37,22 +37,20 @@ export class RecentJobComponent implements OnInit {
 
   constructor(private annonceService: AnnonceService,
               private dashboardService: DashboardService,
-              private router: Router,
-              private fb: FormBuilder,
               private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
 
-    this.getAnnonceListDTOs();
+    this.get5LatestAnnonceListDTOs();
 
     this.getNumberOfAnnonces();
 
 
   }
 
-  public getAnnonceListDTOs() {
-    this.annonceService.getListAnnonceDTOBySelectedIsTrue().subscribe(
+  public get5LatestAnnonceListDTOs() {
+    this.annonceService.get5LatestAnnonceDTOByOrderByIdDesc().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
         console.log(this.annonceListDTO);

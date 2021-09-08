@@ -42,6 +42,7 @@ import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeu
 import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteur.component';
+import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-encours/annonce-by-status-encours.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteu
     ViewChauffeurComponent,
     CreateTarifComponent,
     ListTarifComponent,
-    ViewRecruteurComponent
+    ViewRecruteurComponent,
+    AnnonceByStatusEncoursComponent
   ],
   imports: [
     CommonModule,

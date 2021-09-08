@@ -65,6 +65,14 @@ export class AnnonceService {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByLibelle?libelle=`+libelle);
   }
 
+  public get5LatestAnnonceDTOByOrderByIdDesc(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/search5LatestAnnonceByIdDesc`);
+  }
+
+  public getAnnonceDTOByStatusEncours(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByStatusEncours`);
+  }
+
   public getListAnnonceDTOByPermis(pId: number): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnoncesByPermis/${pId}`);
   }
