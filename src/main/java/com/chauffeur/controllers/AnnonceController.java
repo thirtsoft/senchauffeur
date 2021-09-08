@@ -81,8 +81,14 @@ public class AnnonceController implements AnnonceApi {
 	}
 	
 	@Override
-	public List<AnnonceDto> get10LatestAnnonceRecordOrderByIdDesc() {
-		return annonceService.find10LatestRecordsByOrderByIdDesc();
+	public List<AnnonceDto> get5LatestAnnonceRecordOrderByIdDesc() {
+		return annonceService.find5LatestRecordsByOrderByIdDesc();
+	}
+	
+	@Override
+	public List<AnnonceDto> getAnnonceByStatusEncours() {
+		return annonceService.findListAnnonceByStatusEncours();
+
 	}
 
 	@Override
@@ -104,5 +110,4 @@ public class AnnonceController implements AnnonceApi {
 
 	
 
-	
 }

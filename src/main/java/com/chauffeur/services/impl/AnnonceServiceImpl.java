@@ -157,12 +157,21 @@ public class AnnonceServiceImpl implements AnnonceService {
 	}
 	
 	@Override
-	public List<AnnonceDto> find10LatestRecordsByOrderByIdDesc() {
-		return annonceRepository.findTop10ByOrderByIdDesc()
+	public List<AnnonceDto> find5LatestRecordsByOrderByIdDesc() {
+		return annonceRepository.findTop5ByOrderByIdDesc()
         		.stream()
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<AnnonceDto> findListAnnonceByStatusEncours() {
+		return annonceRepository.findListAnnonceByStatusEncours()
+        		.stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
 
 	@Override
 	public List<AnnonceDto> findListAnnonceByPermis(Long pId) {
@@ -188,8 +197,6 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto);
 	}
 
-	
-	
 	
 	
 }

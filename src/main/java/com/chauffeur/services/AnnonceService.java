@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.chauffeur.dto.AnnonceDto;
@@ -31,7 +32,9 @@ public interface AnnonceService {
     
     List<AnnonceDto> findListAnnonceByPermis(Long pId);
     
-    List<AnnonceDto> find10LatestRecordsByOrderByIdDesc();
+    List<AnnonceDto> find5LatestRecordsByOrderByIdDesc();
+    
+	List<AnnonceDto> findListAnnonceByStatusEncours();
     
     BigDecimal countNumbersOfAnnonces();
 
