@@ -24,6 +24,7 @@
         "@angular/router": "~9.1.12",
         "@auth0/angular-jwt": "^5.0.2",
         "@ng-bootstrap/ng-bootstrap": "^9.1.1",
+        "@tinymce/tinymce-angular": "^4.2.4",
         "angular-datatables": "^12.0.0",
         "datatables.net": "^1.10.25",
         "datatables.net-dt": "^1.1.0",
