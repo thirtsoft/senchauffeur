@@ -103,19 +103,6 @@
             </div>
 
             <div class="row">
-                <!-- <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Date Candidate </label>
-                        <input type="text" class="form-control" [(ngModel)]="annonceDTO.dateCandidature" name="dateCandidature" id="dateCandidature" #dateCandidature="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                          (dateCandidature.touched || addAnnonceForm.submitted) &&
-                            dateCandidature.errors?.required
-                          ">
-                          dateCandidature est obligatoire
-                        </span>
-                    </div>
-
-                </div> -->
 
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -156,8 +143,32 @@
                     </div>
                 </div>
 
+                <div class="col-sm-6">
+                  <div class="form-group">
+                      <label>Type de Contrat </label>
+                      <input type="text" placeholder="Type de contrat"
+                        class="form-control"
+                        [(ngModel)]="annonceDTO.typeContrat"
+                        name="typeContrat" id="typeContrat" #typeContrat="ngModel" required />
+                      <span class="text-danger" *ngIf="
+                        (typeContrat.touched || addAnnonceForm.submitted) &&
+                        typeContrat.errors?.required
+                        ">
+                        typeContrat est obligatoire
+                      </span>
+                  </div>
+              </div>
+
             </div>
-            <div class="row">
+            <div class="form-group">
+                  <label>Description</label>
+                  <editor [(ngModel)]="annonceDTO.description"
+                    [init]="{plugins: 'link'}"
+                    name="description"
+                    #description="ngModel"
+                  ></editor>
+              </div>
+            <!-- <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="">Description</label>
@@ -170,7 +181,7 @@
                           </span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onUpdateAnnonce()">

@@ -22,6 +22,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { ListAnnonceComponent } from './annonce/list-annonce/list-annonce.component';
 import { CreateAnnonceComponent } from './annonce/create-annonce/create-annonce.component';
@@ -89,6 +90,7 @@ import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-enc
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    EditorModule,
   ]
 })
 export class AdminModule { }
