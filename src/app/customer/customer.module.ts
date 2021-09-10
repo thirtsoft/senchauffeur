@@ -18,6 +18,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '..//shared/shared.module';
 
@@ -25,6 +26,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { DataTablesModule } from 'angular-datatables';
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { SearchOffreEmployeComponent } from './job/search-offre-employe/search-offre-employe.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
@@ -123,6 +125,8 @@ import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-em
     Ng2SearchPipeModule,
     NgxPaginationModule,
     PdfViewerModule,
+    EditorModule,
+    NgbModule,
 
   ]
 })
