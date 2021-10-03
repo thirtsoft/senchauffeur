@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-/* import { environment } from 'src/environments/environment'; */
-import { environment } from 'src/environments/environment.prod';
-=======
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { TokenStorageService } from './../auth/security/token-storage.service';
 import { AnnonceDto } from './../models/annonce';
->>>>>>> dev
 
 @Injectable({
   providedIn: 'root'

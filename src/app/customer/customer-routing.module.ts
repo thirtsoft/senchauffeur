@@ -33,8 +33,6 @@ const routes: Routes = [
     component: HomeComponent
   },
 
-<<<<<<< HEAD
-=======
   { path: 'search/:keyword',
     component: HomeComponent
   },
@@ -44,7 +42,6 @@ const routes: Routes = [
     component: HomeComponent
   },
   */
->>>>>>> dev
   {
     path: 'emploies',
     component: ListEmployeComponent
@@ -154,6 +151,7 @@ const routes: Routes = [
     path: '404',
     component: PageNotFoundComponent
   },
+
 
 
 ];
