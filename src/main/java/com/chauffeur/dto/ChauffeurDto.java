@@ -1,6 +1,7 @@
 package com.chauffeur.dto;
 
 import com.chauffeur.models.Chauffeur;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ public class ChauffeurDto {
 	private Long id;
 	
 	private String reference;
-
+	
 	private String firstName;
 
 	private String lastName;
@@ -26,12 +27,14 @@ public class ChauffeurDto {
 	private String addressActuel;
 	
 	private String disponibity;
+	
+	private boolean selected;
 
 	private String email;
 	
 	private String phoneChauffeur;
 	
-	private Integer nbreAnneeExperience;
+	private String nbreAnneeExperience;
 
 	private Double pretentionSalaire;
 	
@@ -62,8 +65,9 @@ public class ChauffeurDto {
 				.pretentionSalaire(chauffeur.getPretentionSalaire())
 				.addressActuel(chauffeur.getAddressActuel())
 				.disponibity(chauffeur.getDisponibity())
-				.cvChauffeur(chauffeur.getCvChauffeur())
 				.mobilite(chauffeur.getMobilite())
+				.selected(chauffeur.isSelected())
+				.cvChauffeur(chauffeur.getCvChauffeur())
 				.photoChauffeur(chauffeur.getPhotoChauffeur())
 				.permisDto(PermisDto.fromEntityToDto(chauffeur.getPermis()))
 				.addresseDto(AddresseDto.fromEntityToDto(chauffeur.getAddresse()))
@@ -85,10 +89,11 @@ public class ChauffeurDto {
 		chauffeur.setPhoneChauffeur(chauffeurDto.getPhoneChauffeur());
 		chauffeur.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
 		chauffeur.setPretentionSalaire(chauffeurDto.getPretentionSalaire());
-		chauffeur.setCvChauffeur(chauffeurDto.getCvChauffeur());
 		chauffeur.setAddressActuel(chauffeurDto.getAddressActuel());
 		chauffeur.setDisponibity(chauffeurDto.getDisponibity());
 		chauffeur.setMobilite(chauffeurDto.getMobilite());
+		chauffeur.setSelected(chauffeurDto.isSelected());
+		chauffeur.setCvChauffeur(chauffeurDto.getCvChauffeur());
 		chauffeur.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());
 		chauffeur.setPermis(PermisDto.fromDtoToEntity(chauffeurDto.getPermisDto()));
 		chauffeur.setAddresse(AddresseDto.fromDtoToEntity(chauffeurDto.getAddresseDto()));

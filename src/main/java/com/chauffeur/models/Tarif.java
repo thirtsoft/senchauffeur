@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -33,9 +34,10 @@ public class Tarif implements Serializable {
 	private String reference;
 	
 	@Column(name = "montant", length = 50)
-	private Double montantTarif;
+	private String montantTarif;
 	
-	@Column(name = "description", length = 100)
+	@Column(name = "description")
+	@Lob
 	private String description;
 	
 //	@ManyToOne(cascade = CascadeType.PERSIST)

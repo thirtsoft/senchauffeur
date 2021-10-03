@@ -31,21 +31,20 @@ import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.services.ChauffeurService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.Value;
 
 @RestController
 @CrossOrigin
 public class ChauffeurController implements ChauffeurApi {
 	
-//	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
+	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
 	
 //	private final String chauffeurPhotosDir = "../../src//main//resources//static//images//";
 	
-	private static final String chauffeurPhotosDir = "./src/main/resources//static//images//";
+//	private static final String chauffeurPhotosDir = "./src/main/resources//static//images//";
 	 
-//	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
+	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
 	
-	private final String chauffeurCvDir = "./src/main/resources//static//cvs//";
+//	private final String chauffeurCvDir = "./src/main/resources//static//cvs//";
 	
 	
 	private ChauffeurService chauffeurService;
@@ -81,27 +80,6 @@ public class ChauffeurController implements ChauffeurApi {
 		
 	}
 	
-	/*
-	@Override
-	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
-			MultipartFile photoChauffeur,
-			MultipartFile cvChauffeur) throws IOException {
-		
-		ChauffeurDto chauffeurDto = new ObjectMapper().readValue(chauffeur, ChauffeurDto.class);
-	    
-		if (photoChauffeur != null && !photoChauffeur.isEmpty()) {
-	      	chauffeurDto.setPhotoChauffeur(photoChauffeur.getOriginalFilename());
-	      	photoChauffeur.transferTo(new File(chauffeurPhotosDir + photoChauffeur.getOriginalFilename()));
-	    }
-		
-		if (cvChauffeur != null && !cvChauffeur.isEmpty()) {
-        	chauffeurDto.setCvChauffeur(cvChauffeur.getOriginalFilename());
-        	cvChauffeur.transferTo(new File(chauffeurCvDir + cvChauffeur.getOriginalFilename()));
-        }
-		
-		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
-	}
-	*/
 	
 	@Override
 	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
@@ -122,6 +100,28 @@ public class ChauffeurController implements ChauffeurApi {
 		
 		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
 	}
+	/*
+	
+	@Override
+	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
+			MultipartFile photoChauffeur,
+			MultipartFile cvChauffeur) throws IOException {
+		
+		ChauffeurDto chauffeurDto = new ObjectMapper().readValue(chauffeur, ChauffeurDto.class);
+	    
+		if (photoChauffeur != null && !photoChauffeur.isEmpty()) {
+	      	chauffeurDto.setPhotoChauffeur(photoChauffeur.getOriginalFilename());
+	      	photoChauffeur.transferTo(new File(chauffeurPhotosDir + photoChauffeur.getOriginalFilename()));
+	    }
+		
+		if (cvChauffeur != null && !cvChauffeur.isEmpty()) {
+        	chauffeurDto.setCvChauffeur(cvChauffeur.getOriginalFilename());
+        	cvChauffeur.transferTo(new File(chauffeurCvDir + cvChauffeur.getOriginalFilename()));
+        }
+		
+		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
+	}
+	*/
 	
 	@Override
 	public List<ChauffeurDto> getListChauffeurByKeyword(String keyword) {
@@ -134,7 +134,7 @@ public class ChauffeurController implements ChauffeurApi {
         return chauffeurService.findChauffeurByPageable(pageable);
 	}
 	
-	/*
+	
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -144,9 +144,9 @@ public class ChauffeurController implements ChauffeurApi {
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
 
 	}
-	*/
+	
 
-
+/*
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -156,7 +156,7 @@ public class ChauffeurController implements ChauffeurApi {
         return Files.readAllBytes(Paths.get("./src/main/resources//static//images//" + chauffeurDto.getPhotoChauffeur()));
 
 	}
-	
+	*/
 	
 	@Override
 	public void uploadPhotoChauffeur(MultipartFile photoChauffeur, Long idChauffeur) throws IOException {
@@ -170,7 +170,7 @@ public class ChauffeurController implements ChauffeurApi {
 		
 	}
 	
-	/*
+	
 	@Override
 	public byte[] getCvChauffeur(Long id) throws Exception {
 		
@@ -181,8 +181,8 @@ public class ChauffeurController implements ChauffeurApi {
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/" + chauffeurDto.getCvChauffeur()));
 
 	}
-	*/
 	
+	/*
 	@Override
 	public byte[] getCvChauffeur(Long id) throws Exception {
 		
@@ -192,7 +192,7 @@ public class ChauffeurController implements ChauffeurApi {
       
         return Files.readAllBytes(Paths.get("./src/main/resources//static//cvs//" + chauffeurDto.getCvChauffeur()));
 	}
-	
+	*/
 	
 	public void downloadChauffeurFile(HttpServletRequest request, HttpServletResponse response,
              @PathVariable("fileName") String fileName) throws IOException {
@@ -251,6 +251,10 @@ public class ChauffeurController implements ChauffeurApi {
 	public Page<ChauffeurDto> getChauffeurByPermisPageables(Long permisId, int page, int size) {
 		final Pageable pageable = PageRequest.of(page, size);
 	    return chauffeurService.findChauffeurByPermisPageables(permisId, pageable);
+	}
+	@Override
+	public List<ChauffeurDto> getListChauffeurBySelected() {
+		return chauffeurService.findListChauffeurBySelected();
 	}
 	
 

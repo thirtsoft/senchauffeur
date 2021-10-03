@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chauffeur.dto.AnnonceDto;
-
+import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
 
@@ -25,6 +25,11 @@ public interface AnnonceApi {
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto annonceDto);
+	
+	@PostMapping(value = "/annonces/createAnnonceWithUser", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<AnnonceDto> createAnnonceWithUser(@RequestBody AnnonceDto annonceDto, @RequestParam Long id);
 	
 	@PutMapping(value = APP_ROOT + "/annonces/update/{idAnnonce}", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,7 +45,10 @@ public interface AnnonceApi {
 
 	@GetMapping(value = APP_ROOT + "/annonces/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> findAll();
-
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceBySelectedIsTrue", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<AnnonceDto> getListAnnonceBySelected();
+	    
 	@DeleteMapping(value = APP_ROOT + "/annonces/delete/{idAnnonce}")
 	void delete(@PathVariable("idAnnonce") Long idAnnonce);
 	
@@ -51,6 +59,16 @@ public interface AnnonceApi {
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByLibelle", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListAnnonceByLibelle(@RequestParam(name = "libelle") String libelle);
+	
+	@GetMapping(value = APP_ROOT + "/annonces/search5LatestAnnonceByIdDesc", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	List<AnnonceDto> get5LatestAnnonceRecordOrderByIdDesc();
+	
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusEncours", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	List<AnnonceDto> getAnnonceByStatusEncours();
+	
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnoncesByPermis/{pId}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,6 +81,9 @@ public interface AnnonceApi {
 	
 	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonces")
     public BigDecimal getNumbersOfAnnoncess();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonceByStatusPending")
+	BigDecimal getNumberOfAnnoncesByStatusPending();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPermisPageables", 
 	    		produces = MediaType.APPLICATION_JSON_VALUE)

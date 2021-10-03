@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.chauffeur.dto.AnnonceDto;
+import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Annonce;
@@ -36,6 +37,7 @@ public class AnnonceServiceImpl implements AnnonceService {
 
     @Override
     public AnnonceDto save(AnnonceDto annonceDto) {
+    	annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
 
         return AnnonceDto.fromEntityToDto(
         		annonceRepository.save(
@@ -107,13 +109,14 @@ public class AnnonceServiceImpl implements AnnonceService {
         AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(annonce.get());
         annonceDtoResult.setReference(annonceDto.getReference());
         annonceDtoResult.setLibelle(annonceDto.getLibelle());
-        annonceDtoResult.setModeCandidature(annonceDto.getModeCandidature());
         annonceDtoResult.setTime(annonceDto.getTime());
         annonceDtoResult.setAnneeExperience(annonceDto.getAnneeExperience());
+        annonceDtoResult.setTypeContrat(annonceDto.getTypeContrat());
+        annonceDtoResult.setSelected(annonceDto.isSelected());
         annonceDtoResult.setDescription(annonceDto.getDescription());
         annonceDtoResult.setLieuPoste(annonceDto.getLieuPoste());
         annonceDtoResult.setSalaire(annonceDto.getSalaire());
-        annonceDtoResult.setStatusAnnonce(StatusAnnonce.ENCOURS);
+        annonceDtoResult.setStatusAnnonce(annonceDto.getStatusAnnonce());
         annonceDtoResult.setDateCandidature(annonceDto.getDateCandidature());
         annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
         annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
@@ -125,6 +128,13 @@ public class AnnonceServiceImpl implements AnnonceService {
         				AnnonceDto.fromDtoToEntity(annonceDtoResult)
                 )
         );
+	}
+	
+	@Override
+	public List<AnnonceDto> findListAnnonceBySelected() {
+		return annonceRepository.findAnnonceBySelected().stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
 	}
 
 	@Override
@@ -147,12 +157,23 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
-
+	
 	@Override
-	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
-		return annonceRepository.findAll(pageable)
-                .map(AnnonceDto::fromEntityToDto);
+	public List<AnnonceDto> find5LatestRecordsByOrderByIdDesc() {
+		return annonceRepository.findTop5ByOrderByIdDesc()
+        		.stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<AnnonceDto> findListAnnonceByStatusEncours() {
+		return annonceRepository.findListAnnonceByStatusEncours()
+        		.stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
 
 	@Override
 	public List<AnnonceDto> findListAnnonceByPermis(Long pId) {
@@ -165,6 +186,12 @@ public class AnnonceServiceImpl implements AnnonceService {
 	public BigDecimal countNumbersOfAnnonces() {
 		return annonceRepository.countNumberOfAnnonces();
 	}
+	
+	@Override
+	public BigDecimal countNumberOfAnnoncesByStatusPending() {
+		return annonceRepository.countNumberOfAnnoncesByStatusPending();
+	}
+
 
 	@Override
 	public Page<AnnonceDto> findAnnonceByPermisByPageable(Long permisId, Pageable pageable) {
@@ -172,7 +199,13 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto);
 	}
 
+	@Override
+	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
+		return annonceRepository.findAll(pageable)
+                .map(AnnonceDto::fromEntityToDto);
+	}
 
-
+	
+	
 	
 }

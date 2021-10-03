@@ -29,11 +29,13 @@ public class AnnonceDto {
 	
 	private String salaire;
 	
-	private String modeCandidature;
-	
 	private String time;
 	
 	private String anneeExperience;
+	
+	private String typeContrat;
+	
+	private boolean selected;
 	
 	private String description;
 
@@ -51,6 +53,8 @@ public class AnnonceDto {
 	
 	private AddresseDto addresseDto;
 	
+	private UtilisateurDto utilisateurDto;
+	
 	public static AnnonceDto fromEntityToDto(Annonce annonce) {
 		if (annonce == null) {
 			return null;
@@ -62,16 +66,18 @@ public class AnnonceDto {
 				.libelle(annonce.getLibelle())
 				.lieuPoste(annonce.getLieuPoste())
 				.salaire(annonce.getSalaire())
-				.modeCandidature(annonce.getModeCandidature())
 				.emailPoste(annonce.getEmailPoste())
 				.time(annonce.getTime())
 				.anneeExperience(annonce.getAnneeExperience())
+				.typeContrat(annonce.getTypeContrat())
+				.selected(annonce.isSelected())
 				.description(annonce.getDescription())
 				.dateCandidature(annonce.getDateCandidature())
 				.dateCloture(annonce.getDateCloture())
 				.statusAnnonce(annonce.getStatusAnnonce())
 				.permisDto(PermisDto.fromEntityToDto(annonce.getPermis()))
 				.recruteurDto(RecruteurDto.fromEntityToDto(annonce.getRecruteur()))
+				.utilisateurDto(UtilisateurDto.fromEntityToDto(annonce.getUtilisateur()))
 	//			.villeDto(VilleDto.fromEntityToDto(annonce.getVille()))
 				.addresseDto(AddresseDto.fromEntityToDto(annonce.getAddresse()))
 				.build();
@@ -88,16 +94,18 @@ public class AnnonceDto {
 		annonce.setLibelle(annonceDto.getLibelle());
 		annonce.setLieuPoste(annonceDto.getLieuPoste());
 		annonce.setSalaire(annonceDto.getSalaire());
-		annonce.setModeCandidature(annonceDto.getModeCandidature());
 		annonce.setTime(annonceDto.getTime());
 		annonce.setEmailPoste(annonceDto.getEmailPoste());
 		annonce.setAnneeExperience(annonce.getAnneeExperience());
+		annonce.setTypeContrat(annonceDto.getTypeContrat());
+		annonce.setSelected(annonceDto.isSelected());
 		annonce.setDescription(annonceDto.getDescription());
 		annonce.setDateCandidature(annonceDto.getDateCandidature());
 		annonce.setDateCloture(annonceDto.getDateCloture());
 		annonce.setStatusAnnonce(annonceDto.getStatusAnnonce());
 		annonce.setPermis(PermisDto.fromDtoToEntity(annonceDto.getPermisDto()));
 		annonce.setRecruteur(RecruteurDto.fromDtoToEntity(annonceDto.getRecruteurDto()));
+		annonce.setUtilisateur(UtilisateurDto.fromDtoToEntity(annonceDto.getUtilisateurDto()));
 	//	annonce.setVille(VilleDto.fromDtoToEntity(annonceDto.getVilleDto()));
 		annonce.setAddresse(AddresseDto.fromDtoToEntity(annonceDto.getAddresseDto()));
 

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ import com.chauffeur.models.Chauffeur;
 import com.chauffeur.models.Permis;
 import com.chauffeur.models.Recruteur;
 import com.chauffeur.models.Role;
+import com.chauffeur.models.Tarif;
 import com.chauffeur.models.Utilisateur;
 import com.chauffeur.models.Ville;
 import com.chauffeur.repository.AddresseRepository;
@@ -32,6 +34,7 @@ import com.chauffeur.repository.ChauffeurRepository;
 import com.chauffeur.repository.PermisRepository;
 import com.chauffeur.repository.RecruteurRepository;
 import com.chauffeur.repository.RoleRepository;
+import com.chauffeur.repository.TarifRepository;
 import com.chauffeur.repository.UtilisateurRepository;
 import com.chauffeur.repository.VilleRepository;
 
@@ -56,6 +59,8 @@ public class SenChauffeurApplication implements CommandLineRunner {
 	private RoleRepository roleRepository;
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
+	@Autowired
+	private TarifRepository tarifRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SenChauffeurApplication.class, args);
@@ -109,6 +114,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		Permis p2 = permisRepository.save(new Permis(2L, "P2","Permis Professionnel",5));
 		Permis p3 = permisRepository.save(new Permis(3L, "P3","Permis Tracteur",15));
 		Permis p4 = permisRepository.save(new Permis(4L, "P4","Permis Transport",20));
+		Permis p5 = permisRepository.save(new Permis(5L, "P5","Permis Conducteur d’Engin",20));
 		
 		Ville v1 = villeRepository.save(new Ville(1L, "v1","Ziguinchor, Casamance","Senegal"));
 		Ville v2 = villeRepository.save(new Ville(2L, "v2","Dakar, Dakar","Senegal"));
@@ -132,47 +138,47 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		Addresse ad14 = addresseRepository.save(new Addresse(14L, "Diour","Diourbel","Rue 4","4M","Dakar","SENEGAL"));
 		
 		
-		Chauffeur ch1 = new Chauffeur(1L, "ch1","tairou","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
-				60.0000,"Dk-Zig-Thies", "Full-Time", "cv1.pdf","photo1.jpg",p1, ad1);
-		Chauffeur ch2 = new Chauffeur(2L, "ch2","Ablaye","Kanel","M","Rufisque","ablaye@gmail.com","777440310",7,
-				60.0000,"Dk-TAMBA", "Full-Time","cv2.pdf","photo2.jpg",p2, ad2);
-		Chauffeur ch3 = new Chauffeur(3L, "ch3","Kalidou","Badji","M","Parcelle","kalidou@gmail.com","776440310",10,
-				60.0000,"Dk-Zig","Partial-Time","cv3.pdf","photo3.jpg",p3, ad1);
-		Chauffeur ch4 = new Chauffeur(4L, "ch4","Fatou","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				60.0000,"Dk-Thies", "Partial-Time", "cv4.pdf","photo4.jpg",p4, ad3);
-		Chauffeur ch5 = new Chauffeur(5L, "ch1","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
-				60.0000,"Dk-Zig-Thies","Full-Time","cv5.pdf","photo5.jpg",p1, ad2);
-		Chauffeur ch6 = new Chauffeur(6L, "ch6","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310",7,
-				60.0000,"Dk-TAMBA","Partail-Time","cv6.pdf","photo6.jpg",p2, ad1);
-		Chauffeur ch7 = new Chauffeur(7L, "ch7","Marie","Sane","M","Parcelle","kalidou@gmail.com","776440310",10,
-				60.0000,"Dk-Zig","Full-Time","cv7.pdf","photo7.jpg",p3, ad4);
-		Chauffeur ch8 = new Chauffeur(8L, "ch8","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				60.0000,"Dk-Thies","Partial-Time","cv8.pdf","photo1.jpg",p4, ad3);
-		Chauffeur ch9 = new Chauffeur(9L, "ch9","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				60.0000,"Dk-Thies","Full-Time","cv3.pdf","photo3.jpg",p4, ad4);
-		Chauffeur ch10 = new Chauffeur(10L, "ch10","Safi","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				60.0000,"Dk-Thies","Partial-Time","cv5.pdf","photo4.jpg",p4, ad1);
+		Chauffeur ch1 = new Chauffeur(1L, "Chauffeur Personnel","tairou","diallo","M","Mariste","thirdiallo@gmail.com","779440310","3ans",
+				60.0000,"Dk-Zig-Thies", "Full-Time",true, "cv1.pdf","photo1.jpg",p1, ad1);
+		Chauffeur ch2 = new Chauffeur(2L, "Chauffeur particulier","Ablaye","Kanel","M","Rufisque","ablaye@gmail.com","777440310","7ans",
+				60.0000,"Dk-TAMBA", "Full-Time", true, "cv2.pdf","photo2.jpg",p2, ad2);
+		Chauffeur ch3 = new Chauffeur(3L, "Chauffeur Privé","Kalidou","Badji","M","Parcelle","kalidou@gmail.com","776440310","10ans",
+				60.0000,"Dk-Zig","Partial-Time", false, "cv3.pdf","photo3.jpg",p3, ad1);
+		Chauffeur ch4 = new Chauffeur(4L, "Chauffeur Livreur","Fatou","diop","F","Mariste","fatou@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies", "Partial-Time", true, "cv4.pdf","photo4.jpg",p4, ad3);
+		Chauffeur ch5 = new Chauffeur(5L, "Chauffeur Touristique","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310","3ans",
+				60.0000,"Dk-Zig-Thies","Full-Time", false, "cv5.pdf","photo5.jpg",p1, ad2);
+		Chauffeur ch6 = new Chauffeur(6L, "Chauffeur Poids Lourds","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310","7ans",
+				60.0000,"Dk-TAMBA","Partail-Time", true, "cv6.pdf","photo6.jpg",p2, ad1);
+		Chauffeur ch7 = new Chauffeur(7L, "Chauffeur Camion","Marie","Sane","M","Parcelle","kalidou@gmail.com","776440310","10ans",
+				60.0000,"Dk-Zig","Full-Time", true,"cv7.pdf","photo7.jpg",p5, ad4);
+		Chauffeur ch8 = new Chauffeur(8L, "Chauffeur Bus","Safi","diop","F","Mariste","fatou@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies","Partial-Time", false,"cv8.pdf","photo1.jpg",p4, ad3);
+		Chauffeur ch9 = new Chauffeur(9L, "Chauffeur Taxi","Safi","diop","F","Mariste","fatou@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies","Full-Time", false,"cv3.pdf","photo3.jpg",p4, ad4);
+		Chauffeur ch10 = new Chauffeur(10L, "Chauffeur Transport","Safi","diop","F","Mariste","fatou@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies","Partial-Time", true, "cv5.pdf","photo4.jpg",p4, ad1);
 		
-		Chauffeur ch11 = new Chauffeur(11L, "ch11","Saliou","diallo","Homme","Mariste 1","s.diallo@gmail.com","779440310",3,
-				60.0000,"Dk-Zig-Thies", "Full-Time", "cv1.pdf","photo1.jpg",p1, ad11);
-		Chauffeur ch12 = new Chauffeur(12L, "ch12","Chauffeur12","Chauff12","M","Rufisque","ch@gmail.com","777440310",7,
-				60.0000,"Dk-TAMBA", "Full-Time","cv2.pdf","photo2.jpg",p2, ad12);
-		Chauffeur ch13 = new Chauffeur(13L, "ch13","Chauffeur13","Chauffeur13","M","Parcelle","Chauffeur12@gmail.com","776440310",10,
-				60.0000,"Dk-Zig","Partial-Time","cv3.pdf","photo3.jpg",p3, ad11);
-		Chauffeur ch14 = new Chauffeur(14L, "ch14","Fatou","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				60.0000,"Dk-Thies", "Partial-Time", "cv4.pdf","photo4.jpg",p4, ad13);
-		Chauffeur ch15 = new Chauffeur(15L, "ch15","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310",3,
-				60.0000,"Dk-Zig-Thies","Full-Time","cv5.pdf","photo5.jpg",p1, ad2);
-		Chauffeur ch16 = new Chauffeur(16L, "ch16","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310",7,
-				60.0000,"Dk-TAMBA","Partail-Time","cv6.pdf","photo6.jpg",p2, ad1);
-		Chauffeur ch17 = new Chauffeur(17L, "ch17","Marie","Sane","M","Parcelle","mari@gmail.com","776440310",10,
-				60.0000,"Dk-Zig","Full-Time","cv7.pdf","photo7.jpg",p3, ad14);
-		Chauffeur ch18 = new Chauffeur(18L, "ch18","Saly","diop","F","Mariste","sly@gmail.com","774560310",5,
-				60.0000,"Dk-Thies","Partial-Time","cv8.pdf","photo1.jpg",p4, ad1);
-		Chauffeur ch19 = new Chauffeur(19L, "ch19","Asma","diop","F","Mariste","fatou@gmail.com","774560310",5,
-				60.0000,"Dk-Thies","Full-Time","cv3.pdf","photo3.jpg",p4, ad10);
-		Chauffeur ch20 = new Chauffeur(20L, "ch20","Salif","diop","Femme","Mariste","fatou@gmail.com","774560310",5,
-				60.0000,"Dk-Thies","Partial-Time","cv5.pdf","photo4.jpg",p4, ad9);
+		Chauffeur ch11 = new Chauffeur(11L, "Chauffeur Engin","Saliou","diallo","Homme","Mariste 1","s.diallo@gmail.com","779440310","3ans",
+				60.0000,"Dk-Zig-Thies", "Full-Time", false, "cv1.pdf","photo1.jpg",p1, ad11);
+		Chauffeur ch12 = new Chauffeur(12L, "Chauffeur particulier","Chauffeur12","Chauff12","M","Rufisque","ch@gmail.com","777440310","7ans",
+				60.0000,"Dk-TAMBA", "Full-Time", true, "cv2.pdf","photo2.jpg",p2, ad12);
+		Chauffeur ch13 = new Chauffeur(13L, "Chauffeur Taxi","Chauffeur13","Chauffeur13","M","Parcelle","Chauffeur12@gmail.com","776440310","10ans",
+				60.0000,"Dk-Zig","Partial-Time", false,"cv3.pdf","photo3.jpg",p3, ad11);
+		Chauffeur ch14 = new Chauffeur(14L, "Chauffeur Camion","Fatou","diop","F","Mariste","fatou@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies", "Partial-Time", false, "cv4.pdf","photo4.jpg",p4, ad13);
+		Chauffeur ch15 = new Chauffeur(15L, "Chauffeur privé","Adama","diallo","M","Mariste","thirdiallo@gmail.com","779440310","3ans",
+				60.0000,"Dk-Zig-Thies","Full-Time", true, "cv5.pdf","photo5.jpg",p1, ad2);
+		Chauffeur ch16 = new Chauffeur(16L, "Chauffeur bus","Sofie","Gaye","F","Rufisque","ablaye@gmail.com","777440310","7ans",
+				60.0000,"Dk-TAMBA","Partail-Time", true, "cv6.pdf","photo6.jpg",p2, ad1);
+		Chauffeur ch17 = new Chauffeur(17L, "Chauffeur livreur","Marie","Sane","M","Parcelle","mari@gmail.com","776440310","10ans",
+				60.0000,"Dk-Zig","Full-Time", true, "cv7.pdf","photo7.jpg",p3, ad14);
+		Chauffeur ch18 = new Chauffeur(18L, "Chauffeur transport","Saly","diop","F","Mariste","sly@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies","Partial-Time", false, "cv8.pdf","photo1.jpg",p4, ad1);
+		Chauffeur ch19 = new Chauffeur(19L, "Chauffeur particulier","Asma","diop","F","Mariste","fatou@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies","Full-Time", true, "cv3.pdf","photo3.jpg",p4, ad10);
+		Chauffeur ch20 = new Chauffeur(20L, "Chauffeur taxi","Salif","diop","Femme","Mariste","fatou@gmail.com","774560310","5ans",
+				60.0000,"Dk-Thies","Partial-Time", false, "cv5.pdf","photo4.jpg",p4, ad9);
 		
 		chauffeurRepository.save(ch1); chauffeurRepository.save(ch2);
 		chauffeurRepository.save(ch3); chauffeurRepository.save(ch4);
@@ -197,86 +203,103 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		Annonce a7 = new Annonce(); Annonce a8 = new Annonce(); Annonce a9 = new Annonce();
 		Annonce a10 = new Annonce();  Annonce a11 = new Annonce(); Annonce a12 = new Annonce();
 		
-		a1.setId(1L); a1.setLieuPoste("Hann-Mariste 2, Dakar"); a1.setModeCandidature("Email");
+		a1.setId(1L); a1.setLieuPoste("Hann-Mariste 2, Dakar"); a1.setSelected(true);;
 		a1.setSalaire("$1200 - $ 2500"); a1.setReference("digit");a1.setLibelle("Digital Marketing Executive"); 
 		a1.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		a1.setPermis(p1); a1.setRecruteur(r1); a1.setAddresse(ad1); a1.setTime("Full-Time");
-		a1.setDateCandidature(new Date());a1.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		a1.setDateCandidature(new Date()); a1.setDateCloture(new Date());
+		a1.setTypeContrat("Stage");
+		a1.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		annonceRepository.save(a1);
 		
-		a2.setId(2L); a2.setLieuPoste("Ziguinchor, Casamance"); a2.setModeCandidature("Email");
+		a2.setId(2L); a2.setLieuPoste("Ziguinchor, Casamance"); a2.setSelected(true);;
 		a2.setSalaire("200M"); a2.setReference("part"); a2.setLibelle("Chauffeur Particulier");
 		a2.setStatusAnnonce(StatusAnnonce.REJETEE);
 		a2.setPermis(p2); a2.setRecruteur(r2);a2.setAddresse(ad2); a2.setTime("Partial-Time");
-		a2.setDateCandidature(new Date()); a2.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		a2.setDateCandidature(new Date()); a2.setDateCloture(new Date());
+		a2.setTypeContrat("CDD");
+		a2.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		annonceRepository.save(a2);
 		
-		a3.setId(3L); a3.setLieuPoste("Parcelle, Dakar"); a3.setModeCandidature("Email");
+		a3.setId(3L); a3.setLieuPoste("Parcelle, Dakar"); a3.setSelected(false);;
 		a3.setSalaire("$1800 - $3500"); a3.setReference("lourd");  a3.setLibelle("Conducteur Poids Lours");
 		a3.setStatusAnnonce(StatusAnnonce.VALIDEE);
 		a3.setPermis(p3); a3.setRecruteur(r3); a3.setAddresse(ad3); a3.setTime("Full-Time");
-		a3.setDateCandidature(new Date()); a3.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		a3.setDateCandidature(new Date()); a3.setDateCloture(new Date());
+		a3.setTypeContrat("CDI");
+		a3.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		annonceRepository.save(a3);
 		
-		a4.setId(4L); a4.setLieuPoste("Parcelle, Dakar"); a4.setModeCandidature("Email");
+		a4.setId(4L); a4.setLieuPoste("Parcelle, Dakar"); a4.setSelected(false);;
 		a4.setSalaire("$1800 - $3500"); a4.setReference("leger"); a4.setLibelle("Conducteur Poids Legere");
 		a4.setPermis(p3); a4.setRecruteur(r3); a4.setAddresse(ad4); a4.setTime("Partial-Time");
-		a4.setDateCandidature(new Date());
+		a4.setDateCandidature(new Date()); a4.setDateCloture(new Date());
+		a4.setStatusAnnonce(StatusAnnonce.ENCOURS);
+		a4.setTypeContrat("Stage");
 		annonceRepository.save(a4); a4.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		
-		a5.setId(5L); a5.setLieuPoste("Ziguinchor, Casamance"); a5.setModeCandidature("Email");
+		a5.setId(5L); a5.setLieuPoste("Ziguinchor, Casamance"); a5.setSelected(true);;
 		a5.setSalaire("$1500 - $3000"); a5.setReference("pro"); a5.setLibelle("Chauffeur Professionnel"); 
 		a5.setPermis(p1); a5.setRecruteur(r2); a5.setAddresse(ad5);
-		a5.setTime("Partial-Time");a5.setDateCandidature(new Date());
+		a5.setTime("Partial-Time");a5.setDateCandidature(new Date()); a5.setDateCloture(new Date());
+		a5.setStatusAnnonce(StatusAnnonce.ENCOURS);
+		a5.setTypeContrat("CDD");
 		a5.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a6.setId(6L); a6.setLieuPoste("Thies, Senegal"); a6.setModeCandidature("Email");
+		a6.setId(6L); a6.setLieuPoste("Thies, Senegal"); a6.setSelected(false);;
 		a6.setSalaire("$1500 - $3000"); a6.setReference("Conducteur Poids Lours"); 
 		a6.setPermis(p3); a6.setRecruteur(r3); a6.setAddresse(ad6);
 		a6.setTime("Full-Time");
-		a6.setDateCandidature(new Date());
+		a6.setDateCandidature(new Date()); a6.setDateCloture(new Date());
+		a6.setStatusAnnonce(StatusAnnonce.ENCOURS);
+		a6.setTypeContrat("CDI");
 		a6.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a7.setId(7L); a7.setLieuPoste("DK"); a7.setModeCandidature("Email");
+		a7.setId(7L); a7.setLieuPoste("DK"); a7.setSelected(false);;
 		a7.setSalaire("200M"); a7.setReference("cam");a7.setLibelle("Conducteur de Camion");
 		a7.setPermis(p3); a7.setRecruteur(r3);
 		a7.setTime("Full-Time"); a7.setAddresse(ad7);
-		a7.setDateCandidature(new Date());
+		a7.setDateCandidature(new Date()); a7.setDateCloture(new Date());
+		a7.setTypeContrat("Stage");
 		a7.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a8.setId(8L); a8.setLieuPoste("Sebikhotane, Dakar"); a8.setModeCandidature("Email");
+		a8.setId(8L); a8.setLieuPoste("Sebikhotane, Dakar"); a8.setSelected(true);;
 		a8.setSalaire("$1500 - $ 3000"); a8.setReference("hum"); a8.setLibelle("Humain Resource Executive"); 
 		a8.setPermis(p4); a8.setRecruteur(r2); a8.setAddresse(ad8);
-		a8.setTime("Full-Time");a8.setDateCandidature(new Date());
+		a8.setTime("Full-Time");a8.setDateCandidature(new Date()); a8.setDateCloture(new Date());
+		a8.setTypeContrat("CDD");
 		a8.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a9.setId(9L); a9.setLieuPoste("DK"); a9.setModeCandidature("Email");
+		a9.setId(9L); a9.setLieuPoste("DK"); a9.setSelected(false);;
 		a9.setSalaire("900M"); a9.setReference("tax"); a9.setLibelle("Chauffeur de Taxi");
 		a9.setPermis(p1); a9.setRecruteur(r1);
 		a9.setTime("Partial-Time"); a9.setAddresse(ad9);
-		a9.setDateCandidature(new Date());
+		a9.setDateCandidature(new Date()); a9.setDateCloture(new Date());
+		a9.setTypeContrat("CDI");
 		a9.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a10.setId(10L); a10.setLieuPoste("DK"); a10.setModeCandidature("Email");
+		a10.setId(10L); a10.setLieuPoste("DK"); a10.setSelected(false);;
 		a10.setSalaire("1000M"); a10.setReference("trans"); a10.setLibelle("Conducteur de Transport");
 		a10.setPermis(p2); a10.setRecruteur(r2);
 		a10.setTime("Full-Time"); a10.setAddresse(ad10);
-		a10.setDateCandidature(new Date());
+		a10.setDateCandidature(new Date()); a10.setDateCloture(new Date());
+		a10.setTypeContrat("Stage");
 		a10.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a11.setId(11L); a11.setLieuPoste("DK"); a11.setModeCandidature("Email");
+		a11.setId(11L); a11.setLieuPoste("DK"); a11.setSelected(true);;
 		a11.setSalaire("1100M"); a11.setReference("moto"); a11.setLibelle("Chauffeur de Moto");
 		a11.setPermis(p2); a11.setRecruteur(r2);
 		a11.setTime("Full-Time"); a11.setAddresse(ad11);
-		a11.setDateCandidature(new Date());
+		a11.setDateCandidature(new Date()); a11.setDateCloture(new Date());
+		a11.setTypeContrat("CDD");
 		a11.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
-		a12.setId(12L); a12.setLieuPoste("DK"); a12.setModeCandidature("Email");
+		a12.setId(12L); a12.setLieuPoste("DK"); a12.setSelected(false);;
 		a12.setSalaire("1200M"); a12.setReference("bag"); a12.setLibelle("Chauffeur de Taxi Bagage");
 		a12.setPermis(p2); a12.setRecruteur(r2);
 		a12.setTime("Full-Time"); a12.setAddresse(ad12);
-		a12.setDateCandidature(new Date());
+		a12.setDateCandidature(new Date()); a12.setDateCloture(new Date());
+		a12.setTypeContrat("CDI");
 		a12.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		annonceRepository.save(a4); annonceRepository.save(a5);
@@ -284,6 +307,10 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		annonceRepository.save(a8);annonceRepository.save(a9);
 		annonceRepository.save(a10);annonceRepository.save(a11);
 		annonceRepository.save(a12);
+		
+		Tarif t1 = tarifRepository.save(new Tarif(1L, "OFFRE SIMPLE", "25000f cfa", "Assistance, votre publication sera en ligne 24/24 pendans 1 mois et mise en vedette.", a1));
+		Tarif t2 = tarifRepository.save(new Tarif(1L, "OFFRE GOLDEN", "30000f cfa", "Assistance, votre publication sera en ligne 24/24 pendans 1/2 mois et mise en vedette..", a2));
+		Tarif t3 = tarifRepository.save(new Tarif(1L, "OFFRE SPECIALISEE", "40000f cfa", "Assistance, votre publication sera en ligne 24/24 pendans 2 mois, mise en vedette, booster sur les réseaux sociaux", a3));
 		
 		Role useRole = new Role(RoleName.ROLE_USER);
         Role recruteurRole = new Role(RoleName.ROLE_RECRUTEUR);

@@ -54,14 +54,18 @@ public class Annonce implements Serializable {
 	@Column(name = "emailPoste", length = 90)
 	private String emailPoste;
 
-	@Column(name = "modeCandidature", length = 50)
-	private String modeCandidature;
 	
 	@Column(name = "time", length = 50)
 	private String time;
 	
 	@Column(name = "anneeExperience")
 	private String anneeExperience;
+	
+	@Column(name = "typeContrat")
+	private String typeContrat;
+	
+	@Column(name = "isSelected")
+	private boolean selected;
 	
 	@Column(name = "description")
 	@Lob
@@ -75,7 +79,7 @@ public class Annonce implements Serializable {
 
 	
 	@Enumerated(EnumType.STRING)
-    @NaturalId
+//    @NaturalId
     @Column(length = 90)
     private StatusAnnonce statusAnnonce;
 
@@ -88,6 +92,10 @@ public class Annonce implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
+	
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private Utilisateur utilisateur;
 	
 	/*
 	 * @ManyToOne(cascade = CascadeType.PERSIST)

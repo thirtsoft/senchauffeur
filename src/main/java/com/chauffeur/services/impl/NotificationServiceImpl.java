@@ -1,5 +1,6 @@
 package com.chauffeur.services.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,10 +30,8 @@ public class NotificationServiceImpl implements NotificationService {
 //	@Autowired
     private final NotificationRepository notificationRepository;
 	
-	
     private final ChauffeurService chauffeurService;
     
-    private final ChauffeurRepository chauffeurRepository;
 
     @Autowired
     public NotificationServiceImpl(NotificationRepository notificationRepository,
@@ -40,7 +39,6 @@ public class NotificationServiceImpl implements NotificationService {
     							   ChauffeurRepository chauffeurRepository) {
         this.notificationRepository = notificationRepository;
         this.chauffeurService = chauffeurService;
-        this.chauffeurRepository = chauffeurRepository;
     }
 
     @Override
@@ -52,6 +50,22 @@ public class NotificationServiceImpl implements NotificationService {
                 )
         );
     }
+    
+    @Transactional
+   	@Override
+   	public NotificationDto saveNoteToChauffeur(Long idChauff, NotificationDto notificationDto) {
+        
+   		ChauffeurDto chauffeurDtoOptional = chauffeurService.findById(idChauff);
+
+   		notificationDto.setChauffeurDto(chauffeurDtoOptional);
+   		
+   		 return NotificationDto.fromEntityToDto(
+   	        		notificationRepository.save(
+   	        				NotificationDto.fromDtoToEntity(notificationDto)
+   	                )
+   	        );
+   		
+   	}
     
     @Override
 	public NotificationDto update(Long idNotification, NotificationDto notificationDto) {
@@ -66,11 +80,9 @@ public class NotificationServiceImpl implements NotificationService {
         }
 
         NotificationDto notificationDtoResult = NotificationDto.fromEntityToDto(notification.get());
-        notificationDtoResult.setReference(notificationDto.getReference());
         notificationDtoResult.setNbreEtoile(notificationDto.getNbreEtoile());
         notificationDtoResult.setObservation(notificationDto.getObservation());
         notificationDtoResult.setChauffeurDto(notificationDto.getChauffeurDto());
-   //     notificationDtoResult.setUtilisateurDto(notificationDto.getUtilisateurDto());
        
         return NotificationDto.fromEntityToDto(
         		notificationRepository.save(
@@ -101,6 +113,18 @@ public class NotificationServiceImpl implements NotificationService {
                 .map(NotificationDto::fromEntityToDto)
                 .collect(Collectors.toList());
     }
+    
+    @Override
+	public List<NotificationDto> findTop3RatingOrderByCreatedDateDesc() {
+    	 return notificationRepository.findTop3ByOrderByCreatedDateDesc().stream()
+                 .map(NotificationDto::fromEntityToDto)
+                 .collect(Collectors.toList());
+	}
+
+	@Override
+	public BigDecimal countNumberOfNotification() {
+		return notificationRepository.countNumberOfNotification();
+	}
 
     @Override
     public void delete(Long id) {
@@ -112,21 +136,9 @@ public class NotificationServiceImpl implements NotificationService {
 
     }
 
-    @Transactional
-	@Override
-	public NotificationDto saveNoteToChauffeur(Long idChauff, NotificationDto notificationDto) {
-        Optional<Chauffeur> chauffInfo = chauffeurRepository.findById(idChauff);
-		ChauffeurDto chauffeurDto = ChauffeurDto.fromEntityToDto(chauffInfo.get());
-		
-		notificationDto.setChauffeurDto(chauffeurDto);
-		
-		 return NotificationDto.fromEntityToDto(
-	        		notificationRepository.save(
-	        				NotificationDto.fromDtoToEntity(notificationDto)
-	                )
-	        );
-		
-	}
+   
+
+	
 
 	
 }

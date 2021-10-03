@@ -38,7 +38,7 @@ public class NotificationServiceTest {
      //   NotificationDto notationDto = new NotificationDto();
         NotificationDto notationDto = NotificationDto.builder()
                 .id(1L)
-                .reference("Libelle")
+                .nbreEtoile(4)
       //          .utilisateurDto(utilisateurDto)
                 .chauffeurDto(chauffeurDto)
                 .build();
@@ -52,7 +52,6 @@ public class NotificationServiceTest {
         assertThat(chauffeurDto).isNotNull();
         assertThat(scategoryDtoSavedResult).isEqualTo(chauffeurDto);
         assertThat(scategoryDtoSavedResult.getId()).isEqualTo(chauffeur.getId());
-        assertThat(scategoryDtoSavedResult.getReference()).isEqualTo(chauffeur.getReference());
         assertThat(scategoryDtoSavedResult.getNbreEtoile()).isEqualTo(chauffeur.getNbreEtoile());
     }
 
@@ -62,8 +61,7 @@ public class NotificationServiceTest {
         ChauffeurDto chauffeurDto = new ChauffeurDto();
         NotificationDto notationDto = new NotificationDto();
         notationDto.setId(1L);
-        notationDto.setReference("AAA");
-        notationDto.setNbreEtoile("AAA");
+        notationDto.setNbreEtoile(3);
         notationDto.setChauffeurDto(chauffeurDto);
  //       notationDto.setUtilisateurDto(utilisateurDto);
               
@@ -84,8 +82,7 @@ public class NotificationServiceTest {
         ChauffeurDto chauffeurDto = new ChauffeurDto();
         NotificationDto notationDto = new NotificationDto();
         notationDto.setId(1L);
-        notationDto.setReference("AAA");
-        notationDto.setNbreEtoile("AAA");
+        notationDto.setNbreEtoile(2);
         notationDto.setChauffeurDto(chauffeurDto);
  //       notationDto.setUtilisateurDto(utilisateurDto);
                

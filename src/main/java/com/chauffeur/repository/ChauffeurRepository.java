@@ -21,6 +21,9 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 	@Query("select count(p) from Chauffeur p ")
 	BigDecimal countNumberOfChauffeurs();
 	
+	@Query("select art from Chauffeur art where art.selected = true")
+    List<Chauffeur> findChauffeurBySelected();
+	
 	@Query("select p from Chauffeur p where p.permis.id =:pId")
 	List<Chauffeur> findChauffeurByPermis(@Param("pId") Long permisId);
 	 

@@ -1,5 +1,6 @@
 package com.chauffeur.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -16,7 +17,15 @@ public interface NotificationService {
 	NotificationDto findById(Long id);
 
     List<NotificationDto> findAll();
+    
+    List<NotificationDto> findTop3RatingOrderByCreatedDateDesc();
+
+    BigDecimal countNumberOfNotification();
 
     void delete(Long id);
+    
+
+  
+
 
 }
