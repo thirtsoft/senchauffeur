@@ -4,28 +4,18 @@ import { TokenStorageService } from './../auth/security/token-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { NotationDto } from './../models/notation';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
-import { Injectable } from '@angular/core';
-/* import { environment } from 'src/environments/environment'; */
-import { environment } from 'src/environments/environment.prod';
-=======
->>>>>>> dev
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotationService {
 
-<<<<<<< HEAD
 //  private apiServerUrl = environment.apiBaseUrl;
 
   public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
  // private apiServerUrl = environment.apiBaseUrl;
-  id;
-=======
-  private apiServerUrl = environment.apiBaseUrl;
->>>>>>> dev
 
   id: any;
   artId: any;
