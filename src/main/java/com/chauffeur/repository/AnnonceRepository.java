@@ -38,6 +38,9 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	@Query("from Annonce a where a.statusAnnonce = com.chauffeur.enumeration.StatusAnnonce.ENCOURS")
 	List<Annonce> findListAnnonceByStatusEncours();
 	
+	@Query("select count(c) from Annonce c where c.statusAnnonce = 'ENCOURS' ")
+	BigDecimal countNumberOfAnnoncesByStatusPending();
+	
 
 //	Page<Vinyl> findTop10ByOrderByVinylIDDescPriceAsc(Pageable pageable);
 	 

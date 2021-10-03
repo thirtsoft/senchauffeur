@@ -93,6 +93,10 @@ public class Annonce implements Serializable {
 	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
 	
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private Utilisateur utilisateur;
+	
 	/*
 	 * @ManyToOne(cascade = CascadeType.PERSIST)
 	 * 

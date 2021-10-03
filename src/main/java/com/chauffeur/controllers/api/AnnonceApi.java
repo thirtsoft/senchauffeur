@@ -26,6 +26,11 @@ public interface AnnonceApi {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto annonceDto);
 	
+	@PostMapping(value = "/annonces/createAnnonceWithUser", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<AnnonceDto> createAnnonceWithUser(@RequestBody AnnonceDto annonceDto, @RequestParam Long id);
+	
 	@PutMapping(value = APP_ROOT + "/annonces/update/{idAnnonce}", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> update(@PathVariable("idAnnonce") Long idAnnonce, 
@@ -76,6 +81,9 @@ public interface AnnonceApi {
 	
 	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonces")
     public BigDecimal getNumbersOfAnnoncess();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonceByStatusPending")
+	BigDecimal getNumberOfAnnoncesByStatusPending();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPermisPageables", 
 	    		produces = MediaType.APPLICATION_JSON_VALUE)

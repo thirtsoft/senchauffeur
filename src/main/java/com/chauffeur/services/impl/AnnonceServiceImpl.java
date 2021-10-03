@@ -116,7 +116,7 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setDescription(annonceDto.getDescription());
         annonceDtoResult.setLieuPoste(annonceDto.getLieuPoste());
         annonceDtoResult.setSalaire(annonceDto.getSalaire());
-        annonceDtoResult.setStatusAnnonce(StatusAnnonce.ENCOURS);
+        annonceDtoResult.setStatusAnnonce(annonceDto.getStatusAnnonce());
         annonceDtoResult.setDateCandidature(annonceDto.getDateCandidature());
         annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
         annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
@@ -186,6 +186,12 @@ public class AnnonceServiceImpl implements AnnonceService {
 	public BigDecimal countNumbersOfAnnonces() {
 		return annonceRepository.countNumberOfAnnonces();
 	}
+	
+	@Override
+	public BigDecimal countNumberOfAnnoncesByStatusPending() {
+		return annonceRepository.countNumberOfAnnoncesByStatusPending();
+	}
+
 
 	@Override
 	public Page<AnnonceDto> findAnnonceByPermisByPageable(Long permisId, Pageable pageable) {
@@ -199,6 +205,7 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto);
 	}
 
+	
 	
 	
 }

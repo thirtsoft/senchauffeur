@@ -37,6 +37,8 @@ public interface AnnonceService {
 	List<AnnonceDto> findListAnnonceByStatusEncours();
     
     BigDecimal countNumbersOfAnnonces();
+    
+    BigDecimal countNumberOfAnnoncesByStatusPending();
 
     Page<AnnonceDto> findAnnonceByPageable(Pageable pageable);
     
