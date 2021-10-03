@@ -44,7 +44,6 @@ public class ChauffeurDto {
 
 	private String photoChauffeur;
 	
-	@JsonIgnore
 	private PermisDto permisDto;
 	
 	private AddresseDto addresseDto;

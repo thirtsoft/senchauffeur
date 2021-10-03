@@ -44,11 +44,11 @@ public class NotificationRepositoryTest {
         Long userId = (long) 1;
         Utilisateur utilisateur = utilisateurRepository.findById(userId).orElse(null);
       
-    	String reference = "CH1"; String nbreEtoile = "Tairou"; String observation = "Diallo";
+    	float nbreEtoile = 4; String observation = "Diallo";
     	Notification notificationDto = new Notification();
-    	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
+    	notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-    //	notificationDto.setUtilisateur(utilisateur);
+    	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	Notification notificationDtoResult = notificationRepository.save(notificationDto);
     	
@@ -65,20 +65,20 @@ public class NotificationRepositoryTest {
         Long userId = (long) 1;
         Utilisateur utilisateur = utilisateurRepository.findById(userId).orElse(null);
       
-    	String reference = "CH1"; String nbreEtoile = "Tairou"; String observation = "Diallo";
+    	float nbreEtoile = 3; String observation = "Diallo";
     	Notification notificationDto = new Notification();
-    	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
+    	notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-//    	notificationDto.setUtilisateur(utilisateur);
+    	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	notificationRepository.save(notificationDto);
     
-        String referenceChauffeur = "DialloDiallo";
-        notificationDto.setReference(referenceChauffeur);
+        float nbreEtoileChauffeur = 5;
+        notificationDto.setNbreEtoile(nbreEtoileChauffeur);
 //        notificationDto.setId(2L);
         Notification notificationUpdate = notificationRepository.save(notificationDto);
       
-        assertThat(notificationUpdate.getReference()).isEqualTo(referenceChauffeur);
+        assertThat(notificationUpdate.getNbreEtoile()).isEqualTo(nbreEtoileChauffeur);
 
     }
 
@@ -90,11 +90,11 @@ public class NotificationRepositoryTest {
         Long userId = (long) 1;
         Utilisateur utilisateur = utilisateurRepository.findById(userId).orElse(null);
       
-    	String reference = "CH1"; String nbreEtoile = "Tairou"; String observation = "Diallo";
+    	float nbreEtoile = 3; String observation = "Diallo";
     	Notification notificationDto = new Notification();
-    	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
+    	notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-  //  	notificationDto.setUtilisateur(utilisateur);
+    	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	Notification notificationDtoResult = notificationRepository.save(notificationDto);
     
@@ -112,17 +112,17 @@ public class NotificationRepositoryTest {
         Long userId = (long) 1;
         Utilisateur utilisateur = utilisateurRepository.findById(userId).orElse(null);
       
-    	String reference = "CH1"; String nbreEtoile = "Tairou"; String observation = "Diallo";
+    	String reference = "CH1"; float nbreEtoile = 4; String observation = "Diallo";
     	Notification notificationDto = new Notification();
-    	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
+    	notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
-  //  	notificationDto.setUtilisateur(utilisateur);
+    	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	notificationRepository.save(notificationDto);
     
-    	String reference2 = "CH1"; String nbreEtoile2 = "Tairou";
+    	float nbreEtoile2 = 4;
     	Notification notificationDto2 = new Notification();
-    	notificationDto2.setReference(reference2); notificationDto2.setNbreEtoile(nbreEtoile2);
+    	notificationDto2.setNbreEtoile(nbreEtoile2);
     	notificationRepository.save(notificationDto2);
     
         List<?> notifications = notificationRepository.findAll();
@@ -140,11 +140,11 @@ public class NotificationRepositoryTest {
         Long userId = (long) 1;
         Utilisateur utilisateur = utilisateurRepository.findById(userId).orElse(null);
       
-    	String reference = "CH1"; String nbreEtoile = "Tairou"; String observation = "Diallo";
+    	String reference = "CH1"; float nbreEtoile = 4; String observation = "Diallo";
     	Notification notificationDto = new Notification();
-    	notificationDto.setReference(reference); notificationDto.setNbreEtoile(nbreEtoile);
+    	notificationDto.setNbreEtoile(nbreEtoile);
     	notificationDto.setObservation(observation);
- //   	notificationDto.setUtilisateur(utilisateur);
+    	notificationDto.setUtilisateur(utilisateur);
     	notificationDto.setChauffeur(chauffeur);
     	Notification notificationDtoResult = notificationRepository.save(notificationDto);
     
