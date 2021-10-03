@@ -72,11 +72,12 @@
                                   [render-text]="true" style="display: block;">
                                 </pdf-viewer> -->
 
-<<<<<<< HEAD
-                                <a class="btn btn-primary" href="https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
-=======
-                                <a *ngIf="this.isLoggedIn" class="btn btn-drink" href="http://localhost:8081/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
->>>>>>> dev
+                                <a *ngIf="this.isLoggedIn" class="btn btn-warning" href="https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
+                                  <i class="fa fa-download" style="cursor:pointer; align-items: flex-end;"></i>&nbsp;&nbsp;
+                                  Télécharger CV
+                                </a>
+
+                                <a *ngIf="!this.isLoggedIn" class="btn btn-warning" routerLink="/auth/signIn">&nbsp;&nbsp;
                                   <i class="fa fa-download" style="cursor:pointer; align-items: flex-end;"></i>&nbsp;&nbsp;
                                   Télécharger CV
                                 </a>
