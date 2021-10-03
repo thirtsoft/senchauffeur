@@ -3,7 +3,7 @@
         <div class="main-bar clearfix">
             <div class="container clearfix">
                 <div class="logo-header mostion">
-                    <a href="/"><img src="assets/customer/images/logo.png" class="logo" alt=""></a>
+                    <a href="/"><img src="assets/customer/images/logo.jpg" class="logo" alt=""></a>
                 </div>
                 <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span></span>
@@ -37,7 +37,8 @@
                         <li><a routerLink="/browse-job" class="dez-page">Offres</a></li>
                         <li>
                             <a href="#"> Candidats <i class="fa fa-chevron-down"></i></a>
-                            <ul class="sub-menu ">
+                            <ul class="sub-menu">
+                                <li><a routerLink="/browse-job" class="dez-page">Tous Offres</a></li>
                                 <li><a routerLink="/contact-us" class="dez-page">CV et Autres</a></li>
                                 <li><a routerLink="/contact-us" class="dez-page">Contactez</a></li>
 
@@ -47,7 +48,7 @@
                         <li>
                           <a href="#"> Employeurs <i class="fa fa-chevron-down"></i></a>
                           <ul class="sub-menu ">
-                              <li *ngIf="this.isLoggedIn">
+                              <li>
                                 <a routerLink="/browse-candidates" class="dez-page ">Voir les Candidats</a>
                               </li>
                               <li><a routerLink="/browse-tarifs" class="dez-page ">Voir les Tarifs</a></li>
@@ -74,7 +75,7 @@
                           </ul>
                       </li>
 
-                      <li><a href="/publier-offre" class="dez-page" id="btnPublier">Publier un Job</a></li>
+                      <li class="provinces-btn"><a href="/publier-offre" class="dez-page" id="btnPublier">Publier un Job</a></li>
                     </ul>
                 </div>
             </div>

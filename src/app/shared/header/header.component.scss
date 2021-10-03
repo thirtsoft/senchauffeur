@@ -1,11 +1,8 @@
-@media screen and (min-width:299px) and (max-width:479px) {
-  .btnPublier {
-    display:block
-  }
-}
-
-@media screen and (min-width:480px) and (max-width:600px) {
-  .btnPublier {
-    display:none
+@media screen and (min-width: 769px){
+  .provinces-btn{
+  visibility: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
   }
 }

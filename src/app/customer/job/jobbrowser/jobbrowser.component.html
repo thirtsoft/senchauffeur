@@ -37,37 +37,37 @@
                                             <!-- <h4>Digital Marketing Executive</h4> -->
                                             <h4>{{annonceDTO.libelle}}</h4>
                                             <ul>
-                                                <li><i class="fa fa-map-marker"></i>{{annonceDTO.villeDto?.nom}}</li>
-                                                <li><i class="fa fa-bookmark-o"></i>{{annonceDTO.time}}</li>
-                                                <li><i class="fa fa-clock-o"></i>{{annonceDTO.dateCandidature}}</li>
+                                                <li>Ville : <i class="fa fa-map-marker"></i>{{annonceDTO.villeDto?.nom}}</li>
+                                                <li>Disponibilité : <i class="fa fa-bookmark-o"></i>{{annonceDTO.time}}</li>
+                                                <li> Expire le : <i class="fa fa-clock-o"></i>{{ annonceDTO.dateCloture | date:'dd-MM-yyyy' }}</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                       <div class="job-time mr-auto">
-                                        <span>{{annonceDTO?.permisDto?.designation}}</span>
+                                        Permis : {{ annonceDTO?.permisDto?.designation }}
                                       </div>
-                                        <div class="job-time mr-auto">
-                                            <span>{{annonceDTO.time}}</span>
-                                        </div>
+                                       <!--  <div class="job-time mr-auto">
+                                          Disponibilité :   {{ annonceDTO.time }}
+                                        </div> -->
 
                                         <div class="salary-bx">
-                                            <span>{{annonceDTO.salaire}}</span>
+                                          Salaire :  <span>{{annonceDTO.salaire}}</span>
                                         </div>
                                     </div>
-                                    <span class="post-like fa fa-heart-o"></span>
+                                  <!--   <span class="post-like fa fa-heart-o"></span> -->
                                 </a>
                             </li>
 
                         </ul>
                         <div class="pagination-bx m-t30">
                             <ul class="pagination" *ngIf="pages">
-                                <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                                <!-- <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li> -->
                                 <li class="active" class="clikable" [ngClass]="i==this.currentPage?'active':''" *ngFor="let p of pages; let i=index;">
                                     <a (click)="onPageAnnonce(i)" style="cursor:pointer">{{i}}</a>
                                 </li>
 
-                                <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                                <!-- <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li> -->
                             </ul>
                         </div>
                     </div>
