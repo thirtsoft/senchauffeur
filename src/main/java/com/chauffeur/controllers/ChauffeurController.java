@@ -36,15 +36,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @CrossOrigin
 public class ChauffeurController implements ChauffeurApi {
 	
-	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
+//	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
 	
 //	private final String chauffeurPhotosDir = "../../src//main//resources//static//images//";
 	
-//	private static final String chauffeurPhotosDir = "./src/main/resources//static//images//";
+	private static final String chauffeurPhotosDir = "./src/main/resources//static//images//";
 	 
-	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
+//	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
 	
-//	private final String chauffeurCvDir = "./src/main/resources//static//cvs//";
+	private final String chauffeurCvDir = "./src/main/resources//static//cvs//";
 	
 	
 	private ChauffeurService chauffeurService;
