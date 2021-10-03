@@ -36,15 +36,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @CrossOrigin
 public class ChauffeurController implements ChauffeurApi {
 	
-//	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
+	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
 	
 //	private final String chauffeurPhotosDir = "../../src//main//resources//static//images//";
 	
-	private static final String chauffeurPhotosDir = "./src/main/resources//static//images//";
+//	private static final String chauffeurPhotosDir = "./src/main/resources//static//images//";
 	 
-//	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
+	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
 	
-	private final String chauffeurCvDir = "./src/main/resources//static//cvs//";
+//	private final String chauffeurCvDir = "./src/main/resources//static//cvs//";
 	
 	
 	private ChauffeurService chauffeurService;
@@ -134,7 +134,7 @@ public class ChauffeurController implements ChauffeurApi {
         return chauffeurService.findChauffeurByPageable(pageable);
 	}
 	
-	
+/*	
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -145,8 +145,10 @@ public class ChauffeurController implements ChauffeurApi {
 
 	}
 	
+	*/
+	
 
-/*
+
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -156,7 +158,7 @@ public class ChauffeurController implements ChauffeurApi {
         return Files.readAllBytes(Paths.get("./src/main/resources//static//images//" + chauffeurDto.getPhotoChauffeur()));
 
 	}
-	*/
+	
 	
 	@Override
 	public void uploadPhotoChauffeur(MultipartFile photoChauffeur, Long idChauffeur) throws IOException {
@@ -171,6 +173,7 @@ public class ChauffeurController implements ChauffeurApi {
 	}
 	
 	
+	/*
 	@Override
 	public byte[] getCvChauffeur(Long id) throws Exception {
 		
@@ -182,7 +185,8 @@ public class ChauffeurController implements ChauffeurApi {
 
 	}
 	
-	/*
+	*/
+	
 	@Override
 	public byte[] getCvChauffeur(Long id) throws Exception {
 		
@@ -192,7 +196,7 @@ public class ChauffeurController implements ChauffeurApi {
       
         return Files.readAllBytes(Paths.get("./src/main/resources//static//cvs//" + chauffeurDto.getCvChauffeur()));
 	}
-	*/
+	
 	
 	public void downloadChauffeurFile(HttpServletRequest request, HttpServletResponse response,
              @PathVariable("fileName") String fileName) throws IOException {
