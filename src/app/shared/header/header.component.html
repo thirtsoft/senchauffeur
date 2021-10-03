@@ -47,9 +47,11 @@
                         <li>
                           <a href="#"> Employeurs <i class="fa fa-chevron-down"></i></a>
                           <ul class="sub-menu ">
-                              <li><a routerLink="/browse-candidates" class="dez-page ">Voir les Candidats</a></li>
+                              <li *ngIf="this.isLoggedIn">
+                                <a routerLink="/browse-candidates" class="dez-page ">Voir les Candidats</a>
+                              </li>
                               <li><a routerLink="/browse-tarifs" class="dez-page ">Voir les Tarifs</a></li>
-                              <li><a routerLink="/jobs" class="dez-page ">Voir vos Publications</a></li>
+                          <!--     <li><a routerLink="/jobs" class="dez-page ">Voir vos Publications</a></li> -->
                               <li><a routerLink="/auth/signIn" class="dez-page"><i class="fa fa-lock"></i> Deconnexion</a>
                           </ul>
                       </li>
@@ -65,9 +67,9 @@
                         <li *ngIf="this.isLoggedIn">
                           <a href="#"><i class="fa fa-user"></i> {{this.username}} <i class="fa fa-chevron-down"></i></a>
                           <ul class="sub-menu">
-                              <li><a class="dez-page"  (click)="getProfile()" style="cursor: pointer;"><i class="icon_profile"></i> My Profile</a></li>
+                              <li><a class="dez-page"  (click)="getProfile()" style="cursor: pointer;"><i class="icon_profile"></i> Votre Compte</a></li>
                               <li><a routerLink="/jobs" class="dez-page ">Voir vos Publications</a></li>
-                              <li><a class="dez-page" (click)="logout()" style="cursor: pointer;"><i class="icon_key_alt"></i> Log Out</a></li>
+                              <li><a class="dez-page" (click)="logout()" style="cursor: pointer;"><i class="icon_key_alt"></i> Deconnexion</a></li>
 
                           </ul>
                       </li>

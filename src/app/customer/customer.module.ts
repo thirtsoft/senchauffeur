@@ -62,6 +62,8 @@ import { JetonEmployeurComponent } from './employeur/jeton-employeur/jeton-emplo
 import { InfoEmployeurComponent } from './employeur/info-employeur/info-employeur.component';
 import { ModifyInfoEmployeurComponent } from './employeur/modify-info-employeur/modify-info-employeur.component';
 import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-employeur/modify-password-employeur.component';
+import { CreateRatingComponent } from './rating/create-rating/create-rating.component';
+import { ListRatingComponent } from './rating/list-rating/list-rating.component';
 
 
 
@@ -101,6 +103,8 @@ import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-em
     InfoEmployeurComponent,
     ModifyInfoEmployeurComponent,
     ModifyPasswordEmployeurComponent,
+    CreateRatingComponent,
+    ListRatingComponent,
   ],
   imports: [
     CommonModule,
