@@ -64,6 +64,7 @@ import { ModifyInfoEmployeurComponent } from './employeur/modify-info-employeur/
 import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-employeur/modify-password-employeur.component';
 import { CreateRatingComponent } from './rating/create-rating/create-rating.component';
 import { ListRatingComponent } from './rating/list-rating/list-rating.component';
+import { ViewJobDetailComponent } from './job/view-job-detail/view-job-detail.component';
 
 
 
@@ -105,6 +106,7 @@ import { ListRatingComponent } from './rating/list-rating/list-rating.component'
     ModifyPasswordEmployeurComponent,
     CreateRatingComponent,
     ListRatingComponent,
+    ViewJobDetailComponent,
   ],
   imports: [
     CommonModule,

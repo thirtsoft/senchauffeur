@@ -1,3 +1,4 @@
+import { TokenStorageService } from './../../../auth/security/token-storage.service';
 import { DashboardService } from './../../../services/dashboard.service';
 import { AnnonceService } from './../../../services/annonce.service';
 import { Component, OnInit } from '@angular/core';
@@ -27,12 +28,19 @@ export class JobersComponent implements OnInit {
 
   chauffeurListDTOBySelected: ChauffeurDto[];
 
-  public currentTime: number = 0;
+  currentTime: number = 0;
 
   searchText: boolean = false;
 
+  isLoggedIn = false;
+
+
+  username: string;
+  userId;
+
   constructor(public chauffeurService: ChauffeurService,
               private dashboardService: DashboardService,
+              private tokenService: TokenStorageService,
               private activeRoute: ActivatedRoute,
               private router: Router,
               private fb: FormBuilder
@@ -44,6 +52,14 @@ export class JobersComponent implements OnInit {
       this.getListChauffeurDTOs();
       }
     );
+
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+
+      this.username = user.username;
+      this.userId = user.id;
+    }
 
     this.getNumberOfAnnonces();
 

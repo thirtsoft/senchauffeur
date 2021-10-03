@@ -199,11 +199,16 @@
 
                               <div class="form-group col-md-6 col-sm-12">
                                 <label>Type de Contrat </label>
-                                <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.typeContrat"
-                                  name="typeContrat" id="typeContrat" #typeContrat="ngModel"
-                                  placeholder="type de Contrat pour ce poste"
-                                  required
-                                />
+                                <select name="typeContrat" [(ngModel)]="addEditAnnonceDTO.typeContrat"
+                                    id="typeContrat" #typeContrat="ngModel"
+                                    class="form-control"
+                                    required
+                                >
+                                  <option [ngValue]="0" disabled>--choisir Contrat--</option>
+                                  <option *ngFor="let item of listTypeContrats" [ngValue]="item">
+                                    {{ item }}
+                                  </option>
+                                </select>
                                 <span class="text-danger" *ngIf="
                                     (typeContrat.touched || addJobForm.submitted) &&
                                     typeContrat.errors?.required"
@@ -212,77 +217,54 @@
                                 </span>
                               </div>
 
-                              <div class="form-group col-md-6 col-sm-12">
+                             <!--  <div class="form-group col-md-6 col-sm-12">
                                 <label>Logo Entreprise (optional)</label>
                                 <div class="custom-file">
                                     <input type="file" placeholder="choisir logo entreprise" class="site-button" id="customFile">
                                 </div>
-                            </div>
+                             </div> -->
 
-
-
-                            <!--   <div class="form-group col-md-6 col-sm-12">
-                                  <label>Date Cloture </label>
-                                  <input type="text" class="form-control"
-                                    [(ngModel)]="addEditAnnonceDTO.dateCloture"
-                                    name="dateCloture"
-                                    ngbDatepicker
-                                    id="dateCloture"
-                                    #dateCloture="ngModel"
-                                    placeholder="yyyy-mm-dd"
-                                    [footerTemplate]="footerTemplate" #d="ngbDatepicker" [minDate]="today" readonly
-                                    required
-                                  />
-                                  <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"></button>
-                                  </div>
-                                  <ng-template #footerTemplate>
-                                    <hr class="my-0">
-                                    <button class="btn btn-primary btn-sm m-2 float-left" (click)="model = today; d.close()">Today</button>
-                                    <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
-                                  </ng-template>
-                                  </div>
-                                  <span class="text-danger" *ngIf="
-                                      (dateCloture.touched || addJobForm.submitted) &&
-                                      dateCloture.errors?.required
-                                    ">
-                                    dateCloture est obligatoire
-                                  </span>
-                             -->
-                            </div>
-
-                            <div class="form-group">
-                              <label for="">Date cloture</label>
-                              <form class="form-inline">
-                                <div class="form-group">
-                                  <div class="input-group">
-                                    <input class="form-control"
-                                      placeholder="yyyy-mm-dd"
-                                      [(ngModel)]="addEditAnnonceDTO.dateCloture"
-                                      name="dateCloture"
-                                      ngbDatepicker
-                                      id="dateCloture"
-                                      #dateCloture="ngModel"
-                                      ngbDatepicker
-                                      [footerTemplate]="footerTemplate" #d="ngbDatepicker" [minDate]="today" readonly>
+                              <div class="form-group">
+                                <label for="">Date cloture</label>
+                                <form class="form-inline">
+                                  <div class="form-group">
+                                    <div class="input-group">
+                                      <input class="form-control"
+                                        placeholder="yyyy-mm-dd"
+                                        [(ngModel)]="addEditAnnonceDTO.dateCloture"
+                                        name="dateCloture"
+                                        ngbDatepicker
+                                        id="dateCloture"
+                                        #dateCloture="ngModel"
+                                        ngbDatepicker
+                                        [footerTemplate]="footerTemplate" #d="ngbDatepicker"
+                                        [minDate]="today" readonly
+                                      >
                                       <span class="text-danger" *ngIf="
-                                          (dateCloture.touched || addJobForm.submitted) &&
-                                          dateCloture.errors?.required
-                                        ">
-                                        dateCloture est obligatoire
+                                            (dateCloture.touched || addJobForm.submitted) &&
+                                            dateCloture.errors?.required"
+                                      >
+                                          dateCloture est obligatoire
                                       </span>
-                                    <!-- <div class="input-group-append"> -->
+
                                       <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"></button>
-                                   <!--  </div> -->
-                                    <ng-template #footerTemplate>
-                                      <hr class="my-0">
-                                      <button class="btn btn-primary btn-sm m-2 float-left" (click)="model = today; d.close()">Today</button>
-                                      <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
-                                    </ng-template>
+
+                                      <ng-template #footerTemplate>
+                                        <hr class="my-0">
+                                        <button class="btn btn-primary btn-sm m-2 float-left" (click)="model = today; d.close()">Today</button>
+                                        <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
+                                      </ng-template>
                                   </div>
                                 </div>
+
                               </form>
                             </div>
+
+
+
+                            </div>
+
+
 
                             <div class="form-group">
                                 <label>Description</label>
@@ -300,13 +282,13 @@
 
 
                             <div class="form-group">
-                                <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onAddJob()">
-                                  <i class="fa fa-database"></i> Submit
+                                <button *ngIf="!paramId" type="submit" class="btn btn-success btn-block" (click)="onAddJob()">
+                                  <i class="fa fa-database"></i> Enregistrer
                                 </button>&nbsp;
                                 <button *ngIf="paramId" class="btn btn-warning" (click)="onUpdateJob()">
-                                  <i class="fa fa-database"></i>Update</button>
-                                <button type="button" class="btn btn-danger ml-1">
-                                  <i class="fa fa-close"></i> Close</button>
+                                  <i class="fa fa-database"></i>Modifier</button>
+                                <!-- <button type="button" class="btn btn-danger ml-1">
+                                  <i class="fa fa-close"></i> Close</button> -->
                             </div>
 
                         </form>

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { Annonce, AnnonceDto } from './../models/annonce';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { TokenStorageService } from './../auth/security/token-storage.service';
+import { AnnonceDto } from './../models/annonce';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,9 @@ import { environment } from 'src/environments/environment';
 export class AnnonceService {
 
   private apiServerUrl = environment.apiBaseUrl;
+
+  id;
+  currentUser: any = {};
 
   private listners = new Subject<any>();
   listen(): Observable<any> {
@@ -19,7 +23,9 @@ export class AnnonceService {
     this.listners.next(filterBy);
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private tokenService: TokenStorageService
+  ) {
   }
 
 
@@ -38,6 +44,10 @@ export class AnnonceService {
 
   public addAnnonceDTO(annonceDTO: AnnonceDto): Observable<AnnonceDto> {
     return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
+  }
+
+  public addAnnonceDTOWithUser(annonceDTO: AnnonceDto, id: number): Observable<AnnonceDto> {
+    return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/createAnnonceWithUser?id=`+id, annonceDTO);
   }
 
   public updateAnnonceDTO(annonceId: number, annonceDTO: AnnonceDto): Observable<AnnonceDto> {
@@ -85,6 +95,15 @@ export class AnnonceService {
 
   public countNumberOfAnnonces(): Observable<any>  {
     return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonces`);
+  }
+
+  public countNumberOfAnnonceByStatusPending(): Observable<any>  {
+    return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonceByStatusPending`);
+  }
+
+  getUserId() {
+    const user = this.tokenService.getUser();
+    this.id = user.id
   }
 
 }

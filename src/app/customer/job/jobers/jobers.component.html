@@ -33,8 +33,13 @@
             </div>
         </div>
 
-        <div class="col-lg-12 text-center m-t30">
+        <div *ngIf="this.isLoggedIn" class="col-lg-12 text-center m-t30">
             <button class="site-button radius-xl" routerLink="/browse-candidates">Voirs tous les Chauffeurs</button>
         </div>
+
+        <div class="col-lg-12 text-center m-t30">
+          <button class="site-button radius-xl" routerLink="/auth/signIn">Voirs tous les Chauffeurs</button>
+      </div>
+
     </div>
 </div>

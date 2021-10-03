@@ -39,10 +39,10 @@ export class ListJobComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4,
+      pageLength: 5,
       processing: true,
       autoWidth: true,
-      order: [[0, 'desc']]
+      order: [['desc', 0]]
     };
 
     this.annonceService.getAnnonceDTOs().subscribe(

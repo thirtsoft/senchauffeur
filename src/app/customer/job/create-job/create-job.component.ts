@@ -40,8 +40,6 @@ export class CreateJobComponent implements OnInit {
 
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
-              private recruteurService: RecruteurService,
-              private villeService: VilleService,
               private addressService: AddressService,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -66,7 +64,9 @@ export class CreateJobComponent implements OnInit {
 
     this.getListPermisDTOs();
 
-    this.getListRecruteurDTOs();
+  //  this.getListRecruteurDTOs();
+
+    this.annonceService.getUserId();
 
     this.getListAddressesDTOs();
 
@@ -106,29 +106,11 @@ export class CreateJobComponent implements OnInit {
     )
   }
 
-  getListRecruteurDTOs() {
-    this.recruteurService.getRecruteurDTOs().subscribe(
-      (response: RecruteurDto[]) => {
-        this.listRecruteurDTOs = response;
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
 
-  getListVilleDTOs() {
-    this.villeService.getVilleDTOs().subscribe(
-      (response: VilleDto[]) => {
-        this.listVilleDTOs = response;
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
 
   public onAddJob() {
     console.log(this.addEditAnnonceDTO);
-    this.annonceService.addAnnonceDTO(this.addEditAnnonceDTO).subscribe(
+    this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
       (response: AnnonceDto) => {
         alert("Job Ajouté avec success");
         this.router.navigate(['/jobs']);
