@@ -53,14 +53,14 @@
                                 <li><i class="ti-location-pin text-black m-r5"></i>{{chauffeurDTO?.addressActuel}}</li> -->
                             </ul>
                             <p class="p-t20">
-                                <a href="#">Adresse: <strong>{{chauffeurDTO?.addressActuel}}</strong></a></p>
+                                <a href="#">Adresse : <strong>{{chauffeurDTO?.addressActuel}}</strong></a></p>
                             <h5 class="font-weight-600">Informations Utiles</h5>
                             <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <p>Téléphone: <strong>{{chauffeurDTO?.phoneChauffeur}}</strong></p>
-                            <p>Email: <strong>{{chauffeurDTO?.email}}</strong></p>
+                            <p *ngIf="this.isLoggedIn">Téléphone : <strong>{{chauffeurDTO?.phoneChauffeur}}</strong></p>
+                            <p *ngIf="this.isLoggedIn">Email : <strong>{{chauffeurDTO?.email}}</strong></p>
                             <a href="">
                                 <p>CV Chauffeur : </p>
-                                <a (click)="openPDF()" class="btn btn-success">&nbsp;&nbsp;
+                                <a *ngIf="this.isLoggedIn" (click)="openPDF()" class="btn btn-info">&nbsp;&nbsp;
                                   <i class="fa fa-eye" style="cursor:pointer; align-items: flex-end;"></i>
 
                                   Voir CV
@@ -72,23 +72,29 @@
                                   [render-text]="true" style="display: block;">
                                 </pdf-viewer> -->
 
+<<<<<<< HEAD
                                 <a class="btn btn-primary" href="https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
+=======
+                                <a *ngIf="this.isLoggedIn" class="btn btn-drink" href="http://localhost:8081/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
+>>>>>>> dev
                                   <i class="fa fa-download" style="cursor:pointer; align-items: flex-end;"></i>&nbsp;&nbsp;
                                   Télécharger CV
                                 </a>
+
+
                             </a>
 
                             <!-- <p>Disponibilité: <strong>{{chauffeurDTO?.disponibity}}</strong></p>
                             <p>Mobilité: <strong>{{chauffeurDTO?.mobilite}}</strong></p> -->
                             <h5 class="font-weight-600">Informations Permis</h5>
                             <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <p>Type permis: <strong>{{chauffeurDTO?.permisDto?.typePermis}}</strong></p>
-                            <p>Permis: <strong>{{chauffeurDTO?.permisDto?.designation}}</strong></p>
+                            <p>Type permis : <strong>{{chauffeurDTO?.permisDto?.typePermis}}</strong></p>
+                            <p>Permis : <strong>{{chauffeurDTO?.permisDto?.designation}}</strong></p>
                             <h5 class="font-weight-600">Disponilités et Localité</h5>
                             <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <p>Disponilité: <strong>{{chauffeurDTO?.disponibity}}</strong></p>
-                            <p>Quartier: <strong>{{chauffeurDTO?.addresseDto?.quartier}}</strong></p>
-                            <p>Mobilité: <strong>{{chauffeurDTO?.mobilite}}</strong></p>
+                            <p>Disponilité : <strong>{{chauffeurDTO?.disponibity}}</strong></p>
+                            <p>Quartier : <strong>{{chauffeurDTO?.addresseDto?.quartier}}</strong></p>
+                            <p>Mobilité : <strong>{{chauffeurDTO?.mobilite}}</strong></p>
                             <!-- <ul class="list-num-count no-round">
                                 <li>Type de Permis: <strong>{{chauffeurDTO?.permisDto.typePermis}}</strong></li>
                                 <li>Who We Are and <strong>{{chauffeurDTO?.permisDto.designation}}</strong></li>
@@ -102,7 +108,10 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">
+                  <div class="col-lg-4" *ngIf="this.isLoggedIn">
+                    <app-create-rating></app-create-rating>
+                  </div>
+                   <!--  <div class="col-lg-4">
                         <div class="page-content bg-white">
                             <div class="content-block">
                                 <form #addNotationForm="ngForm" name="form">
@@ -123,7 +132,8 @@
 
                                     <div class="form-group ">
                                         <label>Observation</label>
-                                        <textarea class="form-control " rows="5" [(ngModel)]="addEditNotationDTO.observation" name="observation" placeholder="commentaire" id="observation " #observation="ngModel"></textarea>
+                                        <textarea class="form-control " rows="5" [(ngModel)]="addEditNotationDTO.observation"
+                                        name="observation" placeholder="commentaire" id="observation " #observation="ngModel"></textarea>
                                         <span class="text-danger " *ngIf=" (observation.touched || addNotationForm.submitted) && observation.errors?.required ">
                                           observation est obligatoire
                                         </span>
@@ -133,14 +143,13 @@
                                         <button type="submit " class="btn btn-success btn-block" (click)="onAddNotation() ">
                                                     <i class="fa fa-database"></i> Submit
                                                   </button>&nbsp;
-                                        <!--  <button type="button " class="btn btn-danger ml-1">
-                                                    <i class="fa fa-close"></i> Close</button> -->
                                     </div>
                                 </form>
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
                     <div class="col-lg-2 ">
                     </div>
                     <!-- <div class="col-lg-6 ">

@@ -15,6 +15,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { AccueilComponent } from './layouts/accueil/accueil.component';
 import { LocalityComponent } from './candidate/locality/locality.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { LocalityComponent } from './candidate/locality/locality.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    NgbModule,
 
 
 

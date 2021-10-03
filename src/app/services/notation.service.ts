@@ -1,28 +1,46 @@
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { TokenStorageService } from './../auth/security/token-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { NotationDto } from './../models/notation';
 import { Observable } from 'rxjs';
+<<<<<<< HEAD
 import { Injectable } from '@angular/core';
 /* import { environment } from 'src/environments/environment'; */
 import { environment } from 'src/environments/environment.prod';
+=======
+>>>>>>> dev
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotationService {
 
+<<<<<<< HEAD
 //  private apiServerUrl = environment.apiBaseUrl;
 
   public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
  // private apiServerUrl = environment.apiBaseUrl;
   id;
+=======
+  private apiServerUrl = environment.apiBaseUrl;
+>>>>>>> dev
 
-  constructor(private http: HttpClient) {
+  id: any;
+  artId: any;
+
+  constructor(private http: HttpClient,
+              private tokenService: TokenStorageService) {
   }
 
   /*********************** NotationDTO *****************/
   public getNotationDTOs(): Observable<NotationDto[]> {
     return this.http.get<NotationDto[]>(`${this.apiServerUrl}/notifications/all`);
+  }
+
+  public getTop3RatingOrderByCreatedDateDesc(): Observable<NotationDto[]> {
+    return this.http.get<NotationDto[]>(`${this.apiServerUrl}/notifications/searchTop3RatingOrderByCreatedDateDesc`);
   }
 
   public getNotationDTOById(noteId: number): Observable<NotationDto> {
@@ -37,12 +55,21 @@ export class NotationService {
     return this.http.post<NotationDto>(`${this.apiServerUrl}/notifications/createWithChauffeur/${id}`, notationDTO);
   }
 
+  public addRatingToChauffeur(notificationDTO: NotationDto, idChauff: number, userId:number): Observable<NotationDto> {
+    return this.http.post<NotationDto>(`${this.apiServerUrl}/notifications/createRatingToChauffeur?idChauff=${idChauff}&id=${userId}`, notificationDTO);
+  }
+
   public updateNotationDTO(noteId: number, notationDTO: NotationDto): Observable<NotationDto> {
     return this.http.put<NotationDto>(`${this.apiServerUrl}/notifications/update/${noteId}`, notationDTO);
   }
 
   public deleteNotationDTO(noteId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete/${noteId}`);
+  }
+
+  getUserId() {
+    const user = this.tokenService.getUser();
+    this.id = user.id
   }
 
 }

@@ -1,11 +1,10 @@
-import { NgForm } from '@angular/forms';
-import { NotationService } from './../../../services/notation.service';
-import { NotationDto } from './../../../models/notation';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
 import { ChauffeurDto } from './../../../models/chauffeur';
+import { TokenStorageService } from './../../../auth/security/token-storage.service';
+import { NotationService } from './../../../services/notation.service';
 
 @Component({
   selector: 'app-detail-chauffeur',
@@ -15,17 +14,19 @@ import { ChauffeurDto } from './../../../models/chauffeur';
 export class DetailChauffeurComponent implements OnInit {
 
   chauffeurDTO: ChauffeurDto;
-  addEditNotationDTO: NotationDto = new NotationDto();
-  addNotationForm: NgForm;
 
   paramId :any = 0;
 
   searchMode: boolean = false;
 
+  isLoggedIn = false;
+  username: string;
+
   pdfSrc;
 
   constructor(public chauffService: ChauffeurService,
-              private noteService: NotationService,
+              private ratingService: NotationService,
+              private tokenService: TokenStorageService,
               private router: Router,
               private route: ActivatedRoute,
   ) { }
@@ -39,11 +40,18 @@ export class DetailChauffeurComponent implements OnInit {
     if(this.paramId  && this.paramId  > 0){
       this.getChauffeurDTOById(this.paramId);
     }
-/*
-    this.route.paramMap.subscribe(()=> {
-      this.getAnnonceDTOByReference();
-    });
-    */
+
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+
+      this.ratingService.getUserId();
+
+      this.username = user.username;
+
+    }
+
+
   }
 
   getChauffeurDTOById(id: number) {
@@ -60,23 +68,10 @@ export class DetailChauffeurComponent implements OnInit {
 
   }
 
-  openPDF(){}
+  openPDF(){
 
-
-  public onAddNotation() {
-    console.log(this.addEditNotationDTO);
-    console.log("Note", +this.chauffeurDTO.id);
-    this.noteService.addNotationDTOToDriver(this.chauffeurDTO.id,
-      this.addEditNotationDTO).subscribe(
-      (response: NotationDto) => {
-        alert("Notation Ajouté avec success");
-        this.router.navigate(['/notations']);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
 
   }
+
 
 }

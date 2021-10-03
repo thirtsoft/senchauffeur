@@ -1,8 +1,3 @@
-import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteur.component';
-import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
-import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
-import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -19,6 +14,13 @@ import { CreatePermisComponent } from './permis/create-permis/create-permis.comp
 import { ListPermisComponent } from './permis/list-permis/list-permis.component';
 import { CreateChauffeurComponent } from './chauffeur/create-chauffeur/create-chauffeur.component';
 import { ListChauffeurComponent } from './chauffeur/list-chauffeur/list-chauffeur.component';
+
+import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteur.component';
+import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
+import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
+import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-encours/annonce-by-status-encours.component';
 
 
 const routes: Routes = [
@@ -87,6 +89,10 @@ const routes: Routes = [
   {
     path: 'annonce/:id',
     component: CreateAnnonceComponent
+  },
+  {
+    path: 'annonceEncours',
+    component: AnnonceByStatusEncoursComponent
   },
   {
     path: 'tarifs',

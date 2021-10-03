@@ -2,7 +2,6 @@ import { Utilisateur, UtilisateurDto } from './utilisateur';
 import { Chauffeur, ChauffeurDto } from './chauffeur';
 export class Notation {
   id: number;
-  reference: string;
   nbreEtoile: string;
   observation: string;
 
@@ -14,7 +13,6 @@ export class Notation {
 
 export class NotationDto {
   id: number;
-  reference: string;
   nbreEtoile: string;
   observation: string;
 

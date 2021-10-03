@@ -3,7 +3,7 @@
         <div class="main-bar clearfix">
             <div class="container clearfix">
                 <div class="logo-header mostion">
-                    <a href="/"><img src="assets/customer/images/logo.png" class="logo" alt=""></a>
+                    <a href="/"><img src="assets/customer/images/logo.jpg" class="logo" alt=""></a>
                 </div>
                 <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span></span>
@@ -12,7 +12,7 @@
                 </button>
                 <div class="extra-nav">
                     <div class="extra-cell">
-                        <a routerLink="/publier-offre" class="site-button"><i class="fa fa-user"></i> Publier une Offre Emploie</a>
+                        <a routerLink="/publier-offre" class="site-button"><i class="fa fa-user"></i> Publier un Job</a>
                         <!-- <a routerLink="/auth/signUp" class="site-button"><i class="fa fa-user"></i> Sign Up</a>
                         <a routerLink="/auth/signIn" class="site-button"><i class="fa fa-lock"></i> login</a> -->
                     </div>
@@ -33,61 +33,54 @@
                 <!-- main nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
                     <ul class="nav navbar-nav">
-                        <li><a href="/" class="active">Accueil</a></li>
-                        <li><a href="/browse-job" class="dez-page">Les Offres</a></li>
-                        <!--
+                       <!--  <li><a href="/" class="active">Accueil</a></li> -->
+                        <li><a routerLink="/browse-job" class="dez-page">Offres</a></li>
                         <li>
-                            <a href="#">Candidats <i class="fa fa-chevron-down"></i></a>
-                            <ul class="sub-menu ">
-                                <li><a routerLink="/browse-job" class="dez-page ">Les Offres</a></li>
-                                <li><a routerLink="/companies" class="dez-page ">companies</a></li>
-                                <li><a routerLink="/job-detail" class="dez-page ">Job Detail</a></li>
-                            </ul>
-                        </li>-->
-                        <li>
-                            <a href="#"> Employeurs <i class="fa fa-chevron-down"></i></a>
-                            <ul class="sub-menu ">
-                                <li><a routerLink="/browse-candidates" class="dez-page ">Voir les Candidats</a></li>
-                                <li><a routerLink="/jobs" class="dez-page ">Voir vos Publications</a></li>
-                                <li> <a routerLink="/auth/signUp" class="dez-page"><i class="fa fa-user"></i> Sign Up</a></li>
-                                <li><a routerLink="/auth/signIn" class="dez-page"><i class="fa fa-lock"></i> login</a>
-                                <li><a routerLink="/submit-resume" class="dez-page">Submit Resume</a></li>
-                                <li><a routerLink="/auth/signIn" class="dez-page"><i class="fa fa-lock"></i> LogOut</a>
+                            <a href="#"> Candidats <i class="fa fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li><a routerLink="/browse-job" class="dez-page">Tous Offres</a></li>
+                                <li><a routerLink="/contact-us" class="dez-page">CV et Autres</a></li>
+                                <li><a routerLink="/contact-us" class="dez-page">Contactez</a></li>
+
                             </ul>
                         </li>
+
                         <li>
+                          <a href="#"> Employeurs <i class="fa fa-chevron-down"></i></a>
+                          <ul class="sub-menu ">
+                              <li>
+                                <a *ngIf="this.isLoggedIn" routerLink="/browse-candidates" class="dez-page ">Voir les Candidats</a>
+                              </li>
+                              <li>
+                                <a routerLink="/auth/signIn" class="dez-page ">Voir Candidats</a>
+                              </li>
+                              <li><a routerLink="/browse-tarifs" class="dez-page ">Voir les Tarifs</a></li>
+
+                              <!-- <li><a routerLink="/auth/signIn" class="dez-page"><i class="fa fa-lock"></i> Deconnexion</a> -->
+                          </ul>
+                      </li>
+                     <!--  <li>
                             <a href="#">A Propos <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a routerLink="/about-us" class="dez-page">About Us</a></li>
-                                <li><a href="coming-soon.html" class="dez-page">Coming Soon</a></li>
-                                <li><a href="error-404.html" class="dez-page ">Error 404</a></li>
-                                <li><a href="login.html" class="dez-page ">Login</a></li>
-                                <li><a href="register.html" class="dez-page ">Register</a></li>
+                                <li><a routerLink="/about-us" class="dez-page">Qui-sommes-nous ?</a></li>
+                                <li><a routerLink="/termesCondition" class="dez-page ">Termes & Conditions</a></li>
                                 <li><a routerLink="/faq" class="dez-page ">Faq</a></li>
                                 <li><a routerLink="/contact-us" class="dez-page ">Contact Us</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li *ngIf="this.isLoggedIn">
                           <a href="#"><i class="fa fa-user"></i> {{this.username}} <i class="fa fa-chevron-down"></i></a>
                           <ul class="sub-menu">
-                              <li><a class="dez-page"  (click)="getProfile()" style="cursor: pointer;"><i class="icon_profile"></i> My Profile</a></li>
-                              <li><a routerLink="/jobs" class="dez-page ">Voir vos Publications</a></li>
-                              <li><a class="dez-page" (click)="logout()" style="cursor: pointer;"><i class="icon_key_alt"></i> Log Out</a></li>
+                              <li><a class="dez-page"  (click)="getProfile()" style="cursor: pointer;">
+                                <i class="icon_profile"></i> Votre Compte</a>
+                              </li>
+                              <li><a routerLink="/jobs" class="dez-page ">Vos Publications</a></li>
+                              <li><a class="dez-page" (click)="logout()" style="cursor: pointer;"><i class="icon_key_alt"></i> Deconnexion</a></li>
 
                           </ul>
                       </li>
 
-                        <!-- <li>
-                            <a href="# ">Blog <i class="fa fa-chevron-down "></i></a>
-                            <ul class="sub-menu ">
-                                <li><a href="blog-classic.html " class="dez-page ">Classic</a></li>
-                                <li><a href="blog-classic-sidebar.html " class="dez-page ">Classic Sidebar</a></li>
-                                <li><a href="blog-detailed-grid.html " class="dez-page ">Detailed Grid</a></li>
-                                <li><a href="blog-detailed-grid-sidebar.html " class="dez-page ">Detailed Grid Sidebar</a></li>
-                                <li><a href="blog-left-img.html " class="dez-page ">Left Image Sidebar</a></li>
-                                <li><a href="blog-details.html " class="dez-page ">Blog Details</a></li>
-                            </ul>
-                        </li> -->
+                      <li class="provinces-btn"><a href="/publier-offre" class="dez-page" id="btnPublier">Publier un Job</a></li>
                     </ul>
                 </div>
             </div>

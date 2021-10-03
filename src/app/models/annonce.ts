@@ -27,9 +27,9 @@ export class AnnonceDto {
   lieuPoste: string;
   salaire: string;
   emailPoste: string;
-  modeCandidature: string;
   time: string;
   anneeExperience: string;
+  typeContrat: string;
   description: string;
   dateCandidature: Date;
   dateCloture: Date;

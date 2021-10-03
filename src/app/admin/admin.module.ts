@@ -22,6 +22,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { ListAnnonceComponent } from './annonce/list-annonce/list-annonce.component';
 import { CreateAnnonceComponent } from './annonce/create-annonce/create-annonce.component';
@@ -42,6 +43,7 @@ import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeu
 import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteur.component';
+import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-encours/annonce-by-status-encours.component';
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteu
     ViewChauffeurComponent,
     CreateTarifComponent,
     ListTarifComponent,
-    ViewRecruteurComponent
+    ViewRecruteurComponent,
+    AnnonceByStatusEncoursComponent
   ],
   imports: [
     CommonModule,
@@ -87,6 +90,7 @@ import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteu
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    EditorModule,
   ]
 })
 export class AdminModule { }

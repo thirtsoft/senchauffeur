@@ -1,5 +1,5 @@
-export class StatusAnnonce {
-  Encours;
-  Rejet;
-  Valider;
+export enum StatusAnnonce {
+  ENCOURS,
+	VALIDEE,
+	REJETEE
 }

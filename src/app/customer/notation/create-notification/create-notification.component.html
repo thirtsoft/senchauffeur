@@ -3,16 +3,6 @@
     <div class="content-block">
         <form #addNotationForm="ngForm" name="form">
             <div class="form-group">
-                <label>Reference</label>
-                <input type="text" class="form-control" [(ngModel)]="addEditNotationDTO.reference" name="reference" id="reference" #reference="ngModel" required>
-                <span class="text-danger" *ngIf="
-                    (reference.touched || addNotationForm.submitted) &&
-                         reference.errors?.required
-                ">
-                    Reference Obligatoire
-                </span>
-            </div>
-            <div class="form-group">
                 <label>Nbre Etoile</label>
                 <input type="text" class="form-control" [(ngModel)]="addEditNotationDTO.nbreEtoile" name="nbreEtoile" id="nbreEtoile" #nbreEtoile="ngModel" required />
                 <span class="text-danger" *ngIf="

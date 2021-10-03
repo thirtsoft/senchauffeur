@@ -1,10 +1,6 @@
-import { AddressService } from './../../../services/address.service';
-import { AddresseDto } from './../../../models/locality';
-import { VilleService } from './../../../services/ville.service';
-import { VilleDto } from './../../../models/ville';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RecruteurService } from './../../../services/recruteur.service';
 import { PermisService } from './../../../services/permis.service';
@@ -12,6 +8,12 @@ import { AnnonceService } from './../../../services/annonce.service';
 import { RecruteurDto } from './../../../models/recruteur';
 import { PermisDto } from './../../../models/permis';
 import { AnnonceDto } from './../../../models/annonce';
+import { AddressService } from './../../../services/address.service';
+import { AddresseDto } from './../../../models/locality';
+import { VilleService } from './../../../services/ville.service';
+import { VilleDto } from './../../../models/ville';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-create-job',
@@ -26,18 +28,22 @@ export class CreateJobComponent implements OnInit {
   listVilleDTOs: VilleDto[];
   listAddressDTOs: AddresseDto[];
 
+  listTypeContrats = ["Stage", "CDD", "CDI"];
+
   data;
   paramId :any = 0;
   mySubscription: any;
   addJobForm: NgForm;
 
+  model: NgbDateStruct;
+  today = this.calendar.getToday();
+
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
-              private recruteurService: RecruteurService,
-              private villeService: VilleService,
               private addressService: AddressService,
               private actRoute: ActivatedRoute,
-              private router: Router
+              private router: Router,
+              private calendar: NgbCalendar
   ) {
      //--for reload componant
      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -58,9 +64,12 @@ export class CreateJobComponent implements OnInit {
 
     this.getListPermisDTOs();
 
-    this.getListRecruteurDTOs();
+  //  this.getListRecruteurDTOs();
+
+    this.annonceService.getUserId();
 
     this.getListAddressesDTOs();
+
   }
 
   getAnnonceDTOById(id: number) {
@@ -97,29 +106,11 @@ export class CreateJobComponent implements OnInit {
     )
   }
 
-  getListRecruteurDTOs() {
-    this.recruteurService.getRecruteurDTOs().subscribe(
-      (response: RecruteurDto[]) => {
-        this.listRecruteurDTOs = response;
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
 
-  getListVilleDTOs() {
-    this.villeService.getVilleDTOs().subscribe(
-      (response: VilleDto[]) => {
-        this.listVilleDTOs = response;
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
 
   public onAddJob() {
     console.log(this.addEditAnnonceDTO);
-    this.annonceService.addAnnonceDTO(this.addEditAnnonceDTO).subscribe(
+    this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
       (response: AnnonceDto) => {
         alert("Job Ajouté avec success");
         this.router.navigate(['/jobs']);

@@ -1,9 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { Annonce, AnnonceDto } from './../models/annonce';
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 /* import { environment } from 'src/environments/environment'; */
 import { environment } from 'src/environments/environment.prod';
+=======
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { TokenStorageService } from './../auth/security/token-storage.service';
+import { AnnonceDto } from './../models/annonce';
+>>>>>>> dev
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +19,9 @@ export class AnnonceService {
 
 public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
+  id;
+  currentUser: any = {};
+
   private listners = new Subject<any>();
   listen(): Observable<any> {
     return this.listners.asObservable();
@@ -22,11 +30,13 @@ public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1"
     this.listners.next(filterBy);
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private tokenService: TokenStorageService
+  ) {
   }
 
 
-  /**************************** ChauffeurDTO ******************/
+  /**************************** AnnonceDTO ******************/
   public getAnnonceDTOs(): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/all`);
   }
@@ -43,6 +53,10 @@ public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1"
     return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
   }
 
+  public addAnnonceDTOWithUser(annonceDTO: AnnonceDto, id: number): Observable<AnnonceDto> {
+    return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/createAnnonceWithUser?id=`+id, annonceDTO);
+  }
+
   public updateAnnonceDTO(annonceId: number, annonceDTO: AnnonceDto): Observable<AnnonceDto> {
     return this.http.put<AnnonceDto>(`${this.apiServerUrl}/annonces/update/${annonceId}`, annonceDTO);
   }
@@ -56,12 +70,24 @@ public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1"
     return this.http.get<AnnonceDto[]>(searchUrl);
   }
 
+  public getListAnnonceDTOBySelectedIsTrue(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceBySelectedIsTrue`);
+  }
+
   public getListAnnonceDTOByKeyword(reference: string): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByKeyword?reference=`+reference);
   }
 
   public getListAnnonceDTOByLibeele(libelle: string): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByLibelle?libelle=`+libelle);
+  }
+
+  public get5LatestAnnonceDTOByOrderByIdDesc(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/search5LatestAnnonceByIdDesc`);
+  }
+
+  public getAnnonceDTOByStatusEncours(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByStatusEncours`);
   }
 
   public getListAnnonceDTOByPermis(pId: number): Observable<AnnonceDto[]> {
@@ -76,6 +102,15 @@ public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1"
 
   public countNumberOfAnnonces(): Observable<any>  {
     return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonces`);
+  }
+
+  public countNumberOfAnnonceByStatusPending(): Observable<any>  {
+    return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonceByStatusPending`);
+  }
+
+  getUserId() {
+    const user = this.tokenService.getUser();
+    this.id = user.id
   }
 
 }

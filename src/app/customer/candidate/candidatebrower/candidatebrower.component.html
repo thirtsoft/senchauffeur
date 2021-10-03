@@ -45,28 +45,28 @@
                                     </div>
                                     <div class="d-flex">
                                         <div class="job-time mr-auto">
-                                            <span>{{chauffDTO?.addresseDto?.quartier}}</span>
+                                            Addresse : {{chauffDTO?.addresseDto?.quartier}}
                                         </div>
                                         <div class="job-time mr-auto">
-                                          <span>{{chauffDTO.mobilite}}</span>
+                                          Mobilité : {{chauffDTO.mobilite}}
                                       </div>
                                         <div class="salary-bx">
                                             <span>${{chauffDTO.pretentionSalaire}}</span>
                                         </div>
                                     </div>
-                                    <span class="post-like fa fa-heart-o"></span>
+                                   <!--  <span class="post-like fa fa-heart-o"></span> -->
                                 </a>
                             </li>
                         </ul>
                         <div class="pagination-bx m-t30">
                             <ul class="pagination" *ngIf="pages">
-                                <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                               <!--  <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li> -->
                                 <li class="active" class="clikable" [ngClass]="i==this.currentPage?'active':''" *ngFor="let p of pages; let i=index">
                                     <a (click)="onPageChauffeur(i)" style="cursor:pointer">{{i}}</a>
                                 </li>
                                 <!-- <li><a href="#">2</a></li>
                                 <li><a href="#">3</a></li> -->
-                                <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                               <!--  <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li> -->
                             </ul>
                         </div>
                     </div>
