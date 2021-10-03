@@ -12,7 +12,6 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Reference</th>
                                 <th>Nombre Etoile</th>
                                 <th>Observation</th>
                                 <th>Chauffeur</th>
@@ -23,7 +22,6 @@
                         <tbody>
                             <tr *ngFor="let noteDTO of notationListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
                                 <td>{{noteDTO?.id}}</td>
-                                <td>{{noteDTO?.reference}}</td>
                                 <td>{{noteDTO?.nbreEtoile}}</td>
                                 <td>{{noteDTO?.observation}}</td>
                                 <td>{{noteDTO?.chauffeurDto?.firstName}} {{noteDTO?.chauffeurDto?.lastName}}</td>
