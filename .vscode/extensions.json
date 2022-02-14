@@ -1,5 +1,0 @@
-POST https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/chauffeurs/all HTTP/1.1
-content-type:application/json
-{
-
-}

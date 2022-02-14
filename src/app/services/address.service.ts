@@ -10,7 +10,7 @@ import { AddresseDto } from './../models/address';
 export class AddressService {
 
 
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
   }

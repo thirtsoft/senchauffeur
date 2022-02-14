@@ -44,6 +44,8 @@ export class HeaderComponent implements OnInit {
 
       console.log("Username : " + this.username);
 
+      console.log("Header UserID : " + this.userId);
+
     }
   }
 
@@ -60,18 +62,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home/profile/' + this.userId]);
   }
 
+  getUserPublication() {
+    this.router.navigate(['/jobs/' + this.userId]);
+  }
+
   getTS() {
     return this.currentTime;
   }
-
-  /*
-  reloadPage() {
-    window.location.reload();
-  }
-
-  reloadCurrentRoute() {
-    this.location.reload();
-  }
-  */
 
 }

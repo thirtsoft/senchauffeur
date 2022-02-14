@@ -11,11 +11,10 @@ import { Observable } from 'rxjs';
 })
 export class NotationService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
+//  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
- // private apiServerUrl = environment.apiBaseUrl;
 
   id: any;
   artId: any;
@@ -45,8 +44,8 @@ export class NotationService {
     return this.http.post<NotationDto>(`${this.apiServerUrl}/notifications/createWithChauffeur/${id}`, notationDTO);
   }
 
-  public addRatingToChauffeur(notificationDTO: NotationDto, idChauff: number, userId:number): Observable<NotationDto> {
-    return this.http.post<NotationDto>(`${this.apiServerUrl}/notifications/createRatingToChauffeur?idChauff=${idChauff}&id=${userId}`, notificationDTO);
+  public addRatingToChauffeur(notificationDTO: NotationDto, idChauff: number, id:number): Observable<NotationDto> {
+    return this.http.post<NotationDto>(`${this.apiServerUrl}/notifications/createRatingToChauffeur?idChauff=${idChauff}&id=${id}`, notificationDTO);
   }
 
   public updateNotationDTO(noteId: number, notationDTO: NotationDto): Observable<NotationDto> {

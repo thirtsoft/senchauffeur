@@ -25,7 +25,6 @@ import { SharedModule } from '..//shared/shared.module';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { DataTablesModule } from 'angular-datatables';
 
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { SearchOffreEmployeComponent } from './job/search-offre-employe/search-offre-employe.component';
@@ -128,7 +127,6 @@ import { ViewJobDetailComponent } from './job/view-job-detail/view-job-detail.co
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    PdfViewerModule,
     EditorModule,
     NgbModule,
 

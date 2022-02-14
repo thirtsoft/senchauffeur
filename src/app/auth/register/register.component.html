@@ -1,94 +1,168 @@
 <!-- Content -->
 <div class="page-content bg-white">
-    <!-- inner page banner -->
-    <div class="dez-bnr-inr overlay-black-middle bg-pt" style="background-image:url(assets/customer/images/banner/bnr2.jpg);">
-        <div class="container">
-            <div class="dez-bnr-inr-entry">
-                <h1 class="text-white">Créer un compte</h1>
-                <!-- Breadcrumb row -->
-                <div class="breadcrumb-row">
-                    <ul class="list-inline">
-                        <li><a routerLin="/">Accueil</a></li>
-                        <li>Création de compte</li>
-                    </ul>
-                </div>
-                <!-- Breadcrumb row END -->
-            </div>
+  <!-- inner page banner -->
+  <div
+    class="dez-bnr-inr overlay-black-middle bg-pt"
+    style="background-image: url(assets/customer/images/banner/bnr2.jpg)"
+  >
+    <div class="container">
+      <div class="dez-bnr-inr-entry">
+        <h1 class="text-white">Création de compte</h1>
+        <!-- Breadcrumb row -->
+        <div class="breadcrumb-row">
+          <ul class="list-inline">
+            <li><a routerLin="/">Accueil</a></li>
+            <li>Création de compte</li>
+          </ul>
         </div>
+        <!-- Breadcrumb row END -->
+      </div>
     </div>
-    <!-- inner page banner END -->
-    <!-- contact area -->
-    <div class="section-full content-inner shop-account">
-        <!-- Product -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h3 class="font-weight-700 m-t0 m-b20">Créer un compte</h3>
+  </div>
+  <!-- inner page banner END -->
+  <!-- contact area -->
+  <div class="section-full content-inner shop-account">
+    <!-- Product -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="font-weight-700 m-t0 m-b20">Créer un compte</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 m-b30">
+          <div class="p-a30 border-1 max-w500 m-auto">
+            <div class="tab-content">
+              <form
+                [formGroup]="registrationForm"
+                (ngSubmit)="onSubmit()"
+                id="login"
+                class="tab-pane active"
+              >
+                <h4 class="font-weight-700">INFORMATION PERSONNEL</h4>
+                <div class="form-group">
+                  <label class="font-weight-700">Nom Complet *</label>
+                  <input
+                    name="name"
+                    id="name"
+                    formControlName="name"
+                    required
+                    required=""
+                    class="form-control"
+                    placeholder="Votre Nom"
+                    type="text"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      registrationForm.get('name').invalid &&
+                      registrationForm.get('name').touched
+                    "
+                  >
+                    <div *ngIf="registrationForm.get('name').errors.required">
+                      Votre nom est obligatoire
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 m-b30">
-                    <div class="p-a30 border-1  max-w500 m-auto">
-                        <div class="tab-content">
-                            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" id="login" class="tab-pane active">
-                                <h4 class="font-weight-700">INFORMATION PERSONNEL</h4>
-                                <div class="form-group">
-                                    <label class="font-weight-700">First Name *</label>
-                                    <input name="name" id="name" formControlName="name" required required="" class="form-control" placeholder="Votre Nom" type="text">
-                                    <div class="alert alert-danger" *ngIf="registrationForm.get('name').invalid
-                                        && registrationForm.get('name').touched">
-                                        <div *ngIf="registrationForm.get('name').errors.required">Votre nom est obligatoire</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="font-weight-700">Last Name *</label>
-                                    <input name="username" id="username" formControlName="username" required="" class="form-control" placeholder="Nom utilisateur" type="text">
-                                    <div class="alert alert-danger" *ngIf="registrationForm.get('username').invalid
-                                      && registrationForm.get('name').touched">
-                                        <div *ngIf="registrationForm.get('username').errors.required">Votre nom utilisateur est obligatoire</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="font-weight-700">E-MAIL *</label>
-                                    <input name="email" id="email" formControlName="email" required="" class="form-control" placeholder="Votre Email" type="email">
-                                    <div class="alert alert-danger" *ngIf="registrationForm.get('email').invalid
-                                      && registrationForm.get('email').touched">
-                                        <div *ngIf="registrationForm.get('email').errors.required">Votre mot de email est obligatoire</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="font-weight-700">PASSWORD *</label>
-                                    <input name="password" required="" class="form-control" placeholder="Votre mot de Password" id="password" formControlName="password" type="password">
-                                    <div class="alert alert-danger" *ngIf="registrationForm.get('password').invalid
-                                      && registrationForm.get('password').touched">
-                                        <div *ngIf="registrationForm.get('password').errors.required">Votre mot de passe est obligatoire</div>
-                                    </div>
-                                </div>
-                                <div class="text-left">
-                                    <button class="site-button button-lg outline outline-2 btn-block">CREATE</button>
+                <div class="form-group">
+                  <label class="font-weight-700">Nom utilisateur *</label>
+                  <input
+                    name="username"
+                    id="username"
+                    formControlName="username"
+                    required=""
+                    class="form-control"
+                    placeholder="Nom utilisateur"
+                    type="text"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      registrationForm.get('username').invalid &&
+                      registrationForm.get('name').touched
+                    "
+                  >
+                    <div
+                      *ngIf="registrationForm.get('username').errors.required"
+                    >
+                      Votre nom utilisateur est obligatoire
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-700">E-MAIL *</label>
+                  <input
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    required=""
+                    class="form-control"
+                    placeholder="Votre Email"
+                    type="email"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      registrationForm.get('email').invalid &&
+                      registrationForm.get('email').touched
+                    "
+                  >
+                    <div *ngIf="registrationForm.get('email').errors.required">
+                      Votre mot de email est obligatoire
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-700">PASSWORD *</label>
+                  <input
+                    name="password"
+                    required=""
+                    class="form-control"
+                    placeholder="Votre mot de Password"
+                    id="password"
+                    formControlName="password"
+                    type="password"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      registrationForm.get('password').invalid &&
+                      registrationForm.get('password').touched
+                    "
+                  >
+                    <div
+                      *ngIf="registrationForm.get('password').errors.required"
+                    >
+                      Votre mot de passe est obligatoire
+                    </div>
+                  </div>
+                </div>
+                <div class="text-left">
+                  <button
+                    class="site-button button-lg outline outline-2 btn-block"
+                  >
+                    CREER COMPTE
+                  </button>
 
-                                   <!--  <p>Avez-vous un compte alors se connecter
+                  <!--  <p>Avez-vous un compte alors se connecter
                                         <a routerLink="/auth/signIn" class="site-button outline gray button-lg" data-toggle="tab">Login</a>
 
                                     </p> -->
-                                     <div class="mt-4">
-                                        <div class="d-flex justify-content-center links">
-                                            Déjà membre alors ? <a routerLink="/auth/signIn" class="ml-2">Login</a>
-                                        </div>
-                                        
-                                    </div>
-
-
-
-                                </div>
-                            </form>
-                        </div>
+                  <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                      Déjà membre alors ?
+                      <a routerLink="/auth/signIn" class="ml-2">Se Connecter</a>
                     </div>
+                  </div>
                 </div>
+              </form>
             </div>
+          </div>
         </div>
-        <!-- Product END -->
+      </div>
     </div>
-    <!-- contact area  END -->
+    <!-- Product END -->
+  </div>
+  <!-- contact area  END -->
 </div>
 <!-- Content END-->

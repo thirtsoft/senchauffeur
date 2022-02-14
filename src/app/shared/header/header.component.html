@@ -11,7 +11,7 @@
                   <span></span>
                 </button>
                 <div class="extra-nav">
-                    <div class="extra-cell">
+                    <div *ngIf="!this.isLoggedIn" class="extra-cell">
                         <a routerLink="/publier-offre" class="site-button"><i class="fa fa-user"></i> Publier un Job</a>
                         <!-- <a routerLink="/auth/signUp" class="site-button"><i class="fa fa-user"></i> Sign Up</a>
                         <a routerLink="/auth/signIn" class="site-button"><i class="fa fa-lock"></i> login</a> -->
@@ -74,13 +74,14 @@
                               <li><a class="dez-page"  (click)="getProfile()" style="cursor: pointer;">
                                 <i class="icon_profile"></i> Votre Compte</a>
                               </li>
-                              <li><a routerLink="/jobs" class="dez-page ">Vos Publications</a></li>
+                            <!--   <li><a routerLink="/jobs" class="dez-page ">Vos Publications</a></li> -->
+                              <li><a (click)="getUserPublication()" routerLink="/jobs" class="dez-page ">Vos Publications</a></li>
                               <li><a class="dez-page" (click)="logout()" style="cursor: pointer;"><i class="icon_key_alt"></i> Deconnexion</a></li>
 
                           </ul>
                       </li>
 
-                      <li class="provinces-btn"><a href="/publier-offre" class="dez-page" id="btnPublier">Publier un Job</a></li>
+                      <li *ngIf="!this.isLoggedIn" class="provinces-btn"><a href="/publier-offre" class="dez-page" id="btnPublier">Publier un Job</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,45 +1,62 @@
 <div class="container">
-    <div class="section-head d-flex head-counter clearfix">
-        <div class="mr-auto">
-            <h2 class="m-b5">Plusieurs type chauffeurs</h2>
-            <h6 class="fw3">{{numberOfChauffeur}}+ Chauffeurs pour vous</h6>
-        </div>
-        <div class="head-counter-bx">
-            <h2 class="m-b5 counter">{{numberOfChauffeur}}</h2>
-            <h6 class="fw3">Chauffeurs</h6>
-        </div>
-        <div class="head-counter-bx">
-           <!--  <h2 class="m-b5 counter">4500</h2>
+  <div class="section-head d-flex head-counter clearfix">
+    <div class="mr-auto">
+      <h2 class="m-b5">Plusieurs type chauffeurs</h2>
+      <h6 class="fw3">{{ numberOfChauffeur }}+ Chauffeurs pour vous</h6>
+    </div>
+    <div class="head-counter-bx">
+      <h2 class="m-b5 counter">{{ numberOfChauffeur }}</h2>
+      <h6 class="fw3">Chauffeurs</h6>
+    </div>
+    <div class="head-counter-bx">
+      <!--  <h2 class="m-b5 counter">4500</h2>
             <h6 class="fw3">Tasks Posted</h6> -->
-        </div>
-        <div class="head-counter-bx">
-            <h2 class="m-b5 counter">{{numberOfAnnonce}}</h2>
-            <h6 class="fw3">Offres</h6>
-        </div>
     </div>
-    <div class="row sp20">
-        <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let chaufDTO of chauffeurListDTOBySelected; let i=index;">
-            <div class="icon-bx-wraper">
-                <div class="icon-content">
-                    <!--   <div class="icon-md text-primary m-b20"><i class="ti-location-pin"></i></div> -->
-                    <!--   <a href="#" class="dez-tilte">Design, Art & Multimedia</a> -->
-                    <img [routerLink]="['/detail-chauffeur', chaufDTO.id]" src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chaufDTO.id}}"
-                        alt="Product Image" style="cursor: pointer;">&nbsp;&nbsp;
+    <div class="head-counter-bx">
+      <h2 class="m-b5 counter">{{ numberOfAnnonce }}</h2>
+      <h6 class="fw3">Offres</h6>
+    </div>
+  </div>
+  <div class="row sp20">
+    <div
+      class="col-lg-3 col-md-6 col-sm-6"
+      *ngFor="let chaufDTO of chauffeurListDTOBySelected; let i = index"
+    >
+      <div class="icon-bx-wraper">
+        <div class="icon-content">
+          <!--   <div class="icon-md text-primary m-b20"><i class="ti-location-pin"></i></div> -->
+          <!--   <a href="#" class="dez-tilte">Design, Art & Multimedia</a> -->
+          <img
+            [routerLink]="['/detail-chauffeur', chaufDTO.id]"
+            src="{{
+              this.chauffeurService.apiServerUrl +
+                '/chauffeurs/photoChauffeur/' +
+                chaufDTO.id
+            }}"
+            alt="Product Image"
+            style="cursor: pointer"
+          />&nbsp;&nbsp;
 
-                    <a [routerLink]="['/detail-chauffeur', chaufDTO.id]" class="dez-tilte" style="cursor: pointer;">{{chaufDTO.firstName}}, {{chaufDTO.lastName}}</a>
-                    <a href="#" class="dez-tilte">{{chaufDTO?.reference}}</a>
-                    <div class="rotate-icon"><i class="ti-location-pin"></i></div>
-                </div>
-            </div>
+          <a
+            [routerLink]="['/detail-chauffeur', chaufDTO.id]"
+            class="dez-tilte"
+            style="cursor: pointer"
+            >{{ chaufDTO.firstName }}, {{ chaufDTO.lastName }}</a
+          >
+          <a href="#" class="dez-tilte">{{ chaufDTO?.reference }}</a>
+          <div class="rotate-icon"><i class="ti-location-pin"></i></div>
         </div>
-
-        <div *ngIf="this.isLoggedIn" class="col-lg-12 text-center m-t30">
-            <button class="site-button radius-xl" routerLink="/browse-candidates">Voirs tous les Chauffeurs</button>
-        </div>
-
-        <div class="col-lg-12 text-center m-t30">
-          <button class="site-button radius-xl" routerLink="/auth/signIn">Voirs tous les Chauffeurs</button>
       </div>
-
     </div>
+
+    <div class="col-lg-12 text-center m-t30">
+      <button class="site-button radius-xl" routerLink="/browse-candidates">
+        Voirs tous les Chauffeurs
+      </button>
+    </div>
+
+    <!--  <div class="col-lg-12 text-center m-t30">
+          <button class="site-button radius-xl" routerLink="/auth/signIn">Voirs tous les Chauffeurs</button>
+      </div> -->
+  </div>
 </div>

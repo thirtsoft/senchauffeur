@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ville, VilleDto } from './../models/ville';
-import { environment } from 'src/environments/environment.prod';
-//import { environment } from '../../environments/environment';
+//import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class VilleService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
+//  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
   constructor(private http: HttpClient) {
   }

@@ -9,8 +9,8 @@ import { Observable, throwError } from 'rxjs';
 import { Register } from './register';
 import { catchError, map } from 'rxjs/operators';
 
-//const AUTH_API = 'http://localhost:8081/sen-chauffeurs/v1/auth/';
-const AUTH_API = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/';
+const AUTH_API = 'http://localhost:8081/sen-chauffeurs/v1/auth/';
+//const AUTH_API = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/';
 
 
 const TOKEN_KEY = 'AuthToken';
@@ -22,11 +22,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
-//  private loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
-  private loginUrl = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/authenticated';
-  private baseUrl = 'http://localhost:8081/api/auth';
-  private baseUrl_1 = 'http://localhost:8081/alAmine';
+  
+  public loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
+//  public loginUrl = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/authenticated';
+  public baseUrl = 'http://localhost:8081/api/auth';
+  public baseUrl_1 = 'http://localhost:8081/alAmine';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
@@ -41,9 +41,9 @@ export class AuthService {
   currentUser = {};
 
   constructor(private http: HttpClient,
-    private tokenService: TokenStorageService,
-    private route: ActivatedRoute,
-    private router: Router) {
+              public tokenService: TokenStorageService,
+              public route: ActivatedRoute,
+              public router: Router) {
   }
 
   signUp(info: Register): Observable<Register> {

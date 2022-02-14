@@ -10,7 +10,7 @@ import { environment } from './../../environments/environment';
 })
 export class TarifService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
   }

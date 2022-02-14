@@ -2,17 +2,17 @@ import { Observable } from 'rxjs';
 import { Locality, AddresseDto } from './../models/locality';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-/* import { environment } from 'src/environments/environment'; */
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalityService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
+ // public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
   constructor(private http: HttpClient) {
   }

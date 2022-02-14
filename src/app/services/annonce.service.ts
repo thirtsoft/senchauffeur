@@ -10,9 +10,9 @@ import { AnnonceDto } from './../models/annonce';
 })
 export class AnnonceService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
-public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
+//  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
   id;
   currentUser: any = {};
@@ -87,6 +87,10 @@ public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1"
 
   public getListAnnonceDTOByPermis(pId: number): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnoncesByPermis/${pId}`);
+  }
+
+  public getAnnonceDtoByUserIdOrderDesc(userId: number): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByCustomerIdOrderByIdDesc/${userId}`);
   }
 
   public getListAnnonceDTOByPermisPageable(permisId: number, page: number, size: number): Observable<AnnonceDto[]> {
