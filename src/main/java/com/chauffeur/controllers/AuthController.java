@@ -52,8 +52,10 @@ public class AuthController implements AuthApi {
    
     @Override
     public ResponseEntity<?> authenticateUser(LoginForm loginForm) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword()));
+    	
+    	Authentication authentication = authenticationManager.authenticate(
+    			new UsernamePasswordAuthenticationToken(
+    					loginForm.getUsername(), loginForm.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtsProvider.generatedJwtToken(authentication);
@@ -69,7 +71,6 @@ public class AuthController implements AuthApi {
                 userPrinciple.getEmail(),
                 roles));
     }
-
     
     @Override
     public ResponseEntity<?> registerUser(SignUpForm signUpForm) {
@@ -81,6 +82,7 @@ public class AuthController implements AuthApi {
         }
         // Create new user's account
         Utilisateur utilisateur = new Utilisateur(
+        		signUpForm.getName(),
                 signUpForm.getUsername(),
                 signUpForm.getEmail(),
                 encoder.encode(signUpForm.getPassword()

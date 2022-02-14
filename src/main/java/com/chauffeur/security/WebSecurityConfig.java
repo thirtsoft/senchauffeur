@@ -66,8 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-        //        registry.addMapping("/**").allowedOrigins("http://localhost:4200");
-				registry.addMapping("/**").allowedOrigins("https://senchauffeur.herokuapp.com");
+                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+			//	registry.addMapping("/**").allowedOrigins("https://senchauffeur.herokuapp.com");
 				
 
             }
@@ -102,6 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/recruteurs/update/**").permitAll()
                 .antMatchers("/**/recruteurs/NumbersOfRecruteurs").permitAll()
                 .antMatchers("/**/annonces/create").permitAll()
+                .antMatchers("/**/annonces/createAnnonceWithUser/*").permitAll()
                 .antMatchers("/**/annonces/update/**").permitAll()
                 .antMatchers("/**/annonces/all").permitAll()
                 .antMatchers("/**/annonces/searchbyReference/**").permitAll()
@@ -111,12 +112,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/annonces/searchAnnonceByStatusEncours").permitAll()
                 .antMatchers("/**/annonces/searchAnnonceBySelectedIsTrue").permitAll()
                 .antMatchers("/**/annonces/searchAnnoncesByPermis/**").permitAll()
+                .antMatchers("/**/annonces/searchAnnonceByCustomerIdOrderByIdDesc/{id}").permitAll()
                 .antMatchers("/**/annonces/searchAnnonceByPageables/**").permitAll()
                 .antMatchers("/**/annonces/searchAnnonceByPermisPageables/**").permitAll()
                 .antMatchers("/**/annonces/NumbersOfAnnonces").permitAll()
                 .antMatchers("/**/addresses/create").permitAll()
                 .antMatchers("/**/addresses/update/**").permitAll()
                 .antMatchers("/**/addresses/all").permitAll()
+                .antMatchers("/**/notifications/createRatingToChauffeur/**").permitAll()
                 .antMatchers("/**/notifications/all").permitAll()
                 .antMatchers("/**/notifications/create").permitAll()
                 .antMatchers("/**/notifications/update/**").permitAll()
@@ -129,6 +132,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/tarifs/searchTarifsByAnnonce/**").permitAll()
                 .antMatchers("/**/tarifs/searchTarifByPageables/**").permitAll()
                 .antMatchers("/**/tarifs/searchTarifByAnnoncePageables/**").permitAll()
+                .antMatchers("/**/utilisateurs/all").permitAll()
+                .antMatchers("/**/utilisateurs/findById/{idUtilisateur}").permitAll()
+                
+                
                 
                 .anyRequest().authenticated()
                 .and()

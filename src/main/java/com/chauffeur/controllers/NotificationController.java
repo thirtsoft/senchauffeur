@@ -54,9 +54,9 @@ public class NotificationController implements NotificationApi {
 	
 	
 	@Override
-	public ResponseEntity<NotificationDto> saveRating(NotificationDto notificationDto, Long idChaffeur, Long id) {
+	public ResponseEntity<NotificationDto> saveRating(NotificationDto notificationDto, Long idChauff, Long id) {
 
-        Chauffeur chauffeur = Optional.of(ChauffeurDto.fromDtoToEntity(chauffeurService.findById(idChaffeur))).get();
+        Chauffeur chauffeur = Optional.of(ChauffeurDto.fromDtoToEntity(chauffeurService.findById(idChauff))).get();
 
         Utilisateur utilisateur = Optional.of(UtilisateurDto.fromDtoToEntity(utilisateurService.findById(id))).get();
 

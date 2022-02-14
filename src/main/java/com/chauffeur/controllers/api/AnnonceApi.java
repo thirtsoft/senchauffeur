@@ -64,7 +64,9 @@ public interface AnnonceApi {
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> get5LatestAnnonceRecordOrderByIdDesc();
 	
-	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByCustomerIdOrderByIdDesc/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<AnnonceDto>> getCommandesByUserOrderByIdDesc(@PathVariable(name = "id") Long id);
+		
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusEncours", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getAnnonceByStatusEncours();

@@ -2,6 +2,7 @@ package com.chauffeur.security.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -17,11 +18,16 @@ public class UserPrinciple implements UserDetails {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@JsonIgnore
-    private final String password;
-    private final Long id;
+
+	private final Long id;
+
     private final String username;
+
     private final String email;
+
+    @JsonIgnore
+    private final String password;
+
     private final Collection<? extends GrantedAuthority> authorities;
 
     public UserPrinciple(Long id, String username, String email, String password,
@@ -48,11 +54,6 @@ public class UserPrinciple implements UserDetails {
         );
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
     public Long getId() {
         return id;
     }
@@ -62,13 +63,18 @@ public class UserPrinciple implements UserDetails {
     }
 
     @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
 
     @Override
-    public String getUsername() {
-        return username;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
@@ -89,6 +95,15 @@ public class UserPrinciple implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserPrinciple user = (UserPrinciple) o;
+        return Objects.equals(id, user.id);
     }
 
 }

@@ -14,9 +14,6 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "utilisateur", uniqueConstraints = {
@@ -59,6 +56,16 @@ public class Utilisateur implements Serializable {
 			this.email = email;
 			this.password = password;
 	}
+    
+    public Utilisateur(String name,
+            String username,
+            String email,
+            String password) {
+    	this.name = name;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+    }
     
     public Utilisateur(String name,
             String username,

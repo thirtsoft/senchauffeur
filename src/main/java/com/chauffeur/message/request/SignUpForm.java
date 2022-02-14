@@ -15,10 +15,6 @@ public class SignUpForm {
     @Email
     private String email;
 
-    //  private Set role;
-
-//    private Set<String> role;
-
     private String[] roles;
 
     @Size(min = 6, max = 20)
@@ -63,6 +59,4 @@ public class SignUpForm {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }

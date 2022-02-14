@@ -145,6 +145,12 @@ public class AnnonceController implements AnnonceApi {
         return annonceService.findAnnonceByPermisByPageable(permisId, pageable);
 	}
 
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getCommandesByUserOrderByIdDesc(Long id) {
+		List<AnnonceDto> annonceDtoList = annonceService.FindListAnnonceByCustomerId(id);
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
+
 	
 
 	

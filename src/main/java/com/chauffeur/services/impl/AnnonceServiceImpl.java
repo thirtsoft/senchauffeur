@@ -181,6 +181,13 @@ public class AnnonceServiceImpl implements AnnonceService {
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<AnnonceDto> FindListAnnonceByCustomerId(Long userId) {
+		return annonceRepository.FindListAnnonceByCustomerId(userId).stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
 
 	@Override
 	public BigDecimal countNumbersOfAnnonces() {
@@ -204,6 +211,8 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonceRepository.findAll(pageable)
                 .map(AnnonceDto::fromEntityToDto);
 	}
+
+	
 
 	
 	

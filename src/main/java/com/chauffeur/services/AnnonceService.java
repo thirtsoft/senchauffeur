@@ -35,6 +35,8 @@ public interface AnnonceService {
     List<AnnonceDto> find5LatestRecordsByOrderByIdDesc();
     
 	List<AnnonceDto> findListAnnonceByStatusEncours();
+	
+	List<AnnonceDto> FindListAnnonceByCustomerId(Long userId);
     
     BigDecimal countNumbersOfAnnonces();
     

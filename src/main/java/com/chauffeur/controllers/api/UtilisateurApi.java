@@ -24,7 +24,7 @@ public interface UtilisateurApi {
 	ResponseEntity<UtilisateurDto> update(@PathVariable("idUtilisateur") Long id, @RequestBody UtilisateurDto utilisateurDto);
 
 
-	@GetMapping(value = APP_ROOT + "/utilisateurs/{idUtilisateur}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/utilisateurs/findById/{idUtilisateur}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<UtilisateurDto> findById(@PathVariable("idUtilisateur") Long id);
 
 	@GetMapping(value = APP_ROOT + "/utilisateurs/all", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -32,7 +32,7 @@ public interface NotificationApi {
 
 	@PostMapping(value = APP_ROOT + "/notifications/createRatingToChauffeur", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<NotificationDto> saveRating(@RequestBody NotificationDto notificationDto, 
-			@RequestParam("idChaffeur") Long idChaffeur, @RequestParam Long id);
+			@RequestParam Long idChauff, @RequestParam Long id);
 
 
 	@GetMapping(value = APP_ROOT + "/notifications/{idNotification}", produces = MediaType.APPLICATION_JSON_VALUE)
