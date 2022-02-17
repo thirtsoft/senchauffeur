@@ -67,6 +67,9 @@ public class Annonce implements Serializable {
 	@Column(name = "isSelected")
 	private boolean selected;
 	
+	@Column(name = "status")
+	private String status;
+	
 	@Column(name = "description")
 	@Lob
 	private String description;
@@ -83,25 +86,20 @@ public class Annonce implements Serializable {
     @Column(length = 90)
     private StatusAnnonce statusAnnonce;
 
-//	@ManyToOne
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "permId")
 	private Permis permis;
 	 
-//	@ManyToOne
+	/*
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "recrId")
 	private Recruteur recruteur;
+	*/
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private Utilisateur utilisateur;
 	
-	/*
-	 * @ManyToOne(cascade = CascadeType.PERSIST)
-	 * 
-	 * @JoinColumn(name = "villeId") private Ville ville;
-	 */
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "addresseId")

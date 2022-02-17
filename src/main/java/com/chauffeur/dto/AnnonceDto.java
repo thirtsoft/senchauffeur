@@ -37,6 +37,8 @@ public class AnnonceDto {
 	
 	private boolean selected;
 	
+	private String status;
+	
 	private String description;
 
 	private Date dateCandidature;
@@ -71,12 +73,13 @@ public class AnnonceDto {
 				.anneeExperience(annonce.getAnneeExperience())
 				.typeContrat(annonce.getTypeContrat())
 				.selected(annonce.isSelected())
+				.status(annonce.getStatus())
 				.description(annonce.getDescription())
 				.dateCandidature(annonce.getDateCandidature())
 				.dateCloture(annonce.getDateCloture())
 				.statusAnnonce(annonce.getStatusAnnonce())
 				.permisDto(PermisDto.fromEntityToDto(annonce.getPermis()))
-				.recruteurDto(RecruteurDto.fromEntityToDto(annonce.getRecruteur()))
+			//	.recruteurDto(RecruteurDto.fromEntityToDto(annonce.getRecruteur()))
 				.utilisateurDto(UtilisateurDto.fromEntityToDto(annonce.getUtilisateur()))
 	//			.villeDto(VilleDto.fromEntityToDto(annonce.getVille()))
 				.addresseDto(AddresseDto.fromEntityToDto(annonce.getAddresse()))
@@ -100,11 +103,12 @@ public class AnnonceDto {
 		annonce.setTypeContrat(annonceDto.getTypeContrat());
 		annonce.setSelected(annonceDto.isSelected());
 		annonce.setDescription(annonceDto.getDescription());
+		annonce.setStatus(annonceDto.getStatus());
 		annonce.setDateCandidature(annonceDto.getDateCandidature());
 		annonce.setDateCloture(annonceDto.getDateCloture());
 		annonce.setStatusAnnonce(annonceDto.getStatusAnnonce());
 		annonce.setPermis(PermisDto.fromDtoToEntity(annonceDto.getPermisDto()));
-		annonce.setRecruteur(RecruteurDto.fromDtoToEntity(annonceDto.getRecruteurDto()));
+	//	annonce.setRecruteur(RecruteurDto.fromDtoToEntity(annonceDto.getRecruteurDto()));
 		annonce.setUtilisateur(UtilisateurDto.fromDtoToEntity(annonceDto.getUtilisateurDto()));
 	//	annonce.setVille(VilleDto.fromDtoToEntity(annonceDto.getVilleDto()));
 		annonce.setAddresse(AddresseDto.fromDtoToEntity(annonceDto.getAddresseDto()));
