@@ -43,7 +43,7 @@ public class AnnonceRepositoryTest {
     	String reference = "CH1"; String lieuPoste = "Tairou";
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
-    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
+   // 	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	Annonce annonceDtoResult = annonceRepository.save(annonceDto);
     
@@ -65,7 +65,7 @@ public class AnnonceRepositoryTest {
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
+   // 	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	annonceRepository.save(annonceDto);
     	
@@ -92,7 +92,7 @@ public class AnnonceRepositoryTest {
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
+  //  	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	Annonce annonceDtoResult = annonceRepository.save(annonceDto);
     	
@@ -115,14 +115,14 @@ public class AnnonceRepositoryTest {
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
+  //  	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	annonceRepository.save(annonceDto);
     	
     	String reference2 = "CH1"; StatusAnnonce statusAnnonce2 = StatusAnnonce.VALIDEE;
     	Annonce annonceDto2 = new Annonce();
     	annonceDto2.setReference(reference2); annonceDto2.setStatusAnnonce(statusAnnonce2);
-    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
+ //   	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	annonceRepository.save(annonceDto);
     	
         List<Annonce> notifications = annonceRepository.findAll();
@@ -145,7 +145,7 @@ public class AnnonceRepositoryTest {
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
     	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
-    	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
+  //  	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	Annonce annonceDtoResult = annonceRepository.save(annonceDto);
     	

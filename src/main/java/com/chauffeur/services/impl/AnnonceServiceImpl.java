@@ -120,7 +120,7 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setDateCandidature(annonceDto.getDateCandidature());
         annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
         annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
-        annonceDtoResult.setRecruteurDto(annonceDto.getRecruteurDto());
+  //      annonceDtoResult.setRecruteurDto(annonceDto.getRecruteurDto());
         annonceDtoResult.setAddresseDto(annonceDto.getAddresseDto());
        
         return AnnonceDto.fromEntityToDto(
@@ -210,6 +210,21 @@ public class AnnonceServiceImpl implements AnnonceService {
 	public Page<AnnonceDto> findAnnonceByPageable(Pageable pageable) {
 		return annonceRepository.findAll(pageable)
                 .map(AnnonceDto::fromEntityToDto);
+	}
+
+	@Override
+	public AnnonceDto updateStatusOfAnnonce(String status, String id) {
+		Optional<Annonce> annonceOptional = annonceRepository.findById(Long.valueOf(id));
+
+		AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(annonceOptional.get());
+
+		annonceDtoResult.setStatus(status);
+
+        return AnnonceDto.fromEntityToDto(
+        		annonceRepository.save(
+        				AnnonceDto.fromDtoToEntity(annonceDtoResult)
+                )
+        );
 	}
 
 	

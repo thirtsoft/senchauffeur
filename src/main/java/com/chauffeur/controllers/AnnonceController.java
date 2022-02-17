@@ -57,6 +57,8 @@ public class AnnonceController implements AnnonceApi {
      
         annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
         
+        annonceDto.setStatus("ENCOURS");
+        
         AnnonceDto annonceDtoResult = annonceService.save(annonceDto);
         
         return new ResponseEntity<>(annonceDtoResult, HttpStatus.CREATED);
@@ -68,6 +70,12 @@ public class AnnonceController implements AnnonceApi {
 		annonceDto.setId(idAnnonce);
 		return ResponseEntity.ok(annonceService.save(annonceDto));
 	
+	}
+	
+	@Override
+	public ResponseEntity<AnnonceDto> updateStatusOfAnnonce(String status, String id) {
+		AnnonceDto newAnnonceDto = annonceService.updateStatusOfAnnonce(status, id);
+        return new ResponseEntity<>(newAnnonceDto, HttpStatus.OK);
 	}
 
 	@Override
@@ -150,6 +158,8 @@ public class AnnonceController implements AnnonceApi {
 		List<AnnonceDto> annonceDtoList = annonceService.FindListAnnonceByCustomerId(id);
         return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
+
+	
 
 	
 

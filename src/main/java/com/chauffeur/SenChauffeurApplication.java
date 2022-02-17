@@ -206,7 +206,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a1.setId(1L); a1.setLieuPoste("Hann-Mariste 2, Dakar"); a1.setSelected(true);;
 		a1.setSalaire("$1200 - $ 2500"); a1.setReference("digit");a1.setLibelle("Digital Marketing Executive"); 
 		a1.setStatusAnnonce(StatusAnnonce.ENCOURS);
-		a1.setPermis(p1); a1.setRecruteur(r1); a1.setAddresse(ad1); a1.setTime("Full-Time");
+		a1.setPermis(p1); a1.setAddresse(ad1); a1.setTime("Full-Time");
 		a1.setDateCandidature(new Date()); a1.setDateCloture(new Date());
 		a1.setTypeContrat("Stage");
 		a1.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
@@ -215,7 +215,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a2.setId(2L); a2.setLieuPoste("Ziguinchor, Casamance"); a2.setSelected(true);;
 		a2.setSalaire("200M"); a2.setReference("part"); a2.setLibelle("Chauffeur Particulier");
 		a2.setStatusAnnonce(StatusAnnonce.REJETEE);
-		a2.setPermis(p2); a2.setRecruteur(r2);a2.setAddresse(ad2); a2.setTime("Partial-Time");
+		a2.setPermis(p2); a2.setAddresse(ad2); a2.setTime("Partial-Time");
 		a2.setDateCandidature(new Date()); a2.setDateCloture(new Date());
 		a2.setTypeContrat("CDD");
 		a2.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
@@ -224,7 +224,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		a3.setId(3L); a3.setLieuPoste("Parcelle, Dakar"); a3.setSelected(false);;
 		a3.setSalaire("$1800 - $3500"); a3.setReference("lourd");  a3.setLibelle("Conducteur Poids Lours");
 		a3.setStatusAnnonce(StatusAnnonce.VALIDEE);
-		a3.setPermis(p3); a3.setRecruteur(r3); a3.setAddresse(ad3); a3.setTime("Full-Time");
+		a3.setPermis(p3); a3.setAddresse(ad3); a3.setTime("Full-Time");
 		a3.setDateCandidature(new Date()); a3.setDateCloture(new Date());
 		a3.setTypeContrat("CDI");
 		a3.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
@@ -232,7 +232,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a4.setId(4L); a4.setLieuPoste("Parcelle, Dakar"); a4.setSelected(false);;
 		a4.setSalaire("$1800 - $3500"); a4.setReference("leger"); a4.setLibelle("Conducteur Poids Legere");
-		a4.setPermis(p3); a4.setRecruteur(r3); a4.setAddresse(ad4); a4.setTime("Partial-Time");
+		a4.setPermis(p3); a4.setAddresse(ad4); a4.setTime("Partial-Time");
 		a4.setDateCandidature(new Date()); a4.setDateCloture(new Date());
 		a4.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		a4.setTypeContrat("Stage");
@@ -240,7 +240,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a5.setId(5L); a5.setLieuPoste("Ziguinchor, Casamance"); a5.setSelected(true);;
 		a5.setSalaire("$1500 - $3000"); a5.setReference("pro"); a5.setLibelle("Chauffeur Professionnel"); 
-		a5.setPermis(p1); a5.setRecruteur(r2); a5.setAddresse(ad5);
+		a5.setPermis(p1); a5.setAddresse(ad5);
 		a5.setTime("Partial-Time");a5.setDateCandidature(new Date()); a5.setDateCloture(new Date());
 		a5.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		a5.setTypeContrat("CDD");
@@ -248,7 +248,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a6.setId(6L); a6.setLieuPoste("Thies, Senegal"); a6.setSelected(false);;
 		a6.setSalaire("$1500 - $3000"); a6.setReference("Conducteur Poids Lours"); 
-		a6.setPermis(p3); a6.setRecruteur(r3); a6.setAddresse(ad6);
+		a6.setPermis(p3); a6.setAddresse(ad6);
 		a6.setTime("Full-Time");
 		a6.setDateCandidature(new Date()); a6.setDateCloture(new Date());
 		a6.setStatusAnnonce(StatusAnnonce.ENCOURS);
@@ -257,7 +257,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a7.setId(7L); a7.setLieuPoste("DK"); a7.setSelected(false);;
 		a7.setSalaire("200M"); a7.setReference("cam");a7.setLibelle("Conducteur de Camion");
-		a7.setPermis(p3); a7.setRecruteur(r3);
+		a7.setPermis(p3);
 		a7.setTime("Full-Time"); a7.setAddresse(ad7);
 		a7.setDateCandidature(new Date()); a7.setDateCloture(new Date());
 		a7.setTypeContrat("Stage");
@@ -265,22 +265,21 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a8.setId(8L); a8.setLieuPoste("Sebikhotane, Dakar"); a8.setSelected(true);;
 		a8.setSalaire("$1500 - $ 3000"); a8.setReference("hum"); a8.setLibelle("Humain Resource Executive"); 
-		a8.setPermis(p4); a8.setRecruteur(r2); a8.setAddresse(ad8);
+		a8.setPermis(p4); a8.setAddresse(ad8);
 		a8.setTime("Full-Time");a8.setDateCandidature(new Date()); a8.setDateCloture(new Date());
 		a8.setTypeContrat("CDD");
 		a8.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a9.setId(9L); a9.setLieuPoste("DK"); a9.setSelected(false);;
 		a9.setSalaire("900M"); a9.setReference("tax"); a9.setLibelle("Chauffeur de Taxi");
-		a9.setPermis(p1); a9.setRecruteur(r1);
-		a9.setTime("Partial-Time"); a9.setAddresse(ad9);
+		a9.setPermis(p1); a9.setTime("Partial-Time"); a9.setAddresse(ad9);
 		a9.setDateCandidature(new Date()); a9.setDateCloture(new Date());
 		a9.setTypeContrat("CDI");
 		a9.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 		
 		a10.setId(10L); a10.setLieuPoste("DK"); a10.setSelected(false);;
 		a10.setSalaire("1000M"); a10.setReference("trans"); a10.setLibelle("Conducteur de Transport");
-		a10.setPermis(p2); a10.setRecruteur(r2);
+		a10.setPermis(p2); 
 		a10.setTime("Full-Time"); a10.setAddresse(ad10);
 		a10.setDateCandidature(new Date()); a10.setDateCloture(new Date());
 		a10.setTypeContrat("Stage");
@@ -288,7 +287,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a11.setId(11L); a11.setLieuPoste("DK"); a11.setSelected(true);;
 		a11.setSalaire("1100M"); a11.setReference("moto"); a11.setLibelle("Chauffeur de Moto");
-		a11.setPermis(p2); a11.setRecruteur(r2);
+		a11.setPermis(p2);
 		a11.setTime("Full-Time"); a11.setAddresse(ad11);
 		a11.setDateCandidature(new Date()); a11.setDateCloture(new Date());
 		a11.setTypeContrat("CDD");
@@ -296,7 +295,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		
 		a12.setId(12L); a12.setLieuPoste("DK"); a12.setSelected(false);;
 		a12.setSalaire("1200M"); a12.setReference("bag"); a12.setLibelle("Chauffeur de Taxi Bagage");
-		a12.setPermis(p2); a12.setRecruteur(r2);
+		a12.setPermis(p2);
 		a12.setTime("Full-Time"); a12.setAddresse(ad12);
 		a12.setDateCandidature(new Date()); a12.setDateCloture(new Date());
 		a12.setTypeContrat("CDI");

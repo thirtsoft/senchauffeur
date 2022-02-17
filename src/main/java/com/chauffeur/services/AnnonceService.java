@@ -17,6 +17,8 @@ public interface AnnonceService {
 	AnnonceDto save(AnnonceDto annonceDto);
 	
 	AnnonceDto update(Long idAnnonce, AnnonceDto annonceDto);
+	
+    AnnonceDto updateStatusOfAnnonce(String status, String id);
 
 	AnnonceDto findById(Long id);
 	

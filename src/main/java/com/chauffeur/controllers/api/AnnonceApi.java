@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,8 +36,11 @@ public interface AnnonceApi {
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> update(@PathVariable("idAnnonce") Long idAnnonce, 
 			@RequestBody AnnonceDto annonceDto);
+	
+	@PatchMapping(value = APP_ROOT + "/commandes/updateStatusOfAnnonce/{id}")
+    ResponseEntity<AnnonceDto> updateStatusOfAnnonce(@RequestParam("status") String status, @PathVariable("id") String id);
 
-	@GetMapping(value = APP_ROOT + "/annonces/{idAnnonce}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/annonces/findById/{idAnnonce}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> findById(@PathVariable("idAnnonce") Long idAnnonce);
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchbyReference/{reference}", 
