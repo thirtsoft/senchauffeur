@@ -1,3 +1,4 @@
+import { UtilisateurDto } from './utilisateur';
 import { AddresseDto } from './locality';
 import { VilleDto } from './ville';
 import { Permis, PermisDto } from './permis';
@@ -28,6 +29,7 @@ export class AnnonceDto {
   salaire: string;
   emailPoste: string;
   time: string;
+  status: string;
   anneeExperience: string;
   typeContrat: string;
   description: string;
@@ -43,5 +45,8 @@ export class AnnonceDto {
   villeDto: VilleDto;
 
   addresseDto: AddresseDto;
+
+  utilisateurDto: UtilisateurDto;
+
 
 }

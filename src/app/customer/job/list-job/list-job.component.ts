@@ -4,7 +4,8 @@ import { TokenStorageService } from './../../../auth/security/token-storage.serv
 import { FormBuilder } from '@angular/forms';
 import { AnnonceService } from './../../../services/annonce.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UtilisateurDto } from './../../../models/utilisateur';
 import { UtilisateurService } from './../../../services/utilisateur.service';
 import { AuthService } from './../../../auth/security/auth.service';
@@ -12,6 +13,7 @@ import { AnnonceDto } from './../../../models/annonce';
 
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-list-job',
   templateUrl: './list-job.component.html',
@@ -21,35 +23,21 @@ export class ListJobComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
   editAnnonceDTO: AnnonceDto;
-
-  id : number;
-  p : number=1;
-  searchText;
-
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  @ViewChild(DataTableDirective) dtElement: DataTableDirective;
-
-  info: any;
-  roles: string[];
-
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showUserBoard = false;
-  showVendeurBoard = false;
-
-  username: string;
-  email: String;
-  userId;
-  photo;
-  currentTime: number = 0;
-
   listAnnonceDataDTO: AnnonceDto[];
+
   listDataProfil: UtilisateurDto = new UtilisateurDto();
 
   currentPage: number = 1;
   totalPages: number;
   pages: Array<number>;
+
+  roles: string[];
+
+  currentTime: number = 0;
+
+  username: string;
+  email: String;
+  userId;
 
   customerName: string;
   customerUsername: string;
@@ -59,51 +47,50 @@ export class ListJobComponent implements OnInit {
 
   currentUser;
 
+  id : number;
+  p : number=1;
+  searchText;
   paramId :any = 0;
   comId: number;
   Errors = {status:false, msg:''};
   mySubscription: any;
 
+  info: any;
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showUserBoard = false;
+  showVendeurBoard = false;
+
+  photo;
+
   constructor(public annonceService: AnnonceService,
               public tokenService: TokenStorageService,
-              public router: Router,
-              public fb: FormBuilder,
-  //            public toastr: ToastrService,
-              public authService: AuthService,
               public userService: UtilisateurService,
+              public authService: AuthService,
+              //            public toastr: ToastrService,
+              public fb: FormBuilder,
+              public router: Router,
+              public matDialog: MatDialog,
               private route: ActivatedRoute,
   ) {
-    this.annonceService.listen().subscribe((m:any) => {
-      console.log(m);
-      this.rerender();
-  //    this.getListAnnonceDTOs();
-    })
-   }
+     //--for reload componant
+     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+     this.mySubscription = this.router.events.subscribe((event) => {
+       if (event instanceof NavigationEnd) {
+         // Trick the Router into believing it's last link wasn't previously loaded
+         this.router.navigated = false;
+       }
+     });
+  }
 
   ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true,
-      autoWidth: true,
-      order: [['desc', 0]]
-    };
-
-    /* this.annonceService.getAnnonceDTOs().subscribe(
-      response =>{
-        this.annonceListDTO = response;
-        this.dtTrigger.next();
-      }
-    );
-    this.getListAnnonceDTOs(); */
-
     this.paramId = this.route.snapshot.paramMap.get('id');
-     console.log('Param--', this.paramId);
+    console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getAnnonceDTOByUserId(this.paramId);
 
       this.getUtilisateurDTOById(this.paramId);
-
     }
 
     this.isLoggedIn = !!this.tokenService.getToken();
@@ -151,7 +138,6 @@ export class ListJobComponent implements OnInit {
 
   }
 
-
   getUtilisateurDTOById(id: number) {
     console.log('getOne');
     this.userService.getUtilisateurDTOById(id).subscribe(
@@ -165,6 +151,12 @@ export class ListJobComponent implements OnInit {
     );
 
   }
+
+  onAddEditAnnonce(item) {
+
+  }
+
+  onAddEditJeton(item) {}
 
   onAddNewJob() {
     this.router.navigate(['/createJob']);
@@ -188,20 +180,55 @@ export class ListJobComponent implements OnInit {
     );
   }
 
-   /**
-   * methode pour recharger automatique le Datatable
-   */
-  rerender() {
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // Destroy the table first in the current context
-      dtInstance.destroy();
-      // call the dtTrigger to rerender again
-      this.dtTrigger.next();
-    });
+  getEmploye() {
+    const user = this.tokenService.getUser();
+    console.log(user.id);
+    this.userService.getUtilisateurDTOById(user.id).subscribe(
+      response => {
+        console.log(response);
+        this.listDataProfil = response;
+        this.customerName = this.listDataProfil.name;
+        this.customerUsername = this.listDataProfil.username;
+        this.customerEmail = this.listDataProfil.email;
+        this.customerMobile = this.listDataProfil.mobile;
+        console.log(this.listDataProfil.name);
+        console.log(this.listDataProfil.username);
+        console.log(this.listDataProfil.email);
+      }
+    );
   }
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
+  addEditCustomerUsername(item: UtilisateurDto) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = "50%";
+  //  this.authService.listData = Object.assign({}, item);
+  //  this.matDialog.open(UpdateCustomerUsernameComponent, dialogConfig);
+  }
+
+  addEditCustomerPassword(item: UtilisateurDto) {
+    console.log(item);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = "50%";
+  //  this.authService.listData = Object.assign({}, item);
+  //  this.matDialog.open(UpdateCustomerPasswordComponent, dialogConfig);
+
+  }
+
+  viewAnnonce(item) {
+
+  }
+
+  update() {
+
+  }
+
+  logout() {
+    this.tokenService.signOut();
+    this.router.navigateByUrl('/');
   }
 
 
