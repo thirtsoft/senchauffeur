@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { TokenStorageService } from './../auth/security/token-storage.service';
 import { AnnonceDto } from './../models/annonce';
@@ -54,6 +54,15 @@ export class AnnonceService {
 
   public updateAnnonceDTO(annonceId: number, annonceDTO: AnnonceDto): Observable<AnnonceDto> {
     return this.http.put<AnnonceDto>(`${this.apiServerUrl}/annonces/update/${annonceId}`, annonceDTO);
+  }
+
+  public updateStatusOfAnnonceDTO(id: number, status: string): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    let data = {"status":status};
+    const urlUpdateStatus = (this.apiServerUrl+"/annonces/updateStatusOfAnnonce/"+id+"?status="+data.status);
+    return this.http.patch<any>(urlUpdateStatus, {headers: headers});
+
   }
 
   public deleteAnnonceDTO(annonceId: number): Observable<void> {

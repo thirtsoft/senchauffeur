@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+//import { HttpClientModule } from '@angular/common/http';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatDialogModule } from '@angular/material/dialog';
@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
@@ -129,7 +129,11 @@ import { ViewJobDetailComponent } from './job/view-job-detail/view-job-detail.co
     NgxPaginationModule,
     EditorModule,
     NgbModule,
-
+  ],
+  entryComponents: [
+    ListJobComponent, CreateJobComponent, ViewJobDetailComponent, JetonEmployeurComponent, PublierOffreComponent,
+    DetailEmployeurComponent, JobbrowserComponent, InfoEmployeurComponent,
+    ModifyInfoEmployeurComponent, ModifyPasswordEmployeurComponent
   ]
 })
 export class CustomerModule { }
