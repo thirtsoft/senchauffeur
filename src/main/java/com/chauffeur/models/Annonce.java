@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.NaturalId;
 import com.chauffeur.enumeration.StatusAnnonce;
 
 import lombok.AllArgsConstructor;
@@ -53,7 +52,6 @@ public class Annonce implements Serializable {
 	
 	@Column(name = "emailPoste", length = 90)
 	private String emailPoste;
-
 	
 	@Column(name = "time", length = 50)
 	private String time;

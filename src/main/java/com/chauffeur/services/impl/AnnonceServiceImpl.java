@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.chauffeur.dto.AnnonceDto;
-import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Annonce;

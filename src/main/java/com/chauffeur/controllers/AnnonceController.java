@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.AnnonceApi;
 import com.chauffeur.dto.AnnonceDto;
-import com.chauffeur.dto.ChauffeurDto;
-import com.chauffeur.dto.NotificationDto;
+import com.chauffeur.dto.HistoriqueAnnonceDto;
 import com.chauffeur.dto.UtilisateurDto;
 import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Utilisateur;
 import com.chauffeur.services.AnnonceService;
+import com.chauffeur.services.HistoriqueAnnonceService;
 import com.chauffeur.services.UtilisateurService;
 
 @RestController
@@ -32,19 +32,35 @@ public class AnnonceController implements AnnonceApi {
 	
 	private UtilisateurService utilisateurService;
 	
+	private HistoriqueAnnonceService historiqueAnnonceService;
+	
 	@Autowired
 	public AnnonceController(AnnonceService annonceService,
-							UtilisateurService utilisateurService) {
+							UtilisateurService utilisateurService,
+							HistoriqueAnnonceService historiqueAnnonceService) {
 		this.annonceService = annonceService;
 		this.utilisateurService = utilisateurService;
+		this.historiqueAnnonceService = historiqueAnnonceService;
 	}
 
 	@Override
 	public ResponseEntity<AnnonceDto> save(AnnonceDto annonceDto) {
-		
 		annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
+		annonceDto.setStatus("ENCOURS");
 		
-		return ResponseEntity.ok(annonceService.save(annonceDto));
+		AnnonceDto newAnnonceDto = annonceService.save(annonceDto);
+		
+		AnnonceDto annonceDTOResult = annonceService.findById(newAnnonceDto.getId());
+	    
+	    HistoriqueAnnonceDto historiqueAnnonceDto = new HistoriqueAnnonceDto();
+	    historiqueAnnonceDto.setAnnonceDto(annonceDTOResult);
+	    historiqueAnnonceDto.setAction("ANNONCE AJOUTEE");
+	    historiqueAnnonceDto.setCreatedDate(new Date());
+	    historiqueAnnonceService.save(historiqueAnnonceDto);
+	    
+	    return new ResponseEntity<>(newAnnonceDto, HttpStatus.CREATED);
+		
+	//	return ResponseEntity.ok(annonceService.save(annonceDto));
 	}
 	
 	@Override
@@ -60,6 +76,15 @@ public class AnnonceController implements AnnonceApi {
         annonceDto.setStatus("ENCOURS");
         
         AnnonceDto annonceDtoResult = annonceService.save(annonceDto);
+		
+		AnnonceDto annonceDTOResult = annonceService.findById(annonceDtoResult.getId());
+	    
+	    HistoriqueAnnonceDto historiqueAnnonceDto = new HistoriqueAnnonceDto();
+	    historiqueAnnonceDto.setAnnonceDto(annonceDTOResult);
+	    historiqueAnnonceDto.setAction("ANNONCE AJOUTEE");
+	    historiqueAnnonceDto.setCreatedDate(new Date());
+	    historiqueAnnonceService.save(historiqueAnnonceDto);
+	    
         
         return new ResponseEntity<>(annonceDtoResult, HttpStatus.CREATED);
 
@@ -68,13 +93,32 @@ public class AnnonceController implements AnnonceApi {
 	@Override
 	public ResponseEntity<AnnonceDto> update(Long idAnnonce, AnnonceDto annonceDto) {
 		annonceDto.setId(idAnnonce);
-		return ResponseEntity.ok(annonceService.save(annonceDto));
+		AnnonceDto annonceDtoResult = annonceService.save(annonceDto);
+		
+		AnnonceDto annonceDTOResult = annonceService.findById(annonceDtoResult.getId());
+	    
+	    HistoriqueAnnonceDto historiqueAnnonceDto = new HistoriqueAnnonceDto();
+	    historiqueAnnonceDto.setAnnonceDto(annonceDTOResult);
+	    historiqueAnnonceDto.setAction("ANNONCE MODIFIEE");
+	    historiqueAnnonceDto.setCreatedDate(new Date());
+	    historiqueAnnonceService.save(historiqueAnnonceDto);
+		
+		return new ResponseEntity<>(annonceDtoResult, HttpStatus.OK);
 	
 	}
 	
 	@Override
 	public ResponseEntity<AnnonceDto> updateStatusOfAnnonce(String status, String id) {
 		AnnonceDto newAnnonceDto = annonceService.updateStatusOfAnnonce(status, id);
+		
+		AnnonceDto annonceDTOResult = annonceService.findById(newAnnonceDto.getId());
+	    
+	    HistoriqueAnnonceDto historiqueAnnonceDto = new HistoriqueAnnonceDto();
+	    historiqueAnnonceDto.setAnnonceDto(annonceDTOResult);
+	    historiqueAnnonceDto.setAction("STATUS ANNONCE MODIFIE");
+	    historiqueAnnonceDto.setCreatedDate(new Date());
+	    historiqueAnnonceService.save(historiqueAnnonceDto);
+	    
         return new ResponseEntity<>(newAnnonceDto, HttpStatus.OK);
 	}
 
@@ -96,6 +140,15 @@ public class AnnonceController implements AnnonceApi {
 
 	@Override
 	public void delete(Long id) {
+		
+		AnnonceDto annonceDTOResult = annonceService.findById(id);
+		 
+	    HistoriqueAnnonceDto historiqueAnnonceDto = new HistoriqueAnnonceDto();
+	    historiqueAnnonceDto.setAnnonceDto(annonceDTOResult);
+	    historiqueAnnonceDto.setAction("ANNONCE SUPPRIMEE");
+	    historiqueAnnonceDto.setCreatedDate(new Date());
+	    historiqueAnnonceService.save(historiqueAnnonceDto);
+	    
 		annonceService.delete(id);
 	}
 	

@@ -1,7 +1,9 @@
 package com.chauffeur.controllers;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.AuthApi;
+import com.chauffeur.dto.HistoriqueLoginDto;
+import com.chauffeur.dto.UtilisateurDto;
 import com.chauffeur.enumeration.RoleName;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.message.request.LoginForm;
@@ -29,6 +33,7 @@ import com.chauffeur.repository.RoleRepository;
 import com.chauffeur.repository.UtilisateurRepository;
 import com.chauffeur.security.jwt.JwtsProvider;
 import com.chauffeur.security.service.UserPrinciple;
+import com.chauffeur.services.HistoriqueLoginService;
 
 @RestController
 @CrossOrigin
@@ -48,8 +53,10 @@ public class AuthController implements AuthApi {
 
     @Autowired
     JwtsProvider jwtsProvider;
+    
+    @Autowired
+    private HistoriqueLoginService historiqueLoginService;
 
-   
     @Override
     public ResponseEntity<?> authenticateUser(LoginForm loginForm) {
     	
@@ -64,6 +71,15 @@ public class AuthController implements AuthApi {
         List<String> roles = userPrinciple.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+        
+        Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(userPrinciple.getId());
+        Utilisateur utilisateur = optionalUtilisateur.get();
+        UtilisateurDto utilisateurDto = UtilisateurDto.fromEntityToDto(utilisateur);
+        HistoriqueLoginDto historiqueLoginDto = new HistoriqueLoginDto();
+        historiqueLoginDto.setUtilisateurDto(utilisateurDto);
+        historiqueLoginDto.setAction("Connection");
+        historiqueLoginDto.setCreatedDate(new Date());
+        historiqueLoginService.save(historiqueLoginDto);
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userPrinciple.getId(),
