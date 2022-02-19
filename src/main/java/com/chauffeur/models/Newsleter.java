@@ -28,7 +28,6 @@ public class Newsleter implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(name = "emailVisiteur")
     private String emailVisiteur;
     

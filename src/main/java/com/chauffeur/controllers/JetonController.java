@@ -38,19 +38,19 @@ public class JetonController implements JetonApi {
 	}
 
 	@Override
-	public ResponseEntity<JetonDto> findById(Long idJeton) {
+	public ResponseEntity<JetonDto> getJetonById(Long idJeton) {
 		JetonDto newJetonDto = jetonService.findById(idJeton);
 		return new ResponseEntity<>(newJetonDto, HttpStatus.OK);
 	}
 
 	@Override
-	public ResponseEntity<List<JetonDto>> findAll() {
+	public ResponseEntity<List<JetonDto>> getAllJetons() {
 		List<JetonDto> jetonDtos = jetonService.findAll();
 		return new ResponseEntity<>(jetonDtos, HttpStatus.OK);
 	}
 
 	@Override
-	public ResponseEntity<List<JetonDto>> getidJetonOrderByIdDesc() {
+	public ResponseEntity<List<JetonDto>> getAllJetonOrderByIdDesc() {
 		List<JetonDto> jetonDtos = jetonService.findAllJetonsByOrderByIdDesc();
 		return new ResponseEntity<>(jetonDtos, HttpStatus.OK);
 	}

@@ -29,14 +29,14 @@ public interface JetonApi {
 			@RequestBody JetonDto jetonDto);
 	
 	@GetMapping(value = APP_ROOT + "/jetons/findById/{idJeton}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<JetonDto> findById(@PathVariable("idJeton") Long idJeton);
+	ResponseEntity<JetonDto> getJetonById(@PathVariable("idJeton") Long idJeton);
 	
 	@GetMapping(value = APP_ROOT + "/jetons/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<List<JetonDto>> findAll();
+	ResponseEntity<List<JetonDto>> getAllJetons();
 		    
-	@GetMapping(value = APP_ROOT + "/jetons/searchHistoriqueLoginByIdDesc", 
+	@GetMapping(value = APP_ROOT + "/jetons/searchJetonsByIdDesc", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<List<JetonDto>> getidJetonOrderByIdDesc();
+	ResponseEntity<List<JetonDto>> getAllJetonOrderByIdDesc();
 		
 	@GetMapping(value = APP_ROOT + "/jetons/NumbersOfjetons")
     public BigDecimal getNumbersOfjetons();
