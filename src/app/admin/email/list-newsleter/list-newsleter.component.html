@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card m-b-30">
+        <div class="card-body">
+          <h3><i class="fa fa-angle-right"></i> List Newsleter</h3>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Email Visiteur</th>
+                <th>Date Inscription</th>
+                <th>Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let newsleterDTO of newsleterListDTO
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 15, currentPage: p }
+                "
+              >
+                <td>{{ newsleterDTO?.id }}</td>
+                <td>{{ newsleterDTO?.emailVisiteur }}</td>
+                <td>{{ newsleterDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
+                <td>
+                  <button
+                    class="btn btn-warning btn-sm"
+                  >
+                    <i class="fa fa-edit" aria-hidden="true"></i></button
+                  >&nbsp;
+                  <button
+                    class="btn btn-success btn-sm"
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i></button
+                  >&nbsp;
+
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="onDeletegetNewsleterDTO(newsleterDTO.id)"
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i></button
+                  >&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -44,6 +44,15 @@ import { CreateTarifComponent } from './tarif/create-tarif/create-tarif.componen
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ViewRecruteurComponent } from './recruteur/view-recruteur/view-recruteur.component';
 import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-encours/annonce-by-status-encours.component';
+import { ListHistoriqueAnnonceComponent } from './historique/list-historique-annonce/list-historique-annonce.component';
+import { ListHistoriqueLoginComponent } from './historique/list-historique-login/list-historique-login.component';
+import { CreateJetonComponent } from './jeton/create-jeton/create-jeton.component';
+import { ListJetonComponent } from './jeton/list-jeton/list-jeton.component';
+import { ListEmailComponent } from './email/list-email/list-email.component';
+import { ListNewsleterComponent } from './email/list-newsleter/list-newsleter.component';
+import { SendEmailToEmployeurComponent } from './email/send-email-to-employeur/send-email-to-employeur.component';
+import { SendEmailToChauffeurComponent } from './email/send-email-to-chauffeur/send-email-to-chauffeur.component';
+import { SendEmailToNewsleterComponent } from './email/send-email-to-newsleter/send-email-to-newsleter.component';
 
 
 @NgModule({
@@ -66,7 +75,16 @@ import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-enc
     CreateTarifComponent,
     ListTarifComponent,
     ViewRecruteurComponent,
-    AnnonceByStatusEncoursComponent
+    AnnonceByStatusEncoursComponent,
+    ListHistoriqueAnnonceComponent,
+    ListHistoriqueLoginComponent,
+    CreateJetonComponent,
+    ListJetonComponent,
+    ListEmailComponent,
+    ListNewsleterComponent,
+    SendEmailToEmployeurComponent,
+    SendEmailToChauffeurComponent,
+    SendEmailToNewsleterComponent
   ],
   imports: [
     CommonModule,

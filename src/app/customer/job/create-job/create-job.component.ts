@@ -113,7 +113,7 @@ export class CreateJobComponent implements OnInit {
     this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
       (response: AnnonceDto) => {
         alert("Job Ajouté avec success");
-        this.router.navigate(['/jobs']);
+    //    this.router.navigate(['/jobs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -126,7 +126,7 @@ export class CreateJobComponent implements OnInit {
     this.annonceService.updateAnnonceDTO(this.addEditAnnonceDTO.id, this.addEditAnnonceDTO).subscribe(
       (response: AnnonceDto) => {
         alert("Job update avec success");
-        this.router.navigate(['/jobs']);
+     //   this.router.navigate(['/jobs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

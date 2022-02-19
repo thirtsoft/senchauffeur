@@ -91,9 +91,13 @@ const routes: Routes = [
     component: CreateJobComponent
   },
   {
-    path: 'createJob',
+    path: 'jobs',
     component: CreateJobComponent
   },
+ /*  {
+    path: 'createJob',
+    component: CreateJobComponent
+  }, */
  /*  {
     path: 'createJob/:id',
     component: CreateJobComponent

@@ -37,7 +37,7 @@ export class AnnonceService {
   }
 
   public getAnnonceDTOById(annonceId: number): Observable<AnnonceDto> {
-    return this.http.get<AnnonceDto>(`${this.apiServerUrl}/annonces/${annonceId}`);
+    return this.http.get<AnnonceDto>(`${this.apiServerUrl}/annonces/findById/${annonceId}`);
   }
 
   public getAnnonceDTOByReference(reference: string): Observable<AnnonceDto> {

@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card m-b-30">
+        <div class="card-body">
+          <h3><i class="fa fa-angle-right"></i> List Jetons</h3>
+          <div class="row">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Chercher un jeton"
+              [(ngModel)]="searchText"
+            />
+
+            <button
+              class="btn-meeting"
+              type="submit"
+              style="margin-left: 5%; width: 30%"
+              (click)="onAddJeton()"
+            >
+              Add Jeton
+            </button>
+          </div>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Recruteur</th>
+                 <th>Email</th>
+                 <th>Mobile</th>
+                <th>Montant</th>
+                <th>Etat</th>
+                <th>Date</th>
+                <th>Action</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let jetonDTO of jetonListDTO
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 15, currentPage: p }
+                "
+              >
+                <td>{{ jetonDTO?.id }}</td>
+                <td>{{ jetonDTO?.utilisateurDto?.name }}</td>
+                <td>{{ jetonDTO?.utilisateurDto?.email }}</td>
+                <td>{{ jetonDTO?.utilisateurDto?.mobile }}</td>
+                <td>{{ jetonDTO?.montant }}</td>
+                <td>{{ jetonDTO?.etat }}</td>
+                <td>{{ jetonDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
+
+                <td>
+                  <button
+                    class="btn btn-warning btn-sm"
+                    [routerLink]="['/backend/admin/jeton', jetonDTO.id]"
+                  >
+                    <i class="fa fa-edit" aria-hidden="true"></i></button
+                  >&nbsp;
+                  
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="onDeleteJeton(jetonDTO.id)"
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i></button
+                  >&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

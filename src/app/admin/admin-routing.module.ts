@@ -1,3 +1,12 @@
+import { ListHistoriqueLoginComponent } from './historique/list-historique-login/list-historique-login.component';
+import { ListHistoriqueAnnonceComponent } from './historique/list-historique-annonce/list-historique-annonce.component';
+import { SendEmailToChauffeurComponent } from './email/send-email-to-chauffeur/send-email-to-chauffeur.component';
+import { SendEmailToEmployeurComponent } from './email/send-email-to-employeur/send-email-to-employeur.component';
+import { SendEmailToNewsleterComponent } from './email/send-email-to-newsleter/send-email-to-newsleter.component';
+import { ListEmailComponent } from './email/list-email/list-email.component';
+import { ListNewsleterComponent } from './email/list-newsleter/list-newsleter.component';
+import { CreateJetonComponent } from './jeton/create-jeton/create-jeton.component';
+import { ListJetonComponent } from './jeton/list-jeton/list-jeton.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -118,21 +127,49 @@ const routes: Routes = [
     path: 'localite/:id',
     component: CreateLocalityComponent
   },
- /*  {
-    path: 'villes',
-    component: ListVilleComponent
+  {
+    path: 'jetons',
+    component: ListJetonComponent
   },
   {
-    path: 'ville',
-    component: CreateVilleComponent
+    path: 'jeton/:id',
+    component: CreateJetonComponent
   },
   {
-    path: 'ville/:id',
-    component: CreateVilleComponent
-  }, */
+    path: 'jeton',
+    component: CreateJetonComponent
+  },
   {
     path: 'notifications',
     component: ListNotationComponent
+  },
+  {
+    path: 'newsleters',
+    component: ListNewsleterComponent
+  },
+  {
+    path: 'sendEmailToNewsleter',
+    component: SendEmailToNewsleterComponent
+  },
+  {
+    path: 'emails',
+    component: ListEmailComponent
+  },
+  {
+    path: 'sendEmailToEmployeur',
+    component: SendEmailToEmployeurComponent
+  },
+  {
+    path: 'sendEmailToChauffeur',
+    component: SendEmailToChauffeurComponent
+  },
+  {
+    path: 'historiqueAnnonces',
+    component: ListHistoriqueAnnonceComponent
+  },
+  {
+    path: 'historiqueLogins',
+    component: ListHistoriqueLoginComponent
   },
   {
     path: 'utilisateurs',
