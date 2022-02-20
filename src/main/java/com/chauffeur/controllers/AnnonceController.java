@@ -212,6 +212,12 @@ public class AnnonceController implements AnnonceApi {
         return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
 
+	@Override
+	public ResponseEntity<AnnonceDto> getAnnonceByCustomerId(Long userId) {
+		AnnonceDto annonceDto = annonceService.FindAnnonceByCustomerId(userId);
+        return new ResponseEntity<>(annonceDto, HttpStatus.OK);
+	}
+
 	
 
 	

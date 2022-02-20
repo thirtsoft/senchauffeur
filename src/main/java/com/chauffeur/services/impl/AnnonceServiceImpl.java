@@ -119,7 +119,6 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setDateCandidature(annonceDto.getDateCandidature());
         annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
         annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
-  //      annonceDtoResult.setRecruteurDto(annonceDto.getRecruteurDto());
         annonceDtoResult.setAddresseDto(annonceDto.getAddresseDto());
        
         return AnnonceDto.fromEntityToDto(
@@ -224,6 +223,13 @@ public class AnnonceServiceImpl implements AnnonceService {
         				AnnonceDto.fromDtoToEntity(annonceDtoResult)
                 )
         );
+	}
+
+	@Override
+	public AnnonceDto FindAnnonceByCustomerId(Long userId) {
+		Annonce annonce = annonceRepository.FindAnnonceByCustomerId(userId);
+		
+		return AnnonceDto.fromEntityToDto(annonce);
 	}
 
 	

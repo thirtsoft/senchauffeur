@@ -38,6 +38,8 @@ public interface AnnonceService {
     
 	List<AnnonceDto> findListAnnonceByStatusEncours();
 	
+	AnnonceDto FindAnnonceByCustomerId(Long userId);
+	
 	List<AnnonceDto> FindListAnnonceByCustomerId(Long userId);
     
     BigDecimal countNumbersOfAnnonces();

@@ -43,6 +43,10 @@ public interface AnnonceApi {
 	@GetMapping(value = APP_ROOT + "/annonces/findById/{idAnnonce}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> findById(@PathVariable("idAnnonce") Long idAnnonce);
 	
+	@GetMapping(value = APP_ROOT + "/annonces/findAnnonceByCustomerId/{userId}", 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<AnnonceDto> getAnnonceByCustomerId(@PathVariable("userId") Long userId);
+	
 	@GetMapping(value = APP_ROOT + "/annonces/searchbyReference/{reference}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<AnnonceDto> findByReference(@PathVariable("reference") String reference);

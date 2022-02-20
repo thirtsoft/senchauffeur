@@ -20,12 +20,16 @@ public interface NotificationService {
     
     List<NotificationDto> findTop3RatingOrderByCreatedDateDesc();
 
-    BigDecimal countNumberOfNotification();
+    List<NotificationDto> findByOrderByIdDesc();
 
-    void delete(Long id);
+    List<NotificationDto> findTop4ByOrderByCreatedDateDescByChauffeurId(String chauffRef);
+
+    BigDecimal countNumberOfNotificationByChauffeurId(String chauffRef);
     
+    BigDecimal countNumberOfNotification();
+    
+    void delete(Long id);
 
-  
-
+ 
 
 }

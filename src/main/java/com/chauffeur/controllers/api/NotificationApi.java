@@ -35,18 +35,27 @@ public interface NotificationApi {
 			@RequestParam Long idChauff, @RequestParam Long id);
 
 
-	@GetMapping(value = APP_ROOT + "/notifications/{idNotification}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/notifications/findById/{idNotification}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<NotificationDto> findById(@PathVariable("idNotification") Long id);
 
 	@GetMapping(value = APP_ROOT + "/notifications/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<NotificationDto>> findAll();
 	
+	@GetMapping(value = APP_ROOT + "/notifications/searchAllNotificationsOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<NotificationDto>> getAllNotificationsOrderByIdDesc();
+	
 	@GetMapping(value = APP_ROOT + "/notifications/searchTop3RatingOrderByCreatedDateDesc", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<NotificationDto>> getTop3ByOrderByCreatedDateDesc();
 	
+	@GetMapping(value = APP_ROOT + "/notifications/searchTop4RatingOrderByCreatedDateDescByChauffeurId/{idChauff}", produces = MediaType.APPLICATION_JSON_VALUE)   
+	ResponseEntity<List<NotificationDto>> getTop4ByOrderByCreatedDateDescByProductId(@PathVariable("idChauff") String chauffRef);
+	
+	@GetMapping(value = APP_ROOT + "/notifications/countNumberOfNotificationByProductId/{idChauff}", produces = MediaType.APPLICATION_JSON_VALUE)    
+	BigDecimal countNumberOfNotificationByChauffeurId(@PathVariable("idChauff") String chauffRef);
+
 	@GetMapping(value = APP_ROOT + "/notifications/countNumberOfNotification", produces = MediaType.APPLICATION_JSON_VALUE)
     BigDecimal countNumberOfNotification();
-
+	
 	@DeleteMapping(value = APP_ROOT + "/notifications/delete/{idNotification}")
 	void delete(@PathVariable("idNotification") Long id);
 

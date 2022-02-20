@@ -25,7 +25,7 @@ import com.chauffeur.services.UtilisateurService;
 @CrossOrigin
 public class NotificationController implements NotificationApi {
 	
-	private NotificationService notificationService;
+	private final NotificationService notificationService;
 	
 	private final ChauffeurService chauffeurService;
 	
@@ -89,15 +89,32 @@ public class NotificationController implements NotificationApi {
 	}
 	
 	@Override
+	public ResponseEntity<List<NotificationDto>> getAllNotificationsOrderByIdDesc() {
+		List<NotificationDto> notificationDtoList = notificationService.findByOrderByIdDesc();
+	    return new ResponseEntity<>(notificationDtoList, HttpStatus.OK);
+	}
+	
+	@Override
 	public ResponseEntity<List<NotificationDto>> getTop3ByOrderByCreatedDateDesc() {
 		List<NotificationDto> notificationDtos = notificationService.findTop3RatingOrderByCreatedDateDesc();
 		return new ResponseEntity<>(notificationDtos, HttpStatus.OK);
 	}
 	
 	@Override
+	public ResponseEntity<List<NotificationDto>> getTop4ByOrderByCreatedDateDescByProductId(String chauffRef) {
+		List<NotificationDto> notificationDtoList = notificationService.findTop4ByOrderByCreatedDateDescByChauffeurId(chauffRef);
+	    return new ResponseEntity(notificationDtoList, HttpStatus.OK);
+	}
+	
+	@Override
 	public BigDecimal countNumberOfNotification() {
 		return notificationService.countNumberOfNotification();
 	}
+	
+	@Override
+    public BigDecimal countNumberOfNotificationByChauffeurId(String chauffRef) {
+        return notificationService.countNumberOfNotificationByChauffeurId(chauffRef);
+    }
 
 	@Override
 	public void delete(Long id) {

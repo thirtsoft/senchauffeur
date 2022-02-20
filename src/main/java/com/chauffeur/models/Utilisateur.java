@@ -39,6 +39,8 @@ public class Utilisateur implements Serializable {
 
     @Column(name = "email", length = 50)
     private String email;
+    
+    private String photo;
 
     @Column(name = "password", length = 70)
     private String password;
@@ -128,6 +130,14 @@ public class Utilisateur implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+    
+    public String getPhoto() {
+    	return photo;
+    }
+    
+    public void setPhoto(String photo) {
+    	this.photo = photo;
     }
 
     public void setEmail(String email) {

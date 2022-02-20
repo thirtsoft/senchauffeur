@@ -115,12 +115,31 @@ public class NotificationServiceImpl implements NotificationService {
     }
     
     @Override
+	public List<NotificationDto> findByOrderByIdDesc() {
+    	return notificationRepository.findByOrderByIdDesc().stream()
+                .map(NotificationDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+    
+    @Override
 	public List<NotificationDto> findTop3RatingOrderByCreatedDateDesc() {
     	 return notificationRepository.findTop3ByOrderByCreatedDateDesc().stream()
                  .map(NotificationDto::fromEntityToDto)
                  .collect(Collectors.toList());
 	}
 
+	@Override
+	public List<NotificationDto> findTop4ByOrderByCreatedDateDescByChauffeurId(String chauffRef) {
+		return notificationRepository.findTop4NotificationOrderByCreatedDateDesc(chauffRef).stream()
+                .map(NotificationDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public BigDecimal countNumberOfNotificationByChauffeurId(String chauffRef) {
+		return notificationRepository.countNumberOfNotificationByChauffeurId(chauffRef);
+	}
+	
 	@Override
 	public BigDecimal countNumberOfNotification() {
 		return notificationRepository.countNumberOfNotification();

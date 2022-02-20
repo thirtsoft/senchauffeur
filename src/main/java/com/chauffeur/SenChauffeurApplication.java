@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.chauffeur.enumeration.RoleName;
 import com.chauffeur.enumeration.StatusAnnonce;
@@ -37,6 +38,7 @@ import com.chauffeur.repository.RoleRepository;
 import com.chauffeur.repository.TarifRepository;
 import com.chauffeur.repository.UtilisateurRepository;
 import com.chauffeur.repository.VilleRepository;
+import com.chauffeur.services.UtilisateurService;
 
 @SpringBootApplication
 public class SenChauffeurApplication implements CommandLineRunner {
@@ -60,7 +62,12 @@ public class SenChauffeurApplication implements CommandLineRunner {
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
 	@Autowired
+	private UtilisateurService utilisateurService;
+	@Autowired
 	private TarifRepository tarifRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SenChauffeurApplication.class, args);
@@ -198,6 +205,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		recruteurRepository.save(r1); recruteurRepository.save(r2);
 		recruteurRepository.save(r3);
 		
+		/*
 		Annonce a1 = new Annonce();Annonce a2 = new Annonce();Annonce a3 = new Annonce();
 		Annonce a4 = new Annonce();Annonce a5 = new Annonce();Annonce a6 = new Annonce();
 		Annonce a7 = new Annonce(); Annonce a8 = new Annonce(); Annonce a9 = new Annonce();
@@ -306,10 +314,13 @@ public class SenChauffeurApplication implements CommandLineRunner {
 		annonceRepository.save(a8);annonceRepository.save(a9);
 		annonceRepository.save(a10);annonceRepository.save(a11);
 		annonceRepository.save(a12);
+		*/
 		
+		/*
 		Tarif t1 = tarifRepository.save(new Tarif(1L, "OFFRE SIMPLE", "25000f cfa", "Assistance, votre publication sera en ligne 24/24 pendans 1 mois et mise en vedette.", a1));
 		Tarif t2 = tarifRepository.save(new Tarif(1L, "OFFRE GOLDEN", "30000f cfa", "Assistance, votre publication sera en ligne 24/24 pendans 1/2 mois et mise en vedette..", a2));
 		Tarif t3 = tarifRepository.save(new Tarif(1L, "OFFRE SPECIALISEE", "40000f cfa", "Assistance, votre publication sera en ligne 24/24 pendans 2 mois, mise en vedette, booster sur les réseaux sociaux", a3));
+		*/
 		
 		Role useRole = new Role(RoleName.ROLE_USER);
         Role recruteurRole = new Role(RoleName.ROLE_RECRUTEUR);
@@ -322,22 +333,26 @@ public class SenChauffeurApplication implements CommandLineRunner {
         user.setUsername("User");
         user.setName("User");
         user.setPassword("user1234");
-    //    user.setRoles((Set<Role>) useRole);
+        user.setPassword(bCryptPasswordEncoder.encode("user1234"));
         Utilisateur manager = new Utilisateur();
         manager.setId(2L);
         manager.setUsername("Manager");
         manager.setName("Manager");
         manager.setPassword("manager1234");
- //       manager.setRoles((Set<Role>) managerRole);
+        manager.setPassword(bCryptPasswordEncoder.encode("manager1234"));
         Utilisateur admin = new Utilisateur();
         admin.setId(3L);
         admin.setUsername("Admin");
         admin.setName("Admin");
-        admin.setPassword("admin1234");
- //       admin.setRoles((Set<Role>) adminRole);
+        admin.setPassword(bCryptPasswordEncoder.encode("admin1234"));
+
         utilisateurRepository.save(user);
         utilisateurRepository.save(manager);
         utilisateurRepository.save(admin);
+        
+        utilisateurService.addRoleToUser("Admin", RoleName.ROLE_ADMIN);
+        utilisateurService.addRoleToUser("User", RoleName.ROLE_USER);
+
 		
 		
 		
