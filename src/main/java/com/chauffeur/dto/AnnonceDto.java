@@ -49,7 +49,7 @@ public class AnnonceDto {
 
 	private PermisDto permisDto;
 
-	private RecruteurDto recruteurDto;
+//	private RecruteurDto recruteurDto;
 	
 	private VilleDto villeDto;
 	

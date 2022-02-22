@@ -84,7 +84,8 @@ public class Annonce implements Serializable {
     @Column(length = 90)
     private StatusAnnonce statusAnnonce;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "permId")
 	private Permis permis;
 	 
@@ -99,7 +100,8 @@ public class Annonce implements Serializable {
 	private Utilisateur utilisateur;
 	
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "addresseId")
 	private Addresse addresse;
 	

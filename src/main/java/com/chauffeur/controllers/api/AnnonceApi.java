@@ -27,7 +27,7 @@ public interface AnnonceApi {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto annonceDto);
 	
-	@PostMapping(value = "/annonces/createAnnonceWithUser", 
+	@PostMapping(value = APP_ROOT + "/annonces/createAnnonceWithUser", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AnnonceDto> createAnnonceWithUser(@RequestBody AnnonceDto annonceDto, @RequestParam Long id);
