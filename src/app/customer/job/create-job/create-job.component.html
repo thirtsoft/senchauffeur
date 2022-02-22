@@ -618,14 +618,14 @@
 
     <div class="form-group">
       <button
-        *ngIf="!paramId"
+        *ngIf="paramId"
         type="submit"
         class="btn btn-success btn-block"
         (click)="onAddJob()"
       >
         <i class="fa fa-database"></i> Enregistrer</button
       >&nbsp;
-      <button *ngIf="paramId" class="btn btn-warning btn-block" (click)="onUpdateJob()">
+      <button *ngIf="!paramId" class="btn btn-warning btn-block" (click)="onUpdateJob()">
         <i class="fa fa-database"></i>Modifier
       </button>
       <!-- <button type="button" class="btn btn-danger ml-1">

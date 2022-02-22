@@ -1,18 +1,23 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import { TokenStorageService } from './../../../auth/security/token-storage.service';
-import { FormBuilder } from '@angular/forms';
-import { AnnonceService } from './../../../services/annonce.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, NgForm, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { UtilisateurDto } from './../../../models/utilisateur';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import { TokenStorageService } from './../../../auth/security/token-storage.service';
 import { UtilisateurService } from './../../../services/utilisateur.service';
 import { AuthService } from './../../../auth/security/auth.service';
-import { AnnonceDto } from './../../../models/annonce';
+import { AnnonceService } from './../../../services/annonce.service';
+import { AddressService } from './../../../services/address.service';
+import { PermisService } from './../../../services/permis.service';
 
-import { DataTableDirective } from 'angular-datatables';
-import { Subject } from 'rxjs';
+import { UtilisateurDto } from './../../../models/utilisateur';
+import { AnnonceDto } from './../../../models/annonce';
+import { AddresseDto } from './../../../models/locality';
+import { VilleDto } from './../../../models/ville';
+import { PermisDto } from './../../../models/permis';
+
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-job',
@@ -64,6 +69,26 @@ export class ListJobComponent implements OnInit {
 
   photo;
 
+  addEditAnnonceDTO: AnnonceDto = new AnnonceDto();
+  listPermisDTOs: PermisDto[];
+  listVilleDTOs: VilleDto[];
+  listAddressDTOs: AddresseDto[];
+
+  listTypeContrats = ["Stage", "CDD", "CDI"];
+  listExperiences = ["Débutant", "1ans-3ans", "+5ans"];
+  listDisponibilites = ["Immediate", "Temps Partiel", "Temps Plein"];
+
+  data;
+  addJobForm: NgForm;
+
+  model: NgbDateStruct;
+//  today = this.calendar.getToday();
+  today;
+
+  formData:  FormGroup;
+
+  get f() { return this.formData.controls; }
+
   constructor(public annonceService: AnnonceService,
               public tokenService: TokenStorageService,
               public userService: UtilisateurService,
@@ -73,6 +98,9 @@ export class ListJobComponent implements OnInit {
               public router: Router,
               public matDialog: MatDialog,
               private route: ActivatedRoute,
+
+              private permisService: PermisService,
+              private addressService: AddressService,
   ) {
      //--for reload componant
      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -85,10 +113,13 @@ export class ListJobComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.infoForm();
     this.paramId = this.route.snapshot.paramMap.get('id');
     console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getAnnonceDTOByUserId(this.paramId);
+
+//      this.getAnnonceDTOByCustomerId(this.paramId);
 
       this.getUtilisateurDTOById(this.paramId);
     }
@@ -109,8 +140,30 @@ export class ListJobComponent implements OnInit {
       console.log("Username : " + this.username);
 
       console.log("IdUser : " + this.userId);
-
     }
+
+    this.getListPermisDTOs();
+
+    this.getListAddressesDTOs();
+  }
+
+  infoForm() {
+    this.formData = this.fb.group({
+      reference: ['', Validators.required],
+      libelle: ['', Validators.required],
+      lieuPoste: ['', Validators.required],
+      salaire: ['', Validators.required],
+      emailPoste: ['', Validators.required],
+      time: ['', Validators.required],
+      disponibilite: ['', Validators.required],
+      anneeExperience: ['', Validators.required],
+      typeContrat: ['', Validators.required],
+      description: ['', Validators.required],
+      dateCloture: new Date(),
+      permisDto: new PermisDto(),
+      addresseDto: new AddresseDto()
+    });
+
   }
 
   public getListAnnonceDTOs() {
@@ -130,6 +183,19 @@ export class ListJobComponent implements OnInit {
       (response: AnnonceDto[]) => {
         console.log('data--', response);
         this.listAnnonceDataDTO = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+  }
+
+  getAnnonceDTOByCustomerId(id: number) {
+    this.annonceService.getAnnonceDTOByCustomerId(id).subscribe(
+      (response: AnnonceDto) => {
+        console.log('data--', response);
+        this.addEditAnnonceDTO = response;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -225,6 +291,88 @@ export class ListJobComponent implements OnInit {
   update() {
 
   }
+
+  getAnnonceDTOById(id: number) {
+    console.log('getOne');
+    this.annonceService.getAnnonceDTOById(id).subscribe(
+      (response: AnnonceDto) => {
+        console.log('data--', response);
+        this.addEditAnnonceDTO = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+  }
+
+  getListPermisDTOs() {
+    this.permisService.getPermisDTOs().subscribe(
+      (response: PermisDto[]) => {
+        this.listPermisDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  getListAddressesDTOs() {
+    this.addressService.getAddresseDtos().subscribe(
+      (response: AddresseDto[]) => {
+        this.listAddressDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  onAddJob() {
+    console.log(this.formData.value);
+    console.log(this.formData.value,  this.userId);
+    this.annonceService.addAnnonceDTOWithUser(this.formData.value,  this.userId)
+      .subscribe(
+      (response: AnnonceDto) => {
+        alert("Job Ajouté avec success");
+        console.log('Response--', response);
+
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+
+    );
+
+  }
+
+
+/*
+  public onAddJob() {
+    console.log(this.addEditAnnonceDTO);
+    this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
+      (response: AnnonceDto) => {
+        alert("Job Ajouté avec success");
+        this.router.navigate(['/jobs']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+  }
+  */
+
+  public onUpdateJob() {
+    this.annonceService.updateAnnonceDTO(this.addEditAnnonceDTO.id, this.addEditAnnonceDTO).subscribe(
+      (response: AnnonceDto) => {
+        alert("Job update avec success");
+     //   this.router.navigate(['/jobs']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
 
   logout() {
     this.tokenService.signOut();

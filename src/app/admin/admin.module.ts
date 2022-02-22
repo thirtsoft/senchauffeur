@@ -53,6 +53,10 @@ import { ListNewsleterComponent } from './email/list-newsleter/list-newsleter.co
 import { SendEmailToEmployeurComponent } from './email/send-email-to-employeur/send-email-to-employeur.component';
 import { SendEmailToChauffeurComponent } from './email/send-email-to-chauffeur/send-email-to-chauffeur.component';
 import { SendEmailToNewsleterComponent } from './email/send-email-to-newsleter/send-email-to-newsleter.component';
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { SuccessRegisterComponent } from './authentication/success-register/success-register.component';
+import { ProfilComponent } from './authentication/profil/profil.component';
 
 
 @NgModule({
@@ -84,7 +88,11 @@ import { SendEmailToNewsleterComponent } from './email/send-email-to-newsleter/s
     ListNewsleterComponent,
     SendEmailToEmployeurComponent,
     SendEmailToChauffeurComponent,
-    SendEmailToNewsleterComponent
+    SendEmailToNewsleterComponent,
+    SignInComponent,
+    SignUpComponent,
+    SuccessRegisterComponent,
+    ProfilComponent
   ],
   imports: [
     CommonModule,

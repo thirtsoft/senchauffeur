@@ -1,3 +1,5 @@
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { ListHistoriqueLoginComponent } from './historique/list-historique-login/list-historique-login.component';
 import { ListHistoriqueAnnonceComponent } from './historique/list-historique-annonce/list-historique-annonce.component';
 import { SendEmailToChauffeurComponent } from './email/send-email-to-chauffeur/send-email-to-chauffeur.component';
@@ -33,10 +35,22 @@ import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-enc
 
 
 const routes: Routes = [
+
+  { path: '',   redirectTo: 'signIn', pathMatch: 'full' },
   {
+    path: 'signIn',
+    component: SignInComponent
+  },
+
+  /* {
     path: '',
     redirectTo: 'dashborad',
     pathMatch: 'full'
+  }, */
+
+  {
+    path: 'signUp',
+    component: SignUpComponent
   },
 
   {

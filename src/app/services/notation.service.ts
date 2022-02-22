@@ -33,7 +33,7 @@ export class NotationService {
   }
 
   public getNotationDTOById(noteId: number): Observable<NotationDto> {
-    return this.http.get<NotationDto>(`${this.apiServerUrl}/notifications/${noteId}`);
+    return this.http.get<NotationDto>(`${this.apiServerUrl}/notifications/findById/${noteId}`);
   }
 
   public addNotationDTO(notationDTO: NotationDto): Observable<NotationDto> {

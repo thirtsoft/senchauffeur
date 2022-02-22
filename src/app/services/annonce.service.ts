@@ -21,6 +21,7 @@ export class AnnonceService {
   listen(): Observable<any> {
     return this.listners.asObservable();
   }
+
   filter(filterBy: string) {
     this.listners.next(filterBy);
   }
@@ -29,7 +30,6 @@ export class AnnonceService {
               private tokenService: TokenStorageService
   ) {
   }
-
 
   /**************************** AnnonceDTO ******************/
   public getAnnonceDTOs(): Observable<AnnonceDto[]> {
@@ -44,12 +44,17 @@ export class AnnonceService {
     return this.http.get<AnnonceDto>(`${this.apiServerUrl}/annonces/searchbyReference/${reference}`);
   }
 
+  public getAnnonceDTOByCustomerId(userId: number): Observable<AnnonceDto> {
+    return this.http.get<AnnonceDto>(`${this.apiServerUrl}/annonces/findAnnonceByCustomerId/${userId}`);
+  }
+
   public addAnnonceDTO(annonceDTO: AnnonceDto): Observable<AnnonceDto> {
     return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/create`, annonceDTO);
   }
 
   public addAnnonceDTOWithUser(annonceDTO: AnnonceDto, id: number): Observable<AnnonceDto> {
-    return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/createAnnonceWithUser?id=`+id, annonceDTO);
+  //  return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/createAnnonceWithUser?id=`+id, annonceDTO);
+    return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/createAnnonceWithUser?id=${id}`, annonceDTO);
   }
 
   public updateAnnonceDTO(annonceId: number, annonceDTO: AnnonceDto): Observable<AnnonceDto> {
