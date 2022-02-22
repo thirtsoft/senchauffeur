@@ -1,3 +1,7 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { AccueilbackendComponent } from './accueilbackend/accueilbackend.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { ListHistoriqueLoginComponent } from './historique/list-historique-login/list-historique-login.component';
@@ -9,11 +13,8 @@ import { ListEmailComponent } from './email/list-email/list-email.component';
 import { ListNewsleterComponent } from './email/list-newsleter/list-newsleter.component';
 import { CreateJetonComponent } from './jeton/create-jeton/create-jeton.component';
 import { ListJetonComponent } from './jeton/list-jeton/list-jeton.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { CreateLocalityComponent } from './locality/create-locality/create-locality.component';
 import { CreateUtilisateurComponent } from './utilisateur/create-utilisateur/create-utilisateur.component';
+import { CreateLocalityComponent } from './locality/create-locality/create-locality.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { ListNotationComponent } from './list-notation/list-notation.component';
 import { ListLocalityComponent } from './locality/list-locality/list-locality.component';
@@ -42,162 +43,161 @@ const routes: Routes = [
     component: SignInComponent
   },
 
-  /* {
-    path: '',
-    redirectTo: 'dashborad',
-    pathMatch: 'full'
-  }, */
-
-  {
-    path: 'signUp',
-    component: SignUpComponent
+  { path: 'accueil', component: AccueilbackendComponent,
+    children : [
+      { path: '',   redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'signUp',
+        component: SignUpComponent
+      },
+      {
+        path: 'chauffeurs',
+        component: ListChauffeurComponent
+      },
+      {
+        path: 'chauffeur',
+        component: CreateChauffeurComponent
+      },
+      {
+        path: 'chauffeur/:id',
+        component: CreateChauffeurComponent
+      },
+      {
+        path: 'viewchauffeur/:id',
+        component: ViewChauffeurComponent
+      },
+      {
+        path: 'listPermis',
+        component: ListPermisComponent
+      },
+      {
+        path: 'permis',
+        component: CreatePermisComponent
+      },
+      {
+        path: 'permis/:id',
+        component: CreatePermisComponent
+      },
+      {
+        path: 'recruteurs',
+        component: ListRecruteurComponent
+      },
+      {
+        path: 'recruteur',
+        component: CreateRecruteurComponent
+      },
+      {
+        path: 'recruteur/:id',
+        component: CreateRecruteurComponent
+      },
+      {
+        path: 'viewrecruteur/:id',
+        component: ViewRecruteurComponent
+      },
+      {
+        path: 'annonces',
+        component: ListAnnonceComponent
+      },
+      {
+        path: 'annonce',
+        component: CreateAnnonceComponent
+      },
+      {
+        path: 'annonce/:id',
+        component: CreateAnnonceComponent
+      },
+      {
+        path: 'annonceEncours',
+        component: AnnonceByStatusEncoursComponent
+      },
+      {
+        path: 'tarifs',
+        component: ListTarifComponent
+      },
+      {
+        path: 'tarif',
+        component: CreateTarifComponent
+      },
+      {
+        path: 'tarif/:id',
+        component: CreateTarifComponent
+      },
+      {
+        path: 'localites',
+        component: ListLocalityComponent
+      },
+      {
+        path: 'localite',
+        component: CreateLocalityComponent
+      },
+      {
+        path: 'localite/:id',
+        component: CreateLocalityComponent
+      },
+      {
+        path: 'jetons',
+        component: ListJetonComponent
+      },
+      {
+        path: 'jeton/:id',
+        component: CreateJetonComponent
+      },
+      {
+        path: 'jeton',
+        component: CreateJetonComponent
+      },
+      {
+        path: 'notifications',
+        component: ListNotationComponent
+      },
+      {
+        path: 'newsleters',
+        component: ListNewsleterComponent
+      },
+      {
+        path: 'sendEmailToNewsleter',
+        component: SendEmailToNewsleterComponent
+      },
+      {
+        path: 'emails',
+        component: ListEmailComponent
+      },
+      {
+        path: 'sendEmailToEmployeur',
+        component: SendEmailToEmployeurComponent
+      },
+      {
+        path: 'sendEmailToChauffeur',
+        component: SendEmailToChauffeurComponent
+      },
+      {
+        path: 'historiqueAnnonces',
+        component: ListHistoriqueAnnonceComponent
+      },
+      {
+        path: 'historiqueLogins',
+        component: ListHistoriqueLoginComponent
+      },
+      {
+        path: 'utilisateurs',
+        component: ListUtilisateurComponent
+      },
+      {
+        path: 'utilisateur',
+        component: CreateUtilisateurComponent
+      },
+      {
+        path: 'utilisateur/:id',
+        component: CreateUtilisateurComponent
+      },
+    
+    ]
   },
-
-  {
-    path: 'dashborad',
-    component: DashboardComponent
-  },
-  {
-    path: 'chauffeurs',
-    component: ListChauffeurComponent
-  },
-  {
-    path: 'chauffeur',
-    component: CreateChauffeurComponent
-  },
-  {
-    path: 'chauffeur/:id',
-    component: CreateChauffeurComponent
-  },
-  {
-    path: 'viewchauffeur/:id',
-    component: ViewChauffeurComponent
-  },
-  {
-    path: 'listPermis',
-    component: ListPermisComponent
-  },
-  {
-    path: 'permis',
-    component: CreatePermisComponent
-  },
-  {
-    path: 'permis/:id',
-    component: CreatePermisComponent
-  },
-  {
-    path: 'recruteurs',
-    component: ListRecruteurComponent
-  },
-  {
-    path: 'recruteur',
-    component: CreateRecruteurComponent
-  },
-  {
-    path: 'recruteur/:id',
-    component: CreateRecruteurComponent
-  },
-  {
-    path: 'viewrecruteur/:id',
-    component: ViewRecruteurComponent
-  },
-  {
-    path: 'annonces',
-    component: ListAnnonceComponent
-  },
-  {
-    path: 'annonce',
-    component: CreateAnnonceComponent
-  },
-  {
-    path: 'annonce/:id',
-    component: CreateAnnonceComponent
-  },
-  {
-    path: 'annonceEncours',
-    component: AnnonceByStatusEncoursComponent
-  },
-  {
-    path: 'tarifs',
-    component: ListTarifComponent
-  },
-  {
-    path: 'tarif',
-    component: CreateTarifComponent
-  },
-  {
-    path: 'tarif/:id',
-    component: CreateTarifComponent
-  },
-  {
-    path: 'localites',
-    component: ListLocalityComponent
-  },
-  {
-    path: 'localite',
-    component: CreateLocalityComponent
-  },
-  {
-    path: 'localite/:id',
-    component: CreateLocalityComponent
-  },
-  {
-    path: 'jetons',
-    component: ListJetonComponent
-  },
-  {
-    path: 'jeton/:id',
-    component: CreateJetonComponent
-  },
-  {
-    path: 'jeton',
-    component: CreateJetonComponent
-  },
-  {
-    path: 'notifications',
-    component: ListNotationComponent
-  },
-  {
-    path: 'newsleters',
-    component: ListNewsleterComponent
-  },
-  {
-    path: 'sendEmailToNewsleter',
-    component: SendEmailToNewsleterComponent
-  },
-  {
-    path: 'emails',
-    component: ListEmailComponent
-  },
-  {
-    path: 'sendEmailToEmployeur',
-    component: SendEmailToEmployeurComponent
-  },
-  {
-    path: 'sendEmailToChauffeur',
-    component: SendEmailToChauffeurComponent
-  },
-  {
-    path: 'historiqueAnnonces',
-    component: ListHistoriqueAnnonceComponent
-  },
-  {
-    path: 'historiqueLogins',
-    component: ListHistoriqueLoginComponent
-  },
-  {
-    path: 'utilisateurs',
-    component: ListUtilisateurComponent
-  },
-  {
-    path: 'utilisateur',
-    component: CreateUtilisateurComponent
-  },
-  {
-    path: 'utilisateur/:id',
-    component: CreateUtilisateurComponent
-  },
-
+  
 ];
 
 @NgModule({

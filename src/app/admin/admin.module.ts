@@ -57,6 +57,8 @@ import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SuccessRegisterComponent } from './authentication/success-register/success-register.component';
 import { ProfilComponent } from './authentication/profil/profil.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { AccueilbackendComponent } from './accueilbackend/accueilbackend.component';
 
 
 @NgModule({
@@ -92,7 +94,9 @@ import { ProfilComponent } from './authentication/profil/profil.component';
     SignInComponent,
     SignUpComponent,
     SuccessRegisterComponent,
-    ProfilComponent
+    ProfilComponent,
+    AccueilComponent,
+    AccueilbackendComponent
   ],
   imports: [
     CommonModule,

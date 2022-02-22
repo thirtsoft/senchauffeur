@@ -1,99 +1,11 @@
-<!-- <aside>
-
-    <div id="sidebar" class="nav-collapse nicescroll-rails" tabindex="5000" style="overflow-y: scroll;
-outline: none; margin-left: 0px;
-z-index: 1;
-/* overflow-x: hidden; */
-
-">
-        <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered">
-
-                <a><img src="../../../assets/admin/img/avatar.jpg" class="img-circle" width="80" routerLink="/profil"></a>
-            </p>
-            <h5 class="centered">
-
-                <h2>tairou</h2>
-            </h5>
-
-            <li class="mt">
-                <a routerLink="/backend/dashboard">
-                    <i class="fa fa-tachometer" aria-hidden="true"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
-                    <span routerLink="/backend/admin/chauffeurs">Chauffeurs</span>
-                    <span class="dcjq-icon"></span></a>
-            </li>
-
-            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
-                    <span routerLink="/backend/admin/recruteurs">Recruteurs</span>
-                    <span class="dcjq-icon"></span></a>
-            </li>
-
-            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
-                <a href="javascript:;">
-                    <i class="fa fa-group"></i>
-                    <span routerLink="/backend/admin/annonces">Annonces</span>
-                    <span class="dcjq-icon"></span></a>
-            </li>
-
-            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
-                <a href="javascript:;">
-                    <i class="fa fa-user"></i>
-                    <span routerLink="/backend/admin/permis">Permis</span>
-                    <span class="dcjq-icon"></span></a>
-            </li>
-
-            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
-                <a href="javascript:;">
-                    <i class="fa fa-user"></i>
-                    <span routerLink="/backend/admin/villes">Villes</span>
-                    <span class="dcjq-icon"></span></a>
-            </li>
-
-            <li class="sub-menu dcjq-parent-li" routerLinkActive="active">
-                <a href="javascript:;">
-                    <i class="fa fa-bell"></i>
-                    <span routerLink="/backend/admin/notifications">Notifications</span>
-                    <span class="dcjq-icon"></span></a>
-
-            </li>
-
-            <mat-accordion class="sidebar" routerLinkActive="active">
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title style="margin-left: -7%;margin-bottom: -3px;width: 30px;">
-                            <i class="fa fa-group"></i> <span style="margin-left: 7px;">Utilisateurs</span>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-
-                    <div class="vacation-sub-menu">
-                        <li><a style="margin-bottom:-10px" routerLink="/backend/admin/utilisateurs"><i class="fa fa-book"></i> List Users </a></li>
-                        <li><a routerLink="/backend/admin/scategories"><i class="fa fa-group"></i>Signup</a></li>
-                        <li><a routerLink="/backend/admin/articles"><i class="fa fa-group"></i>Edit Profil</a></li>
-                    </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </ul>
-    </div>
-</aside>
- -->
-
 <div class="left side-menu">
     <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
           <i class="ion-close"></i>
       </button>
     <div class="topbar-left">
         <div class="text-center">
-            <a routerLink="/backend/admin/dashborad" class="logo"><i class="mdi mdi-assistant"></i> SenChauffeur</a>
-            <!-- <a href="index.html" class="logo"><img src="assets/admin/images/logo.png" height="24" alt="logo"></a> -->
+            <a routerLink="/admin/accueil/dashborad" class="logo"><i class="mdi mdi-assistant"></i> SenChauffeur</a>
+            <!-- <a href="index.html" class="logo"><img src="assets/accueil/images/logo.png" height="24" alt="logo"></a> -->
         </div>
     </div>
 
@@ -104,103 +16,102 @@ z-index: 1;
                 <!--    <li class="menu-title">Main</li> -->
 
                 <li>
-                    <a routerLink="/backend/admin/dashborad" class="waves-effect">
+                    <a routerLink="/admin/accueil/dashborad" class="waves-effect">
                         <i class="mdi mdi-airplay"></i>
                         <span> Dashboard <!-- <span class="badge badge-pill badge-primary float-right">7</span> --></span>
                     </a>
                 </li>
 
                 <li class="has_sub">
-                    <a routerLink="/backend/admin/chauffeurs" class="waves-effect"><i class="mdi mdi-layers"></i>
+                    <a routerLink="/admin/accueil/chauffeurs" class="waves-effect"><i class="mdi mdi-layers"></i>
                       <span> Chauffeurs </span> </a>
 
                 </li>
 
                 <li>
-                    <a routerLink="/backend/admin/recruteurs" class="waves-effect">
+                    <a routerLink="/admin/accueil/recruteurs" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Recruteurs </span>
                     </a>
                 </li>
 
                 <li>
-                  <a routerLink="/backend/admin/annonceEncours" class="waves-effect">
+                  <a routerLink="/admin/accueil/annonceEncours" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Annonces-Encours </span>
                   </a>
               </li>
 
 
                 <li>
-                    <a routerLink="/backend/admin/annonces" class="waves-effect">
+                    <a routerLink="/admin/accueil/annonces" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Annonces </span>
                     </a>
                 </li>
 
                 <li>
-                    <a routerLink="/backend/admin/tarifs" class="waves-effect">
+                    <a routerLink="/admin/accueil/tarifs" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Tarifs </span>
                     </a>
                 </li>
 
                 <li>
-                  <a routerLink="/backend/admin/jetons" class="waves-effect">
+                  <a routerLink="/admin/accueil/jetons" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Jetons </span>
                   </a>
               </li>
 
                 <li>
-                    <a routerLink="/backend/admin/listPermis" class="waves-effect">
+                    <a routerLink="/admin/accueil/listPermis" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Permis </span>
                     </a>
                 </li>
 
                 <li>
-                    <a routerLink="/backend/admin/localites" class="waves-effect">
+                    <a routerLink="/admin/accueil/localites" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Localité </span>
                     </a>
                 </li>
 
                 <li>
-                    <a routerLink="/backend/admin/notifications" class="waves-effect">
+                    <a routerLink="/admin/accueil/notifications" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Notifications </span>
                     </a>
                 </li>
 
                 <li>
-                  <a routerLink="/backend/admin/emails" class="waves-effect">
+                  <a routerLink="/admin/accueil/emails" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Emails </span>
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/backend/admin/newsleters" class="waves-effect">
+                  <a routerLink="/admin/accueil/newsleters" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Newsleter </span>
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/backend/admin/historiqueAnnonces" class="waves-effect">
-                      <i class="mdi mdi-calendar-clock"></i><span> Historiques Annonces </span>
+                  <a routerLink="/admin/accueil/historiqueAnnonces" class="waves-effect">
+                      <i class="mdi mdi-calendar-clock"></i><span> Histo Annonces </span>
                   </a>
                 </li>
+               
                 <li>
-                  <a routerLink="/backend/admin/historiqueLogins" class="waves-effect">
+                  <a routerLink="/admin/accueil/historiqueLogins" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Historiques Logins </span>
                   </a>
                 </li>
 
-               <!--  <li class="has_sub">
-                  <a href="javascript:void(0);" class="waves-effect">
-                    <i class="mdi mdi-clipboard-outline"></i>
-                    <span> Historiques </span> <span class="badge badge-pill badge-info float-right">8</span></a>
-                  <ul class="list-unstyled">
-                      <li><a routerLink="/backend/admin/historiqueAnnonces">Historiques Annonces</a></li>
-                      <li><a routerLink="/backend/admin/historiqueLogins">Historiques Logins</a></li>
-                  </ul>
-                </li> -->
-
                 <li>
-                  <a routerLink="/backend/admin/utilisateurs" class="waves-effect">
+                  <a routerLink="/admin/accueil/utilisateurs" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Utilisateur </span>
                   </a>
                 </li>
+
+                <li>
+                  <a routerLink="/admin/accueil/signUp" class="waves-effect">
+                      <i class="mdi mdi-calendar-clock"></i><span> Create Account </span>
+                  </a>
+                </li>
+
+               
 
 
                 <!--      <li class="has_sub">

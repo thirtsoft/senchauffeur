@@ -25,7 +25,7 @@ export class ListUtilisateurComponent implements OnInit {
   constructor(private userService: UtilisateurService,
               private router: Router,
                private dialog: MatDialog,
-              public toastr: ToastrService,
+      //        public toastr: ToastrService,
               private dialogService: DialogService,
               ){}
 
@@ -71,7 +71,8 @@ export class ListUtilisateurComponent implements OnInit {
     .afterClosed().subscribe((response: any) =>{
       if(response){
         this.userService.deleteUtilisateurDTO(user.id).subscribe(data => {
-          this.toastr.warning('Utilisateur supprimé avec succès!');
+       //   this.toastr.warning('Utilisateur supprimé avec succès!');
+        window.alert("Utilisateur supprimé avec succès!");
           this.utilisateurDTOList = this.utilisateurDTOList.filter(u => u !== user);
           this.getUtilisateurDTOs();
         });
