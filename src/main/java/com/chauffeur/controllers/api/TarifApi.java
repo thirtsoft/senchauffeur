@@ -40,7 +40,7 @@ public interface TarifApi {
 	@GetMapping(value = APP_ROOT + "/tarifs/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<TarifDto> findAll();
 	
-	@GetMapping(value = APP_ROOT + "/chauffeurs/searchTarifsOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/tarifs/searchTarifsOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<TarifDto>> getdAllTarifsOrderByIdDesc();
 	
 	@GetMapping(value = APP_ROOT + "/tarifs/searchTarifByKeyword", 

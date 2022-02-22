@@ -30,7 +30,7 @@ public interface PermisApi {
 	@GetMapping(value = APP_ROOT + "/permis/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<PermisDto> findAll();
 	
-	@GetMapping(value = APP_ROOT + "/chauffeurs/searchPermisOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/permis/searchPermisOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<PermisDto>> getdAllPermisOrderByIdDesc();
 
 	@DeleteMapping(value = APP_ROOT + "/permis/delete/{idPermis}")

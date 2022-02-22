@@ -37,7 +37,7 @@ public interface AnnonceApi {
 	ResponseEntity<AnnonceDto> update(@PathVariable("idAnnonce") Long idAnnonce, 
 			@RequestBody AnnonceDto annonceDto);
 	
-	@PatchMapping(value = APP_ROOT + "/commandes/updateStatusOfAnnonce/{id}")
+	@PatchMapping(value = APP_ROOT + "/annonces/updateStatusOfAnnonce/{id}")
     ResponseEntity<AnnonceDto> updateStatusOfAnnonce(@RequestParam("status") String status, @PathVariable("id") String id);
 
 	@GetMapping(value = APP_ROOT + "/annonces/findById/{idAnnonce}", produces = MediaType.APPLICATION_JSON_VALUE)
