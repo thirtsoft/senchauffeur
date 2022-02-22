@@ -74,6 +74,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateurDtoResult.setUsername(utilisateurDto.getUsername());
         utilisateurDtoResult.setEmail(utilisateurDto.getEmail());
         utilisateurDtoResult.setMobile(utilisateurDto.getMobile());
+        utilisateurDtoResult.setAddressRecruteur(utilisateurDto.getAddressRecruteur());
+        utilisateurDtoResult.setVilleRecruteur(utilisateurDto.getVilleRecruteur());
+        utilisateurDtoResult.setNomEntreprise(utilisateurDto.getNomEntreprise());
+        utilisateurDtoResult.setSecteurActivite(utilisateurDto.getSecteurActivite());
+        utilisateurDtoResult.setWebsite(utilisateurDto.getWebsite());
+        utilisateurDtoResult.setInformation(utilisateurDto.getInformation());
 
         return UtilisateurDto.fromEntityToDto(
                 utilisateurRepository.save(

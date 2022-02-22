@@ -27,6 +27,18 @@ public class UtilisateurDto {
 	 private String email;
 	 
 	 private String photo;
+	 
+	 private String nomEntreprise;
+		
+	 private String addressRecruteur;
+	 
+	 private String website;
+
+	 private String secteurActivite;
+		
+	 private String villeRecruteur;
+		
+	 private String information;
 
 	 private String password;
 
@@ -50,7 +62,13 @@ public class UtilisateurDto {
 	            .username(utilisateur.getUsername())
 	            .mobile(utilisateur.getMobile())
 	            .email(utilisateur.getEmail())
+	            .addressRecruteur(utilisateur.getAddressRecruteur())
+	            .villeRecruteur(utilisateur.getVilleRecruteur())
+	            .nomEntreprise(utilisateur.getNomEntreprise())
+	            .secteurActivite(utilisateur.getSecteurActivite())
+	            .website(utilisateur.getWebsite())
 	            .photo(utilisateur.getPhoto())
+	            .information(utilisateur.getInformation())
 	            .password(utilisateur.getPassword())
 	            .build();
 
@@ -67,6 +85,12 @@ public class UtilisateurDto {
 	     utilisateur.setUsername(utilisateurDto.getUsername());
 	     utilisateur.setMobile(utilisateurDto.getMobile());
 	     utilisateur.setEmail(utilisateurDto.getEmail());
+	     utilisateur.setAddressRecruteur(utilisateurDto.getAddressRecruteur());
+	     utilisateur.setVilleRecruteur(utilisateurDto.getVilleRecruteur());
+	     utilisateur.setNomEntreprise(utilisateurDto.getNomEntreprise());
+	     utilisateur.setSecteurActivite(utilisateurDto.getSecteurActivite());
+	     utilisateur.setWebsite(utilisateurDto.getWebsite());
+	     utilisateur.setInformation(utilisateurDto.getInformation());
 	     utilisateur.setPhoto(utilisateurDto.getPhoto());
 	     utilisateur.setPassword(utilisateurDto.getPassword());
 	     utilisateur.setRoles(utilisateur.getRoles());

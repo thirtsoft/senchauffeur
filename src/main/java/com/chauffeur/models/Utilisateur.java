@@ -3,14 +3,7 @@ package com.chauffeur.models;
 import java.io.Serializable;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,11 +29,30 @@ public class Utilisateur implements Serializable {
 
     @Column(name = "mobile", length = 60)
     private String mobile;
-
-    @Column(name = "email", length = 50)
-    private String email;
     
     private String photo;
+    
+    @Column(name = "nomEntreprise", length = 90)
+	private String nomEntreprise;
+	
+	@Column(name = "website", length = 90)
+	private String website;
+	
+	@Column(name = "secteurActivite", length = 100)
+	private String secteurActivite;
+
+	@Column(name = "email", length = 50)
+	private String email;
+	
+	@Column(name = "addressRecruteur", length = 30)
+	private String addressRecruteur;
+	
+	@Column(name = "villeRecruteur", length = 30)
+	private String villeRecruteur;
+
+	@Lob
+	@Column(name = "information")
+	private String information;
 
     @Column(name = "password", length = 70)
     private String password;
@@ -160,6 +172,56 @@ public class Utilisateur implements Serializable {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+	public String getNomEntreprise() {
+		return nomEntreprise;
+	}
+
+	public void setNomEntreprise(String nomEntreprise) {
+		this.nomEntreprise = nomEntreprise;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getSecteurActivite() {
+		return secteurActivite;
+	}
+
+	public void setSecteurActivite(String secteurActivite) {
+		this.secteurActivite = secteurActivite;
+	}
+
+	public String getAddressRecruteur() {
+		return addressRecruteur;
+	}
+
+	public void setAddressRecruteur(String addressRecruteur) {
+		this.addressRecruteur = addressRecruteur;
+	}
+
+	public String getVilleRecruteur() {
+		return villeRecruteur;
+	}
+
+	public void setVilleRecruteur(String villeRecruteur) {
+		this.villeRecruteur = villeRecruteur;
+	}
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
+	}
+    
+    
 	
 
 }
