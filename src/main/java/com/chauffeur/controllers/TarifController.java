@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.TarifApi;
+import com.chauffeur.dto.PermisDto;
 import com.chauffeur.dto.TarifDto;
 import com.chauffeur.services.TarifService;
 
@@ -77,6 +79,12 @@ public class TarifController implements TarifApi {
 	public Page<TarifDto> getTarifByAnnoncePageables(Long tarifId, int page, int size) {
 		final Pageable pageable = PageRequest.of(page, size);
         return tarifService.findTarifByAnnonceByPageable(tarifId, pageable);
+	}
+
+	@Override
+	public ResponseEntity<List<TarifDto>> getdAllTarifsOrderByIdDesc() {
+		List<TarifDto> tarifDtoList = tarifService.findByTarifByIdDesc();
+	    return new ResponseEntity<>(tarifDtoList, HttpStatus.OK);
 	}
 
 	

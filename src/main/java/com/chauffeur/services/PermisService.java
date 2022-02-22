@@ -13,6 +13,8 @@ public interface PermisService {
 	PermisDto findById(Long id);
 
     List<PermisDto> findAll();
+    
+    List<PermisDto> findByPermisByIdDesc();
 
     void delete(Long id);
 

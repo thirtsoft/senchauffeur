@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.chauffeur.models.Addresse;
 import com.chauffeur.models.Chauffeur;
 
 @Repository
@@ -20,6 +21,8 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 	
 	@Query("select count(p) from Chauffeur p ")
 	BigDecimal countNumberOfChauffeurs();
+	
+	List<Chauffeur> findChauffeurByIdDesc();
 	
 	@Query("select art from Chauffeur art where art.selected = true")
     List<Chauffeur> findChauffeurBySelected();

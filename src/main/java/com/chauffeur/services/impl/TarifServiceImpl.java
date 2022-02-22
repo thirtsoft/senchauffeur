@@ -41,6 +41,32 @@ public class TarifServiceImpl implements TarifService {
                 )
         );
     }
+    
+    @Override
+	public TarifDto update(Long idTarif, TarifDto tarifDto) {
+		if (!tarifRepository.existsById(idTarif)) {
+            throw new ResourceNotFoundException("Tarif not found");
+        }
+
+		Optional<Tarif> tarifOptional = tarifRepository.findById(idTarif);
+		
+        if (!tarifOptional.isPresent()) {
+            throw new ResourceNotFoundException("Tarif not found");
+        }
+
+        TarifDto tarifDtoResult = TarifDto.fromEntityToDto(tarifOptional.get());
+        tarifDtoResult.setReference(tarifDto.getReference());
+        tarifDtoResult.setMontantTarif(tarifDto.getMontantTarif());
+        tarifDtoResult.setDescription(tarifDto.getDescription());
+        tarifDtoResult.setAnnonceDto(tarifDto.getAnnonceDto());
+       
+        return TarifDto.fromEntityToDto(
+        		tarifRepository.save(
+        				TarifDto.fromDtoToEntity(tarifDtoResult)
+                )
+        );
+	}
+
 
     @Override
     public TarifDto findById(Long id) {
@@ -79,42 +105,14 @@ public class TarifServiceImpl implements TarifService {
                 .map(TarifDto::fromEntityToDto)
                 .collect(Collectors.toList());
     }
-
+    
     @Override
-    public void delete(Long id) {
-        if (id == null) {
-            log.error("Annonce Id is null");
-            return;
-        }
-        tarifRepository.deleteById(id);
-
-    }
-
-	@Override
-	public TarifDto update(Long idTarif, TarifDto tarifDto) {
-		if (!tarifRepository.existsById(idTarif)) {
-            throw new ResourceNotFoundException("Tarif not found");
-        }
-
-		Optional<Tarif> tarifOptional = tarifRepository.findById(idTarif);
-		
-        if (!tarifOptional.isPresent()) {
-            throw new ResourceNotFoundException("Tarif not found");
-        }
-
-        TarifDto tarifDtoResult = TarifDto.fromEntityToDto(tarifOptional.get());
-        tarifDtoResult.setReference(tarifDto.getReference());
-        tarifDtoResult.setMontantTarif(tarifDto.getMontantTarif());
-        tarifDtoResult.setDescription(tarifDto.getDescription());
-        tarifDtoResult.setAnnonceDto(tarifDto.getAnnonceDto());
-       
-        return TarifDto.fromEntityToDto(
-        		tarifRepository.save(
-        				TarifDto.fromDtoToEntity(tarifDtoResult)
-                )
-        );
+	public List<TarifDto> findByTarifByIdDesc() {
+    	 return tarifRepository.findTarifByOrderByIdDesc().stream()
+                 .map(TarifDto::fromEntityToDto)
+                 .collect(Collectors.toList());
 	}
-
+	
 	@Override
 	public List<TarifDto> findListTarifDtoByKeyword(String keyword) {
 		if (keyword == null) {
@@ -126,18 +124,17 @@ public class TarifServiceImpl implements TarifService {
 	}
 
 	@Override
-	public Page<TarifDto> findTarifByPageable(Pageable pageable) {
-		return tarifRepository.findAll(pageable)
-                .map(TarifDto::fromEntityToDto);
-	}
-
-	@Override
 	public List<TarifDto> findListTarifDtoByAnnonce(Long pId) {
 		return tarifRepository.findTarifByAnnonce(pId).stream()
                 .map(TarifDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
-
+	
+	@Override
+	public Page<TarifDto> findTarifByPageable(Pageable pageable) {
+		return tarifRepository.findAll(pageable)
+                .map(TarifDto::fromEntityToDto);
+	}
 
 
 	@Override
@@ -145,6 +142,17 @@ public class TarifServiceImpl implements TarifService {
 		return tarifRepository.findTarifByAnnoncePageables(annonceId, pageable)
                 .map(TarifDto::fromEntityToDto);
 	}
+	
+	
+	@Override
+    public void delete(Long id) {
+        if (id == null) {
+            log.error("Annonce Id is null");
+            return;
+        }
+        tarifRepository.deleteById(id);
+
+    }
 
 	
 }

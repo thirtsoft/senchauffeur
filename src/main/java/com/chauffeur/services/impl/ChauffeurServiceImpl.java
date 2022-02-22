@@ -105,17 +105,13 @@ public class ChauffeurServiceImpl implements ChauffeurService {
                 .map(ChauffeurDto::fromEntityToDto)
                 .collect(Collectors.toList());
     }
-
+    
     @Override
-    public void delete(Long id) {
-        if (id == null) {
-            log.error("chauffeur Id is null");
-            return;
-        }
-        
-        chauffeurRepository.deleteById(id);
-
-    }
+	public List<ChauffeurDto> findByChauffeurByIdDesc() {
+    	return chauffeurRepository.findChauffeurByIdDesc().stream()
+                .map(ChauffeurDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
 
 	@Override
 	public ChauffeurDto saveChauffeurWithFiles(String chauffeurDto, MultipartFile photoChauffeur,
@@ -217,6 +213,19 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 		return chauffeurRepository.findChauffeurByPermisPageables(permisId, pageable)
                 .map(ChauffeurDto::fromEntityToDto);
 	}
+
+	
+	
+	@Override
+    public void delete(Long id) {
+        if (id == null) {
+            log.error("chauffeur Id is null");
+            return;
+        }
+        
+        chauffeurRepository.deleteById(id);
+
+    }
 
 
 }

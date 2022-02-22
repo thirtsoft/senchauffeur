@@ -24,11 +24,14 @@ public interface AddresseApi {
 	@PutMapping(value = APP_ROOT + "/addresses/update/{idAddresse}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AddresseDto> update(@PathVariable("idAddresse") Long id, @RequestBody AddresseDto addresseDto);
 
-	@GetMapping(value = APP_ROOT + "/addresses/{idAddresse}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/addresses/findById/{idAddresse}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<AddresseDto> findById(@PathVariable("idAddresse") Long id);
 
 	@GetMapping(value = APP_ROOT + "/addresses/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AddresseDto> findAll();
+	List<AddresseDto> getAllAddresses();
+	
+	@GetMapping(value = APP_ROOT + "/addresses/searchAddressOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<AddresseDto>> getdAllAddressOrderByIdDesc();
 
 	@DeleteMapping(value = APP_ROOT + "/addresses/delete/{idAddresse}")
 	void delete(@PathVariable("idAddresse") Long id);

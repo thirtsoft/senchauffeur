@@ -31,7 +31,6 @@ public interface UtilisateurService {
     
     List<UtilisateurDto> findByOrderByIdDesc();
 
-
     void delete(Long id);
 
 

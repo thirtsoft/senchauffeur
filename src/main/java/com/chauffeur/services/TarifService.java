@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.chauffeur.dto.PermisDto;
 import com.chauffeur.dto.TarifDto;
 
 public interface TarifService {
@@ -18,6 +19,8 @@ public interface TarifService {
 	TarifDto findByReference(String reference);
 
     List<TarifDto> findAll();
+    
+    List<TarifDto> findByTarifByIdDesc();
     
     List<TarifDto> findListTarifDtoByKeyword(String keyword);
     

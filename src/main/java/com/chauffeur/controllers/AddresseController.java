@@ -3,12 +3,14 @@ package com.chauffeur.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.AddresseApi;
 import com.chauffeur.dto.AddresseDto;
+import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.services.AddressService;
 
 @RestController
@@ -40,10 +42,17 @@ public class AddresseController implements AddresseApi {
 	}
 
 	@Override
-	public List<AddresseDto> findAll() {
+	public List<AddresseDto> getAllAddresses() {
 		return addressService.findAll();
 	}
 
+
+	@Override
+	public ResponseEntity<List<AddresseDto>> getdAllAddressOrderByIdDesc() {
+		List<AddresseDto> addresseDtoList = addressService.findByAddresseByIdDesc();
+        return new ResponseEntity<>(addresseDtoList, HttpStatus.OK);
+	}
+	
 	@Override
 	public void delete(Long id) {
 		addressService.delete(id);

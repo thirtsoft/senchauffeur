@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.chauffeur.controllers.api.ChauffeurApi;
+import com.chauffeur.dto.AddresseDto;
 import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.services.ChauffeurService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,13 +75,17 @@ public class ChauffeurController implements ChauffeurApi {
 	public List<ChauffeurDto> findAll() {
 		return chauffeurService.findAll();
 	}
-
+	
 	@Override
-	public void delete(Long id) {
-		chauffeurService.delete(id);
-		
+	public ResponseEntity<List<ChauffeurDto>> getdAllChauffeursOrderByIdDesc() {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findByChauffeurByIdDesc();
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
 	}
 	
+	@Override
+	public List<ChauffeurDto> getListChauffeurBySelected() {
+		return chauffeurService.findListChauffeurBySelected();
+	}
 	
 	@Override
 	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
@@ -229,36 +235,44 @@ public class ChauffeurController implements ChauffeurApi {
 
 	    chauffeurService.save(chauffeurDto);
 	}
+	
 	@Override
 	public List<ChauffeurDto> getListChauffeurByPermis(Long pId) {
 		return chauffeurService.findListChauffeurByPermis(pId);
 	}
+	
 	@Override
 	public BigDecimal getNumbersOfChauffeurs() {
 		return chauffeurService.countNumbersOfChauffeurs();
 	}
+	
 	@Override
 	public Page<ChauffeurDto> getChauffeurByKeywordByPageable(String mc, int page, int size) {
 		 final Pageable pageable = PageRequest.of(page, size);
 	     return chauffeurService.findChauffeurByKeywordByPageable(mc, pageable);
 	}
+	
 	@Override
 	public Page<ChauffeurDto> getChauffeurByLocalityPageables(Long addId, int page, int size) {
 		final Pageable pageable = PageRequest.of(page, size);
 	    return chauffeurService.findChauffeurByLocalityPageables(addId, pageable);
 	}
+	
 	@Override
 	public List<ChauffeurDto> getListChauffeurByDisponibility(String disponibility) {
 		return chauffeurService.findChauffeurByDisponibility("%" + disponibility + "%");
 	}
+	
 	@Override
 	public Page<ChauffeurDto> getChauffeurByPermisPageables(Long permisId, int page, int size) {
 		final Pageable pageable = PageRequest.of(page, size);
 	    return chauffeurService.findChauffeurByPermisPageables(permisId, pageable);
 	}
+	
 	@Override
-	public List<ChauffeurDto> getListChauffeurBySelected() {
-		return chauffeurService.findListChauffeurBySelected();
+	public void delete(Long id) {
+		chauffeurService.delete(id);
+		
 	}
 	
 

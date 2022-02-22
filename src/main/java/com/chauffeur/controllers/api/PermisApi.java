@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.dto.PermisDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
@@ -23,11 +24,14 @@ public interface PermisApi {
 	@PutMapping(value = APP_ROOT + "/permis/update/{idPermis}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<PermisDto> update(@PathVariable("idPermis") Long id, @RequestBody PermisDto permisDto);
 
-	@GetMapping(value = APP_ROOT + "/permis/{idPermis}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/permis/findById/{idPermis}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<PermisDto> findById(@PathVariable("idPermis") Long id);
 
 	@GetMapping(value = APP_ROOT + "/permis/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<PermisDto> findAll();
+	
+	@GetMapping(value = APP_ROOT + "/chauffeurs/searchPermisOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<PermisDto>> getdAllPermisOrderByIdDesc();
 
 	@DeleteMapping(value = APP_ROOT + "/permis/delete/{idPermis}")
 	void delete(@PathVariable("idPermis") Long id);

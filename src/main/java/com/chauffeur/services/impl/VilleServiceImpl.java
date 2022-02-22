@@ -9,14 +9,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chauffeur.dto.PermisDto;
 import com.chauffeur.dto.VilleDto;
 import com.chauffeur.exceptions.ResourceNotFoundException;
-import com.chauffeur.models.Permis;
 import com.chauffeur.models.Ville;
-import com.chauffeur.repository.PermisRepository;
 import com.chauffeur.repository.VilleRepository;
-import com.chauffeur.services.PermisService;
 import com.chauffeur.services.VilleService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -80,6 +76,13 @@ public class VilleServiceImpl implements VilleService {
                 .collect(Collectors.toList());
 	}
 
+	@Override
+	public List<VilleDto> findByVillesByIdDesc() {
+		return villeRepository.findVilleByOrderByIdDesc().stream()
+                .map(VilleDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+	
 	@Override
 	public void delete(Long id) {
 		if (id == null) {

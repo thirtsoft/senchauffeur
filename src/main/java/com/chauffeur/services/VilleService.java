@@ -13,6 +13,8 @@ public interface VilleService {
 	VilleDto findById(Long id);
 
     List<VilleDto> findAll();
+    
+    List<VilleDto> findByVillesByIdDesc();
 
     void delete(Long id);
 

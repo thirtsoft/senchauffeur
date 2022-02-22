@@ -88,6 +88,13 @@ public class AddressServiceImpl implements AddressService {
                 .map(AddresseDto::fromEntityToDto)
                 .collect(Collectors.toList());
     }
+    
+    @Override
+	public List<AddresseDto> findByAddresseByIdDesc() {
+    	 return addressRepository.findAddresseByIdDesc().stream()
+                 .map(AddresseDto::fromEntityToDto)
+                 .collect(Collectors.toList());
+	}
 
     @Override
     public void delete(Long id) {
@@ -98,6 +105,8 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.deleteById(id);
 
     }
+
+	
 
 	
 

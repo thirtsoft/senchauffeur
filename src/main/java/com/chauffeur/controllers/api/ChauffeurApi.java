@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chauffeur.dto.AddresseDto;
 import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
@@ -39,14 +40,14 @@ public interface ChauffeurApi {
     @PutMapping(value = APP_ROOT + "/chauffeurs/update/{idChauffeur}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ChauffeurDto> update(@PathVariable("idChauffeur") Long id, @RequestBody ChauffeurDto chauffeurDto);
 
-    @GetMapping(value = APP_ROOT + "/chauffeurs/{idChauffeur}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/chauffeurs/findById/{idChauffeur}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ChauffeurDto> findById(@PathVariable("idChauffeur") Long id);
 
     @GetMapping(value = APP_ROOT + "/chauffeurs/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<ChauffeurDto> findAll();
-   
-    @DeleteMapping(value = APP_ROOT + "/chauffeurs/delete/{idChauffeur}")
-    void delete(@PathVariable("idChauffeur") Long id);
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<ChauffeurDto>> getdAllChauffeursOrderByIdDesc();
     
     @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurBySelectedIsTrue", produces = MediaType.APPLICATION_JSON_VALUE)
     List<ChauffeurDto> getListChauffeurBySelected();
@@ -62,7 +63,6 @@ public interface ChauffeurApi {
     @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByDisponibilite", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<ChauffeurDto> getListChauffeurByDisponibility(@RequestParam(name = "disponible") String disponibility);
-	 
 	 
 	@GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByPageables", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
@@ -107,6 +107,9 @@ public interface ChauffeurApi {
     		@RequestParam("id") Long permisId, 
     		@RequestParam(name = "page") int page,
     		@RequestParam(name = "size") int size);
+    
+    @DeleteMapping(value = APP_ROOT + "/chauffeurs/delete/{idChauffeur}")
+    void delete(@PathVariable("idChauffeur") Long id);
 
 
 

@@ -13,6 +13,8 @@ public interface AddressService {
 	AddresseDto findById(Long id);
 
     List<AddresseDto> findAll();
+    
+    List<AddresseDto> findByAddresseByIdDesc();
 
     void delete(Long id);
 

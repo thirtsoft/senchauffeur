@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.chauffeur.dto.PermisDto;
 import com.chauffeur.dto.TarifDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
@@ -29,7 +30,7 @@ public interface TarifApi {
 	ResponseEntity<TarifDto> update(@PathVariable("idTarif") Long idTarif, 
 			@RequestBody TarifDto tarifDto);
 
-	@GetMapping(value = APP_ROOT + "/tarifs/{idTarif}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/tarifs/findById/{idTarif}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<TarifDto> findById(@PathVariable("idTarif") Long idTarif);
 	
 	@GetMapping(value = APP_ROOT + "/tarifs/searchbyReference/{reference}", 
@@ -38,9 +39,9 @@ public interface TarifApi {
 
 	@GetMapping(value = APP_ROOT + "/tarifs/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<TarifDto> findAll();
-
-	@DeleteMapping(value = APP_ROOT + "/tarifs/delete/{idTarif}")
-	void delete(@PathVariable("idTarif") Long idTarif);
+	
+	@GetMapping(value = APP_ROOT + "/chauffeurs/searchTarifsOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<TarifDto>> getdAllTarifsOrderByIdDesc();
 	
 	@GetMapping(value = APP_ROOT + "/tarifs/searchTarifByKeyword", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
@@ -62,5 +63,8 @@ public interface TarifApi {
 	    		@RequestParam("id") Long annonceId, 
 	    		@RequestParam(name = "page") int page,
 	    		@RequestParam(name = "size") int size);
+	
+	@DeleteMapping(value = APP_ROOT + "/tarifs/delete/{idTarif}")
+	void delete(@PathVariable("idTarif") Long idTarif);
 
 }

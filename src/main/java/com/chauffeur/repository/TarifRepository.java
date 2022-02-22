@@ -10,12 +10,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.chauffeur.models.Permis;
 import com.chauffeur.models.Tarif;
 
 @Repository
 public interface TarifRepository extends JpaRepository<Tarif, Long> {
 	
 	Optional<Tarif> findTarifByReference(String reference);
+	
+	List<Tarif> findTarifByOrderByIdDesc();
 	
 	@Query("select taf from Tarif taf where taf.reference like :x")
 	List<Tarif> findTarifByKeyword(@Param("x") String mc);

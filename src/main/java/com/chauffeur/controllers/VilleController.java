@@ -3,11 +3,13 @@ package com.chauffeur.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.VilleApi;
+import com.chauffeur.dto.TarifDto;
 import com.chauffeur.dto.VilleDto;
 import com.chauffeur.services.VilleService;
 
@@ -47,6 +49,12 @@ public class VilleController implements VilleApi {
 	public void delete(Long id) {
 		villeService.delete(id);
 		
+	}
+
+	@Override
+	public ResponseEntity<List<VilleDto>> getdAllVillesOrderByIdDesc() {
+		List<VilleDto> villeDtoList = villeService.findByVillesByIdDesc();
+	    return new ResponseEntity<>(villeDtoList, HttpStatus.OK);
 	}
 	
 
