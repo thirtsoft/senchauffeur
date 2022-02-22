@@ -52,14 +52,14 @@ public interface AnnonceApi {
     ResponseEntity<AnnonceDto> findByReference(@PathVariable("reference") String reference);
 
 	@GetMapping(value = APP_ROOT + "/annonces/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> findAll();
+	List<AnnonceDto> getAllAnnonces();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<AnnonceDto>> getAllAnnonceOrderByIdDesc();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceBySelectedIsTrue", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListAnnonceBySelected();
 	    
-	@DeleteMapping(value = APP_ROOT + "/annonces/delete/{idAnnonce}")
-	void delete(@PathVariable("idAnnonce") Long idAnnonce);
-	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByKeyword", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "reference") String reference);
@@ -73,21 +73,27 @@ public interface AnnonceApi {
 	List<AnnonceDto> get5LatestAnnonceRecordOrderByIdDesc();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByCustomerIdOrderByIdDesc/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<List<AnnonceDto>> getCommandesByUserOrderByIdDesc(@PathVariable(name = "id") Long id);
-		
-	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusEncours", 
-			 produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getAnnonceByStatusEncours();
-	
+	ResponseEntity<List<AnnonceDto>> getAnnoncesByUserOrderByIdDesc(@PathVariable(name = "id") Long id);
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnoncesByPermis/{pId}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	List<AnnonceDto> getListAnnonceByPermis(@PathVariable("pId") Long pId);
-	 
-	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPageables", 
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusEncours", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	Page<AnnonceDto> getListAnnonceByPageable(@RequestParam(name = "page") int page, 
-			@RequestParam(name = "size") int size);
+	List<AnnonceDto> getAnnonceByStatusEncours();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusPending", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusPending();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusValide", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusValid();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusRejet", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusRejet();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonces")
     public BigDecimal getNumbersOfAnnoncess();
@@ -95,11 +101,28 @@ public interface AnnonceApi {
 	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonceByStatusPending")
 	BigDecimal getNumberOfAnnoncesByStatusPending();
 	
+	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonceInMonth")
+	BigDecimal getNumberOfAnnonceInMonth();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/numberOfAnnonceByMonth", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<?> countNumberOfAnnonceByMonth();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/numberOfAnnonceByYear", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<?> countNumberOfAnnonceByYear();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPageables", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	Page<AnnonceDto> getListAnnonceByPageable(@RequestParam(name = "page") int page, 
+			@RequestParam(name = "size") int size);
+	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByPermisPageables", 
 	    		produces = MediaType.APPLICATION_JSON_VALUE)
 	public Page<AnnonceDto> getAnnonceByPermisPageables(
 	    		@RequestParam("id") Long permisId, 
 	    		@RequestParam(name = "page") int page,
 	    		@RequestParam(name = "size") int size);
+	
+	@DeleteMapping(value = APP_ROOT + "/annonces/delete/{idAnnonce}")
+	void delete(@PathVariable("idAnnonce") Long idAnnonce);
 
 }

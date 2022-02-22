@@ -34,13 +34,13 @@ public class AnnonceServiceTest {
     @Test
     public void CreateScategoryTest() {
         PermisDto permisDto = new PermisDto();
-        RecruteurDto recruteurDto = new RecruteurDto();
+    //    RecruteurDto recruteurDto = new RecruteurDto();
         AnnonceDto chauffeurDto = new AnnonceDto();
         chauffeurDto.setId(1L);
         chauffeurDto.setReference("AAA");
         chauffeurDto.setLieuPoste("AAA");
         chauffeurDto.setPermisDto(permisDto);
-        chauffeurDto.setRecruteurDto(recruteurDto);
+   //     chauffeurDto.setRecruteurDto(recruteurDto);
               
         Annonce chauffeur = AnnonceDto.fromDtoToEntity(chauffeurDto);
         when(scategoryRepository.save(chauffeur)).thenReturn(chauffeur);
@@ -58,13 +58,13 @@ public class AnnonceServiceTest {
     @Test
     public void findAllTest() {
     	PermisDto permisDto = new PermisDto();
-        RecruteurDto recruteurDto = new RecruteurDto();
+  //      RecruteurDto recruteurDto = new RecruteurDto();
         AnnonceDto chauffeurDto = new AnnonceDto();
         chauffeurDto.setId(1L);
         chauffeurDto.setReference("AAA");
         chauffeurDto.setLieuPoste("AAA");
         chauffeurDto.setPermisDto(permisDto);
-        chauffeurDto.setRecruteurDto(recruteurDto);
+  //      chauffeurDto.setRecruteurDto(recruteurDto);
               
         Annonce chauffeur = AnnonceDto.fromDtoToEntity(chauffeurDto);
         when(scategoryRepository.findAll()).thenReturn(singletonList(chauffeur));
@@ -86,7 +86,7 @@ public class AnnonceServiceTest {
         chauffeurDto.setReference("AAA");
         chauffeurDto.setLieuPoste("AAA");
         chauffeurDto.setPermisDto(permisDto);
-        chauffeurDto.setRecruteurDto(recruteurDto);
+     //   chauffeurDto.setRecruteurDto(recruteurDto);
         
         Optional<Annonce> scategorie = Optional.ofNullable(AnnonceDto.fromDtoToEntity(chauffeurDto));
         when(scategoryRepository.findById(scategorie.get().getId())).thenReturn(scategorie);

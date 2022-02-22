@@ -20,6 +20,14 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	
 	@Query("select count(p) from Annonce p ")
 	BigDecimal countNumberOfAnnonces();
+		
+    @Query("select count(c) from Annonce c where month(c.dateCandidature) = month(current_date)")
+    BigDecimal countNumberOfAnnoncesInMonth();
+
+    @Query("select count(c) from Annonce c where c.status = 'ENCOURS' ")
+    BigDecimal countNumberOfAnnonceByStatusPending();
+	
+	List<Annonce> findByOrderByIdDesc();
 	
 	@Query("select art from Annonce art where art.selected = true")
     List<Annonce> findAnnonceBySelected();
@@ -38,17 +46,29 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	@Query("from Annonce a where a.statusAnnonce = com.chauffeur.enumeration.StatusAnnonce.ENCOURS")
 	List<Annonce> findListAnnonceByStatusEncours();
 	
+	@Query("from Annonce a where a.statusAnnonce = com.chauffeur.enumeration.StatusAnnonce.ENCOURS")
+	List<Annonce> findListAnnonceByStatusValider();
+	
 	@Query("select p from Annonce p where p.utilisateur.id =:user")
 	Annonce FindAnnonceByCustomerId(@Param("user") Long userId);
 	
 	@Query("select p from Annonce p where p.utilisateur.id =:user order by id Desc")
 	List<Annonce> FindListAnnonceByCustomerId(@Param("user") Long userId);
-	
-	@Query("select count(c) from Annonce c where c.statusAnnonce = 'ENCOURS' ")
-	BigDecimal countNumberOfAnnoncesByStatusPending();
-	
+	    
+    @Query("select c from Annonce c where c.status = 'ENCOURS' order by id Desc ")
+    List<Annonce> findListAnnonceByStatusPending();
 
-//	Page<Vinyl> findTop10ByOrderByVinylIDDescPriceAsc(Pageable pageable);
+    @Query("select c from Annonce c where c.status = 'VALIDEE' order by id Desc ")
+    List<Annonce> findListAnnonceByStatusValid();
+    
+    @Query("select c from Annonce c where c.status = 'REJETER' order by id Desc ")
+    List<Annonce> findListAnnonceByStatusRejet();
+    
+    @Query("select EXTRACT(month from(c.dateCandidature)), count(c) from Annonce c group by EXTRACT(month from(c.dateCandidature))")
+    List<?> countNumberOfAnnonceByMonth();
+    
+    @Query("select EXTRACT(year from(c.dateCandidature)), count(c) from Annonce c group by EXTRACT(year from(c.dateCandidature))")
+    List<?> countNumberOfAnnonceByYear();
 	 
 	@Query("select p from Annonce p")
 	Page<Annonce> findAnnonce(Pageable pageable);

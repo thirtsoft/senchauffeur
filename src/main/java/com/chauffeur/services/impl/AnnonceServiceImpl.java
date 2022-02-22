@@ -44,56 +44,8 @@ public class AnnonceServiceImpl implements AnnonceService {
                 )
         );
     }
-
-    @Override
-    public AnnonceDto findById(Long id) {
-        if (id == null) {
-            log.error("Produit Id is null");
-            return null;
-        }
-
-        Optional<Annonce> annonce = annonceRepository.findById(id);
-
-        return Optional.of(AnnonceDto.fromEntityToDto(annonce.get())).orElseThrow(() ->
-                new ResourceNotFoundException(
-                        "Aucnun Annonce avec l'Id = " + id + "n'a été trouvé")
-        );
-    }
     
     @Override
-	public AnnonceDto findByReference(String reference) {
-    	if (!StringUtils.hasLength(reference)) {
-            log.error("Annonce REFERENCE is null");
-        }
-
-        Optional<Annonce> annonce = annonceRepository.findAnnonceByReference(reference);
-
-        return Optional.of(AnnonceDto.fromEntityToDto(annonce.get())).orElseThrow(() ->
-                new ResourceNotFoundException(
-                        "Aucnun Annonce avec l'Id = " + reference + "n'a été trouvé")
-        );
-
-	}
-
-    
-    @Override
-    public List<AnnonceDto> findAll() {
-        return annonceRepository.findAll().stream()
-                .map(AnnonceDto::fromEntityToDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void delete(Long id) {
-        if (id == null) {
-            log.error("Annonce Id is null");
-            return;
-        }
-        annonceRepository.deleteById(id);
-
-    }
-
-	@Override
 	public AnnonceDto update(Long idAnnonce, AnnonceDto annonceDto) {
 		if (!annonceRepository.existsById(idAnnonce)) {
             throw new ResourceNotFoundException("Annonce not found");
@@ -127,6 +79,67 @@ public class AnnonceServiceImpl implements AnnonceService {
                 )
         );
 	}
+    
+    @Override
+	public AnnonceDto updateStatusOfAnnonce(String status, String id) {
+		Optional<Annonce> annonceOptional = annonceRepository.findById(Long.valueOf(id));
+
+		AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(annonceOptional.get());
+
+		annonceDtoResult.setStatus(status);
+
+        return AnnonceDto.fromEntityToDto(
+        		annonceRepository.save(
+        				AnnonceDto.fromDtoToEntity(annonceDtoResult)
+                )
+        );
+	}
+
+
+    @Override
+    public AnnonceDto findById(Long id) {
+        if (id == null) {
+            log.error("Produit Id is null");
+            return null;
+        }
+
+        Optional<Annonce> annonce = annonceRepository.findById(id);
+
+        return Optional.of(AnnonceDto.fromEntityToDto(annonce.get())).orElseThrow(() ->
+                new ResourceNotFoundException(
+                        "Aucnun Annonce avec l'Id = " + id + "n'a été trouvé")
+        );
+    }
+    
+    @Override
+	public AnnonceDto findByReference(String reference) {
+    	if (!StringUtils.hasLength(reference)) {
+            log.error("Annonce REFERENCE is null");
+        }
+
+        Optional<Annonce> annonce = annonceRepository.findAnnonceByReference(reference);
+
+        return Optional.of(AnnonceDto.fromEntityToDto(annonce.get())).orElseThrow(() ->
+                new ResourceNotFoundException(
+                        "Aucnun Annonce avec l'Id = " + reference + "n'a été trouvé")
+        );
+
+	}
+    
+    @Override
+    public List<AnnonceDto> findAll() {
+        return annonceRepository.findAll().stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+	public List<AnnonceDto> findByAnnonceByIdDesc() {
+    	return annonceRepository.findByOrderByIdDesc().stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
 	
 	@Override
 	public List<AnnonceDto> findListAnnonceBySelected() {
@@ -185,19 +198,65 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonceRepository.FindListAnnonceByCustomerId(userId).stream()
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
+	}	
+	
+	@Override
+	public AnnonceDto FindAnnonceByCustomerId(Long userId) {
+		Annonce annonce = annonceRepository.FindAnnonceByCustomerId(userId);
+		
+		return AnnonceDto.fromEntityToDto(annonce);
 	}
-
+	
 	@Override
 	public BigDecimal countNumbersOfAnnonces() {
 		return annonceRepository.countNumberOfAnnonces();
 	}
-	
+
 	@Override
-	public BigDecimal countNumberOfAnnoncesByStatusPending() {
-		return annonceRepository.countNumberOfAnnoncesByStatusPending();
+	public BigDecimal countNumberOfAnnoncesInMonth() {
+		return annonceRepository.countNumberOfAnnoncesInMonth();
 	}
 
+	@Override
+	public BigDecimal countNumberOfAnnonceByStatusPending() {
+		return annonceRepository.countNumberOfAnnonceByStatusPending();
+	}
 
+	@Override
+	public List<AnnonceDto> findListAnnonceByStatusPending() {
+		return annonceRepository.findListAnnonceByStatusPending().stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public List<AnnonceDto> findListAnnonceByStatusValid() {
+		return annonceRepository.findListAnnonceByStatusValid().stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<AnnonceDto> findListAnnonceByStatusRejet() {
+		return annonceRepository.findListAnnonceByStatusPending().stream()
+                .map(AnnonceDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public List<?> countNumberTotalOfAnnonceByMonth() {
+		return annonceRepository.countNumberOfAnnonceByMonth()
+                .stream()
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public List<?> countNumberTotalOfAnnonceByYear() {
+		return annonceRepository.countNumberOfAnnonceByYear()
+                .stream()
+                .collect(Collectors.toList());
+	}
+	
 	@Override
 	public Page<AnnonceDto> findAnnonceByPermisByPageable(Long permisId, Pageable pageable) {
 		return annonceRepository.findAnnonceByPermisPageables(permisId, pageable)
@@ -209,28 +268,17 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonceRepository.findAll(pageable)
                 .map(AnnonceDto::fromEntityToDto);
 	}
-
+	
 	@Override
-	public AnnonceDto updateStatusOfAnnonce(String status, String id) {
-		Optional<Annonce> annonceOptional = annonceRepository.findById(Long.valueOf(id));
+	public void delete(Long id) {
+		if (id == null) {
+			log.error("Annonce Id is null");
+			return;
+		}
+		annonceRepository.deleteById(id);
 
-		AnnonceDto annonceDtoResult = AnnonceDto.fromEntityToDto(annonceOptional.get());
-
-		annonceDtoResult.setStatus(status);
-
-        return AnnonceDto.fromEntityToDto(
-        		annonceRepository.save(
-        				AnnonceDto.fromDtoToEntity(annonceDtoResult)
-                )
-        );
 	}
 
-	@Override
-	public AnnonceDto FindAnnonceByCustomerId(Long userId) {
-		Annonce annonce = annonceRepository.FindAnnonceByCustomerId(userId);
-		
-		return AnnonceDto.fromEntityToDto(annonce);
-	}
 
 	
 

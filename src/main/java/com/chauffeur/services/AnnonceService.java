@@ -23,10 +23,22 @@ public interface AnnonceService {
 	AnnonceDto findById(Long id);
 	
 	AnnonceDto findByReference(String reference);
+	
+	AnnonceDto FindAnnonceByCustomerId(Long userId);
+	
+    BigDecimal countNumbersOfAnnonces();
 
+    BigDecimal countNumberOfAnnoncesInMonth();
+
+    BigDecimal countNumberOfAnnonceByStatusPending();
+    
     List<AnnonceDto> findAll();
     
+    List<AnnonceDto> findByAnnonceByIdDesc();
+    
     List<AnnonceDto> findListAnnonceBySelected();
+    
+    List<AnnonceDto> FindListAnnonceByCustomerId(Long userId);
     
     List<AnnonceDto> findListAnnonceByKeyword(String keyword);
     
@@ -37,21 +49,22 @@ public interface AnnonceService {
     List<AnnonceDto> find5LatestRecordsByOrderByIdDesc();
     
 	List<AnnonceDto> findListAnnonceByStatusEncours();
-	
-	AnnonceDto FindAnnonceByCustomerId(Long userId);
-	
-	List<AnnonceDto> FindListAnnonceByCustomerId(Long userId);
-    
-    BigDecimal countNumbersOfAnnonces();
-    
-    BigDecimal countNumberOfAnnoncesByStatusPending();
+   
+    List<AnnonceDto> findListAnnonceByStatusPending();
 
+    List<AnnonceDto> findListAnnonceByStatusValid();
+    
+    List<AnnonceDto> findListAnnonceByStatusRejet();
+
+    List<?> countNumberTotalOfAnnonceByMonth();
+    
+    List<?> countNumberTotalOfAnnonceByYear();
+    
     Page<AnnonceDto> findAnnonceByPageable(Pageable pageable);
     
     Page<AnnonceDto> findAnnonceByPermisByPageable(Long permisId, Pageable pageable);
     
-  
-
     void delete(Long id);
+
 
 }

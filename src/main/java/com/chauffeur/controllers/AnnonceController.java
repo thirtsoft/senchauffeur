@@ -134,24 +134,16 @@ public class AnnonceController implements AnnonceApi {
 
 
 	@Override
-	public List<AnnonceDto> findAll() {
+	public List<AnnonceDto> getAllAnnonces() {
 		return annonceService.findAll();
 	}
-
-	@Override
-	public void delete(Long id) {
-		
-		AnnonceDto annonceDTOResult = annonceService.findById(id);
-		 
-	    HistoriqueAnnonceDto historiqueAnnonceDto = new HistoriqueAnnonceDto();
-	    historiqueAnnonceDto.setAnnonceDto(annonceDTOResult);
-	    historiqueAnnonceDto.setAction("ANNONCE SUPPRIMEE");
-	    historiqueAnnonceDto.setCreatedDate(new Date());
-	    historiqueAnnonceService.save(historiqueAnnonceDto);
-	    
-		annonceService.delete(id);
-	}
 	
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getAllAnnonceOrderByIdDesc() {
+		List<AnnonceDto> annonceDtoList = annonceService.findByAnnonceByIdDesc();
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
+
 	@Override
 	public List<AnnonceDto> getListAnnonceBySelected() {
 		return annonceService.findListAnnonceBySelected();
@@ -185,29 +177,7 @@ public class AnnonceController implements AnnonceApi {
 	}
 
 	@Override
-	public Page<AnnonceDto> getListAnnonceByPageable(int page, int size) {
-		final Pageable pageable = PageRequest.of(page, size);
-        return annonceService.findAnnonceByPageable(pageable);
-	}
-
-	@Override
-	public BigDecimal getNumbersOfAnnoncess() {
-		return annonceService.countNumbersOfAnnonces();
-	}
-	
-	@Override
-	public BigDecimal getNumberOfAnnoncesByStatusPending() {
-		return annonceService.countNumberOfAnnoncesByStatusPending();
-	}
-
-	@Override
-	public Page<AnnonceDto> getAnnonceByPermisPageables(Long permisId, int page, int size) {
-		final Pageable pageable = PageRequest.of(page, size);
-        return annonceService.findAnnonceByPermisByPageable(permisId, pageable);
-	}
-
-	@Override
-	public ResponseEntity<List<AnnonceDto>> getCommandesByUserOrderByIdDesc(Long id) {
+	public ResponseEntity<List<AnnonceDto>> getAnnoncesByUserOrderByIdDesc(Long id) {
 		List<AnnonceDto> annonceDtoList = annonceService.FindListAnnonceByCustomerId(id);
         return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
@@ -218,11 +188,74 @@ public class AnnonceController implements AnnonceApi {
         return new ResponseEntity<>(annonceDto, HttpStatus.OK);
 	}
 
-	
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusPending() {
+		List<AnnonceDto> annonceDtoList = annonceService.findListAnnonceByStatusPending();
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
 
-	
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusValid() {
+		List<AnnonceDto> annonceDtoList = annonceService.findListAnnonceByStatusValid();
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
 
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusRejet() {
+		List<AnnonceDto> annonceDtoList = annonceService.findListAnnonceByStatusRejet();
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
 	
+	@Override
+	public BigDecimal getNumbersOfAnnoncess() {
+		return annonceService.countNumbersOfAnnonces();
+	}
+	
+	@Override
+	public BigDecimal getNumberOfAnnoncesByStatusPending() {
+		return annonceService.countNumberOfAnnonceByStatusPending();
+	}
 
+	@Override
+	public BigDecimal getNumberOfAnnonceInMonth() {
+		return annonceService.countNumberOfAnnoncesInMonth();
+	}
+
+	@Override
+	public List<?> countNumberOfAnnonceByMonth() {
+		return annonceService.countNumberTotalOfAnnonceByMonth();
+	}
+
+	@Override
+	public List<?> countNumberOfAnnonceByYear() {
+		return annonceService.countNumberTotalOfAnnonceByYear();
+	}
+	
+	@Override
+	public Page<AnnonceDto> getListAnnonceByPageable(int page, int size) {
+		final Pageable pageable = PageRequest.of(page, size);
+        return annonceService.findAnnonceByPageable(pageable);
+	}
+	
+	@Override
+	public Page<AnnonceDto> getAnnonceByPermisPageables(Long permisId, int page, int size) {
+		final Pageable pageable = PageRequest.of(page, size);
+        return annonceService.findAnnonceByPermisByPageable(permisId, pageable);
+	}
+	
+	@Override
+	public void delete(Long id) {
+		
+		AnnonceDto annonceDTOResult = annonceService.findById(id);
+		 
+	    HistoriqueAnnonceDto historiqueAnnonceDto = new HistoriqueAnnonceDto();
+	    historiqueAnnonceDto.setAnnonceDto(annonceDTOResult);
+	    historiqueAnnonceDto.setAction("ANNONCE SUPPRIMEE");
+	    historiqueAnnonceDto.setCreatedDate(new Date());
+	    historiqueAnnonceService.save(historiqueAnnonceDto);
+	    
+		annonceService.delete(id);
+	}
+	
 
 }
