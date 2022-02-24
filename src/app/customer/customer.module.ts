@@ -64,6 +64,7 @@ import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-em
 import { CreateRatingComponent } from './rating/create-rating/create-rating.component';
 import { ListRatingComponent } from './rating/list-rating/list-rating.component';
 import { ViewJobDetailComponent } from './job/view-job-detail/view-job-detail.component';
+import { AddNewsleterComponent } from './add-newsleter/add-newsleter.component';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { ViewJobDetailComponent } from './job/view-job-detail/view-job-detail.co
     CreateRatingComponent,
     ListRatingComponent,
     ViewJobDetailComponent,
+    AddNewsleterComponent,
   ],
   imports: [
     CommonModule,

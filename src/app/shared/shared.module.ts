@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -54,6 +55,8 @@ import { MatdialogComponent } from './matdialog/matdialog.component';
     MatCardModule,
     MatExpansionModule,
     MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DatePipe,

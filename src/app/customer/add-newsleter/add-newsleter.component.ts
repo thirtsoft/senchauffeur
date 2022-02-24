@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-
 import { NewsleterService } from './../../services/newsleter.service';
+import { NgForm } from '@angular/forms';
 import { NewsleterDto } from './../../models/newsleter';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  selector: 'app-add-newsleter',
+  templateUrl: './add-newsleter.component.html',
+  styleUrls: ['./add-newsleter.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class AddNewsleterComponent implements OnInit {
 
   addEditNewsleterDTO: NewsleterDto = new NewsleterDto();
 

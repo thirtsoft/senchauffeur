@@ -100,8 +100,8 @@
                 data-toggle="pill"
                 href="#payment-tab"
                 role="tab"
-                >
-                  <i class="fa fa-plus"></i> Ajouter Annonce</a
+              >
+                <i class="fa fa-plus"></i> Ajouter Annonce</a
               >
               <a
                 class="nav-link"
@@ -178,7 +178,6 @@
                     ></pagination-controls>
                   </div>
                 </div>
-
               </div>
               <div
                 class="tab-pane fade"
@@ -190,23 +189,24 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Chercher"
-                    [(ngModel)]="searchText"
-                  />
+                      type="text"
+                      class="form-control"
+                      placeholder="Chercher"
+                      [(ngModel)]="searchText"
+                    />
                   </div>
 
                   <div class="col-sm-6">
                     <button
-                    (click)="onAddEditAnnonce(null)"
-                    class="btn btn-primary"
-                    type="submit"
+                      (click)="onAddEditAnnonce(null)"
+                      class="btn btn-primary"
+                      type="submit"
                     >
                       <em class="fa fa-plus"> </em> Ajouter Annonce
                     </button>
                   </div>
-                </div>&nbsp;
+                </div>
+                &nbsp;
                 <div class="table-responsive">
                   <table class="table table-bordered" aria-label="">
                     <thead class="thead-dark">
@@ -252,12 +252,12 @@
                         <td class="text-right">
                           <button
                             class="btn btn-warning btn-sm"
-                            [routerLink]="[
-                              '/admin/accueil/wiewArticle',
-                              annonceDTO.id
-                            ]"
+                            [routerLink]="['/createJob', annonceDTO.id]"
                           >
-                            <i class="fa fa-eye" aria-hidden="true"></i></button
+                            <i
+                              class="fa fa-medkit"
+                              aria-hidden="true"
+                            ></i></button
                           >&nbsp;
 
                           <button
@@ -298,345 +298,361 @@
               >
                 <h4>Ajouter/Modifier Annonce</h4>
                 <!-- <p> -->
-                  <!-- <app-create-job></app-create-job> -->
-                  <form [formGroup]="this.formData" name="form">
-                    <div class="form-group">
-                      <label>Reference</label>
+                <!-- <app-create-job></app-create-job> -->
+                <form [formGroup]="this.formData" name="form">
+                  <div class="form-group">
+                    <label>Reference</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="reference"
+                      name="reference"
+                      id="reference"
+                      required
+                      placeholder="Reference du poste"
+                    />
+                    <div
+                      *ngIf="
+                        f['reference'].invalid &&
+                        (f['reference'].dirty || f['reference'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <span *ngIf="f['reference'].errors.required"
+                        >Le reference est obligatoire.</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Libellé Post</label>
                       <input
                         type="text"
                         class="form-control"
-                        formControlName="reference"
-                        name="reference"
-                        id="reference"
+                        formControlName="libelle"
+                        name="libelle"
+                        id="libelle"
                         required
-                        placeholder="Reference du poste"
+                        placeholder="libelle du poste"
                       />
                       <div
                         *ngIf="
-                          f['reference'].invalid &&
-                          (f['reference'].dirty || f['reference'].touched)
+                          f['libelle'].invalid &&
+                          (f['libelle'].dirty || f['libelle'].touched)
                         "
                         class="alert alert-danger"
                       >
-                        <span *ngIf="f['reference'].errors.required"
-                          >Le reference est obligatoire.</span
+                        <span *ngIf="f['libelle'].errors.required"
+                          >Le libelle est obligatoire.</span
                         >
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Libellé Post</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          formControlName="libelle"
-                          name="libelle"
-                          id="libelle"
-                          required
-                          placeholder="libelle du poste"
-                        />
-                        <div
-                          *ngIf="
-                            f['libelle'].invalid &&
-                            (f['libelle'].dirty || f['libelle'].touched)
-                          "
-                          class="alert alert-danger"
-                        >
-                          <span *ngIf="f['libelle'].errors.required"
-                            >Le libelle est obligatoire.</span
-                          >
-                        </div>
-                      </div>
-
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Email Post</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          formControlName="emailPoste"
-                          name="emailPoste"
-                          id="emailPoste"
-                          required
-                          placeholder="emailPoste du poste"
-                        />
-                        <div
-                          *ngIf="
-                            f['emailPoste'].invalid &&
-                            (f['emailPoste'].dirty || f['emailPoste'].touched)
-                          "
-                          class="alert alert-danger"
-                        >
-                          <span *ngIf="f['emailPoste'].errors.required"
-                            >Le emailPoste est obligatoire.</span
-                          >
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Permis</label>
-                        <div class="form-group">
-                          <select
-                            name="permisDto"
-                            formControlName="permisDto"
-                            class="form-control"
-                          >
-                            <option value="0">--choisir Permis--</option>
-                            <option
-                              *ngFor="let permis of listPermisDTOs"
-                              class="form-control"
-                              [ngValue]="
-                                permis.id == addEditAnnonceDTO.permisDto?.id
-                                  ? addEditAnnonceDTO.permisDto
-                                  : permis
-                              "
-                            >
-                              {{ permis.designation }}
-                            </option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Ville Poste</label>
-                        <div class="form-group">
-                          <select
-                            name="addresseDto"
-                            formControlName="addresseDto"
-                            class="form-control"
-                          >
-                            <option value="0">--choisir Ville--</option>
-                            <option
-                              *ngFor="let addDTO of listAddressDTOs"
-                              class="form-control"
-                              [ngValue]="
-                                addDTO.id == addEditAnnonceDTO.addresseDto?.id
-                                  ? addEditAnnonceDTO.addresseDto
-                                  : addDTO
-                              "
-                            >
-                              {{ addDTO.quartier }}
-                            </option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Lieu poste</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          formControlName="lieuPoste"
-                          name="lieuPoste"
-                          id="lieuPoste"
-                          required
-                          placeholder="lieuPoste du poste"
-                        />
-                        <div
-                          *ngIf="
-                            f['lieuPoste'].invalid &&
-                            (f['lieuPoste'].dirty || f['lieuPoste'].touched)
-                          "
-                          class="alert alert-danger"
-                        >
-                          <span *ngIf="f['lieuPoste'].errors.required"
-                            >Le lieuPoste est obligatoire.</span
-                          >
-                        </div>
-                      </div>
-
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Salaire</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          formControlName="salaire"
-                          name="salaire"
-                          id="salaire"
-                          required
-                          placeholder="salaire du poste"
-                        />
-                        <div
-                          *ngIf="
-                            f['salaire'].invalid &&
-                            (f['salaire'].dirty || f['salaire'].touched)
-                          "
-                          class="alert alert-danger"
-                        >
-                          <span *ngIf="f['salaire'].errors.required"
-                            >Le salaire est obligatoire.</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Disponibilité</label>
-                        <select
-                          formControlName="time"
-                          name="time"
-                          id="time"
-                          class="form-control"
-                          required
-                        >
-                          <option [ngValue]="0" disabled>--choisir Disponibilite--</option>
-                          <option *ngFor="let item of listDisponibilites" [ngValue]="item">
-                            {{ item }}
-                          </option>
-                        </select>
-                        <div
-                          *ngIf="
-                            f['time'].invalid &&
-                            (f['time'].dirty || f['time'].touched)
-                          "
-                          class="alert alert-danger"
-                        >
-                          <span *ngIf="f['time'].errors.required"
-                            >Le time est obligatoire.</span
-                          >
-                        </div>
-                      </div>
-
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Nombre Années Experience</label>
-                        <select
-                          formControlName="anneeExperience"
-                          name="anneeExperience"
-                          id="anneeExperience"
-                          class="form-control"
-                          required
-                        >
-                          <option [ngValue]="0" disabled>--choisir Experience--</option>
-                          <option *ngFor="let item of listExperiences" [ngValue]="item">
-                            {{ item }}
-                          </option>
-                        </select>
-                        <div
-                          *ngIf="
-                            f['anneeExperience'].invalid &&
-                            (f['anneeExperience'].dirty || f['anneeExperience'].touched)
-                          "
-                          class="alert alert-danger"
-                        >
-                          <span *ngIf="f['anneeExperience'].errors.required"
-                            >Le anneeExperience est obligatoire.</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Type de Contrat </label>
-                        <select
-                          formControlName="typeContrat"
-                          name="typeContrat"
-                          id="typeContrat"
-                          class="form-control"
-                          required
-                        >
-                          <option [ngValue]="0" disabled>--choisir Contrat--</option>
-                          <option *ngFor="let item of listTypeContrats" [ngValue]="item">
-                            {{ item }}
-                          </option>
-                        </select>
-                        <div
-                          *ngIf="
-                            f['typeContrat'].invalid &&
-                            (f['typeContrat'].dirty || f['typeContrat'].touched)
-                          "
-                          class="alert alert-danger"
-                        >
-                          <span *ngIf="f['typeContrat'].errors.required"
-                            >Le typeContrat est obligatoire.</span
-                          >
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="">Date cloture</label>
-                       <!--  <form class="form-inline"> -->
-                          <div class="form-group">
-                            <div class="input-group">
-                              <input
-                                class="form-control"
-                                placeholder="yyyy-mm-dd"
-                                formControlName="dateCloture"
-                                name="dateCloture"
-                                ngbDatepicker
-                                id="dateCloture"
-                                ngbDatepicker
-                                [footerTemplate]="footerTemplate"
-                                #d="ngbDatepicker"
-                                [minDate]="today"
-                                readonly
-                              />
-                              <div
-                                *ngIf="
-                                  f['dateCloture'].invalid &&
-                                  (f['dateCloture'].dirty || f['dateCloture'].touched)
-                                "
-                                class="alert alert-danger"
-                              >
-                                <span *ngIf="f['dateCloture'].errors.required"
-                                  >Le dateCloture est obligatoire.</span
-                                >
-                              </div>
-
-                              <button
-                                class="btn btn-outline-secondary calendar"
-                                (click)="d.toggle()"
-                              ></button>
-
-                              <ng-template #footerTemplate>
-                                <hr class="my-0" />
-                                <button
-                                  class="btn btn-primary btn-sm m-2 float-left"
-                                  (click)="model = today; d.close()"
-                                >
-                                  Today
-                                </button>
-                                <button
-                                  class="btn btn-secondary btn-sm m-2 float-right"
-                                  (click)="d.close()"
-                                >
-                                  Close
-                                </button>
-                              </ng-template>
-                            </div>
-                          </div>
-                      <!--   </form> -->
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Description</label>
-                      <editor
-                        formControlName="description"
-                        name="dateCloture"
-                        [init]="{ plugins: 'link' }"
-                      ></editor>
-                    </div>
-
-                    <div class="form-group">
-                      <button
-                        type="submit"
-                        class="btn btn-success btn-block"
-                        (click)="onAddJob()"
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Email Post</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="emailPoste"
+                        name="emailPoste"
+                        id="emailPoste"
+                        required
+                        placeholder="emailPoste du poste"
+                      />
+                      <div
+                        *ngIf="
+                          f['emailPoste'].invalid &&
+                          (f['emailPoste'].dirty || f['emailPoste'].touched)
+                        "
+                        class="alert alert-danger"
                       >
-                        <i class="fa fa-database"></i> Enregistrer</button
-                      >&nbsp;
-                      <!-- <button *ngIf="paramId" class="btn btn-warning btn-block" (click)="onUpdateJob()">
+                        <span *ngIf="f['emailPoste'].errors.required"
+                          >Le emailPoste est obligatoire.</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Permis</label>
+                      <div class="form-group">
+                        <select
+                          name="permisDto"
+                          formControlName="permisDto"
+                          class="form-control"
+                        >
+                          <option value="0">--choisir Permis--</option>
+                          <option
+                            *ngFor="let permis of listPermisDTOs"
+                            class="form-control"
+                            [ngValue]="
+                              permis.id == addEditAnnonceDTO.permisDto?.id
+                                ? addEditAnnonceDTO.permisDto
+                                : permis
+                            "
+                          >
+                            {{ permis.designation }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Ville Poste</label>
+                      <div class="form-group">
+                        <select
+                          name="addresseDto"
+                          formControlName="addresseDto"
+                          class="form-control"
+                        >
+                          <option value="0">--choisir Ville--</option>
+                          <option
+                            *ngFor="let addDTO of listAddressDTOs"
+                            class="form-control"
+                            [ngValue]="
+                              addDTO.id == addEditAnnonceDTO.addresseDto?.id
+                                ? addEditAnnonceDTO.addresseDto
+                                : addDTO
+                            "
+                          >
+                            {{ addDTO.quartier }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Lieu poste</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="lieuPoste"
+                        name="lieuPoste"
+                        id="lieuPoste"
+                        required
+                        placeholder="lieuPoste du poste"
+                      />
+                      <div
+                        *ngIf="
+                          f['lieuPoste'].invalid &&
+                          (f['lieuPoste'].dirty || f['lieuPoste'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['lieuPoste'].errors.required"
+                          >Le lieuPoste est obligatoire.</span
+                        >
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Salaire</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="salaire"
+                        name="salaire"
+                        id="salaire"
+                        required
+                        placeholder="salaire du poste"
+                      />
+                      <div
+                        *ngIf="
+                          f['salaire'].invalid &&
+                          (f['salaire'].dirty || f['salaire'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['salaire'].errors.required"
+                          >Le salaire est obligatoire.</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Disponibilité</label>
+                      <select
+                        formControlName="time"
+                        name="time"
+                        id="time"
+                        class="form-control"
+                        required
+                      >
+                        <option [ngValue]="0" disabled>
+                          --choisir Disponibilite--
+                        </option>
+                        <option
+                          *ngFor="let item of listDisponibilites"
+                          [ngValue]="item"
+                        >
+                          {{ item }}
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="
+                          f['time'].invalid &&
+                          (f['time'].dirty || f['time'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['time'].errors.required"
+                          >Le time est obligatoire.</span
+                        >
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Nombre Années Experience</label>
+                      <select
+                        formControlName="anneeExperience"
+                        name="anneeExperience"
+                        id="anneeExperience"
+                        class="form-control"
+                        required
+                      >
+                        <option [ngValue]="0" disabled>
+                          --choisir Experience--
+                        </option>
+                        <option
+                        *ngFor="let item of listExperiences"
+                        [ngValue]="item"
+                      >
+                        {{ item }}
+                      </option>
+                      </select>
+                      <div
+                        *ngIf="
+                          f['anneeExperience'].invalid &&
+                          (f['anneeExperience'].dirty ||
+                            f['anneeExperience'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['anneeExperience'].errors.required"
+                          >Le anneeExperience est obligatoire.</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Type de Contrat </label>
+                      <select
+                        formControlName="typeContrat"
+                        name="typeContrat"
+                        id="typeContrat"
+                        class="form-control"
+                        required
+                      >
+                        <option [ngValue]="0" disabled>
+                          --choisir Contrat--
+                        </option>
+                        <option
+                          *ngFor="let item of listTypeContrats"
+                          [ngValue]="item"
+                        >
+                          {{ item }}
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="
+                          f['typeContrat'].invalid &&
+                          (f['typeContrat'].dirty || f['typeContrat'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['typeContrat'].errors.required"
+                          >Le typeContrat est obligatoire.</span
+                        >
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Date cloture</label>
+                      <!--  <form class="form-inline"> -->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input
+                            class="form-control"
+                            placeholder="yyyy-mm-dd"
+                            formControlName="dateCloture"
+                            name="dateCloture"
+                            ngbDatepicker
+                            id="dateCloture"
+                            ngbDatepicker
+                            [footerTemplate]="footerTemplate"
+                            #d="ngbDatepicker"
+                            [minDate]="today"
+                            readonly
+                          />
+                          <div
+                            *ngIf="
+                              f['dateCloture'].invalid &&
+                              (f['dateCloture'].dirty ||
+                                f['dateCloture'].touched)
+                            "
+                            class="alert alert-danger"
+                          >
+                            <span *ngIf="f['dateCloture'].errors.required"
+                              >Le dateCloture est obligatoire.</span
+                            >
+                          </div>
+
+                          <button
+                            class="btn btn-outline-secondary calendar"
+                            (click)="d.toggle()"
+                          ></button>
+
+                          <ng-template #footerTemplate>
+                            <hr class="my-0" />
+                            <button
+                              class="btn btn-primary btn-sm m-2 float-left"
+                              (click)="model = today; d.close()"
+                            >
+                              Today
+                            </button>
+                            <button
+                              class="btn btn-secondary btn-sm m-2 float-right"
+                              (click)="d.close()"
+                            >
+                              Close
+                            </button>
+                          </ng-template>
+                        </div>
+                      </div>
+                      <!--   </form> -->
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Description</label>
+                    <editor
+                      formControlName="description"
+                      name="dateCloture"
+                      [init]="{ plugins: 'link' }"
+                    ></editor>
+                  </div>
+
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="btn btn-success btn-block"
+                      (click)="onAddJob()"
+                    >
+                      <i class="fa fa-database"></i> Enregistrer</button
+                    >&nbsp;
+                    <!-- <button *ngIf="paramId" class="btn btn-warning btn-block" (click)="onUpdateJob()">
                         <i class="fa fa-database"></i>Modifier
                       </button> -->
-                    </div>
-                  </form>
-               <!--  </p> -->
+                  </div>
+                </form>
+                <!--  </p> -->
               </div>
               <div
                 class="tab-pane fade"
@@ -663,46 +679,46 @@
                       <em class="fa fa-plus"> </em> Recharge jeton
                     </button>
                   </div>
-                </div>&nbsp;
-                  <div class="table-responsive">
-                    <table class="table table-bordered">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>#</th>
-                          <th>Libellé</th>
-                          <th>Email Poste</th>
-                          <th>Salaire</th>
-                          <th>Status</th>
-                          <th>Date</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr
-                          *ngFor="
-                            let annonceDTO of listAnnonceDataDTO
-                              | paginate: { itemsPerPage: 15, currentPage: p };
-                            let i = index
-                          "
-                        >
-                          <td>{{ annonceDTO.id }}</td>
-                          <td>{{ annonceDTO.libelle }}</td>
-                          <td>{{ annonceDTO.emailPoste }}</td>
-                          <td>{{ annonceDTO.salaire }}</td>
-                          <td>{{ annonceDTO.status }}</td>
-                          <td>
-                            {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div class="pagination">
-                      <pagination-controls
-                        (pageChange)="p = $event"
-                      ></pagination-controls>
-                    </div>
+                </div>
+                &nbsp;
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>#</th>
+                        <th>Libellé</th>
+                        <th>Email Poste</th>
+                        <th>Salaire</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="
+                          let annonceDTO of listAnnonceDataDTO
+                            | paginate: { itemsPerPage: 15, currentPage: p };
+                          let i = index
+                        "
+                      >
+                        <td>{{ annonceDTO.id }}</td>
+                        <td>{{ annonceDTO.libelle }}</td>
+                        <td>{{ annonceDTO.emailPoste }}</td>
+                        <td>{{ annonceDTO.salaire }}</td>
+                        <td>{{ annonceDTO.status }}</td>
+                        <td>
+                          {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="pagination">
+                    <pagination-controls
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
                   </div>
-
+                </div>
               </div>
               <div
                 class="tab-pane fade"
@@ -712,7 +728,8 @@
               >
                 <h4>Account Details</h4>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="form-group col-md-6">
+                    <label>Nom complet</label>
                     <input
                       type="text"
                       class="form-control"
@@ -723,7 +740,8 @@
                       required
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div class="form-group col-md-6">
+                    <label>Nom utilisateur</label>
                     <input
                       type="text"
                       class="form-control"
@@ -734,7 +752,63 @@
                       required
                     />
                   </div>
-                  <div class="col-md-6">
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>Addresse</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="listDataProfil.addressRecruteur"
+                      name="addressRecruteur"
+                      id="addressRecruteur"
+                      #addressRecruteur="ngModel"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Nom entreprise</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="listDataProfil.nomEntreprise"
+                      name="nomEntreprise"
+                      id="nomEntreprise"
+                      #nomEntreprise="ngModel"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>Ville</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="listDataProfil.villeRecruteur"
+                      name="villeRecruteur"
+                      id="villeRecruteur"
+                      #villeRecruteur="ngModel"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Secteur activité</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="listDataProfil.secteurActivite"
+                      name="secteurActivite"
+                      id="secteurActivite"
+                      #secteurActivite="ngModel"
+                      placeholder="secteur Activite"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>Mobile</label>
                     <input
                       type="text"
                       class="form-control"
@@ -742,11 +816,25 @@
                       name="mobile"
                       id="mobile"
                       #mobile="ngModel"
-                      placeholder="Numéro téléphone"
                       required
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div class="form-group col-md-6">
+                    <label>Site web</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="listDataProfil.website"
+                      name="website"
+                      id="website"
+                      #website="ngModel"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>Email</label>
                     <input
                       type="text"
                       class="form-control"
@@ -754,26 +842,42 @@
                       name="email"
                       id="email"
                       #email="ngModel"
-                      placeholder="Email"
                       required
                     />
-                  </div>&nbsp;
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Description</label>
+                    <textarea
+                      class="form-control"
+                      [(ngModel)]="listDataProfil.information"
+                      name="information"
+                      id="information"
+                      #information="ngModel"
+                      required
+                      cols="30"
+                      rows="10"
+                    >
+                    </textarea>
+                  </div>
+                  &nbsp;
+
                   <div class="col-sm-12">
                     <button
-                      class="btn btn-warning"
+                      class="btn btn-outline-primary btn-block"
                       (click)="update()"
                       style="cursor: pointer"
                     >
-                      Modifier Compte
+                      Modifier Votre Information
                     </button>
                     <br /><br />
                   </div>
                 </div>
-                <h4>Password change</h4>
+               
+                <h5>Editer Password</h5>
                 <div class="row">
                   <div class="col-md-12">
                     <button
-                      class="btn btn-primary"
+                      class="btn btn-primary btn-block"
                       (click)="addEditCustomerPassword(listDataProfil)"
                       style="cursor: pointer"
                     >
@@ -788,9 +892,9 @@
             class="col-xl-10 col-lg-12 col-sm-12 table-responsive"
             style="margin-left: -10px"
           >
-            
-              
-             
+
+
+
                     <button
                       class="btn btn-warning btn-sm"
                       [routerLink]="['/createJob', annonceDTO.id]"

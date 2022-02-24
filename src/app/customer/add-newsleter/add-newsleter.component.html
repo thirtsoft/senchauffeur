@@ -1,0 +1,59 @@
+<!-- <form #addNewsleterForm="ngForm" name="form">
+<div class="input-group">
+  <input
+    class="form-control"
+    [(ngModel)]="addEditNewsleterDTO.emailVisiteur"
+    name="emailVisiteur"
+    id="emailVisiteur"
+    #emailVisiteur="ngModel"
+    required="required"
+
+    placeholder="Votre Email Id"
+    type="email"
+  />
+  <span class="input-group-btn">
+    <button
+      name="submit"
+      value="Submit"
+      type="submit"
+      class="site-button radius-xl"
+      (click)="onAddNewsleter()"
+    >
+      Souscrire
+    </button>
+  </span>
+</div>
+</form> -->
+
+<form
+  #addNewsleterForm="ngForm"
+  name="form"
+  class="dzSubscribe"
+  action="http://job-board.w3itexperts.com/xhtml/script/mailchamp.php"
+  method="post"
+>
+  <div class="dzSubscribeMsg"></div>
+  <div class="input-group">
+    <input
+      class="form-control"
+      [(ngModel)]="addEditNewsleterDTO.emailVisiteur"
+      name="emailVisiteur"
+      id="emailVisiteur"
+      #emailVisiteur="ngModel"
+      required="required"
+      placeholder="Votre Email Id"
+      type="email"
+    />
+    <span class="input-group-btn">
+      <button
+        name="submit"
+        value="Submit"
+        type="submit"
+        class="site-button radius-xl"
+        (click)="onAddNewsleter()"
+      >
+        Souscrire
+      </button>
+    </span>
+  </div>
+</form>

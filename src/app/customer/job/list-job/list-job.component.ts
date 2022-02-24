@@ -75,7 +75,7 @@ export class ListJobComponent implements OnInit {
   listAddressDTOs: AddresseDto[];
 
   listTypeContrats = ["Stage", "CDD", "CDI"];
-  listExperiences = ["Débutant", "1ans-3ans", "+5ans"];
+  listExperiences = ["Débutant", "1ans-3ans", "3ans-5ans", "10ans et plus"];
   listDisponibilites = ["Immediate", "Temps Partiel", "Temps Plein"];
 
   data;
@@ -226,7 +226,7 @@ export class ListJobComponent implements OnInit {
 
   onAddNewJob() {
     this.router.navigate(['/createJob']);
-  //  this.router.navigate(['/jobs/' + this.userId]);
+    //this.router.navigate(['/createJob/' + this.userId]);
   }
 
   onDeleteAnnonce(id: number): void{
@@ -235,9 +235,13 @@ export class ListJobComponent implements OnInit {
       if(response){
         */
         this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
+
    //       this.toastr.warning('Job supprimé avec succès!');
   //        this.annonceListDTO = this.annonceListDTO.filter(u => u !== annonceDTO);
           this.getListAnnonceDTOs();
+          this.router.navigateByUrl("/").then(() => {
+            window.location.reload();
+          });
 
     },
     (error: HttpErrorResponse) => {
@@ -289,6 +293,19 @@ export class ListJobComponent implements OnInit {
   }
 
   update() {
+    console.log('Data send--', this.listDataProfil);
+    this.userService.updateUtilisateurDTO(this.listDataProfil.id, this.listDataProfil).subscribe(
+      (response: UtilisateurDto) => {
+        alert("Utilisateur Modifiée avec success");
+        this.router.navigateByUrl("/").then(() => {
+          window.location.reload();
+        });
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+
+    );
 
   }
 
@@ -334,6 +351,9 @@ export class ListJobComponent implements OnInit {
       (response: AnnonceDto) => {
         alert("Job Ajouté avec success");
         console.log('Response--', response);
+        this.router.navigateByUrl("/").then(() => {
+          window.location.reload();
+        });
 
       },
       (error: HttpErrorResponse) => {
@@ -376,7 +396,10 @@ export class ListJobComponent implements OnInit {
 
   logout() {
     this.tokenService.signOut();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl("/").then(() => {
+      window.location.reload();
+    });
+  
   }
 
 

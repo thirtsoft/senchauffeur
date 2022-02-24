@@ -107,7 +107,6 @@ export class CreateJobComponent implements OnInit {
   }
 
 
-
   public onAddJob() {
     console.log(this.addEditAnnonceDTO);
     this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
@@ -122,7 +121,7 @@ export class CreateJobComponent implements OnInit {
 
   }
 
-  public onUpdateJob() {
+  onUpdateJob() {
     this.annonceService.updateAnnonceDTO(this.addEditAnnonceDTO.id, this.addEditAnnonceDTO).subscribe(
       (response: AnnonceDto) => {
         alert("Job update avec success");
@@ -132,6 +131,10 @@ export class CreateJobComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  logout() {
+    
   }
 
 }

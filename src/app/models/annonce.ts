@@ -7,11 +7,17 @@ import { StatusAnnonce } from './status';
 export class Annonce {
   id: number;
   reference: string;
+  libelle: string;
   lieuPoste: string;
   salaire: string;
+  emailPoste: string;
+  time: string;
+  status: string;
+  anneeExperience: string;
+  typeContrat: string;
+  description: string;
   dateCandidature: Date;
-	dateCloture: Date;
-  modeCandidature: string;
+  dateCloture: Date;
 
 	statusAnnonce: StatusAnnonce;
 
