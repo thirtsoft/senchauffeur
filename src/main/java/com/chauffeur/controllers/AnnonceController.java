@@ -47,6 +47,7 @@ public class AnnonceController implements AnnonceApi {
 	public ResponseEntity<AnnonceDto> save(AnnonceDto annonceDto) {
 		annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		annonceDto.setStatus("ENCOURS");
+		annonceDto.setDateCandidature(new Date());
 		
 		AnnonceDto newAnnonceDto = annonceService.save(annonceDto);
 		
@@ -74,6 +75,7 @@ public class AnnonceController implements AnnonceApi {
         annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
         
         annonceDto.setStatus("ENCOURS");
+        annonceDto.setDateCandidature(new Date());
         
         AnnonceDto annonceDtoResult = annonceService.save(annonceDto);
 		

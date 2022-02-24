@@ -12,7 +12,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.chauffeur.models.Addresse;
+import com.chauffeur.models.Annonce;
 import com.chauffeur.models.Chauffeur;
+import com.chauffeur.models.HistoriqueAnnonce;
 
 @Repository
 public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
@@ -22,7 +24,7 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 	@Query("select count(p) from Chauffeur p ")
 	BigDecimal countNumberOfChauffeurs();
 	
-	List<Chauffeur> findChauffeurByIdDesc();
+	List<Chauffeur> findChauffeurByOrderByIdDesc();
 	
 	@Query("select art from Chauffeur art where art.selected = true")
     List<Chauffeur> findChauffeurBySelected();

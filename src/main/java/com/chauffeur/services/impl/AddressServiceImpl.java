@@ -91,7 +91,7 @@ public class AddressServiceImpl implements AddressService {
     
     @Override
 	public List<AddresseDto> findByAddresseByIdDesc() {
-    	 return addressRepository.findAddresseByIdDesc().stream()
+    	 return addressRepository.findAddresseByOrderByIdDesc().stream()
                  .map(AddresseDto::fromEntityToDto)
                  .collect(Collectors.toList());
 	}

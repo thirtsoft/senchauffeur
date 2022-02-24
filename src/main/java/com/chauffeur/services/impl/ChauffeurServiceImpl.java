@@ -108,7 +108,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
     
     @Override
 	public List<ChauffeurDto> findByChauffeurByIdDesc() {
-    	return chauffeurRepository.findChauffeurByIdDesc().stream()
+    	return chauffeurRepository.findChauffeurByOrderByIdDesc().stream()
                 .map(ChauffeurDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}

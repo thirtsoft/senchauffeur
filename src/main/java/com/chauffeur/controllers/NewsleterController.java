@@ -1,6 +1,7 @@
 package com.chauffeur.controllers;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class NewsleterController implements NewsleterApi {
 
 	@Override
 	public ResponseEntity<NewsleterDto> createNewsleter(NewsleterDto newsleterDto) {
+		newsleterDto.setCreatedDate(new Date());
 		NewsleterDto newNewsleterDto = newsleterService.save(newsleterDto);
 		return new ResponseEntity<>(newNewsleterDto, HttpStatus.CREATED);
 	}
