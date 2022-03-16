@@ -75,7 +75,7 @@ export class CreateJetonComponent implements OnInit {
   onAddJeton() {
     this.crudApi.addJetonDTO(this.jetonDTO).subscribe(
       (response: JetonDto) => {
-        this.router.navigate(['/backend/admin/jetons']);
+        this.router.navigate(['/admin/accueil/jetons']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -87,7 +87,7 @@ export class CreateJetonComponent implements OnInit {
     this.crudApi.updateJetonDTO(this.jetonDTO.id, this.jetonDTO)
       .subscribe(
         (response: JetonDto) => {
-        this.router.navigate(['/backend/admin/jetons']);
+        this.router.navigate(['/admin/accueil/jetons']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

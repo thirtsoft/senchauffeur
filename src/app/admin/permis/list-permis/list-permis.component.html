@@ -29,7 +29,7 @@
                                 <td>{{permisDTO?.validite}}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/backend/admin/permis', permisDTO.id]">
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/permis', permisDTO.id]">
                                       <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
                                     <button class="btn btn-danger btn-sm" (click)="onDeletePermis(permisDTO.id)">
                                             <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;

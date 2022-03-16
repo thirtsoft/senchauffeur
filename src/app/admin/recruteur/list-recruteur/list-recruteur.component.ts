@@ -48,7 +48,7 @@ export class ListRecruteurComponent implements OnInit {
   }
 
   onAddRecruteur() {
-    this.router.navigate(['/backend/admin/recruteur']);
+    this.router.navigate(['/admin/accueil/recruteur']);
   }
 /*
   onAddRecruteur() {

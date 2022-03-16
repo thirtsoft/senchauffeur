@@ -80,7 +80,7 @@ export class CreateTarifComponent implements OnInit {
   //      this.dialogRef.close();
     //    this.toastr.success("Chauffeur Ajouté avec Succès");
         alert("Tarif Ajouté avec succès");
-        this.router.navigate(['/backend/admin/tarifs']);
+        this.router.navigate(['/admin/accueil/tarifs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -94,7 +94,7 @@ export class CreateTarifComponent implements OnInit {
   //      this.dialogRef.close();
   //      this.toastr.warning("Chauffeur Update avec Succès");
         alert("Tarif Modifié avec succès");
-        this.router.navigate(['/backend/admin/tarifs']);
+        this.router.navigate(['/admin/accueil/tarifs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

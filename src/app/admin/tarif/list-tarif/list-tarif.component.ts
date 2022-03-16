@@ -43,7 +43,7 @@ export class ListTarifComponent implements OnInit {
   }
 
   onAddTarif() {
-    this.router.navigate(['/backend/admin/tarif']);
+    this.router.navigate(['/admin/accueil/tarif']);
   }
 
 /*

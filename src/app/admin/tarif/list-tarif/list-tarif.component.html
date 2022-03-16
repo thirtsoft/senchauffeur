@@ -30,7 +30,7 @@
                                 <td>{{tarifDTO?.description}}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/backend/admin/tarif', tarifDTO.id]">
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/tarif', tarifDTO.id]">
                                   <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
 
                                     <button class="btn btn-danger btn-sm" (click)="onDeleteTarif(tarifDTO.id)">

@@ -95,7 +95,7 @@ export class CreateAnnonceComponent implements OnInit {
   public onAddAnnonce() {
     this.annonceService.addAnnonceDTO(this.annonceDTO).subscribe(
       (response: AnnonceDto) => {
-        this.router.navigate(['/backend/admin/annonces']);
+        this.router.navigate(['/admin/accueil/annonces']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -107,7 +107,7 @@ export class CreateAnnonceComponent implements OnInit {
     this.annonceService.updateAnnonceDTO(this.annonceDTO.id, this.annonceDTO).subscribe(
       (response: AnnonceDto) => {
 
-        this.router.navigate(['/backend/admin/annonces']);
+        this.router.navigate(['/admin/accueil/annonces']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

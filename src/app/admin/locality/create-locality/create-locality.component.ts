@@ -64,7 +64,7 @@ export class CreateLocalityComponent implements OnInit {
       (response: AddresseDto) => {
   //      this.dialogRef.close();
  //       this.toastr.success("Addresse Ajouté avec Succès");
-        this.router.navigate(['/backend/admin/localities']);
+        this.router.navigate(['/admin/accueil/localities']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -77,7 +77,7 @@ export class CreateLocalityComponent implements OnInit {
       (response: AddresseDto) => {
   //      this.dialogRef.close();
   //      this.toastr.warning("Addresse Update avec Succès");
-        this.router.navigate(['/backend/admin/localities']);
+        this.router.navigate(['/admin/accueil/localities']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

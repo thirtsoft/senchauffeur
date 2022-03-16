@@ -65,6 +65,7 @@ import { CreateRatingComponent } from './rating/create-rating/create-rating.comp
 import { ListRatingComponent } from './rating/list-rating/list-rating.component';
 import { ViewJobDetailComponent } from './job/view-job-detail/view-job-detail.component';
 import { AddNewsleterComponent } from './add-newsleter/add-newsleter.component';
+import { Top3RatingToChauffeurComponent } from './job/rating/top3-rating-to-chauffeur/top3-rating-to-chauffeur.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { AddNewsleterComponent } from './add-newsleter/add-newsleter.component';
     ListRatingComponent,
     ViewJobDetailComponent,
     AddNewsleterComponent,
+    Top3RatingToChauffeurComponent,
   ],
   imports: [
     CommonModule,

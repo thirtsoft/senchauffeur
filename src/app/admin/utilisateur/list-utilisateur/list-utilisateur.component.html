@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let userDTO of utilisateurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+            <tr *ngFor="let userDTO of utilisateurDTOList | filter:searchText | paginate: {itemsPerPage: 20, currentPage: p} ">
                 <td>{{userDTO?.photo}}</td>
                 <td>{{userDTO?.name}}</td>
                 <td>{{userDTO?.username}}</td>

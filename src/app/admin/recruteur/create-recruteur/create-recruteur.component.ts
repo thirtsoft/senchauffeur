@@ -64,7 +64,7 @@ export class CreateRecruteurComponent implements OnInit {
       (response: RecruteurDto) => {
   //      this.dialogRef.close();
     //    this.toastr.success("Chauffeur Ajouté avec Succès");
-        this.router.navigate(['/backend/admin/recruteurs']);
+        this.router.navigate(['/admin/accueil/recruteurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -77,7 +77,7 @@ export class CreateRecruteurComponent implements OnInit {
       (response: RecruteurDto) => {
   //      this.dialogRef.close();
   //      this.toastr.warning("Chauffeur Update avec Succès");
-        this.router.navigate(['/backend/admin/recruteurs']);
+        this.router.navigate(['/admin/accueil/recruteurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

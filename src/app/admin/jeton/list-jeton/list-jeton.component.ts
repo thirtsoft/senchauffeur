@@ -44,7 +44,7 @@ export class ListJetonComponent implements OnInit {
   }
 
   onAddJeton() {
-    this.router.navigate(['/backend/admin/jeton']);
+    this.router.navigate(['/admin/accueil/jeton']);
   }
 
   onDeleteJeton(id: number): void{

@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let chauffDTO of chauffeurListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p};let i=index; ">
+                            <tr *ngFor="let chauffDTO of chauffeurListDTO | filter:searchText | paginate: {itemsPerPage: 30, currentPage: p};let i=index; ">
                                 <td><img height="90" width="90" class="img-circle" src="{{this.chauffeurService.apiServerUrl+'/chauffeurs/photoChauffeur/'+chauffDTO.id}}">
                                     <a (click)="addEditPhotoChauffeur(i)" style="cursor:pointer;">
                                         <i class="fa fa-edit" aria-hidden="true"></i>
@@ -48,9 +48,9 @@
                                 <td>{{chauffDTO?.nbreAnneeExperience}}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/backend/admin/chauffeur', chauffDTO.id]">
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/chauffeur', chauffDTO.id]">
                                     <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
-                                    <button class="btn btn-success btn-sm" [routerLink]="['/backend/admin/viewchauffeur', chauffDTO.id]">
+                                    <button class="btn btn-success btn-sm" [routerLink]="['/admin/accueil/viewchauffeur', chauffDTO.id]">
                                             <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
 
                                     <button class="btn btn-danger btn-sm" (click)="onDeleteChauffeur(chauffDTO.id)">

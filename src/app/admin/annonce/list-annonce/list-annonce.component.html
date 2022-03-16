@@ -29,10 +29,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let annonceDTO of annonceListDTO | filter:searchText | paginate: {itemsPerPage: 15, currentPage: p} ">
+                            <tr *ngFor="let annonceDTO of annonceListDTO | filter:searchText | paginate: {itemsPerPage: 35, currentPage: p} ">
                                 <td>{{annonceDTO?.reference}}</td>
-                                <td>{{annonceDTO?.recruteurDto?.nomEntreprise}}</td>
-                                <td>{{annonceDTO?.recruteurDto?.firstName}} {{annonceDTO?.recruteurDto?.lastName}}</td>
+                                <td>{{annonceDTO?.utilisateurDto?.nomEntreprise}}</td>
+                                <td>{{annonceDTO?.utilisateurDto?.name}}</td>
                                 <td>{{annonceDTO?.permisDto?.designation}}</td>
                                 <td>{{annonceDTO?.salaire}}</td>
                                 <!-- <td>{{annonceDTO?.modeCandidature}}</td>
@@ -42,9 +42,9 @@
                                 <td>{{annonceDTO?.statusAnnonce}}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/backend/admin/annonce', annonceDTO.id]">
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil', annonceDTO.id]">
                                   <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
-                                    <button class="btn btn-success btn-sm" [routerLink]="['/backend/admin/viewchauffeur', annonceDTO.id]">
+                                    <button class="btn btn-success btn-sm" [routerLink]="['/admin/accueil/viewchauffeur', annonceDTO.id]">
                                           <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
 
                                     <button class="btn btn-danger btn-sm" (click)="onDeleteAnnonce(annonceDTO.id)">

@@ -49,7 +49,7 @@ export class ListAnnonceComponent implements OnInit {
   }
 
   onAddAnnonce() {
-    this.router.navigate(['/backend/admin/annonce']);
+    this.router.navigate(['/admin/accueil/annonce']);
   }
 
   onDeleteAnnonce(id: number): void{

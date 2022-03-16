@@ -22,7 +22,7 @@ export class ChauffeurService {
   }
 
   public getChauffeurById(chauffId: number): Observable<Chauffeur> {
-    return this.http.get<Chauffeur>(`${this.apiServerUrl}/chauffeurs/${chauffId}`);
+    return this.http.get<Chauffeur>(`${this.apiServerUrl}/chauffeurs/findById/${chauffId}`);
   }
 
   public addChauffeur(chauffeur: Chauffeur): Observable<Chauffeur> {
@@ -30,7 +30,7 @@ export class ChauffeurService {
   }
 
   public updateChauffeur(chauffeur: Chauffeur): Observable<Chauffeur> {
-    return this.http.put<Chauffeur>(`${this.apiServerUrl}/chauffeurs/create`, chauffeur);
+    return this.http.put<Chauffeur>(`${this.apiServerUrl}/chauffeurs/update`, chauffeur);
   }
 
   public deleteChauffeur(chauffId: number): Observable<void> {
@@ -43,7 +43,7 @@ export class ChauffeurService {
   }
 
   public getChauffeurDTOById(chauffId: number): Observable<ChauffeurDto> {
-    return this.http.get<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/${chauffId}`);
+    return this.http.get<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/findById/${chauffId}`);
   }
 
   public addChauffeurDTO(chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {

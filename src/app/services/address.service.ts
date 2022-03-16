@@ -21,7 +21,7 @@ export class AddressService {
   }
 
   public getAddresseDtoById(addId: number): Observable<AddresseDto> {
-    return this.http.get<AddresseDto>(`${this.apiServerUrl}/addresses/${addId}`);
+    return this.http.get<AddresseDto>(`${this.apiServerUrl}/addresses/findById/${addId}`);
   }
 
   public addAddresseDto(AddresseDto: AddresseDto): Observable<AddresseDto> {

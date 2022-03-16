@@ -59,7 +59,7 @@ export class CreateVilleComponent implements OnInit {
     this.villeService.addVilleDto(this.formDataVilleDTO).subscribe(
       (response: VilleDto) => {
         alert('Ville created');
-        this.router.navigate(['/backend/admin/villes']);
+        this.router.navigate(['/admin/accueil/villes']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let noteDTO of notationListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                            <tr *ngFor="let noteDTO of notationListDTO | filter:searchText | paginate: {itemsPerPage: 25, currentPage: p} ">
                                 <td>{{noteDTO?.id}}</td>
                                 <td>{{noteDTO?.nbreEtoile}}</td>
                                 <td>{{noteDTO?.observation}}</td>
@@ -28,9 +28,9 @@
                                 <td>{{noteDTO?.utilisateurDto?.name}}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/backend/admin/notation', noteDTO.id]">
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/notation', noteDTO.id]">
                                   <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
-                                    <button class="btn btn-success btn-sm" [routerLink]="['/backend/admin/viewchauffeur', noteDTO.id]">
+                                    <button class="btn btn-success btn-sm" [routerLink]="['/admin/accueil/viewchauffeur', noteDTO.id]">
                                           <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
 
                                     <button class="btn btn-danger btn-sm" (click)="onDeleteNotation(noteDTO.id)">

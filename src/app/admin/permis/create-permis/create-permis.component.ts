@@ -64,7 +64,7 @@ export class CreatePermisComponent implements OnInit {
       (response: PermisDto) => {
   //      this.dialogRef.close();
   //      this.toastr.success("Permis Ajouté avec Succès");
-        this.router.navigate(['/backend/admin/listPermis']);
+        this.router.navigate(['/admin/accueil/listPermis']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -77,7 +77,7 @@ export class CreatePermisComponent implements OnInit {
       (response: PermisDto) => {
   //      this.dialogRef.close();
   //      this.toastr.warning("Permis Update avec Succès");
-        this.router.navigate(['/backend/admin/listPermis']);
+        this.router.navigate(['/admin/accueil/listPermis']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

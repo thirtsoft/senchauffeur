@@ -80,6 +80,7 @@ export class CreateChauffeurComponent implements OnInit {
       }
     )
   }
+
   getListAddresseDTOs() {
     this.addService.getAddresseDtos().subscribe(
       (response: AddresseDto[]) => {
@@ -94,7 +95,7 @@ export class CreateChauffeurComponent implements OnInit {
     this.chauffeurService.addChauffeurDTO(this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
         alert('Chauffeur created');
-        this.router.navigate(['/backend/admin/chauffeurs']);
+        this.router.navigate(['/admin/accueil/chauffeurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -136,7 +137,7 @@ export class CreateChauffeurComponent implements OnInit {
       .subscribe((response: ChauffeurDto)=> {
         console.log('Response--', response);
     //    this.toastr.success("Chauffeur Ajouté avec Succès");
-        this.router.navigate(['/backend/admin/chauffeurs']);
+        this.router.navigate(['/admin/accueil/chauffeurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
