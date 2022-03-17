@@ -37,7 +37,11 @@ public interface ChauffeurService {
     List<ChauffeurDto> findChauffeurByDisponibility(String disponility);
     
     BigDecimal countNumbersOfChauffeurs();
-
+    
+    List<?> countNumberOfChauffeurByMonth();
+    
+	List<?> countNumberOfChauffeurByYear();
+	
     Page<ChauffeurDto> findChauffeurByPageable(Pageable pageable);
     
     Page<ChauffeurDto> findChauffeurByKeywordByPageable(String mc, Pageable pageable);

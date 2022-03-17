@@ -5,12 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import com.chauffeur.dto.AnnonceDto;
-import com.chauffeur.dto.ChauffeurDto;
-import com.chauffeur.models.Annonce;
 
 public interface AnnonceService {
 	
@@ -48,8 +43,8 @@ public interface AnnonceService {
     
     List<AnnonceDto> find5LatestRecordsByOrderByIdDesc();
     
-	List<AnnonceDto> findListAnnonceByStatusEncours();
-   
+    List<AnnonceDto> find6LatestValidatedRecordsByOrderByIdDesc();
+       
     List<AnnonceDto> findListAnnonceByStatusPending();
 
     List<AnnonceDto> findListAnnonceByStatusValid();

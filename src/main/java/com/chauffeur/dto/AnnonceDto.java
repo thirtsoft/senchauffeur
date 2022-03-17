@@ -3,7 +3,6 @@ package com.chauffeur.dto;
 
 import java.util.Date;
 
-import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Annonce;
 
 import lombok.AllArgsConstructor;
@@ -45,8 +44,6 @@ public class AnnonceDto {
 	
 	private Date dateCloture;
 
-    private StatusAnnonce statusAnnonce;
-
 	private PermisDto permisDto;
 
 //	private RecruteurDto recruteurDto;
@@ -77,7 +74,6 @@ public class AnnonceDto {
 				.description(annonce.getDescription())
 				.dateCandidature(annonce.getDateCandidature())
 				.dateCloture(annonce.getDateCloture())
-				.statusAnnonce(annonce.getStatusAnnonce())
 				.permisDto(PermisDto.fromEntityToDto(annonce.getPermis()))
 			//	.recruteurDto(RecruteurDto.fromEntityToDto(annonce.getRecruteur()))
 				.utilisateurDto(UtilisateurDto.fromEntityToDto(annonce.getUtilisateur()))
@@ -106,7 +102,6 @@ public class AnnonceDto {
 		annonce.setStatus(annonceDto.getStatus());
 		annonce.setDateCandidature(annonceDto.getDateCandidature());
 		annonce.setDateCloture(annonceDto.getDateCloture());
-		annonce.setStatusAnnonce(annonceDto.getStatusAnnonce());
 		annonce.setPermis(PermisDto.fromDtoToEntity(annonceDto.getPermisDto()));
 	//	annonce.setRecruteur(RecruteurDto.fromDtoToEntity(annonceDto.getRecruteurDto()));
 		annonce.setUtilisateur(UtilisateurDto.fromDtoToEntity(annonceDto.getUtilisateurDto()));

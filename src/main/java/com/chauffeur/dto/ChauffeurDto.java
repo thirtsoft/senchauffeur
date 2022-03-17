@@ -1,7 +1,8 @@
 package com.chauffeur.dto;
 
+import java.util.Date;
+
 import com.chauffeur.models.Chauffeur;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,6 +45,8 @@ public class ChauffeurDto {
 
 	private String photoChauffeur;
 	
+	private Date dateInscription;
+	
 	private PermisDto permisDto;
 	
 	private AddresseDto addresseDto;
@@ -69,6 +72,7 @@ public class ChauffeurDto {
 				.selected(chauffeur.isSelected())
 				.cvChauffeur(chauffeur.getCvChauffeur())
 				.photoChauffeur(chauffeur.getPhotoChauffeur())
+				.dateInscription(chauffeur.getDateInscription())
 				.permisDto(PermisDto.fromEntityToDto(chauffeur.getPermis()))
 				.addresseDto(AddresseDto.fromEntityToDto(chauffeur.getAddresse()))
 				.build();
@@ -95,6 +99,7 @@ public class ChauffeurDto {
 		chauffeur.setSelected(chauffeurDto.isSelected());
 		chauffeur.setCvChauffeur(chauffeurDto.getCvChauffeur());
 		chauffeur.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());
+		chauffeur.setDateInscription(chauffeurDto.getDateInscription());
 		chauffeur.setPermis(PermisDto.fromDtoToEntity(chauffeurDto.getPermisDto()));
 		chauffeur.setAddresse(AddresseDto.fromDtoToEntity(chauffeurDto.getAddresseDto()));
 		

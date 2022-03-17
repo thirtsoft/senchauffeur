@@ -38,6 +38,12 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 	@Query("select chauff from Chauffeur chauff where chauff.disponibity like :z")
 	List<Chauffeur> findChauffeurByDisponibility(@Param("z") String disponility);
 	
+	@Query("select EXTRACT(month from(c.dateInscription)), count(c) from Chauffeur c group by EXTRACT(month from(c.dateInscription))")
+	List<?> countNumberOfChauffeurByMonth();
+	    
+	@Query("select EXTRACT(year from(c.dateInscription)), count(c) from Chauffeur c group by EXTRACT(year from(c.dateInscription))")
+	List<?> countNumberOfChauffeurByYear();
+	
 	@Query("select p from Chauffeur p")
 	Page<Chauffeur> findAllChauffeurByPageable(Pageable pageable);
 	

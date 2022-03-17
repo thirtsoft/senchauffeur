@@ -73,6 +73,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeurDtoResult.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
         chauffeurDtoResult.setDisponibity(chauffeurDto.getDisponibity());
         chauffeurDtoResult.setMobilite(chauffeurDto.getMobilite());
+        chauffeurDtoResult.setDateInscription(chauffeurDto.getDateInscription());
         chauffeurDtoResult.setPermisDto(chauffeurDto.getPermisDto());
         chauffeurDtoResult.setAddresseDto(chauffeurDto.getAddresseDto());
         
@@ -214,7 +215,20 @@ public class ChauffeurServiceImpl implements ChauffeurService {
                 .map(ChauffeurDto::fromEntityToDto);
 	}
 
-	
+
+	@Override
+	public List<?> countNumberOfChauffeurByMonth() {
+		return chauffeurRepository.countNumberOfChauffeurByMonth()
+                .stream()
+                .collect(Collectors.toList());
+	}
+
+	@Override
+	public List<?> countNumberOfChauffeurByYear() {
+		return chauffeurRepository.countNumberOfChauffeurByYear()
+                .stream()
+                .collect(Collectors.toList());
+	}
 	
 	@Override
     public void delete(Long id) {

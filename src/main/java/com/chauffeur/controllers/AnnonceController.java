@@ -18,7 +18,6 @@ import com.chauffeur.controllers.api.AnnonceApi;
 import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.dto.HistoriqueAnnonceDto;
 import com.chauffeur.dto.UtilisateurDto;
-import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Utilisateur;
 import com.chauffeur.services.AnnonceService;
 import com.chauffeur.services.HistoriqueAnnonceService;
@@ -45,7 +44,6 @@ public class AnnonceController implements AnnonceApi {
 
 	@Override
 	public ResponseEntity<AnnonceDto> save(AnnonceDto annonceDto) {
-		annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
 		annonceDto.setStatus("ENCOURS");
 		annonceDto.setDateCandidature(new Date());
 		
@@ -70,9 +68,6 @@ public class AnnonceController implements AnnonceApi {
 		Utilisateur utilisateur = Optional.of(UtilisateurDto.fromDtoToEntity(utilisateurService.findById(id))).get();
 
         annonceDto.setUtilisateurDto(UtilisateurDto.fromEntityToDto(utilisateur));
-
-     
-        annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
         
         annonceDto.setStatus("ENCOURS");
         annonceDto.setDateCandidature(new Date());
@@ -126,18 +121,23 @@ public class AnnonceController implements AnnonceApi {
 
 	@Override
 	public ResponseEntity<AnnonceDto> findById(Long id) {
-		return ResponseEntity.ok(annonceService.findById(id));
+		AnnonceDto annonceDTOResult = annonceService.findById(id);
+		
+		return new ResponseEntity<>(annonceDTOResult, HttpStatus.OK);
+		
 	}
 	
 	@Override
 	public ResponseEntity<AnnonceDto> findByReference(String reference) {
-		return ResponseEntity.ok(annonceService.findByReference(reference));
+		AnnonceDto annonceDTOResult = annonceService.findByReference(reference);
+		return new ResponseEntity<>(annonceDTOResult, HttpStatus.OK);
 	}
 
 
 	@Override
-	public List<AnnonceDto> getAllAnnonces() {
-		return annonceService.findAll();
+	public ResponseEntity<List<AnnonceDto>> getAllAnnonces() {
+		List<AnnonceDto> annonceDtos = annonceService.findAll();
+		return new ResponseEntity<>(annonceDtos, HttpStatus.OK);
 	}
 	
 	@Override
@@ -147,37 +147,43 @@ public class AnnonceController implements AnnonceApi {
 	}
 
 	@Override
-	public List<AnnonceDto> getListAnnonceBySelected() {
-		return annonceService.findListAnnonceBySelected();
+	public ResponseEntity<List<AnnonceDto>> getListAnnonceBySelected() {
+		List<AnnonceDto> annonceDtoList = annonceService.findListAnnonceBySelected();
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
 	
 	@Override
-	public List<AnnonceDto> getListAnnonceByPermis(Long pId) {
-		return annonceService.findListAnnonceByPermis(pId);
+	public ResponseEntity<List<AnnonceDto>> getListAnnonceByPermis(Long pId) {
+		List<AnnonceDto> annonceDtoList = annonceService.findListAnnonceByPermis(pId);
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
 
 
 	@Override
-	public List<AnnonceDto> getListArticleByKeyword(String keyword) {
-		return annonceService.findListAnnonceByKeyword("%" + keyword + "%");
+	public ResponseEntity<List<AnnonceDto>>  getListArticleByKeyword(String keyword) {
+		List<AnnonceDto> annonceDtoList = annonceService.findListAnnonceByKeyword("%" + keyword + "%");
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
 	
 	@Override
-	public List<AnnonceDto> getListAnnonceByLibelle(String libelle) {
-		return annonceService.findListAnnonceByLibelle("%" + libelle + "%");
+	public ResponseEntity<List<AnnonceDto>> getListAnnonceByLibelle(String libelle) {
+		List<AnnonceDto> annonceDtoList = annonceService.findListAnnonceByLibelle("%" + libelle + "%");
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
 	
 	@Override
-	public List<AnnonceDto> get5LatestAnnonceRecordOrderByIdDesc() {
-		return annonceService.find5LatestRecordsByOrderByIdDesc();
+	public ResponseEntity<List<AnnonceDto>> get5LatestAnnonceRecordOrderByIdDesc() {
+		List<AnnonceDto> annonceDtoList = annonceService.find5LatestRecordsByOrderByIdDesc();
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
 	
 	@Override
-	public List<AnnonceDto> getAnnonceByStatusEncours() {
-		return annonceService.findListAnnonceByStatusEncours();
-
+	public ResponseEntity<List<AnnonceDto>> get6LatestValidatedAnnonceOrderByIdDesc() {
+		List<AnnonceDto> annonceDtoList = annonceService.find6LatestValidatedRecordsByOrderByIdDesc();
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
-
+	
+	
 	@Override
 	public ResponseEntity<List<AnnonceDto>> getAnnoncesByUserOrderByIdDesc(Long id) {
 		List<AnnonceDto> annonceDtoList = annonceService.FindListAnnonceByCustomerId(id);

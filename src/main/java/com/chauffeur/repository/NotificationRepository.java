@@ -20,7 +20,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     
     List<Notification> findByOrderByIdDesc();
 
-
     @Query("select count(c) from Notification c where c.chauffeur.reference =:chauff")
     BigDecimal countNumberOfNotificationByChauffeurId(@Param("chauff") String chauffRef);
 

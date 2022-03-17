@@ -3,11 +3,8 @@ package com.chauffeur.models;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,12 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.chauffeur.enumeration.StatusAnnonce;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author Folio9470m
+ *
+ */
 @Entity
 @Table(name = "annonce", uniqueConstraints = {
         @UniqueConstraint(columnNames = "reference")
@@ -50,16 +50,16 @@ public class Annonce implements Serializable {
 	@Column(name = "salaire", length = 90)
 	private String salaire;
 	
-	@Column(name = "emailPoste", length = 90)
+	@Column(name = "emailPoste", length = 100)
 	private String emailPoste;
 	
-	@Column(name = "time", length = 50)
+	@Column(name = "time", length = 100)
 	private String time;
 	
-	@Column(name = "anneeExperience")
+	@Column(name = "anneeExperience", length = 170)
 	private String anneeExperience;
 	
-	@Column(name = "typeContrat")
+	@Column(name = "typeContrat", length = 100)
 	private String typeContrat;
 	
 	@Column(name = "isSelected")
@@ -72,17 +72,18 @@ public class Annonce implements Serializable {
 	@Lob
 	private String description;
 	
-	@Column(name = "dateCandidature", length = 70)
+	@Column(name = "dateCandidature", length = 150)
 	private Date dateCandidature;
 	
-	@Column(name = "dateCloture", length = 70)
+	@Column(name = "dateCloture", length = 150)
 	private Date dateCloture;
 
-	
+	/*
 	@Enumerated(EnumType.STRING)
-//    @NaturalId
+    @NaturalId
     @Column(length = 90)
     private StatusAnnonce statusAnnonce;
+	*/
 
 //	@ManyToOne(cascade = CascadeType.PERSIST)
 	@ManyToOne

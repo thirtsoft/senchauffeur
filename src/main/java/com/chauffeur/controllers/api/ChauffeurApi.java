@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.chauffeur.dto.AddresseDto;
 import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
@@ -63,6 +62,12 @@ public interface ChauffeurApi {
     @GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByDisponibilite", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	List<ChauffeurDto> getListChauffeurByDisponibility(@RequestParam(name = "disponible") String disponibility);
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/numberOfChauffeurPeerMonth", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<?> countNumberOfChauffeurByMonth();
+	
+	@GetMapping(value = APP_ROOT + "/chauffeurs/numberOfChauffeurPeerYeer", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<?> countNumberOfChauffeurByYear();
 	 
 	@GetMapping(value = APP_ROOT + "/chauffeurs/searchChauffeurByPageables", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)

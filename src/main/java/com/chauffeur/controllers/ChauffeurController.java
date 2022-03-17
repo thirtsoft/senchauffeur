@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.chauffeur.controllers.api.ChauffeurApi;
-import com.chauffeur.dto.AddresseDto;
 import com.chauffeur.dto.ChauffeurDto;
 import com.chauffeur.services.ChauffeurService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,8 +54,10 @@ public class ChauffeurController implements ChauffeurApi {
 	public ChauffeurController(ChauffeurService chauffeurService) {
 		this.chauffeurService = chauffeurService;
 	}
+
 	@Override
 	public ResponseEntity<ChauffeurDto> save(ChauffeurDto chauffeurDto) {
+		chauffeurDto.setDateInscription(new Date());
 		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
 	}
 	
@@ -93,6 +94,8 @@ public class ChauffeurController implements ChauffeurApi {
 			MultipartFile cvChauffeur) throws IOException {
 		
 		ChauffeurDto chauffeurDto = new ObjectMapper().readValue(chauffeur, ChauffeurDto.class);
+		
+		chauffeurDto.setDateInscription(new Date());
 	    
 		if (photoChauffeur != null && !photoChauffeur.isEmpty()) {
 	      	chauffeurDto.setPhotoChauffeur(photoChauffeur.getOriginalFilename());
@@ -154,7 +157,6 @@ public class ChauffeurController implements ChauffeurApi {
 	*/
 	
 
-
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -202,7 +204,6 @@ public class ChauffeurController implements ChauffeurApi {
       
         return Files.readAllBytes(Paths.get("./src/main/resources//static//cvs//" + chauffeurDto.getCvChauffeur()));
 	}
-	
 	
 	public void downloadChauffeurFile(HttpServletRequest request, HttpServletResponse response,
              @PathVariable("fileName") String fileName) throws IOException {
@@ -273,6 +274,16 @@ public class ChauffeurController implements ChauffeurApi {
 	public void delete(Long id) {
 		chauffeurService.delete(id);
 		
+	}
+	
+	@Override
+	public List<?> countNumberOfChauffeurByMonth() {
+		return chauffeurService.countNumberOfChauffeurByMonth();
+	}
+	
+	@Override
+	public List<?> countNumberOfChauffeurByYear() {
+		return chauffeurService.countNumberOfChauffeurByYear();
 	}
 	
 

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.chauffeur.dto.AnnonceDto;
-import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.exceptions.ResourceNotFoundException;
 import com.chauffeur.models.Annonce;
 import com.chauffeur.repository.AnnonceRepository;
@@ -36,7 +35,7 @@ public class AnnonceServiceImpl implements AnnonceService {
 
     @Override
     public AnnonceDto save(AnnonceDto annonceDto) {
-    	annonceDto.setStatusAnnonce(StatusAnnonce.ENCOURS);
+    	annonceDto.setStatus("ENCOURS");
 
         return AnnonceDto.fromEntityToDto(
         		annonceRepository.save(
@@ -67,7 +66,7 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setDescription(annonceDto.getDescription());
         annonceDtoResult.setLieuPoste(annonceDto.getLieuPoste());
         annonceDtoResult.setSalaire(annonceDto.getSalaire());
-        annonceDtoResult.setStatusAnnonce(annonceDto.getStatusAnnonce());
+        annonceDtoResult.setStatus(annonceDto.getStatus());
         annonceDtoResult.setDateCandidature(annonceDto.getDateCandidature());
         annonceDtoResult.setDateCloture(annonceDto.getDateCloture());
         annonceDtoResult.setPermisDto(annonceDto.getPermisDto());
@@ -178,14 +177,13 @@ public class AnnonceServiceImpl implements AnnonceService {
 	}
 	
 	@Override
-	public List<AnnonceDto> findListAnnonceByStatusEncours() {
-		return annonceRepository.findListAnnonceByStatusEncours()
+	public List<AnnonceDto> find6LatestValidatedRecordsByOrderByIdDesc() {
+		return annonceRepository.findTop6ValidatedByOrderByIdDesc()
         		.stream()
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
-
-
+	
 	@Override
 	public List<AnnonceDto> findListAnnonceByPermis(Long pId) {
 		return annonceRepository.findAnnonceByPermis(pId).stream()
@@ -231,14 +229,14 @@ public class AnnonceServiceImpl implements AnnonceService {
 
 	@Override
 	public List<AnnonceDto> findListAnnonceByStatusValid() {
-		return annonceRepository.findListAnnonceByStatusValid().stream()
+		return annonceRepository.findListAnnonceByStatusValidated().stream()
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
 	
 	@Override
 	public List<AnnonceDto> findListAnnonceByStatusRejet() {
-		return annonceRepository.findListAnnonceByStatusPending().stream()
+		return annonceRepository.findListAnnonceByStatusRejected().stream()
                 .map(AnnonceDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
@@ -279,10 +277,6 @@ public class AnnonceServiceImpl implements AnnonceService {
 
 	}
 
-
-	
-
-	
 	
 	
 }

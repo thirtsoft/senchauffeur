@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chauffeur.dto.AnnonceDto;
-import com.chauffeur.dto.ChauffeurDto;
 
 import static com.chauffeur.utils.Constants.APP_ROOT;
 
@@ -52,37 +51,37 @@ public interface AnnonceApi {
     ResponseEntity<AnnonceDto> findByReference(@PathVariable("reference") String reference);
 
 	@GetMapping(value = APP_ROOT + "/annonces/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getAllAnnonces();
+	ResponseEntity<List<AnnonceDto>> getAllAnnonces();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<AnnonceDto>> getAllAnnonceOrderByIdDesc();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceBySelectedIsTrue", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getListAnnonceBySelected();
+	ResponseEntity<List<AnnonceDto>> getListAnnonceBySelected();
 	    
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByKeyword", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getListArticleByKeyword(@RequestParam(name = "reference") String reference);
+	ResponseEntity<List<AnnonceDto>> getListArticleByKeyword(@RequestParam(name = "reference") String reference);
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByLibelle", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getListAnnonceByLibelle(@RequestParam(name = "libelle") String libelle);
+	ResponseEntity<List<AnnonceDto>> getListAnnonceByLibelle(@RequestParam(name = "libelle") String libelle);
 	
 	@GetMapping(value = APP_ROOT + "/annonces/search5LatestAnnonceByIdDesc", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> get5LatestAnnonceRecordOrderByIdDesc();
+	ResponseEntity<List<AnnonceDto>> get5LatestAnnonceRecordOrderByIdDesc();
+	
+	@GetMapping(value = APP_ROOT + "/annonces/search6ValidateLatestAnnonceByIdDesc", 
+			 produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<List<AnnonceDto>> get6LatestValidatedAnnonceOrderByIdDesc();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByCustomerIdOrderByIdDesc/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<AnnonceDto>> getAnnoncesByUserOrderByIdDesc(@PathVariable(name = "id") Long id);
 	
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnoncesByPermis/{pId}", 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getListAnnonceByPermis(@PathVariable("pId") Long pId);
-	
-	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusEncours", 
-			 produces = MediaType.APPLICATION_JSON_VALUE)
-	List<AnnonceDto> getAnnonceByStatusEncours();
-	
+	ResponseEntity<List<AnnonceDto>> getListAnnonceByPermis(@PathVariable("pId") Long pId);
+		
 	@GetMapping(value = APP_ROOT + "/annonces/searchAnnonceByStatusPending", 
 			 produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusPending();
@@ -96,7 +95,7 @@ public interface AnnonceApi {
 	ResponseEntity<List<AnnonceDto>> getAnnoncesByStatusRejet();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonces")
-    public BigDecimal getNumbersOfAnnoncess();
+    BigDecimal getNumbersOfAnnoncess();
 	
 	@GetMapping(value = APP_ROOT + "/annonces/NumbersOfAnnonceByStatusPending")
 	BigDecimal getNumberOfAnnoncesByStatusPending();

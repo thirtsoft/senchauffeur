@@ -13,7 +13,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import com.chauffeur.enumeration.StatusAnnonce;
 import com.chauffeur.models.Annonce;
 import com.chauffeur.models.Permis;
 import com.chauffeur.models.Recruteur;
@@ -61,10 +60,9 @@ public class AnnonceRepositoryTest {
     	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
-    	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
-    	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
+    	annonceDto.setSalaire(salaire); annonceDto.setStatus("ENCOURS");
    // 	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	annonceRepository.save(annonceDto);
@@ -88,10 +86,9 @@ public class AnnonceRepositoryTest {
     	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
-    	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
-    	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
+    	annonceDto.setSalaire(salaire); annonceDto.setStatus("ENCOURS");
   //  	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	Annonce annonceDtoResult = annonceRepository.save(annonceDto);
@@ -111,17 +108,16 @@ public class AnnonceRepositoryTest {
     	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
-    	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
-    	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
+    	annonceDto.setSalaire(salaire); annonceDto.setStatus("ENCOURS");
   //  	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	annonceRepository.save(annonceDto);
     	
-    	String reference2 = "CH1"; StatusAnnonce statusAnnonce2 = StatusAnnonce.VALIDEE;
+    	String reference2 = "CH1";
     	Annonce annonceDto2 = new Annonce();
-    	annonceDto2.setReference(reference2); annonceDto2.setStatusAnnonce(statusAnnonce2);
+    	annonceDto2.setReference(reference2); annonceDto.setStatus("VALIDEE");
  //   	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	annonceRepository.save(annonceDto);
     	
@@ -141,10 +137,9 @@ public class AnnonceRepositoryTest {
     	Recruteur recruteur = recruteurRepository.findById(recId).orElse(null);
     	
     	String reference = "CH1"; String lieuPoste = "Tairou"; String salaire = "120000fcfa";
-    	StatusAnnonce statusAnnonce = StatusAnnonce.ENCOURS;
     	Annonce annonceDto = new Annonce();
     	annonceDto.setReference(reference); annonceDto.setLieuPoste(lieuPoste);
-    	annonceDto.setSalaire(salaire); annonceDto.setStatusAnnonce(statusAnnonce);
+    	annonceDto.setSalaire(salaire); annonceDto.setStatus("ENCOURS");
   //  	annonceDto.setPermis(permis); annonceDto.setRecruteur(recruteur);
     	
     	Annonce annonceDtoResult = annonceRepository.save(annonceDto);

@@ -23,10 +23,16 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 		
     @Query("select count(c) from Annonce c where month(c.dateCandidature) = month(current_date)")
     BigDecimal countNumberOfAnnoncesInMonth();
+    
+    @Query("select count(c) from Annonce c where year(c.dateCandidature) = year(current_date)")
+    BigDecimal countNumberOfAnnoncesInYear();
 
     @Query("select count(c) from Annonce c where c.status = 'ENCOURS' ")
     BigDecimal countNumberOfAnnonceByStatusPending();
-	
+
+    @Query("select p from Annonce p where p.utilisateur.id =:user")
+	Annonce FindAnnonceByCustomerId(@Param("user") Long userId);
+    
 	List<Annonce> findByOrderByIdDesc();
 	
 	@Query("select art from Annonce art where art.selected = true")
@@ -43,27 +49,21 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	
 	List<Annonce> findTop5ByOrderByIdDesc();
 	
-	@Query("from Annonce a where a.statusAnnonce = com.chauffeur.enumeration.StatusAnnonce.ENCOURS")
-	List<Annonce> findListAnnonceByStatusEncours();
+	@Query("select c from Annonce c where c.status = 'VALIDEE' order by id Desc limit 6 ")
+	List<Annonce> findTop6ValidatedByOrderByIdDesc();
 	
-	@Query("from Annonce a where a.statusAnnonce = com.chauffeur.enumeration.StatusAnnonce.ENCOURS")
-	List<Annonce> findListAnnonceByStatusValider();
-	
-	@Query("select p from Annonce p where p.utilisateur.id =:user")
-	Annonce FindAnnonceByCustomerId(@Param("user") Long userId);
-	
-	@Query("select p from Annonce p where p.utilisateur.id =:user order by id Desc")
-	List<Annonce> FindListAnnonceByCustomerId(@Param("user") Long userId);
-	    
-    @Query("select c from Annonce c where c.status = 'ENCOURS' order by id Desc ")
+	@Query("select c from Annonce c where c.status = 'ENCOURS' order by id Desc ")
     List<Annonce> findListAnnonceByStatusPending();
 
     @Query("select c from Annonce c where c.status = 'VALIDEE' order by id Desc ")
-    List<Annonce> findListAnnonceByStatusValid();
+    List<Annonce> findListAnnonceByStatusValidated();
     
-    @Query("select c from Annonce c where c.status = 'REJETER' order by id Desc ")
-    List<Annonce> findListAnnonceByStatusRejet();
-    
+    @Query("select c from Annonce c where c.status = 'REJETEE' order by id Desc ")
+    List<Annonce> findListAnnonceByStatusRejected();
+
+	@Query("select p from Annonce p where p.utilisateur.id =:user order by id Desc")
+	List<Annonce> FindListAnnonceByCustomerId(@Param("user") Long userId);
+	    
     @Query("select EXTRACT(month from(c.dateCandidature)), count(c) from Annonce c group by EXTRACT(month from(c.dateCandidature))")
     List<?> countNumberOfAnnonceByMonth();
     
@@ -75,8 +75,7 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	 
 	@Query("select annonce from Annonce annonce where annonce.permis.id =:permId")
 	Page<Annonce> findAnnonceByPermisPageables(@Param("permId") Long permisId, Pageable pageable);
-		
-		
+				
 		
 
 }
