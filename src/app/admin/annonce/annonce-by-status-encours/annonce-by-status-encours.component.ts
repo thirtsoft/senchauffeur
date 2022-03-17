@@ -30,7 +30,7 @@ export class AnnonceByStatusEncoursComponent implements OnInit {
   }
 
   public getListAnnonceDTOsByStatusEncours() {
-    this.annonceService.getAnnonceDTOByStatusEncours().subscribe(
+    this.annonceService.getAnnonceDTOByStatusPending().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
         console.log(this.annonceListDTO);

@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,6 +12,10 @@ import { AnnonceDto } from './../models/annonce';
 export class AnnonceService {
 
   public apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+
+  public formData:  FormGroup;
 
 //  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
@@ -34,6 +39,10 @@ export class AnnonceService {
   /**************************** AnnonceDTO ******************/
   public getAnnonceDTOs(): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/all`);
+  }
+
+  public getAnnonceDTOOrderByIdDesc(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceOrderByIdDesc`);
   }
 
   public getAnnonceDTOById(annonceId: number): Observable<AnnonceDto> {
@@ -95,8 +104,20 @@ export class AnnonceService {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/search5LatestAnnonceByIdDesc`);
   }
 
-  public getAnnonceDTOByStatusEncours(): Observable<AnnonceDto[]> {
-    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByStatusEncours`);
+  public get6LatestAnnonceDTOByStatusValidatedOrderByIdDesc(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/search6ValidateLatestAnnonceByIdDesc`);
+  }
+
+  public getAnnonceDTOByStatusPending(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByStatusPending`);
+  }
+
+  public getAnnonceDTOByStatusValidated(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByStatusValide`);
+  }
+
+  public getAnnonceDTOByStatusRejeted(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByStatusRejet`);
   }
 
   public getListAnnonceDTOByPermis(pId: number): Observable<AnnonceDto[]> {
@@ -111,14 +132,6 @@ export class AnnonceService {
     const searchUrl = (this.apiServerUrl+"/annonces/searchAnnonceByPermisPageables?id="+permisId+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
     return this.http.get<AnnonceDto[]>(searchUrl);
-  }
-
-  public countNumberOfAnnonces(): Observable<any>  {
-    return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonces`);
-  }
-
-  public countNumberOfAnnonceByStatusPending(): Observable<any>  {
-    return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonceByStatusPending`);
   }
 
   getUserId() {

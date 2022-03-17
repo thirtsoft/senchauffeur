@@ -20,7 +20,7 @@ export class TarifService {
   }
 
   public getTarifDTOsById(chauffId: number): Observable<TarifDto> {
-    return this.http.get<TarifDto>(`${this.apiServerUrl}/tarifs/${chauffId}`);
+    return this.http.get<TarifDto>(`${this.apiServerUrl}/tarifs/findById/${chauffId}`);
   }
 
   public addTarifDTOs(tarifDto: TarifDto): Observable<TarifDto> {

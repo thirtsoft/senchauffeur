@@ -1,117 +1,97 @@
 <div class="container-fluid">
   <div class="row">
-    <h3 *ngIf="!paramId">Nouvelle Jeton</h3>
-    <h3 *ngIf="paramId">Modifier Jeton</h3>
-    <form #addJetonForm="ngForm" name="form">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Montant</label>
-            <input
-              type="number"
-              placeholder="montant annonce"
-              class="form-control"
-              [(ngModel)]="jetonDTO.montant"
-              name="montant"
-              id="montant"
-              #montant="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
-                (montant.touched || addJetonForm.submitted) &&
-                montant.errors?.required
-              "
-            >
+    <div class="col-sm-6">
+      <h3 *ngIf="!paramId">Nouvelle Jeton</h3>
+      <h3 *ngIf="paramId">Modifier Jeton</h3>
+      <form #addJetonForm="ngForm" name="form">
+        <div class="form-group">
+          <label>Montant</label>
+          <input
+            type="number"
+            placeholder="montant annonce"
+            class="form-control"
+            [(ngModel)]="jetonDTO.montant"
+            name="montant"
+            id="montant"
+            #montant="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (montant.touched || addJetonForm.submitted) &&
+              montant.errors?.required
+            "
+          >
             montant est obligatoire
-            </span>
-          </div>
+          </span>
         </div>
 
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Etat</label>
-            <input
-              type="text"
-              placeholder="etat jeton"
-              class="form-control"
-              [(ngModel)]="jetonDTO.etat"
-              name="etat"
-              id="etat"
-              #etat="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
-                (etat.touched || addJetonForm.submitted) &&
-                etat.errors?.required
-              "
-            >
+        <div class="form-group">
+          <label>Etat</label>
+          <input
+            type="text"
+            placeholder="etat jeton"
+            class="form-control"
+            [(ngModel)]="jetonDTO.etat"
+            name="etat"
+            id="etat"
+            #etat="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (etat.touched || addJetonForm.submitted) && etat.errors?.required
+            "
+          >
             etat est obligatoire
-            </span>
-          </div>
+          </span>
         </div>
 
-        
-        
-
-        <div class="col-sm-6">
+        <div class="form-group">
+          <label>Recruteur</label>
           <div class="form-group">
-            <label>Recruteur</label>
-            <div class="form-group">
-              <select
-                name="utilisateurDto"
-                [(ngModel)]="jetonDTO.utilisateurDto"
-                class="form-control"
-              >
-                <option
-                  *ngFor="let userDTO of listUtilisateurData"
-                  [ngValue]="
+            <select
+              name="utilisateurDto"
+              [(ngModel)]="jetonDTO.utilisateurDto"
+              class="form-control"
+            >
+              <option
+                *ngFor="let userDTO of listUtilisateurData"
+                [ngValue]="
                   userDTO.id == jetonDTO.utilisateurDto?.id
-                      ? jetonDTO.utilisateurDto
-                      : userDTO
-                  "
-                >
-                  {{ userDTO.name }}
-                </option>
-              </select>
-            </div>
+                    ? jetonDTO.utilisateurDto
+                    : userDTO
+                "
+              >
+                {{ userDTO.name }}
+              </option>
+            </select>
           </div>
         </div>
 
-      
-
-    
-      </div>
-
-     <!--  <div class="form-group">
-        <label>Description</label>
-        <editor
-          [(ngModel)]="annonceDTO.description"
-          [init]="{ plugins: 'link' }"
-          name="description"
-          #description="ngModel"
-        ></editor>
-      </div>
-       -->
-      <div class="form-group">
-        <button
-          *ngIf="paramId"
-          type="submit"
-          class="btn btn-success"
-          (click)="onUpdateJeton()"
-        >
-          <i class="fa fa-database"></i> Modifier</button
-        >&nbsp;
-        <button *ngIf="!paramId" class="btn btn-warning" (click)="onAddJeton()">
-          <i class="fa fa-database"></i>Enregistrer
-        </button>
-        <button type="button" class="btn btn-danger ml-1">
-          <i class="fa fa-close"></i> Close
-        </button>
-      </div>
-    </form>
+        <div class="form-group">
+          <button
+            *ngIf="paramId"
+            type="submit"
+            class="btn btn-success"
+            (click)="onUpdateJeton()"
+          >
+            <i class="fa fa-database"></i> Modifier</button
+          >&nbsp;
+          <button
+            *ngIf="!paramId"
+            class="btn btn-warning"
+            (click)="onAddJeton()"
+          >
+            <i class="fa fa-database"></i>Enregistrer
+          </button>
+          <button type="button" class="btn btn-danger ml-1">
+            <i class="fa fa-close"></i> Close
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

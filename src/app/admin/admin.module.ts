@@ -1,12 +1,14 @@
+import { UpdateUsernameInfo } from './../auth/security/profile-info';
+import { httpInterceptorProviders } from './../auth/security/auth-interceptor';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from './../shared/shared.module';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -59,6 +61,17 @@ import { SuccessRegisterComponent } from './authentication/success-register/succ
 import { ProfilComponent } from './authentication/profil/profil.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AccueilbackendComponent } from './accueilbackend/accueilbackend.component';
+import { ListValidatedAnnonceComponent } from './annonce/list-validated-annonce/list-validated-annonce.component';
+import { ListRejectedAnnonceComponent } from './annonce/list-rejected-annonce/list-rejected-annonce.component';
+import { ListPendingAnnonceComponent } from './annonce/list-pending-annonce/list-pending-annonce.component';
+import { UpdateStatusOfAnnonceComponent } from './annonce/update-status-of-annonce/update-status-of-annonce.component';
+import { ListNumberOfAnnonceByMonthComponent } from './chart/list-number-of-annonce-by-month/list-number-of-annonce-by-month.component';
+import { ListNumberOfAnnonceByYearComponent } from './chart/list-number-of-annonce-by-year/list-number-of-annonce-by-year.component';
+import { ListNumberOfChauffeurByYearComponent } from './chart/list-number-of-chauffeur-by-year/list-number-of-chauffeur-by-year.component';
+import { ListNumberOfChauffeurByMonthComponent } from './chart/list-number-of-chauffeur-by-month/list-number-of-chauffeur-by-month.component';
+import { ViewAnnonceComponent } from './annonce/view-annonce/view-annonce.component';
+import { UpdatePhotoChauffeurComponent } from './chauffeur/update-photo-chauffeur/update-photo-chauffeur.component';
+import { UpdateCvChauffeurComponent } from './chauffeur/update-cv-chauffeur/update-cv-chauffeur.component';
 
 
 @NgModule({
@@ -96,7 +109,18 @@ import { AccueilbackendComponent } from './accueilbackend/accueilbackend.compone
     SuccessRegisterComponent,
     ProfilComponent,
     AccueilComponent,
-    AccueilbackendComponent
+    AccueilbackendComponent,
+    ListValidatedAnnonceComponent,
+    ListRejectedAnnonceComponent,
+    ListPendingAnnonceComponent,
+    UpdateStatusOfAnnonceComponent,
+    ListNumberOfAnnonceByMonthComponent,
+    ListNumberOfAnnonceByYearComponent,
+    ListNumberOfChauffeurByYearComponent,
+    ListNumberOfChauffeurByMonthComponent,
+    ViewAnnonceComponent,
+    UpdatePhotoChauffeurComponent,
+    UpdateCvChauffeurComponent
   ],
   imports: [
     CommonModule,
@@ -121,6 +145,19 @@ import { AccueilbackendComponent } from './accueilbackend/accueilbackend.compone
     Ng2SearchPipeModule,
     NgxPaginationModule,
     EditorModule,
+  ],
+
+  providers: [
+    DatePipe, { provide: MAT_DIALOG_DATA, useValue: {} ,},
+    {provide: MatDialogRef, useValue: {} },
+    httpInterceptorProviders
+  ],
+
+  entryComponents: [
+    CreateAnnonceComponent, UpdateStatusOfAnnonceComponent,
+    UpdateUsernameInfo, UpdatePhotoChauffeurComponent,
+    DashboardComponent, UpdateCvChauffeurComponent,
+    ProfilComponent
   ]
 })
 export class AdminModule { }

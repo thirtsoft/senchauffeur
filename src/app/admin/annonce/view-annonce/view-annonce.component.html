@@ -1,0 +1,165 @@
+<h4>Détail d'une Annonce</h4>
+<form #addArticleForm="ngForm" name="form" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Reference </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditAnnonceDTO.reference"
+          name="reference"
+          id="reference"
+          #reference="ngModel"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Designation</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditAnnonceDTO.libelle"
+          name="designation"
+          id="designation"
+          #designation="ngModel"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Recruteur</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditAnnonceDTO.utilisateurDto"
+          name="designation"
+          id="designation"
+          #designation="ngModel"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Salaire </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditAnnonceDTO.salaire"
+          name="salaire"
+          id="salaire"
+          #salaire="ngModel"
+          readonly
+        />
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Emai Poste</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditAnnonceDTO.emailPoste"
+          name="emailPoste"
+          id="emailPoste"
+          #emailPoste="ngModel"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Disponibilité </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditAnnonceDTO.time"
+          name="time"
+          id="time"
+          #time="ngModel"
+          readonly
+        />
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label>Expérience</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="addEditAnnonceDTO.anneeExperience"
+            name="anneeExperience"
+            id="anneeExperience"
+            #anneeExperience="ngModel"
+            readonly
+          />
+        </div>
+        &nbsp;&nbsp;&nbsp;
+
+        <div class="form-group">
+          <label>type Contrat</label>
+          <input
+            type="text"
+            [(ngModel)]="addEditAnnonceDTO.typeContrat"
+            name="typeContrat"
+            id="typeContrat"
+            #typeContrat="ngModel"
+            class="form-control"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>status</label>
+        <input
+          type="text"
+          [(ngModel)]="addEditAnnonceDTO.status"
+          name="status"
+          id="status"
+          #status="ngModel"
+          class="form-control"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          type="text "
+          class="form-control"
+          name="description "
+          id="description "
+          [(ngModel)]="addEditAnnonceDTO.description"
+          cols="30 "
+          rows="10 "
+          #description="ngModel"
+          readonly
+        >
+        </textarea>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>date Cloture</label>
+        <input
+          type="text "
+          class="form-control"
+          name="dateCloture"
+          id="dateCloture "
+          [(ngModel)]="addEditAnnonceDTO.dateCloture"
+          #dateCloture="ngModel"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button (click)="goBack()" type="button" class="btn btn-lg btn-danger ml-1">
+      <i class="fa fa-angle-right"></i> Retour
+    </button>
+  </div>
+</form>
