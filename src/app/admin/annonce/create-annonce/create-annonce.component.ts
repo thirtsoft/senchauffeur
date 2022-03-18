@@ -54,6 +54,8 @@ export class CreateAnnonceComponent implements OnInit {
 
     this.getListPermisDTOs();
 
+    this.annonceService.getUserId();
+
     this.getListRecruteurDTOs();
 
   }
@@ -92,8 +94,19 @@ export class CreateAnnonceComponent implements OnInit {
     )
   }
 
-  public onAddAnnonce() {
+ /*  public onAddAnnonce() {
     this.annonceService.addAnnonceDTO(this.annonceDTO).subscribe(
+      (response: AnnonceDto) => {
+        this.router.navigate(['/admin/accueil/annonces']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  } */
+
+  public onAddAnnonce() {
+    this.annonceService.addAnnonceDTOWithUser(this.annonceDTO, this.annonceService.id).subscribe(
       (response: AnnonceDto) => {
         this.router.navigate(['/admin/accueil/annonces']);
       },

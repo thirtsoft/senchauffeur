@@ -19,8 +19,9 @@
               <tr>
                 <th>Reference</th>
                 <th>Libelle</th>
-                <th>Entreprise</th>
+                <th>Annonceur</th>
                 <th>Permis</th>
+                 <th>Dispo</th>
                 <th>Status</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -36,8 +37,9 @@
               >
                 <td>{{ annonceDTO?.reference }}</td>
                 <td>{{ annonceDTO?.libelle }}</td>
-                <td>{{ annonceDTO?.utilisateurDto?.nomEntreprise }}</td>
+                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
                 <td>{{ annonceDTO?.permisDto?.designation }}</td>
+                <td>{{annonceDTO?.time}}</td>
                 <td>{{ annonceDTO?.status }}
                   <button
                   type="button"
