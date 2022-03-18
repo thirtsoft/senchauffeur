@@ -1,196 +1,292 @@
 <div class="container-fluid">
-    <div class="row">
-        <h1>Nouvelle Annonce</h1>
-        <form #addAnnonceForm="ngForm" name="form">
-            <div class="row">
+  <h1>Nouvelle Annonce</h1>
+  <div class="row" style="margin-left: 10px;">
+    <div class="col-sm-12">
+    <form #addAnnonceForm="ngForm" name="form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Reference</label>
+            <input
+              type="text"
+              placeholder="Référence annonce"
+              class="form-control"
+              [(ngModel)]="annonceDTO.reference"
+              name="reference"
+              id="reference"
+              #reference="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (reference.touched || addAnnonceForm.submitted) &&
+                reference.errors?.required
+              "
+            >
+              reference est obligatoire
+            </span>
+          </div>
+        </div>
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Reference</label>
-                        <input type="text" placeholder="Référence annonce" class="form-control" [(ngModel)]="annonceDTO.reference" name="reference" id="reference" #reference="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                          (reference.touched || addAnnonceForm.submitted) &&
-                          reference.errors?.required
-                            ">
-                            reference est obligatoire
-                          </span>
-                    </div>
-                </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Libelle</label>
+            <input
+              type="text"
+              placeholder="Libellé annonce"
+              class="form-control"
+              [(ngModel)]="annonceDTO.libelle"
+              name="libelle"
+              id="libelle"
+              #libelle="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (libelle.touched || addAnnonceForm.submitted) &&
+                libelle.errors?.required
+              "
+            >
+              libelle est obligatoire
+            </span>
+          </div>
+        </div>
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Libelle</label>
-                        <input type="text" placeholder="Libellé annonce" class="form-control" [(ngModel)]="annonceDTO.libelle" name="libelle" id="libelle" #libelle="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                          (libelle.touched || addAnnonceForm.submitted) &&
-                          libelle.errors?.required
-                            ">
-                            libelle est obligatoire
-                        </span>
-                    </div>
-                </div>
-
-                <!-- <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Candidature</label>
-                        <input type="text" class="form-control" [(ngModel)]="annonceDTO.modeCandidature" name="modeCandidature" id="modeCandidature" #modeCandidature="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                          (modeCandidature.touched || addAnnonceForm.submitted) &&
-                              modeCandidature.errors?.required
-                            ">
-                            modeCandidature est obligatoire
-                          </span>
-                    </div>
-
-                </div> -->
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Permis</label>
-                        <div class="form-group">
-                            <select name="permis" [(ngModel)]="annonceDTO.permisDto" class="form-control" placeholder="Permis annonce">
-                            <option *ngFor="let permis of listPermisData"
-                              [ngValue]="permis.id == annonceDTO.permisDto?.id ? annonceDTO.permisDto : permis">{{permis.designation}}</option>
-                          </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Recruteur</label>
-                        <div class="form-group">
-                            <select name="permis" [(ngModel)]="annonceDTO.recruteurDto" class="form-control">
-                            <option *ngFor="let recrutDTO of listRecruteurData"
-                              [ngValue]="recrutDTO.id == annonceDTO.recruteurDto?.id ? annonceDTO.recruteurDto : recrutDTO">{{recrutDTO.nomEntreprise}}</option>
-                          </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-sm-6">
-
-                    <div class="form-group">
-                        <label>Lieu Poste</label>
-                        <input type="text" placeholder="Lieu annonce" class="form-control" [(ngModel)]="annonceDTO.lieuPoste" name="lieuPoste" id="lieuPoste" #lieuPoste="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                            (lieuPoste.touched || addAnnonceForm.submitted) &&
-                            lieuPoste.errors?.required
-                          ">
-                          lieuPoste est obligatoire
-                        </span>
-                    </div>
-
-                </div>
-
-                <div class="col-sm-6">
-
-                    <div class="form-group">
-                        <label>Salaire</label>
-                        <input type="text" placeholder="Salaire annonce" class="form-control" [(ngModel)]="annonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                          (salaire.touched || addAnnonceForm.submitted) &&
-                            salaire.errors?.required
-                          ">
-                          salaire est obligatoire
-                        </span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Date Cloture </label>
-                        <input type="text" placeholder="Date limite candidature" class="form-control" [(ngModel)]="annonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                            (dateCloture.touched || addAnnonceForm.submitted) &&
-                            dateCloture.errors?.required
-                          ">
-                          dateCloture est obligatoire
-                        </span>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Time </label>
-                        <input type="text" placeholder="Disponibilité" class="form-control" [(ngModel)]="annonceDTO.time" name="time" id="time" #time="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                            (time.touched || addAnnonceForm.submitted) &&
-                            time.errors?.required
-                          ">
-                          time est obligatoire
-                        </span>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Nombre Année Expérience </label>
-                        <input type="text" placeholder="Nombre année expérience" class="form-control" [(ngModel)]="annonceDTO.anneeExperience" name="anneeExperience" id="anneeExperience" #anneeExperience="ngModel" required />
-                        <span class="text-danger" *ngIf="
-                          (anneeExperience.touched || addAnnonceForm.submitted) &&
-                            anneeExperience.errors?.required
-                          ">
-                          annee Experience est obligatoire
-                        </span>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                  <div class="form-group">
-                      <label>Type de Contrat </label>
-                      <input type="text" placeholder="Type de contrat"
-                        class="form-control"
-                        [(ngModel)]="annonceDTO.typeContrat"
-                        name="typeContrat" id="typeContrat" #typeContrat="ngModel" required />
-                      <span class="text-danger" *ngIf="
-                        (typeContrat.touched || addAnnonceForm.submitted) &&
-                        typeContrat.errors?.required
-                        ">
-                        typeContrat est obligatoire
-                      </span>
-                  </div>
-              </div>
-
-            </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Permis</label>
             <div class="form-group">
-                  <label>Description</label>
-                  <editor [(ngModel)]="annonceDTO.description"
-                    [init]="{plugins: 'link'}"
-                    name="description"
-                    #description="ngModel"
-                  ></editor>
-              </div>
-            <!-- <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="">Description</label>
-                        <textarea [(ngModel)]="annonceDTO.description" placeholder="Description du poste" name="description" id="description" #description="ngModel" class="form-control" required cols="30" rows="10"></textarea>
-                        <span class="text-danger" *ngIf="
-                          (description.touched || addAnnonceForm.submitted) &&
-                          description.errors?.required
-                                ">
-                                description est obligatoire
-                          </span>
-                    </div>
-                </div>
-            </div> -->
-
-            <div class="form-group">
-                <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onUpdateAnnonce()">
-                  <i class="fa fa-database"></i> Submit</button>&nbsp;
-                <button *ngIf="paramId" class="btn btn-warning" (click)="onAddAnnonce()">
-                  <i class="fa fa-database"></i>Update</button>
-                <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
+              <select
+                name="permis"
+                [(ngModel)]="annonceDTO.permisDto"
+                class="form-control"
+                placeholder="Permis annonce"
+              >
+                <option
+                  *ngFor="let permis of listPermisData"
+                  [ngValue]="
+                    permis.id == annonceDTO.permisDto?.id
+                      ? annonceDTO.permisDto
+                      : permis
+                  "
+                >
+                  {{ permis.designation }}
+                </option>
+              </select>
             </div>
-        </form>
-    </div>
+          </div>
+        </div>
 
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Recruteur</label>
+            <div class="form-group">
+              <select
+                name="permis"
+                [(ngModel)]="annonceDTO.recruteurDto"
+                class="form-control"
+              >
+                <option
+                  *ngFor="let recrutDTO of listRecruteurData"
+                  [ngValue]="
+                    recrutDTO.id == annonceDTO.recruteurDto?.id
+                      ? annonceDTO.recruteurDto
+                      : recrutDTO
+                  "
+                >
+                  {{ recrutDTO.nomEntreprise }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Lieu Poste</label>
+            <input
+              type="text"
+              placeholder="Lieu annonce"
+              class="form-control"
+              [(ngModel)]="annonceDTO.lieuPoste"
+              name="lieuPoste"
+              id="lieuPoste"
+              #lieuPoste="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (lieuPoste.touched || addAnnonceForm.submitted) &&
+                lieuPoste.errors?.required
+              "
+            >
+              lieuPoste est obligatoire
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Salaire</label>
+            <input
+              type="text"
+              placeholder="Salaire annonce"
+              class="form-control"
+              [(ngModel)]="annonceDTO.salaire"
+              name="salaire"
+              id="salaire"
+              #salaire="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (salaire.touched || addAnnonceForm.submitted) &&
+                salaire.errors?.required
+              "
+            >
+              salaire est obligatoire
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Date Cloture </label>
+            <input
+              type="date"
+              placeholder="Date limite candidature"
+              class="form-control"
+              [(ngModel)]="annonceDTO.dateCloture"
+              name="dateCloture"
+              id="dateCloture"
+              #dateCloture="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (dateCloture.touched || addAnnonceForm.submitted) &&
+                dateCloture.errors?.required
+              "
+            >
+              dateCloture est obligatoire
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Time </label>
+            <input
+              type="text"
+              placeholder="Disponibilité"
+              class="form-control"
+              [(ngModel)]="annonceDTO.time"
+              name="time"
+              id="time"
+              #time="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (time.touched || addAnnonceForm.submitted) &&
+                time.errors?.required
+              "
+            >
+              time est obligatoire
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Nombre Année Expérience </label>
+            <input
+              type="text"
+              placeholder="Nombre année expérience"
+              class="form-control"
+              [(ngModel)]="annonceDTO.anneeExperience"
+              name="anneeExperience"
+              id="anneeExperience"
+              #anneeExperience="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (anneeExperience.touched || addAnnonceForm.submitted) &&
+                anneeExperience.errors?.required
+              "
+            >
+              annee Experience est obligatoire
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Type de Contrat </label>
+            <input
+              type="text"
+              placeholder="Type de contrat"
+              class="form-control"
+              [(ngModel)]="annonceDTO.typeContrat"
+              name="typeContrat"
+              id="typeContrat"
+              #typeContrat="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (typeContrat.touched || addAnnonceForm.submitted) &&
+                typeContrat.errors?.required
+              "
+            >
+              typeContrat est obligatoire
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <editor
+          [(ngModel)]="annonceDTO.description"
+          [init]="{ plugins: 'link' }"
+          name="description"
+          #description="ngModel"
+        ></editor>
+      </div>
+    
+            <div class="form-group">
+              <button
+                *ngIf="!paramId"
+                type="submit"
+                class="btn btn-success"
+                (click)="onAddAnnonce()"
+              >
+                <i class="fa fa-database"></i> Submit</button
+              >&nbsp;
+              <button
+                *ngIf="paramId"
+                class="btn btn-warning"
+                (click)="onUpdateAnnonce()" 
+              >
+                <i class="fa fa-database"></i>Update
+              </button>
+              <button type="button" class="btn btn-danger ml-1">
+                <i class="fa fa-close"></i> Close
+              </button>
+            </div>
+
+    </form>
+  </div>
+  </div>
 </div>
