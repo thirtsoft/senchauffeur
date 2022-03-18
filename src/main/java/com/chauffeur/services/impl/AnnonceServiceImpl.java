@@ -60,7 +60,7 @@ public class AnnonceServiceImpl implements AnnonceService {
         annonceDtoResult.setReference(annonceDto.getReference());
         annonceDtoResult.setLibelle(annonceDto.getLibelle());
         annonceDtoResult.setTime(annonceDto.getTime());
-        annonceDtoResult.setAnneeExperience(annonceDto.getAnneeExperience());
+        annonceDtoResult.setExperience(annonceDto.getExperience());
         annonceDtoResult.setTypeContrat(annonceDto.getTypeContrat());
         annonceDtoResult.setSelected(annonceDto.isSelected());
         annonceDtoResult.setDescription(annonceDto.getDescription());

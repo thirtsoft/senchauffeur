@@ -49,7 +49,7 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	
 	List<Annonce> findTop5ByOrderByIdDesc();
 	
-	@Query("select c from Annonce c where c.status = 'VALIDEE' order by id Desc limit 6 ")
+	@Query("select c from Annonce c where c.status = 'VALIDEE' order by id Desc")
 	List<Annonce> findTop6ValidatedByOrderByIdDesc();
 	
 	@Query("select c from Annonce c where c.status = 'ENCOURS' order by id Desc ")

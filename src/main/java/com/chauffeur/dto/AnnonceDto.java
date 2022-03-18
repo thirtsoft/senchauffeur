@@ -30,7 +30,7 @@ public class AnnonceDto {
 	
 	private String time;
 	
-	private String anneeExperience;
+	private String experience;
 	
 	private String typeContrat;
 	
@@ -67,7 +67,7 @@ public class AnnonceDto {
 				.salaire(annonce.getSalaire())
 				.emailPoste(annonce.getEmailPoste())
 				.time(annonce.getTime())
-				.anneeExperience(annonce.getAnneeExperience())
+				.experience(annonce.getExperience())
 				.typeContrat(annonce.getTypeContrat())
 				.selected(annonce.isSelected())
 				.status(annonce.getStatus())
@@ -95,7 +95,7 @@ public class AnnonceDto {
 		annonce.setSalaire(annonceDto.getSalaire());
 		annonce.setTime(annonceDto.getTime());
 		annonce.setEmailPoste(annonceDto.getEmailPoste());
-		annonce.setAnneeExperience(annonce.getAnneeExperience());
+		annonce.setExperience(annonce.getExperience());
 		annonce.setTypeContrat(annonceDto.getTypeContrat());
 		annonce.setSelected(annonceDto.isSelected());
 		annonce.setDescription(annonceDto.getDescription());
