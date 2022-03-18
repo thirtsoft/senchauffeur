@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,6 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { AccueilComponent } from './layouts/accueil/accueil.component';
 import { LocalityComponent } from './candidate/locality/locality.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -36,6 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     SharedModule,
     NgbModule,
+    ToastrModule.forRoot(),
 
 
 

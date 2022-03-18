@@ -23,7 +23,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '..//shared/shared.module';
 
 import { CustomerRoutingModule } from './customer-routing.module';
-import { DataTablesModule } from 'angular-datatables';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
 
@@ -126,7 +125,6 @@ import { Top3RatingToChauffeurComponent } from './job/rating/top3-rating-to-chau
     MatSnackBarModule,
     MatCardModule,
     MatExpansionModule,
-    DataTablesModule,
 
     MatPaginatorModule,
     Ng2SearchPipeModule,

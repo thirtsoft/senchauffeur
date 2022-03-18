@@ -72,6 +72,7 @@ import { ListNumberOfChauffeurByMonthComponent } from './chart/list-number-of-ch
 import { ViewAnnonceComponent } from './annonce/view-annonce/view-annonce.component';
 import { UpdatePhotoChauffeurComponent } from './chauffeur/update-photo-chauffeur/update-photo-chauffeur.component';
 import { UpdateCvChauffeurComponent } from './chauffeur/update-cv-chauffeur/update-cv-chauffeur.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 @NgModule({
@@ -120,7 +121,8 @@ import { UpdateCvChauffeurComponent } from './chauffeur/update-cv-chauffeur/upda
     ListNumberOfChauffeurByMonthComponent,
     ViewAnnonceComponent,
     UpdatePhotoChauffeurComponent,
-    UpdateCvChauffeurComponent
+    UpdateCvChauffeurComponent,
+    ChartComponent
   ],
   imports: [
     CommonModule,

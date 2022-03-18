@@ -4,7 +4,7 @@
       </button>
     <div class="topbar-left">
         <div class="text-center">
-            <a routerLink="/admin/accueil/dashborad" class="logo"><i class="mdi mdi-assistant"></i> SenChauffeur</a>
+            <a routerLink="/admin/accueil/dashboard" class="logo"><i class="mdi mdi-assistant"></i> SenChauffeur</a>
             <!-- <a href="index.html" class="logo"><img src="assets/accueil/images/logo.png" height="24" alt="logo"></a> -->
         </div>
     </div>
@@ -16,7 +16,7 @@
                 <!--    <li class="menu-title">Main</li> -->
 
                 <li>
-                    <a routerLink="/admin/accueil/dashborad" class="waves-effect">
+                    <a routerLink="/admin/accueil/dashboard" class="waves-effect">
                         <i class="mdi mdi-airplay"></i>
                         <span> Dashboard <!-- <span class="badge badge-pill badge-primary float-right">7</span> --></span>
                     </a>
@@ -40,12 +40,28 @@
                   </a>
               </li>
 
+              <li>
+                <a routerLink="/admin/accueil/annonceValides" class="waves-effect">
+                    <i class="mdi mdi-calendar-clock"></i><span> Annonces-Validées </span>
+                </a>
+            </li>
+            <li>
+              <a routerLink="/admin/accueil/annonceRejetes" class="waves-effect">
+                  <i class="mdi mdi-calendar-clock"></i><span> Annonces-Rejetés </span>
+              </a>
+          </li>
 
                 <li>
                     <a routerLink="/admin/accueil/annonces" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Annonces </span>
                     </a>
                 </li>
+
+                <li>
+                  <a routerLink="/admin/accueil/graphes" class="waves-effect">
+                      <i class="mdi mdi-calendar-clock"></i><span> Graphiques </span>
+                  </a>
+              </li>
 
                 <li>
                     <a routerLink="/admin/accueil/tarifs" class="waves-effect">
@@ -92,7 +108,7 @@
                       <i class="mdi mdi-calendar-clock"></i><span> Histo Annonces </span>
                   </a>
                 </li>
-               
+
                 <li>
                   <a routerLink="/admin/accueil/historiqueLogins" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Historiques Logins </span>
@@ -111,7 +127,7 @@
                   </a>
                 </li>
 
-               
+
 
 
                 <!--      <li class="has_sub">

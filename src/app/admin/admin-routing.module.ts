@@ -1,3 +1,7 @@
+import { ChartComponent } from './chart/chart.component';
+import { ListValidatedAnnonceComponent } from './annonce/list-validated-annonce/list-validated-annonce.component';
+import { ListPendingAnnonceComponent } from './annonce/list-pending-annonce/list-pending-annonce.component';
+import { ViewAnnonceComponent } from './annonce/view-annonce/view-annonce.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -33,6 +37,7 @@ import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ViewChauffeurComponent } from './chauffeur/view-chauffeur/view-chauffeur.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AnnonceByStatusEncoursComponent } from './annonce/annonce-by-status-encours/annonce-by-status-encours.component';
+import { ListRejectedAnnonceComponent } from './annonce/list-rejected-annonce/list-rejected-annonce.component';
 
 
 const routes: Routes = [
@@ -111,8 +116,24 @@ const routes: Routes = [
         component: CreateAnnonceComponent
       },
       {
+        path: 'viewAnnonce/:id',
+        component: ViewAnnonceComponent
+      },
+      {
         path: 'annonceEncours',
-        component: AnnonceByStatusEncoursComponent
+        component: ListPendingAnnonceComponent
+      },
+      {
+        path: 'annonceValides',
+        component: ListValidatedAnnonceComponent
+      },
+      {
+        path: 'annonceRejetes',
+        component: ListRejectedAnnonceComponent
+      },
+      {
+        path: 'graphes',
+        component: ChartComponent
       },
       {
         path: 'tarifs',
@@ -194,10 +215,10 @@ const routes: Routes = [
         path: 'utilisateur/:id',
         component: CreateUtilisateurComponent
       },
-    
+
     ]
   },
-  
+
 ];
 
 @NgModule({
