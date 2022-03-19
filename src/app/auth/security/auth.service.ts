@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Login } from './login';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
@@ -8,6 +7,11 @@ import { ProfileInfo, UpdateUsernameInfo, UpdatePasswordInfo, UpdateProfilInfo }
 import { Observable, throwError } from 'rxjs';
 import { Register } from './register';
 import { catchError, map } from 'rxjs/operators';
+
+import { UtilisateurDto } from './../../models/utilisateur';
+import { Login } from './login';
+
+import { environment } from './../../../environments/environment';
 
 const AUTH_API = 'http://localhost:8081/sen-chauffeurs/v1/auth/';
 //const AUTH_API = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/';
@@ -22,23 +26,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  
-  public loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
+
+  apiServerUrl = environment.apiBaseUrl;
+
+  loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
 //  public loginUrl = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/authenticated';
-  public baseUrl = 'http://localhost:8081/api/auth';
-  public baseUrl_1 = 'http://localhost:8081/alAmine';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
-  listData: ProfileInfo;
   listDataUsername: UpdateUsernameInfo;
-
-  islogin = false ;
+  listData: UtilisateurDto;
+  listDataProfil: ProfileInfo;
 
   profileInfo: ProfileInfo = {} as ProfileInfo;
+
   userId;
   user;
+  islogin = false ;
   currentUser = {};
+
 
   constructor(private http: HttpClient,
               public tokenService: TokenStorageService,
@@ -59,7 +65,7 @@ export class AuthService {
   }
 
   getUserProfile(id): Observable<any> {
-    return this.http.get(`${this.baseUrl_1}/utilisateurs/${id}`, httpOptions).pipe(
+    return this.http.get(`${this.apiServerUrl}/utilisateurs/findById/${id}`, httpOptions).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -68,14 +74,14 @@ export class AuthService {
   }
 
   getUserByUsername(username: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl + `/getUserByUsername/${username}`);
+    return this.http.get<any>(this.apiServerUrl + `/getUserByUsername/${username}`);
   }
   getUserById(id: any) {
-    return this.http.get(`${this.baseUrl_1}/utilisateurs/${id}`);
+    return this.http.get(`${this.apiServerUrl}/utilisateurs/findById/${id}`);
   }
 
   updateProfil(item: UpdateProfilInfo): Observable<UpdateProfilInfo> {
-    return this.http.patch<UpdateProfilInfo>("//localhost:8081/alAmine/updateProfil", {
+    return this.http.patch<UpdateProfilInfo>(`${this.apiServerUrl}/utilisateurs/updateProfil`, {
       name: item.name,
       username: item.username,
       email: item.email,
@@ -86,7 +92,7 @@ export class AuthService {
   }
 
   updateUsername(item: UpdateUsernameInfo): Observable<UpdateUsernameInfo> {
-    return this.http.patch<UpdateUsernameInfo>("//localhost:8081/alAmine/updateUsername", {
+    return this.http.patch<UpdateUsernameInfo>(`${this.apiServerUrl}/utilisateurs/updateUsernameOfUserByUsername`, {
       username: item.username,
       newUsername: item.newUsername
     }, httpOptions);
@@ -94,7 +100,7 @@ export class AuthService {
   }
 
   updatePassword(item: UpdatePasswordInfo): Observable<UpdatePasswordInfo> {
-    return this.http.patch<UpdatePasswordInfo>("//localhost:8081/alAmine/updatePassword", {
+    return this.http.patch<UpdatePasswordInfo>(`${this.apiServerUrl}/utilisateurs/updatePasswordByUsername`, {
       username: item.username,
       oldPassword: item.oldPassword,
       newPassword: item.newPassword

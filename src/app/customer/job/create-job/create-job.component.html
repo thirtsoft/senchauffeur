@@ -426,9 +426,9 @@
                   aria-labelledby="dashboard-nav"
                 >
                   <h4>Dashboard</h4>
-                 
+
                 </div>
-                
+
                 <div
                   class="tab-pane fade"
                   id="payment-tab"
@@ -459,7 +459,7 @@
                         Reference Obligatoire
                       </span>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Libellé Post</label>
@@ -483,7 +483,7 @@
                           libelle Obligatoire
                         </span>
                       </div>
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Email Post</label>
                         <input
@@ -507,7 +507,7 @@
                         </span>
                       </div>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Permis</label>
@@ -532,7 +532,7 @@
                           </select>
                         </div>
                       </div>
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Ville Poste</label>
                         <div class="form-group">
@@ -580,7 +580,7 @@
                           lieuPoste est obligatoire
                         </span>
                       </div>
-                
+
                       <!--  <div class="form-group">
                             <label>Recruteur</label>
                             <select name="recruteurDto" [(ngModel)]="addEditAnnonceDTO.recruteurDto" class="form-control">
@@ -612,7 +612,7 @@
                         </span>
                       </div>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Disponibilité</label>
@@ -635,31 +635,31 @@
                           time est obligatoire
                         </span>
                       </div>
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Nombre Années Experience</label>
                         <input
                           type="text"
                           class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.anneeExperience"
-                          name="anneeExperience"
-                          id="anneeExperience"
-                          #anneeExperience="ngModel"
+                          [(ngModel)]="addEditAnnonceDTO.experience"
+                          name="experience"
+                          id="experience"
+                          #experience="ngModel"
                           placeholder="Nombre d'année d'expérience pour ce poste"
                           required
                         />
                         <span
                           class="text-danger"
                           *ngIf="
-                            (anneeExperience.touched || addJobForm.submitted) &&
-                            anneeExperience.errors?.required
+                            (experience.touched || addJobForm.submitted) &&
+                            experience.errors?.required
                           "
                         >
-                          anneeExperience est obligatoire
+                        experience est obligatoire
                         </span>
                       </div>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Type de Contrat </label>
@@ -686,14 +686,14 @@
                           typeContrat est obligatoire
                         </span>
                       </div>
-                
+
                       <!--  <div class="form-group col-md-6 col-sm-12">
                           <label>Logo Entreprise (optional)</label>
                           <div class="custom-file">
                               <input type="file" placeholder="choisir logo entreprise" class="site-button" id="customFile">
                           </div>
                        </div> -->
-                
+
                       <div class="form-group">
                         <label for="">Date cloture</label>
                         <form class="form-inline">
@@ -723,12 +723,12 @@
                               >
                                 dateCloture est obligatoire
                               </span>
-                
+
                               <button
                                 class="btn btn-outline-secondary calendar"
                                 (click)="d.toggle()"
                               ></button>
-                
+
                               <ng-template #footerTemplate>
                                 <hr class="my-0" />
                                 <button
@@ -749,7 +749,7 @@
                         </form>
                       </div>
                     </div>
-                
+
                     <div class="form-group">
                       <label>Description</label>
                       <editor
@@ -764,7 +764,7 @@
                               placeholder="description du poste"
                           ></textarea> -->
                     </div>
-                
+
                     <div class="form-group">
                       <button
                         *ngIf="paramId"
@@ -782,9 +782,9 @@
                     </div>
                   </form>
                 </div>
-              
+
               </div>
             </div>
 
- 
+
 <!-- </div> -->

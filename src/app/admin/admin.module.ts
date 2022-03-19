@@ -73,6 +73,9 @@ import { ViewAnnonceComponent } from './annonce/view-annonce/view-annonce.compon
 import { UpdatePhotoChauffeurComponent } from './chauffeur/update-photo-chauffeur/update-photo-chauffeur.component';
 import { UpdateCvChauffeurComponent } from './chauffeur/update-cv-chauffeur/update-cv-chauffeur.component';
 import { ChartComponent } from './chart/chart.component';
+import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
+import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
+import { UpdateUsernameComponent } from './authentication/update-username/update-username.component';
 
 
 @NgModule({
@@ -122,7 +125,10 @@ import { ChartComponent } from './chart/chart.component';
     ViewAnnonceComponent,
     UpdatePhotoChauffeurComponent,
     UpdateCvChauffeurComponent,
-    ChartComponent
+    ChartComponent,
+    UpdatePasswordComponent,
+    UpdateProfilComponent,
+    UpdateUsernameComponent
   ],
   imports: [
     CommonModule,
@@ -159,7 +165,9 @@ import { ChartComponent } from './chart/chart.component';
     CreateAnnonceComponent, UpdateStatusOfAnnonceComponent,
     UpdateUsernameInfo, UpdatePhotoChauffeurComponent,
     DashboardComponent, UpdateCvChauffeurComponent,
-    ProfilComponent
+    ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent,
+    UpdatePasswordComponent,
+    
   ]
 })
 export class AdminModule { }

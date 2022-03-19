@@ -1,3 +1,6 @@
+import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
+import { ProfilComponent } from './authentication/profil/profil.component';
+import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
 import { ChartComponent } from './chart/chart.component';
 import { ListValidatedAnnonceComponent } from './annonce/list-validated-annonce/list-validated-annonce.component';
 import { ListPendingAnnonceComponent } from './annonce/list-pending-annonce/list-pending-annonce.component';
@@ -199,9 +202,18 @@ const routes: Routes = [
         path: 'historiqueAnnonces',
         component: ListHistoriqueAnnonceComponent
       },
+
       {
-        path: 'historiqueLogins',
-        component: ListHistoriqueLoginComponent
+        path : 'profile/:id',
+        component : ProfilComponent
+      },
+      {
+        path : 'profile/:id',
+        component : UpdateProfilComponent
+      },
+      {
+        path : 'profile/:id',
+        component : UpdatePasswordComponent
       },
       {
         path: 'utilisateurs',
@@ -212,8 +224,12 @@ const routes: Routes = [
         component: CreateUtilisateurComponent
       },
       {
-        path: 'utilisateur/:id',
+        path:'utilisateur/:id',
         component: CreateUtilisateurComponent
+      },
+      {
+        path: 'historiqueLogins',
+        component: ListHistoriqueLoginComponent
       },
 
     ]

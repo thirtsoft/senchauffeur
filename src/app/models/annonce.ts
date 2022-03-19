@@ -13,7 +13,7 @@ export class Annonce {
   emailPoste: string;
   time: string;
   status: string;
-  anneeExperience: string;
+  experience: string;
   typeContrat: string;
   description: string;
   dateCandidature: Date;
@@ -36,7 +36,7 @@ export class AnnonceDto {
   emailPoste: string;
   time: string;
   status: string;
-  anneeExperience: string;
+  experience: string;
   typeContrat: string;
   description: string;
   dateCandidature: Date;

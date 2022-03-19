@@ -1,3 +1,4 @@
+import { NotationDto } from './../models/notation';
 import { AnnonceDto } from './../models/annonce';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -49,6 +50,14 @@ export class DashboardService {
 
   public countNumberOfRecruteurs(): Observable<any> {
     return this.http.get(`${this.apiServerUrl}/recruteurs/NumbersOfRecruteurs`);
+  }
+
+  public countNumberOfNotification(): Observable<NotationDto[]> {
+    return this.http.get<NotationDto[]>(`${this.apiServerUrl}/notifications/countNumberOfNotification`);
+  }
+
+  public countNumberOfNotificationByProductId(noteId: string): Observable<NotationDto> {
+    return this.http.get<NotationDto>(`${this.apiServerUrl}/notifications/countNumberOfNotificationByProductId/${noteId}`);
   }
 
 }
