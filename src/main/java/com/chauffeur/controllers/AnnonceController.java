@@ -58,8 +58,7 @@ public class AnnonceController implements AnnonceApi {
 	    historiqueAnnonceService.save(historiqueAnnonceDto);
 	    
 	    return new ResponseEntity<>(newAnnonceDto, HttpStatus.CREATED);
-		
-	//	return ResponseEntity.ok(annonceService.save(annonceDto));
+
 	}
 	
 	@Override
@@ -81,8 +80,7 @@ public class AnnonceController implements AnnonceApi {
 	    historiqueAnnonceDto.setAction("ANNONCE AJOUTEE");
 	    historiqueAnnonceDto.setCreatedDate(new Date());
 	    historiqueAnnonceService.save(historiqueAnnonceDto);
-	    
-        
+	          
         return new ResponseEntity<>(annonceDtoResult, HttpStatus.CREATED);
 
 	}

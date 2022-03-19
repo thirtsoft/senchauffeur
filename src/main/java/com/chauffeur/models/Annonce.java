@@ -41,31 +41,31 @@ public class Annonce implements Serializable {
 	@Column(name = "reference", length = 50)
 	private String reference;
 	
-	@Column(name = "libelle", length = 100)
+	@Column(name = "libelle", length = 200)
 	private String libelle;
 	
-	@Column(name = "lieuPoste", length = 90)
+	@Column(name = "lieuPoste", length = 150)
 	private String lieuPoste;
 
-	@Column(name = "salaire", length = 90)
+	@Column(name = "salaire", length = 150)
 	private String salaire;
 	
-	@Column(name = "emailPoste", length = 100)
+	@Column(name = "emailPoste", length = 150)
 	private String emailPoste;
 	
-	@Column(name = "time", length = 100)
+	@Column(name = "time", length = 200)
 	private String time;
 	
-	@Column(name = "experience", length = 170)
+	@Column(name = "experience", length = 150)
 	private String experience;
 	
 	@Column(name = "typeContrat", length = 100)
 	private String typeContrat;
 	
-	@Column(name = "isSelected")
+	@Column(name = "isSelected", length = 5)
 	private boolean selected;
 	
-	@Column(name = "status")
+	@Column(name = "status", length = 60)
 	private String status;
 	
 	@Column(name = "description")
