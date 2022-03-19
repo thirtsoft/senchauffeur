@@ -1,3 +1,9 @@
+import { UtilisateurService } from './../../../services/utilisateur.service';
+import { UtilisateurDto } from './../../../models/utilisateur';
+import { AddressService } from './../../../services/address.service';
+import { PermisService } from './../../../services/permis.service';
+import { AddresseDto } from './../../../models/address';
+import { PermisDto } from './../../../models/permis';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { AnnonceService } from './../../../services/annonce.service';
 import { AnnonceDto } from './../../../models/annonce';
@@ -12,7 +18,9 @@ import { Component, OnInit } from '@angular/core';
 export class ViewAnnonceComponent implements OnInit {
 
   addEditAnnonceDTO: AnnonceDto = new AnnonceDto();
- // scategoryListDTO: ScategoryDto[];
+  listPermisDTOs: PermisDto[];
+  listAddressDTOs: AddresseDto[];
+  listUtilisateurDTOs: UtilisateurDto[];
 
   data;
   paramId :any = 0;
@@ -20,6 +28,9 @@ export class ViewAnnonceComponent implements OnInit {
   mySubscription: any;
 
   constructor(private crudApi: AnnonceService,
+              private permisService: PermisService,
+              private addressService: AddressService,
+              private userService: UtilisateurService,
               private router: Router,
               private actRoute: ActivatedRoute,
   ){
@@ -41,8 +52,15 @@ export class ViewAnnonceComponent implements OnInit {
       this.getAnnonceDTOById(this.paramId);
     }
 
-  }
+    this.getListPermisDTOs();
 
+    this.crudApi.getUserId();
+
+    this.getListAddressesDTOs();
+
+    this.getListUtilisateurDTOs();
+
+  }
 
   getAnnonceDTOById(id: number) {
     console.log('getOne');
@@ -56,6 +74,36 @@ export class ViewAnnonceComponent implements OnInit {
       }
     );
 
+  }
+
+  getListPermisDTOs() {
+    this.permisService.getPermisDTOs().subscribe(
+      (response: PermisDto[]) => {
+        this.listPermisDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  getListAddressesDTOs() {
+    this.addressService.getAddresseDtos().subscribe(
+      (response: AddresseDto[]) => {
+        this.listAddressDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  getListUtilisateurDTOs() {
+    this.userService.getUtilisateurDTOs().subscribe(
+      (response: UtilisateurDto[]) => {
+        this.listUtilisateurDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
   }
 
 

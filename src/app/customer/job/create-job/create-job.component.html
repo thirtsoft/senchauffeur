@@ -435,7 +435,8 @@
                   role="tabpanel"
                   aria-labelledby="payment-nav"
                 >
-                  <h4>Ajouter/Modifier Annonce</h4>
+                  <h4 *ngIf="!paramId">Ajouter Annonce</h4>
+                   <h4 *ngIf="paramId">Modifier Annonce</h4>
                   <form #addJobForm="ngForm" name="form">
                     <div class="form-group">
                       <label>Reference</label>
@@ -485,7 +486,7 @@
                       </div>
 
                       <div class="form-group col-md-6 col-sm-12">
-                        <label>Email Post</label>
+                        <label>Email Candidature</label>
                         <input
                           type="text"
                           placeholder="Email pour le poste"

@@ -16,35 +16,67 @@
       </div>
 
       <div class="form-group">
-        <label>Designation</label>
+        <label>Libelle</label>
         <input
           type="text"
           class="form-control"
           [(ngModel)]="addEditAnnonceDTO.libelle"
-          name="designation"
-          id="designation"
-          #designation="ngModel"
+          name="libelle"
+          id="libelle"
+          #libelle="ngModel"
           readonly
         />
       </div>
 
       <div class="form-group">
-        <label>Recruteur</label>
-        <input
-          type="text"
-          class="form-control"
+        <label>Annonceur</label>
+        <select
+          name="utilisateurDto"
           [(ngModel)]="addEditAnnonceDTO.utilisateurDto"
-          name="designation"
-          id="designation"
-          #designation="ngModel"
+          class="form-control"
+          disabled
+        >
+          <option
+          
+            *ngFor="let userDTO of listUtilisateurDTOs"
+            [ngValue]="
+              userDTO.id == addEditAnnonceDTO.utilisateurDto?.id
+                ? addEditAnnonceDTO.utilisateurDto
+                : userDTO
+            "
+          >
+            {{ userDTO.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Permis</label>
+        <select
+        disabled
+          name="permisDto"
+          [(ngModel)]="addEditAnnonceDTO.permisDto"
+          class="form-control"
           readonly
-        />
+        >
+          <option
+            
+            *ngFor="let permis of listPermisDTOs"
+            [ngValue]="
+              permis.id == addEditAnnonceDTO.permisDto?.id
+                ? addEditAnnonceDTO.permisDto
+                : permis
+            "
+          >
+            {{ permis.designation }}
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
         <label>Salaire </label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           [(ngModel)]="addEditAnnonceDTO.salaire"
           name="salaire"
@@ -53,6 +85,32 @@
           readonly
         />
       </div>
+
+      <div class="form-group">
+        <label>date Publication</label>
+        <input
+          type="datetime"
+          class="form-control"
+          name="dateCandidature"
+          id="dateCandidature "
+          [(ngModel)]="addEditAnnonceDTO.dateCandidature"
+          #dateCandidature="ngModel"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label>status</label>
+        <input
+          type="text"
+          [(ngModel)]="addEditAnnonceDTO.status"
+          #status="ngModel"
+          name="status "
+          class="form-control"
+          readonly
+        />
+      </div>
+
     </div>
 
     <div class="col-md-6">
@@ -82,49 +140,86 @@
         />
       </div>
 
-      <div class="row">
-        <div class="form-group">
-          <label>Expérience</label>
-          <input
-            class="form-control"
-            type="text"
-            [(ngModel)]="addEditAnnonceDTO.experience"
-            name="experience"
-            id="experience"
-            #experience="ngModel"
-            readonly
-          />
-        </div>
-        &nbsp;&nbsp;&nbsp;
-
-        <div class="form-group">
-          <label>type Contrat</label>
-          <input
-            type="text"
-            [(ngModel)]="addEditAnnonceDTO.typeContrat"
-            name="typeContrat"
-            id="typeContrat"
-            #typeContrat="ngModel"
-            class="form-control"
-            readonly
-          />
-        </div>
+      <div class="form-group">
+        <label>Ville Poste</label>
+        <select
+          name="addresseDto"
+          [(ngModel)]="addEditAnnonceDTO.addresseDto"
+          class="form-control"
+          disabled
+        >
+          <option
+          
+            *ngFor="let addDTO of listAddressDTOs"
+            [ngValue]="
+            addDTO.id == addEditAnnonceDTO.addresseDto?.id
+                ? addEditAnnonceDTO.addresseDto
+                : addDTO
+            "
+          >
+            {{ addDTO.ville }}
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label>status</label>
+        <label>type Contrat</label>
         <input
           type="text"
-          [(ngModel)]="addEditAnnonceDTO.status"
-          name="status"
-          id="status"
-          #status="ngModel"
+          [(ngModel)]="addEditAnnonceDTO.typeContrat"
+          name="typeContrat"
+          id="typeContrat"
+          #typeContrat="ngModel"
           class="form-control"
           readonly
         />
       </div>
+
+      <div class="form-group">
+        <label>Expérience</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="addEditAnnonceDTO.experience"
+          name="experience"
+          id="experience"
+          #experience="ngModel"
+          readonly
+        />
+      </div>
+
+     
+
+      <div class="form-group">
+        <label>date Cloture</label>
+        <input
+          type="text "
+          class="form-control"
+          name="dateCloture"
+          id="dateCloture "
+          [(ngModel)]="addEditAnnonceDTO.dateCloture"
+          #dateCloture="ngModel"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Entreprise</label>
+        <input
+          type="text "
+          class="form-control"
+          name="dateCloture"
+          id="dateCloture "
+          [(ngModel)]="addEditAnnonceDTO.dateCloture"
+          #dateCloture="ngModel"
+          readonly
+        />
+      </div>
+
+      
     </div>
-    <div class="col-md-12">
+
+    <div class="col-sm-12">
       <div class="form-group">
         <label>Description</label>
         <textarea
@@ -141,25 +236,13 @@
         </textarea>
       </div>
     </div>
-    <div class="col-md-12">
-      <div class="form-group">
-        <label>date Cloture</label>
-        <input
-          type="text "
-          class="form-control"
-          name="dateCloture"
-          id="dateCloture "
-          [(ngModel)]="addEditAnnonceDTO.dateCloture"
-          #dateCloture="ngModel"
-          readonly
-        />
-      </div>
-    </div>
+   
+
   </div>
 
   <div class="form-group">
-    <button (click)="goBack()" type="button" class="btn btn-lg btn-danger ml-1">
-      <i class="fa fa-angle-right"></i> Retour
+    <button (click)="goBack()" type="button" class="btn btn-lg btn-block btn-danger">
+      <i class="fa fa-angle-left"></i> Retour
     </button>
   </div>
 </form>

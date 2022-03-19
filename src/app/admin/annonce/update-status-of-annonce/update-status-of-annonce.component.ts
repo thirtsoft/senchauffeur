@@ -56,17 +56,13 @@ export class UpdateStatusOfAnnonceComponent implements OnInit {
     this.crudApi.updateStatusOfAnnonceDTO(this.crudApi.formData.value.id,this.crudApi.formData.value.status).
     subscribe( data => {
       this.dialogRef.close();
-      this.toastr.warning('avec succès','Status Commande Modifié', {
+      this.toastr.warning('avec succès','Status Annonce Modifié', {
         timeOut: 1500,
         positionClass: 'toast-top-right',
       });
       this.router.navigateByUrl("admin/accueil/annonces").then(() => {
         window.location.reload();
       });
-     /*  window.alert('status commande modifié avec succès');
-      this.toastr.success("Status Appro Modifier avec Succès");
-      this.getListCommandeDTOs();
-      this.router.navigate(['/admin/commandes']); */
     });
   }
 

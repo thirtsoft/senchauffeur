@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -41,6 +42,7 @@ export class CreateJobComponent implements OnInit {
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
               private addressService: AddressService,
+              private toastr: ToastrService,
               private actRoute: ActivatedRoute,
               private router: Router,
               private calendar: NgbCalendar
@@ -111,8 +113,12 @@ export class CreateJobComponent implements OnInit {
     console.log(this.addEditAnnonceDTO);
     this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
       (response: AnnonceDto) => {
-        alert("Job Ajouté avec success");
-    //    this.router.navigate(['/jobs']);
+        this.toastr.warning('avec succès','Annonce Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        window.location.reload();
+      //  alert("Job Ajouté avec success");
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -124,8 +130,12 @@ export class CreateJobComponent implements OnInit {
   onUpdateJob() {
     this.annonceService.updateAnnonceDTO(this.addEditAnnonceDTO.id, this.addEditAnnonceDTO).subscribe(
       (response: AnnonceDto) => {
-        alert("Job update avec success");
-     //   this.router.navigate(['/jobs']);
+        this.toastr.warning('avec succès','Annonce Modifiée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        window.location.reload();
+    //    alert("Job update avec success");
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -134,7 +144,7 @@ export class CreateJobComponent implements OnInit {
   }
 
   logout() {
-    
+
   }
 
 }

@@ -1,3 +1,6 @@
+import { VilleDto } from './../../../models/ville';
+import { AddresseDto } from './../../../models/address';
+import { AddressService } from './../../../services/address.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,6 +24,12 @@ export class CreateAnnonceComponent implements OnInit {
   annonceDTO: AnnonceDto = new AnnonceDto();
   listPermisData: PermisDto[];
   listRecruteurData: RecruteurDto[];
+  listVilleDTOs: VilleDto[];
+  listAddressDTOs: AddresseDto[];
+
+  listTypeContrats = ["Stage", "Sejour", "CDD", "CDI"];
+  listTypeExperiences = ["1ans", "2ans-5ans", "+5ans"];
+  listTypeDisponibilites = ["Immediate", "Temps Partial", "Temps Plein"];
 
   data;
   paramId :any = 0;
@@ -28,9 +37,9 @@ export class CreateAnnonceComponent implements OnInit {
 
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
+              private addressService: AddressService,
               private recruteurService: RecruteurService,
-
-//              private toastr: ToastrService,
+              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -56,7 +65,9 @@ export class CreateAnnonceComponent implements OnInit {
 
     this.annonceService.getUserId();
 
-    this.getListRecruteurDTOs();
+   /*  this.getListRecruteurDTOs(); */
+
+    this.getListAddressesDTOs();
 
   }
 
@@ -84,6 +95,16 @@ export class CreateAnnonceComponent implements OnInit {
     )
   }
 
+  getListAddressesDTOs() {
+    this.addressService.getAddresseDtos().subscribe(
+      (response: AddresseDto[]) => {
+        this.listAddressDTOs = response;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
   getListRecruteurDTOs() {
     this.recruteurService.getRecruteurDTOs().subscribe(
       (response: RecruteurDto[]) => {
@@ -94,21 +115,20 @@ export class CreateAnnonceComponent implements OnInit {
     )
   }
 
- /*  public onAddAnnonce() {
-    this.annonceService.addAnnonceDTO(this.annonceDTO).subscribe(
-      (response: AnnonceDto) => {
-        this.router.navigate(['/admin/accueil/annonces']);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  } */
-
   public onAddAnnonce() {
+    console.log("Data start");
+    console.log(this.annonceDTO);
+    console.log("Data USER");
+    console.log(this.annonceService.id);
     this.annonceService.addAnnonceDTOWithUser(this.annonceDTO, this.annonceService.id).subscribe(
       (response: AnnonceDto) => {
-        this.router.navigate(['/admin/accueil/annonces']);
+        this.toastr.success('avec succès','Annonce Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/accueil/annonceEncours").then(() => {
+    
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -119,13 +139,22 @@ export class CreateAnnonceComponent implements OnInit {
   public onUpdateAnnonce() {
     this.annonceService.updateAnnonceDTO(this.annonceDTO.id, this.annonceDTO).subscribe(
       (response: AnnonceDto) => {
-
-        this.router.navigate(['/admin/accueil/annonces']);
+        this.toastr.warning('avec succès','Annonce Modifiée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/accueil/annonceEncours").then(() => {
+    //      window.location.reload();
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  goBack() {
+    this.router.navigateByUrl("admin/accueil/annonces");
   }
 
 
