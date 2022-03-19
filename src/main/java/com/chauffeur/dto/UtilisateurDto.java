@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UtilisateurDto {
 	
-	 private long id;
+	 private Long id;
 
 	 private String name;
 
@@ -25,8 +25,6 @@ public class UtilisateurDto {
 	 private String mobile;
 
 	 private String email;
-	 
-	 private String photo;
 	 
 	 private String nomEntreprise;
 		
@@ -41,6 +39,8 @@ public class UtilisateurDto {
 	 private String information;
 
 	 private String password;
+	 
+	 private String photo = "avatar.jpg";
 
 	 private Set<RoleDto> roles = new HashSet<>();
 	 

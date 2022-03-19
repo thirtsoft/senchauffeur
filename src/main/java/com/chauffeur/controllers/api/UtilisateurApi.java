@@ -23,31 +23,31 @@ import static com.chauffeur.utils.Constants.APP_ROOT;
 public interface UtilisateurApi {
 	
 	@PostMapping(value = APP_ROOT + "/utilisateurs/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<UtilisateurDto> save(@RequestBody UtilisateurDto utilisateurDto);
-	
-	@PutMapping(value = APP_ROOT + "/utilisateurs/update/{idUtilisateur}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<UtilisateurDto> update(@PathVariable("idUtilisateur") Long id, @RequestBody UtilisateurDto utilisateurDto);
+    ResponseEntity<UtilisateurDto> save(@RequestBody UtilisateurDto utilisateurDto);
 
+    @GetMapping(value = APP_ROOT + "/utilisateurs/findById/{idUtilisateur}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<UtilisateurDto> getUtilisateurById(@PathVariable("idUtilisateur") Long id);
 
-	@GetMapping(value = APP_ROOT + "/utilisateurs/findById/{idUtilisateur}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<UtilisateurDto> getUtilisateurById(@PathVariable("idUtilisateur") Long id);
-	
-	@GetMapping(value = APP_ROOT + "/utilisateurs/searchUtilisateurByUsername", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/utilisateurs/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<UtilisateurDto>> getAllUtilisateurs();
+
+    @GetMapping(value = APP_ROOT + "/utilisateurs/searchAllUtilisateurOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<UtilisateurDto>> getAllUtilisateursOrderByIdDesc();
+
+    @GetMapping(value = APP_ROOT + "/utilisateurs/searchUtilisateurByUsername", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<UtilisateurDto> getUtilisateurByUsername(@RequestParam(value = "username") String username);
 
-	@GetMapping(value = APP_ROOT + "/utilisateurs/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<UtilisateurDto> getAllUtilisateurs();
-	
-	@GetMapping(value = APP_ROOT + "/utilisateurs/searchAllUtilisateurOrderByIdDesc", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<UtilisateurDto>> getAllUtilisateursOrderByIdDesc();
-	
-	@GetMapping(value = APP_ROOT + "/utilisateurs/avatar/{id}")
-	byte[] getPhoto(@PathVariable("id") Long id) throws Exception;
+    @GetMapping(value = APP_ROOT + "/utilisateurs/avatar/{id}")
+    byte[] getPhoto(@PathVariable("id") Long id) throws Exception;
 
-	@PostMapping(value = APP_ROOT + "/utilisateurs/uploadUserPhoto/{id}")
-	void uploadUserPhoto(MultipartFile file, @PathVariable("id") Long id) throws IOException;
-	
-	@PatchMapping(value = APP_ROOT + "/utilisateurs/updateUsernameOfUserByUsername")
+    @PostMapping(value = APP_ROOT + "/utilisateurs/uploadUserPhoto/{id}")
+    void uploadUserPhoto(MultipartFile file, @PathVariable("id") Long id) throws IOException;
+
+    @PutMapping(value = APP_ROOT + "/utilisateurs/update/{idUser}",
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<UtilisateurDto> updateUtilisateur(@PathVariable(value = "idUser") Long idUser, @RequestBody UtilisateurDto utilisateur);
+
+    @PatchMapping(value = APP_ROOT + "/utilisateurs/updateUsernameOfUserByUsername")
     ResponseEntity<Boolean> updateUsername(@RequestBody ObjectNode json);
 
     @PatchMapping(value = APP_ROOT + "/utilisateurs/updateUsernameOfUserById")
@@ -62,7 +62,7 @@ public interface UtilisateurApi {
     @PatchMapping(value = APP_ROOT + "/utilisateurs/updateCustomerProfileByUsername")
     ResponseEntity<Boolean> updateCustomerProfileByUsername(@RequestBody ObjectNode json);
 
-	@DeleteMapping(value = APP_ROOT + "/utilisateurs/delete/{idUtilisateur}")
-	void delete(@PathVariable("idUtilisateur") Long id);
+    @DeleteMapping(value = APP_ROOT + "/utilisateurs/delete/{idUtilisateur}")
+    void delete(@PathVariable("idUtilisateur") Long id);
 
 }

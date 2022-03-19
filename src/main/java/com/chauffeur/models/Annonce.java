@@ -78,13 +78,6 @@ public class Annonce implements Serializable {
 	@Column(name = "dateCloture", length = 150)
 	private Date dateCloture;
 
-	/*
-	@Enumerated(EnumType.STRING)
-    @NaturalId
-    @Column(length = 90)
-    private StatusAnnonce statusAnnonce;
-	*/
-
 //	@ManyToOne(cascade = CascadeType.PERSIST)
 	@ManyToOne
 	@JoinColumn(name = "permId")

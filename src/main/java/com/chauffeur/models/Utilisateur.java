@@ -29,9 +29,7 @@ public class Utilisateur implements Serializable {
 
     @Column(name = "mobile", length = 60)
     private String mobile;
-    
-    private String photo;
-    
+        
     @Column(name = "nomEntreprise", length = 90)
 	private String nomEntreprise;
 	
@@ -56,6 +54,9 @@ public class Utilisateur implements Serializable {
 
     @Column(name = "password", length = 70)
     private String password;
+    
+    private String photo = "avatar.jpg";
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",

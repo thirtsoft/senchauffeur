@@ -1,28 +1,30 @@
 package com.chauffeur.controllers;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-
-import javax.servlet.ServletContext;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-//import org.apache.commons.io.FileUtils;
-//import org.apache.commons.io.FilenameUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.chauffeur.controllers.api.UtilisateurApi;
 import com.chauffeur.dto.UtilisateurDto;
 import com.chauffeur.services.UtilisateurService;
+
+import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -43,7 +45,7 @@ public class UtilisateurController implements UtilisateurApi {
 	}
 	
 	@Override
-	public ResponseEntity<UtilisateurDto> update(Long id, UtilisateurDto utilisateurDto) {
+	public ResponseEntity<UtilisateurDto> updateUtilisateur(Long id, UtilisateurDto utilisateurDto) {
 		utilisateurDto.setId(id);
 		return ResponseEntity.ok(utilisateurService.save(utilisateurDto));
 	}
@@ -54,8 +56,9 @@ public class UtilisateurController implements UtilisateurApi {
 	}
 
 	@Override
-	public List<UtilisateurDto> getAllUtilisateurs() {
-		return utilisateurService.findAll();
+	public ResponseEntity<List<UtilisateurDto>> getAllUtilisateurs() {
+		 List<UtilisateurDto> utilisateurDtoList = utilisateurService.findAll();
+	        return new ResponseEntity<>(utilisateurDtoList, HttpStatus.OK);
 	}
 	
 	@Override
@@ -183,13 +186,13 @@ public class UtilisateurController implements UtilisateurApi {
 
     @Override
     public void uploadUserPhoto(MultipartFile file, Long id) throws IOException {
-        UtilisateurDto utilisateurDto = utilisateurService.findById(id);
+    	UtilisateurDto utilisateurDto = utilisateurService.findById(id);
         String filename = file.getOriginalFilename();
-   //     String newFileName = FilenameUtils.getBaseName(filename) + "." + FilenameUtils.getExtension(filename);
-   //     File serverFile = new File(context.getRealPath("/Images/" + File.separator + newFileName));
+        String newFileName = FilenameUtils.getBaseName(filename) + "." + FilenameUtils.getExtension(filename);
+        File serverFile = new File(context.getRealPath("/Images/" + File.separator + newFileName));
         try {
             System.out.println("Image");
-     //       FileUtils.writeByteArrayToFile(serverFile, file.getBytes());
+            FileUtils.writeByteArrayToFile(serverFile, file.getBytes());
 
             utilisateurDto.setPhoto(filename);
 
