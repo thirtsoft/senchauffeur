@@ -1,11 +1,12 @@
 <div class="container-fluid">
   <div class="row">
-    <h1>Nouveau Chaffeur</h1>
+    <h1 *ngIf="!paramId">Nouveau Chaffeur</h1>
+    <h1 *ngIf="paramId">Modifié Chaffeur</h1>
     <form #addChauffeurForm="ngForm" name="form">
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <label>FirstName</label>
+            <label>Prénom</label>
             <input
               type="text"
               class="form-control"
@@ -30,7 +31,7 @@
 
         <div class="col-sm-6">
           <div class="form-group">
-            <label>LastName</label>
+            <label>Nom</label>
             <input
               type="text"
               class="form-control"
@@ -85,31 +86,6 @@
 
         <div class="col-sm-6">
           <div class="form-group">
-            <label>Permis</label>
-            <div class="form-group">
-              <select
-                name="permisDto"
-                [(ngModel)]="formDataChauffeurDTO.permisDto"
-                class="form-control"
-                placeholder="Permis chauffeur"
-              >
-                <option
-                  *ngFor="let art of listPermisData"
-                  [ngValue]="
-                    art.id == formDataChauffeurDTO.permisDto?.id
-                      ? formDataChauffeurDTO.permisDto
-                      : art
-                  "
-                >
-                  {{ art.designation }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="form-group">
             <label>Localité</label>
             <div class="form-group">
               <select
@@ -135,26 +111,50 @@
 
         <div class="col-sm-6">
           <div class="form-group">
-            <label>addressActuel</label>
+            <label>Type de Chauffeur</label>
             <input
               type="text"
               class="form-control"
-              [(ngModel)]="formDataChauffeurDTO.addressActuel"
-              name="addressActuel"
-              id="addressActuel"
-              #addressActuel="ngModel"
-              placeholder="Address chauffeur"
+              [(ngModel)]="formDataChauffeurDTO.reference"
+              name="reference"
+              id="reference"
+              #reference="ngModel"
+              placeholder="Type chauffeur"
               required
             />
             <span
               class="text-danger"
               *ngIf="
-                (addressActuel.touched || addChauffeurForm.submitted) &&
-                addressActuel.errors?.required
+                (reference.touched || addChauffeurForm.submitted) &&
+                reference.errors?.required
               "
             >
-              addressActuel est obligatoire
+              type de chauffeur est obligatoire
             </span>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Permis</label>
+            <div class="form-group">
+              <select
+                name="permisDto"
+                [(ngModel)]="formDataChauffeurDTO.permisDto"
+                class="form-control"
+              >
+                <option
+                  *ngFor="let art of listPermisData"
+                  [ngValue]="
+                    art.id == formDataChauffeurDTO.permisDto?.id
+                      ? formDataChauffeurDTO.permisDto
+                      : art
+                  "
+                >
+                  {{ art.designation }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -239,7 +239,7 @@
           <div class="form-group">
             <label>pretention Salaire </label>
             <input
-              type="text"
+              type="number"
               placeholder="Prétention de salaire"
               class="form-control"
               [(ngModel)]="formDataChauffeurDTO.pretentionSalaire"
@@ -262,8 +262,78 @@
 
         <div class="col-sm-6">
           <div class="form-group">
-            <label>photo Chauffeur </label>
+            <label>Disponibilité </label>
             <input
+              type="text"
+              placeholder="Disponibité chauffeur"
+              class="form-control"
+              [(ngModel)]="formDataChauffeurDTO.disponibity"
+              name="disponibity"
+              id="disponibity"
+              #disponibity="ngModel"
+              required
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (disponibity.touched || addChauffeurForm.submitted) &&
+                disponibity.errors?.required
+              "
+            >
+              disponibité est obligatoire
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <label>Choisi </label>
+          <input
+            type="checkbox"
+            class="form-control"
+            [(ngModel)]="formDataChauffeurDTO.selected"
+            name="selected"
+            id="selected"
+            #selected="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (selected.touched || addChauffeurForm.submitted) &&
+              selected.errors?.required
+            "
+          >
+            choisi est obligatoire
+          </span>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>photo Chauffeur </label>
+            <img
+              height="90"
+              width="90"
+              class="img-circle"
+              src="{{
+                this.chauffeurService.apiServerUrl +
+                  '/chauffeurs/photoChauffeur/' +
+                  formDataChauffeurDTO.id
+              }}"
+              *ngIf="paramId"
+            />
+            <span *ngIf="!editPhoto">
+              <input type="file" (change)="onSelectPhotoFile($event)" />
+              <button
+                *ngIf="paramId"
+                class="btn btn-success btn-sm"
+                (click)="processForm()"
+              >
+                <span class="glyphicon glyphicon-upload"></span>
+                Enregistrer la photo
+              </button>
+              {{ progress }}
+            </span>
+            <!--  <input
               type="file"
               placeholder="choisir photo chauffeur"
               (change)="onSelectPhotoFile($event)"
@@ -274,7 +344,7 @@
               #photoChauffeur="ngModel"
               required
               class="form-control"
-            />
+            /> 
             <span
               class="text-danger"
               *ngIf="
@@ -283,14 +353,43 @@
               "
             >
               photoChauffeur est obligatoire
-            </span>
+            </span> -->
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="form-group">
-            <label>CV </label>
-            <input
+            <label>CV Chauffeur : </label> &nbsp;&nbsp;
+
+            {{ formDataChauffeurDTO?.cvChauffeur }} 
+            <a
+              href="{{
+                this.chauffeurService.apiServerUrl +
+                  '/chauffeurs/downloadContratFile/' +
+                  formDataChauffeurDTO.cvChauffeur
+              }}"
+              class="cv"
+              *ngIf="paramId"
+              >&nbsp;&nbsp;
+              <i
+                class="fa fa-download"
+                style="cursor: pointer; align-items: flex-end"
+              ></i
+              >&nbsp;&nbsp;
+            </a>
+            <span *ngIf="!editCv">
+              <input type="file" (change)="onSelectCvFile($event)" />
+              <button
+                *ngIf="paramId"
+                class="btn btn-success btn-sm"
+                (click)="processCvForm()"
+              >
+                <span class="glyphicon glyphicon-upload"></span>
+                Changer le cv
+              </button>
+              {{ progress }}
+            </span>
+            <!--  <input
               type="file"
               placeholder="choisir cv chauffeur"
               (change)="onSelectCvFile($event)"
@@ -309,7 +408,7 @@
               "
             >
               cvChauffeur est obligatoire
-            </span>
+            </span> -->
           </div>
         </div>
       </div>
@@ -317,8 +416,8 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <label>mobilite </label>
-            <input
+            <label>Mobilité </label>
+            <textarea
               type="text"
               placeholder="Mobilité chauffeur"
               class="form-control"
@@ -326,8 +425,11 @@
               name="mobilite"
               id="mobilite"
               #mobilite="ngModel"
+              cols="10"
+              rows="5"
               required
-            />
+            >
+            </textarea>
             <span
               class="text-danger"
               *ngIf="
@@ -342,24 +444,25 @@
       </div>
 
       <div class="form-group">
-        <!--  <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onAddChauffeur()"><i class="fa fa-database"></i> Submit</button>&nbsp; -->
         <button
           *ngIf="!paramId"
           type="submit"
           class="btn btn-success"
           (click)="onSaveChauffeurWithFiles()"
+          style="cursor: pointer"
         >
-          <i class="fa fa-database"></i> Submit</button
+          <i class="fa fa-database"></i> Enregistrer</button
         >&nbsp;
         <button
           *ngIf="paramId"
           class="btn btn-warning"
           (click)="onUpdateChauffeur()"
+          style="cursor: pointer"
         >
-          <i class="fa fa-database"></i>Update
+          <i class="fa fa-database"></i>Modifié
         </button>
-        <button type="button" class="btn btn-danger ml-1">
-          <i class="fa fa-close"></i> Close
+        <button type="button" class="btn btn-danger ml-1" (click)="goBack()">
+          <i class="fa fa-arrow-left"></i> Close
         </button>
       </div>
     </form>

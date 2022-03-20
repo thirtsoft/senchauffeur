@@ -55,8 +55,12 @@
                 <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
 
                 <td>
+                  <button class="btn btn-warning btn-sm" 
+                    [routerLink]="['/admin/accueil/annonce', annonceDTO.id]">
+                    <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
+
                   <button
-                  class="btn btn-warning btn-sm"
+                  class="btn btn-success btn-sm"
                   [routerLink]="['/admin/accueil/viewAnnonce', annonceDTO.id]"
                 >
                   <i class="fa fa-eye" aria-hidden="true"></i></button

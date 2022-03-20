@@ -81,9 +81,8 @@ export class ViewChauffeurComponent implements OnInit {
 
   }
 
-
-  onSelectCvFile(event){}
-
-  onSelectPhotoFile(event) {}
+  goBack() {
+    this.router.navigate(['/admin/accueil/chauffeurs']);
+  }
 
 }

@@ -3,12 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { PermisService } from './../../../services/permis.service';
 import { PermisDto } from './../../../models/permis';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ChauffeurService } from './../../../services/chauffeur.service';
 import { ChauffeurDto } from './../../../models/chauffeur';
 import { AddressService } from './../../../services/address.service';
 import { AddresseDto } from './../../../models/address';
+
+
 @Component({
   selector: 'app-create-chauffeur',
   templateUrl: './create-chauffeur.component.html',
@@ -20,17 +22,30 @@ export class CreateChauffeurComponent implements OnInit {
   listPermisData: PermisDto[];
   listAddressDTO: AddresseDto[];
 
-  chauffeurPhotoFile: any = File;
-  chauffeurCvFile: any = File;
+  chauffeurPhotoFile;
+  chauffeurCvFile;
 
   data;
   paramId :any = 0;
   mySubscription: any;
 
-  constructor(private chauffeurService: ChauffeurService,
-              private permisService: PermisService,
-              private addService: AddressService,
-           //   private toastr: ToastrService,
+  editPhoto: boolean;
+  editCv: boolean;
+  currentProfile: any;
+  selectedFiles;
+  progress: number;
+  currentPhotoFileUpload: any;
+  currentCvFileUpload: any;
+  currentTime: number = 0;
+  id;
+
+  userId;
+  img: boolean;
+
+  constructor(public chauffeurService: ChauffeurService,
+              public permisService: PermisService,
+              public addService: AddressService,
+              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -113,36 +128,126 @@ export class CreateChauffeurComponent implements OnInit {
       }
     );
   }
-
+/*
   onSelectPhotoFile(event) {
     const file = event.target.files[0];
     this.chauffeurPhotoFile = file;
-  }
+  }*/
 
+  /*
   onSelectCvFile(event) {
     const file = event.target.files[0];
     this.chauffeurCvFile = file;
   }
+  */
 
-   // Ajouter un produits avec sa photo
   onSaveChauffeurWithFiles() {
     let formData = new FormData();
+    this.currentPhotoFileUpload = this.chauffeurPhotoFile.item(0)
+    this.currentCvFileUpload = this.chauffeurCvFile.item(0)
+    console.log(this.currentPhotoFileUpload);
+    console.log(this.currentCvFileUpload);
+    
     formData.append('chauffeur', JSON.stringify(this.formDataChauffeurDTO));
-    console.log("Chauffeur--", this.formDataChauffeurDTO);
-
-    formData.append('photoChauffeur', this.chauffeurPhotoFile);
-    formData.append('cvChauffeur', this.chauffeurCvFile);
+    formData.append('photoChauffeur', this.currentPhotoFileUpload);
+    formData.append('cvChauffeur', this.currentCvFileUpload);
     console.log("FormData--", formData);
     this.chauffeurService.addChauffeurDTOWithFiles(formData)
       .subscribe((response: ChauffeurDto)=> {
         console.log('Response--', response);
-    //    this.toastr.success("Chauffeur Ajouté avec Succès");
-        this.router.navigate(['/admin/accueil/chauffeurs']);
+        this.toastr.success('avec succès','Chauffeur Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/accueil/chauffeurs").then(() => {
+    
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  getTS() {
+    return this.currentTime;
+  }
+
+  onEditPhoto(p) {
+    if(this.paramId  && this.paramId  > 0){
+      this.paramId = p;
+      this.editPhoto=true;
+      this.editCv=true;
+    }
+    this.editPhoto=false;
+    this.editCv=false;
+  }
+
+  onSelectPhotoFile(event) {
+    this.chauffeurPhotoFile=event.target.files;
+  } 
+
+  processForm() {
+    this.progress = 0;
+    this.currentPhotoFileUpload = this.chauffeurPhotoFile.item(0)
+    console.log(this.currentPhotoFileUpload);
+    console.log(this.paramId);
+    this.chauffeurService.uploadPhotoChauffeurDto(this.currentPhotoFileUpload, this.formDataChauffeurDTO.id)
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+          this.toastr.success('avec succès','Photo remplacé', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("admin/accueil/chauffeurs").then(() => {
+            window.location.reload();
+          });
+        } else if (event instanceof HttpResponse) {
+          this.editPhoto=false;
+          this.currentTime = Date.now();
+        }
+      }, err => {
+        this.toastr.warning("Problème de chargment de la photo");
+      }
+    );
+    this.chauffeurPhotoFile = undefined;
+  }
+
+  onSelectCvFile(event) {
+    this.chauffeurCvFile=event.target.files;
+  } 
+
+  processCvForm() {
+    this.progress = 0;
+    this.currentCvFileUpload = this.chauffeurCvFile.item(0)
+    console.log(this.currentCvFileUpload);
+    console.log(this.paramId);
+    this.chauffeurService.uploadCvChauffeurDto(this.currentCvFileUpload, this.formDataChauffeurDTO.id)
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+          this.toastr.success('avec succès','CV remplacé', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("admin/accueil/chauffeurs").then(() => {
+            window.location.reload();
+          });
+        } else if (event instanceof HttpResponse) {
+          this.editCv=false;
+          this.currentTime = Date.now();
+        }
+      }, err => {
+        this.toastr.warning("Problème de chargment du cv");
+      }
+    );
+    this.chauffeurCvFile = undefined;
+  }
+
+
+  goBack() {
+    this.router.navigateByUrl("/admin/accueil/chauffeurs");
   }
 
 

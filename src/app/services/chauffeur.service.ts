@@ -42,6 +42,10 @@ export class ChauffeurService {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/all`);
   }
 
+  public getChauffeurDTOOrderByIdDesc(): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurOrderByIdDesc`);
+  }
+
   public getChauffeurDTOById(chauffId: number): Observable<ChauffeurDto> {
     return this.http.get<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/findById/${chauffId}`);
   }
@@ -107,10 +111,10 @@ export class ChauffeurService {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeursByPermis/${pId}`);
   }
 
-  uploadPhotoChauffeurDto(filePhoto: File, idChauffeur): Observable<HttpEvent<{}>> {
+  uploadPhotoChauffeurDto(filePhoto: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
-    formdata.append('photoArticle', filePhoto);
-    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurPhoto/${idChauffeur}`, formdata, {
+    formdata.append('file', filePhoto);
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurPhoto/${id}`, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
@@ -123,10 +127,10 @@ export class ChauffeurService {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/photoChauffeur`);
   }
 
-  uploadCvChauffeurDto(fileCV: File, idChauffeur): Observable<HttpEvent<{}>> {
+  uploadCvChauffeurDto(fileCV: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
-    formdata.append('cvChauffeur', fileCV);
-    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurCv/${idChauffeur}`, formdata, {
+    formdata.append('file', fileCV);
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurCv/${id}`, formdata, {
       reportProgress: true,
       responseType: 'text'
     });

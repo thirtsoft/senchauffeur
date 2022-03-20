@@ -26,14 +26,16 @@ export class ChauffeurDto {
 	lastName: string;
   sexe: string;
   addressActuel: string;
+  disponibity: string;
+  selected: boolean;
   email: string;
   phoneChauffeur: string;
   nbreAnneeExperience: number;
   pretentionSalaire: number;
-  disponibity: string;
   mobilite: string;
 	cvChauffeur: string;
   photoChauffeur: string;
+  dateInscription: Date;
 
   permisDto: PermisDto;
   addresseDto: AddresseDto;
