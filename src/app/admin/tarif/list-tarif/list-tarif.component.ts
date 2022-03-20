@@ -1,6 +1,6 @@
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { TarifService } from './../../../services/tarif.service';
 import { TarifDto } from './../../../models/tarif';
 import { Component, OnInit } from '@angular/core';
@@ -19,11 +19,8 @@ export class ListTarifComponent implements OnInit {
   searchText;
 
   constructor(public tarifService: TarifService,
-              private dialog: MatDialog,
               private router: Router,
-        //      public toastr: ToastrService,
-     //         private dialogService: DialogService,
-
+              public toastr: ToastrService
   ){}
 
   ngOnInit(): void {
@@ -46,37 +43,20 @@ export class ListTarifComponent implements OnInit {
     this.router.navigate(['/admin/accueil/tarif']);
   }
 
-/*
-  onAddChauffeur() {
-    this.openNoteDialog(null);
-  }
-
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(CreateChauffeurComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.chauffeurListDTO.push(result);
-      }
-    });
-  }
-*/
-
   onDeleteTarif(id: number): void{
-    this.tarifService.deleteTarifDTOs(id).subscribe(data => {
-      this.getListTarifDTOs();
+    if (window.confirm('Etes-vous sure de vouloir supprimer ce Tarif ?')) {
+      this.tarifService.deleteTarifDTOs(id).subscribe(data => {
+        this.toastr.error('avec succès','Tarif supprimé', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+           this.getListTarifDTOs();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
         }
-    ,
-    (error: HttpErrorResponse) => {
-      alert(error.message);
+      );
     }
-    );
   }
-
 
 }

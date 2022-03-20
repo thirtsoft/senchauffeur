@@ -1,11 +1,13 @@
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+
 import { AnnonceService } from './../../../services/annonce.service';
 import { TarifService } from './../../../services/tarif.service';
 import { AnnonceDto } from './../../../models/annonce';
 import { TarifDto } from './../../../models/tarif';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-create-tarif',
@@ -23,7 +25,7 @@ export class CreateTarifComponent implements OnInit {
 
   constructor(private tarifService: TarifService,
               private annonceService: AnnonceService,
-           //   private toastr: ToastrService,
+              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -74,13 +76,16 @@ export class CreateTarifComponent implements OnInit {
     )
   }
 
-  public onAddTarif() {
+  onAddTarif() {
     this.tarifService.addTarifDTOs(this.tarifDTO).subscribe(
       (response: TarifDto) => {
-  //      this.dialogRef.close();
-    //    this.toastr.success("Chauffeur Ajouté avec Succès");
-        alert("Tarif Ajouté avec succès");
-        this.router.navigate(['/admin/accueil/tarifs']);
+        this.toastr.success('avec succès','Tarif Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/accueil/tarifs").then(() => {
+    
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -88,18 +93,25 @@ export class CreateTarifComponent implements OnInit {
     );
   }
 
-  public onUpdateTarif() {
+  onUpdateTarif() {
     this.tarifService.updateTarifDTOs(this.tarifDTO.id, this.tarifDTO).subscribe(
       (response: TarifDto) => {
-  //      this.dialogRef.close();
-  //      this.toastr.warning("Chauffeur Update avec Succès");
-        alert("Tarif Modifié avec succès");
-        this.router.navigate(['/admin/accueil/tarifs']);
+        this.toastr.warning('avec succès','Tarif Modifié', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/accueil/tarifs").then(() => {
+    
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  goBack() {
+    this.router.navigateByUrl("admin/accueil/tarifs");
   }
 
 

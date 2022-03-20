@@ -23,8 +23,7 @@ export class ListChauffeurComponent implements OnInit {
 
   constructor(public chauffeurService: ChauffeurService,
               private router: Router,
-              public toastr: ToastrService,
-              private fb: FormBuilder,
+              public toastr: ToastrService
   ){}
 
   ngOnInit(): void {
@@ -47,20 +46,20 @@ export class ListChauffeurComponent implements OnInit {
     this.router.navigate(['/admin/accueil/chauffeur']);
   }
 
-  onDeleteChauffeur(id: number){
-  //  this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    window.alert('Etes-vous sur de supprimer ce chauffeur ?')
-    this.chauffeurService.deleteChauffeurDTO(id).subscribe(data => {
-      this.toastr.error('avec succès','Chauffeur supprimé', {
-        timeOut: 1500,
-        positionClass: 'toast-top-right',
-        });
-         this.getListChauffeurDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        this.toastr.error('veuillez contactez administrateur','Chauffeur ne peut pas etre supprimé');
-      }        
-    )
+  onDeleteChauffeur(id: number): void{
+    if (window.confirm('Etes-vous sure de vouloir supprimer ce Chauffeur ?')) {
+      this.chauffeurService.deleteChauffeurDTO(id).subscribe(data => {
+        this.toastr.error('avec succès','Jeton Chauffeur', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+          this.getListChauffeurDTOs();
+        },
+        (error: HttpErrorResponse) => {
+          this.toastr.error('veuillez contactez administrateur','Chauffeur ne peut pas etre supprimé');
+        }
+      );
+    }
   }
 
 }

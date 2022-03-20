@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { JetonService } from './../../../services/jeton.service';
@@ -19,12 +20,8 @@ export class ListJetonComponent implements OnInit {
   searchText;
 
   constructor(private crudApi: JetonService,
-              private dialog: MatDialog,
               private router: Router,
-
-     //         public toastr: ToastrService,
-     //         private dialogService: DialogService,
-
+              public toastr: ToastrService
   ){}
 
   ngOnInit(): void {
@@ -48,9 +45,13 @@ export class ListJetonComponent implements OnInit {
   }
 
   onDeleteJeton(id: number): void{
-    if (window.confirm('Etes-vous sure de vouloir supprimer cette annonce ?')) {
+    if (window.confirm('Etes-vous sure de vouloir supprimer ce Jeton ?')) {
       this.crudApi.deleteJetonDTO(id).subscribe(data => {
-        this.getListJetonDTOs();
+        this.toastr.error('avec succès','Jeton supprimé', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+           this.getListJetonDTOs();
         },
         (error: HttpErrorResponse) => {
           alert(error.message);
