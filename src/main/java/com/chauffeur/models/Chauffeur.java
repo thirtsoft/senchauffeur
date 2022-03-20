@@ -29,22 +29,19 @@ public class Chauffeur implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "reference", length = 50)
+	@Column(name = "reference", length = 200)
 	private String reference;
 	
 	@Column(name = "firstName", length = 90)
 	private String firstName;
 
-	@Column(name = "lastName", length = 70)
+	@Column(name = "lastName", length = 90)
 	private String lastName;
 	
 	@Column(name = "sexe", length = 30)
 	private String sexe;
-	
-	@Column(name = "addressActuel", length = 90)
-	private String addressActuel;
 
-	@Column(name = "email", length = 90)
+	@Column(name = "email", length = 150)
 	private String email;
 	
 	@Column(name = "phoneChauffeur", length = 30)
@@ -54,9 +51,9 @@ public class Chauffeur implements Serializable {
 	private String nbreAnneeExperience;
 	
 	@Column(name = "pretentionSalaire", length = 90)
-	private Double pretentionSalaire;
+	private double pretentionSalaire;
 	
-	@Column(name = "mobilite", length = 100)
+	@Column(name = "mobilite", length = 255)
 	private String mobilite;
 	
 	@Column(name = "disponibility", length = 100)
@@ -64,10 +61,10 @@ public class Chauffeur implements Serializable {
 	
 	private boolean selected;
 
-	@Column(name = "cvChauffeur", length = 30)
+	@Column(name = "cvChauffeur", length = 250)
 	private String cvChauffeur;
 	
-	@Column(name = "photoChauffeur", length = 30)
+	@Column(name = "photoChauffeur", length = 250)
 	private String photoChauffeur;
 	
 	@Column(name = "dateInscription", length = 70)
@@ -84,8 +81,8 @@ public class Chauffeur implements Serializable {
 	@JoinColumn(name = "addressId")
 	private Addresse addresse;
 
-	public Chauffeur(Long id, String reference, String firstName, String lastName, String sexe, String addressActuel,
-			String email, String phoneChauffeur, String nbreAnneeExperience, Double pretentionSalaire, String mobilite,
+	public Chauffeur(Long id, String reference, String firstName, String lastName, String sexe,
+			String email, String phoneChauffeur, String nbreAnneeExperience, double pretentionSalaire, String mobilite,
 			String disponibity, boolean selected, String cvChauffeur, String photoChauffeur, Permis permis,
 			Addresse addresse) {
 		this.id = id;
@@ -93,7 +90,6 @@ public class Chauffeur implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.sexe = sexe;
-		this.addressActuel = addressActuel;
 		this.email = email;
 		this.phoneChauffeur = phoneChauffeur;
 		this.nbreAnneeExperience = nbreAnneeExperience;
@@ -106,7 +102,6 @@ public class Chauffeur implements Serializable {
 		this.permis = permis;
 		this.addresse = addresse;
 	}
-	
 	
 
 }

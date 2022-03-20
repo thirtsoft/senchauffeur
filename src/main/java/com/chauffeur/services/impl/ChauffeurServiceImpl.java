@@ -63,7 +63,6 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeurDtoResult.setFirstName(chauffeurDto.getFirstName());
         chauffeurDtoResult.setLastName(chauffeurDto.getLastName());
         chauffeurDtoResult.setSexe(chauffeurDto.getSexe());
-        chauffeurDtoResult.setAddressActuel(chauffeurDto.getAddressActuel());
         chauffeurDtoResult.setEmail(chauffeurDto.getEmail());
         chauffeurDtoResult.setPhoneChauffeur(chauffeurDto.getPhoneChauffeur());
         chauffeurDtoResult.setPhotoChauffeur(chauffeurDto.getPhotoChauffeur());

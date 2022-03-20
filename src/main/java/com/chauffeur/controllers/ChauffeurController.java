@@ -38,16 +38,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ChauffeurController implements ChauffeurApi {
 	
 	private final String chauffeurPhotosDir = "C://Users//Folio9470m//senchauffeur//chauffeur//photos//";
-	
-//	private final String chauffeurPhotosDir = "../../src//main//resources//static//images//";
-	
-//	private static final String chauffeurPhotosDir = "./src/main/resources//static//images//";
-	 
+
 	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
-	
-//	private final String chauffeurCvDir = "./src/main/resources//static//cvs//";
-	
-	
+		
 	private ChauffeurService chauffeurService;
 
 	@Autowired
@@ -68,13 +61,15 @@ public class ChauffeurController implements ChauffeurApi {
 	}
 	
 	@Override
-	public ResponseEntity<ChauffeurDto> findById(Long id) {
+	public ResponseEntity<ChauffeurDto> getChauffeurById(Long id) {
 		return ResponseEntity.ok(chauffeurService.findById(id));
 	}
 
 	@Override
-	public List<ChauffeurDto> findAll() {
-		return chauffeurService.findAll();
+	public ResponseEntity<List<ChauffeurDto>> getAllChauffeurs() {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findAll();
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
+		
 	}
 	
 	@Override
@@ -84,10 +79,11 @@ public class ChauffeurController implements ChauffeurApi {
 	}
 	
 	@Override
-	public List<ChauffeurDto> getListChauffeurBySelected() {
-		return chauffeurService.findListChauffeurBySelected();
+	public ResponseEntity<List<ChauffeurDto>> getListChauffeurBySelected() {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findListChauffeurBySelected();
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
 	}
-	
+	/*
 	@Override
 	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
 			MultipartFile photoChauffeur,
@@ -109,7 +105,7 @@ public class ChauffeurController implements ChauffeurApi {
 		
 		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
 	}
-	/*
+	*/
 	
 	@Override
 	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
@@ -117,6 +113,7 @@ public class ChauffeurController implements ChauffeurApi {
 			MultipartFile cvChauffeur) throws IOException {
 		
 		ChauffeurDto chauffeurDto = new ObjectMapper().readValue(chauffeur, ChauffeurDto.class);
+		chauffeurDto.setDateInscription(new Date());
 	    
 		if (photoChauffeur != null && !photoChauffeur.isEmpty()) {
 	      	chauffeurDto.setPhotoChauffeur(photoChauffeur.getOriginalFilename());
@@ -130,11 +127,12 @@ public class ChauffeurController implements ChauffeurApi {
 		
 		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
 	}
-	*/
+	
 	
 	@Override
-	public List<ChauffeurDto> getListChauffeurByKeyword(String keyword) {
-		return chauffeurService.findListChauffeurByKeyword("%" + keyword + "%");
+	public ResponseEntity<List<ChauffeurDto>> getListChauffeurByKeyword(String keyword) {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findListChauffeurByKeyword("%" + keyword + "%");
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
 	}
 	
 	@Override
@@ -143,7 +141,7 @@ public class ChauffeurController implements ChauffeurApi {
         return chauffeurService.findChauffeurByPageable(pageable);
 	}
 	
-/*	
+	
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -154,9 +152,9 @@ public class ChauffeurController implements ChauffeurApi {
 
 	}
 	
-	*/
 	
-
+	
+/*
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
@@ -166,43 +164,29 @@ public class ChauffeurController implements ChauffeurApi {
         return Files.readAllBytes(Paths.get("./src/main/resources//static//images//" + chauffeurDto.getPhotoChauffeur()));
 
 	}
-	
+	*/
 	
 	@Override
-	public void uploadPhotoChauffeur(MultipartFile photoChauffeur, Long idChauffeur) throws IOException {
-		ChauffeurDto chauffeurDto = chauffeurService.findById(idChauffeur);
-		chauffeurDto.setPhotoChauffeur(photoChauffeur.getOriginalFilename());
+	public void uploadPhotoChauffeur(MultipartFile file, Long id) throws IOException {
+		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
+		chauffeurDto.setPhotoChauffeur(file.getOriginalFilename());
 	    Files.write(Paths.get(
 	    		System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()), 
-	    		photoChauffeur.getBytes());
+	    		file.getBytes());
 
 	    chauffeurService.save(chauffeurDto);
 		
 	}
 	
 	
-	/*
+
 	@Override
 	public byte[] getCvChauffeur(Long id) throws Exception {
-		
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
-
         System.out.println("Article DTO -- " + chauffeurDto);
-      
+     
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/" + chauffeurDto.getCvChauffeur()));
 
-	}
-	
-	*/
-	
-	@Override
-	public byte[] getCvChauffeur(Long id) throws Exception {
-		
-		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
-
-        System.out.println("Article DTO -- " + chauffeurDto);
-      
-        return Files.readAllBytes(Paths.get("./src/main/resources//static//cvs//" + chauffeurDto.getCvChauffeur()));
 	}
 	
 	public void downloadChauffeurFile(HttpServletRequest request, HttpServletResponse response,
@@ -226,20 +210,20 @@ public class ChauffeurController implements ChauffeurApi {
     }
 	
 	@Override
-	public void uploadCvChauffeur(MultipartFile cvChauffeur, Long idChauffeur) throws IOException {
-		
-		ChauffeurDto chauffeurDto = chauffeurService.findById(idChauffeur);
-		chauffeurDto.setCvChauffeur(cvChauffeur.getOriginalFilename());
+	public void uploadCvChauffeur(MultipartFile file, Long id) throws IOException {
+		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
+		chauffeurDto.setCvChauffeur(file.getOriginalFilename());
 	    Files.write(Paths.get(
 	    		System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/" + chauffeurDto.getCvChauffeur()), 
-	    		cvChauffeur.getBytes());
+	    		file.getBytes());
 
 	    chauffeurService.save(chauffeurDto);
 	}
 	
 	@Override
-	public List<ChauffeurDto> getListChauffeurByPermis(Long pId) {
-		return chauffeurService.findListChauffeurByPermis(pId);
+	public ResponseEntity<List<ChauffeurDto>> getListChauffeurByPermis(Long pId) {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findListChauffeurByPermis(pId);
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
 	}
 	
 	@Override
@@ -260,8 +244,10 @@ public class ChauffeurController implements ChauffeurApi {
 	}
 	
 	@Override
-	public List<ChauffeurDto> getListChauffeurByDisponibility(String disponibility) {
-		return chauffeurService.findChauffeurByDisponibility("%" + disponibility + "%");
+	public ResponseEntity<List<ChauffeurDto>> getListChauffeurByDisponibility(String disponibility) {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findChauffeurByDisponibility("%" + disponibility + "%");
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
+		
 	}
 	
 	@Override

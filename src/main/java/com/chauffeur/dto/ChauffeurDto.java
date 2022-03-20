@@ -25,8 +25,6 @@ public class ChauffeurDto {
 	
 	private String sexe;
 	
-	private String addressActuel;
-	
 	private String disponibity;
 	
 	private boolean selected;
@@ -37,7 +35,7 @@ public class ChauffeurDto {
 	
 	private String nbreAnneeExperience;
 
-	private Double pretentionSalaire;
+	private double pretentionSalaire;
 	
 	private String cvChauffeur;
 	
@@ -66,7 +64,6 @@ public class ChauffeurDto {
 				.phoneChauffeur(chauffeur.getPhoneChauffeur())
 				.nbreAnneeExperience(chauffeur.getNbreAnneeExperience())
 				.pretentionSalaire(chauffeur.getPretentionSalaire())
-				.addressActuel(chauffeur.getAddressActuel())
 				.disponibity(chauffeur.getDisponibity())
 				.mobilite(chauffeur.getMobilite())
 				.selected(chauffeur.isSelected())
@@ -83,6 +80,7 @@ public class ChauffeurDto {
 		if (chauffeurDto == null) {
 			return null;
 		}
+		
 		Chauffeur chauffeur = new Chauffeur();
 		chauffeur.setId(chauffeurDto.getId());
 		chauffeur.setReference(chauffeurDto.getReference());
@@ -93,7 +91,6 @@ public class ChauffeurDto {
 		chauffeur.setPhoneChauffeur(chauffeurDto.getPhoneChauffeur());
 		chauffeur.setNbreAnneeExperience(chauffeurDto.getNbreAnneeExperience());
 		chauffeur.setPretentionSalaire(chauffeurDto.getPretentionSalaire());
-		chauffeur.setAddressActuel(chauffeurDto.getAddressActuel());
 		chauffeur.setDisponibity(chauffeurDto.getDisponibity());
 		chauffeur.setMobilite(chauffeurDto.getMobilite());
 		chauffeur.setSelected(chauffeurDto.isSelected());
