@@ -152,7 +152,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 
                 .antMatchers("/**/permis/**").permitAll()
                 .antMatchers("/**/permis/create").permitAll()
-                .antMatchers("/**/permis/update/**").permitAll()
+                .antMatchers("/**/permis/update/*").permitAll()
                 .antMatchers("/**/permis/all").permitAll()
                 .antMatchers("/**/permis/searchPermisOrderByIdDesc").permitAll()
                 
