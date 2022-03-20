@@ -1,1 +1,244 @@
-<p>create-utilisateur works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 *ngIf="paramId">Modifié Utilisateur</h1>
+      <form #addUtilisateurForm="ngForm" name="form">
+        <div class="form-group">
+          <label>Nom/Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.name"
+            name="name"
+            id="name"
+            #name="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (name.touched || addUtilisateurForm.submitted) &&
+              name.errors?.required
+            "
+          >
+          name est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.username"
+            name="username"
+            id="username"
+            #username="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (username.touched || addUtilisateurForm.submitted) &&
+              username.errors?.required
+            "
+          >
+          username est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>mobile</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.mobile"
+            name="mobile"
+            id="mobile"
+            #mobile="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (mobile.touched || addUtilisateurForm.submitted) &&
+              mobile.errors?.required
+            "
+          >
+          mobile est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>email</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.email"
+            name="email"
+            id="email"
+            #email="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (email.touched || addUtilisateurForm.submitted) &&
+              email.errors?.required
+            "
+          >
+          email est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>nomEntreprise</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.nomEntreprise"
+            name="nomEntreprise"
+            id="nomEntreprise"
+            #nomEntreprise="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (nomEntreprise.touched || addUtilisateurForm.submitted) &&
+              nomEntreprise.errors?.required
+            "
+          >
+          emainomEntreprisel est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>addressRecruteur</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.addressRecruteur"
+            name="addressRecruteur"
+            id="addressRecruteur"
+            #addressRecruteur="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (addressRecruteur.touched || addUtilisateurForm.submitted) &&
+              addressRecruteur.errors?.required
+            "
+          >
+          addressRecruteur est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>villeRecruteur</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.villeRecruteur"
+            name="villeRecruteur"
+            id="villeRecruteur"
+            #villeRecruteur="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (villeRecruteur.touched || addUtilisateurForm.submitted) &&
+              villeRecruteur.errors?.required
+            "
+          >
+          villeRecruteur est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>website</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.website"
+            name="website"
+            id="website"
+            #website="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (website.touched || addUtilisateurForm.submitted) &&
+              website.errors?.required
+            "
+          >
+          website est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>secteurActivite</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.secteurActivite"
+            name="secteurActivite"
+            id="secteurActivite"
+            #secteurActivite="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (secteurActivite.touched || addUtilisateurForm.submitted) &&
+              secteurActivite.errors?.required
+            "
+          >
+          secteurActivite est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>information</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="formDataUtilisateurDTO.information"
+            name="information"
+            id="information"
+            #information="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (information.touched || addUtilisateurForm.submitted) &&
+              information.errors?.required
+            "
+          >
+          information est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <button
+            *ngIf="paramId"
+            class="btn btn-warning"
+            (click)="onUpdateUtilisateur()"
+            style="cursor: pointer"
+          >
+            <i class="fa fa-database"></i>Modifié
+          </button>
+          <button type="button" class="btn btn-danger ml-1"
+          (click)="goBack()"
+            style="cursor: pointer">
+            <i class="fa fa-close"></i> Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
   selectedRoles: string[];
 
   constructor(private authService: AuthService,
-    //          private toastr :ToastrService,
+              private toastr :ToastrService,
               private router : Router
   ) { }
 
@@ -67,11 +67,10 @@ export class SignUpComponent implements OnInit {
       console.log(response);
       this.isRegistered = true;
       this.isSignUpFailed = false;
-      /* this.toastr.success('avec succès','Utilisateur crée', {
+      this.toastr.success('veuillez vous reconnecter','Utilisateur crée avec succès', {
         timeOut: 1500,
         positionClass: 'toast-top-right',
-      }); */
-      window.alert("Created account success");
+      });
       this.router.navigateByUrl("/admin/signIn");
     },
     error => {

@@ -16,25 +16,29 @@ import { ToastrService } from 'ngx-toastr';
 export class ListUtilisateurComponent implements OnInit {
 
   utilisateurDTOList: UtilisateurDto[];
-  deleteUtilisateurDTO: UtilisateurDto;
-
+  
   id : number;
   p : number=1;
   searchText;
+  currentTime: number = 0;
+  img: boolean;
 
-  constructor(private userService: UtilisateurService,
+  constructor(public userService: UtilisateurService,
               private router: Router,
-               private dialog: MatDialog,
-      //        public toastr: ToastrService,
-              private dialogService: DialogService,
-              ){}
+              public toastr: ToastrService
+  ){}
 
   ngOnInit(): void {
     this.getUtilisateurDTOs();
+
+    if (this.userService.getUserAvatar(this.id) === null)
+      this.img = false;
+    else this.img = true;
+
   }
 
-  public getUtilisateurDTOs(): void {
-    this.userService.getUtilisateurDTOs().subscribe(
+  getUtilisateurDTOs(): void {
+    this.userService.getAllUtilisateurDtosOrderByIdDesc().subscribe(
       (response: UtilisateurDto[]) => {
         this.utilisateurDTOList = response;
         console.log(this.utilisateurDTOList);
@@ -45,44 +49,31 @@ export class ListUtilisateurComponent implements OnInit {
     );
   }
 
+  getTS() {
+    return this.currentTime;
+  }
+
 
   onAddUtilisateur() {
-    this.openNoteDialog(null);
+    this.router.navigate(['/admin/accueil/signUp']);
   }
 
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(CreateUtilisateurComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.utilisateurDTOList.push(result);
-      }
-      // this.refreshData();
-    });
-  }
-
-  public onDeleteUtilisateur(user: UtilisateurDto): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.userService.deleteUtilisateurDTO(user.id).subscribe(data => {
-       //   this.toastr.warning('Utilisateur supprimé avec succès!');
-        window.alert("Utilisateur supprimé avec succès!");
-          this.utilisateurDTOList = this.utilisateurDTOList.filter(u => u !== user);
-          this.getUtilisateurDTOs();
+  onDeleteUtilisateur(id: number): void{
+    if (window.confirm('Etes-vous sure de vouloir supprimer cet utilisateur ?')) {
+      this.userService.deleteUtilisateurDTO(id).subscribe(data => {
+        this.toastr.error('avec succès','utilisateur supprimée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
         });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
+        this.getUtilisateurDTOs();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
     }
-    );
-  }
 
+  }
+  
 
 }

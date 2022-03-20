@@ -22,7 +22,7 @@ export class CreatePermisComponent implements OnInit {
 
   constructor(private permisService: PermisService,
               private router: Router,
-//              private toastr: ToastrService,
+              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
 
@@ -59,11 +59,13 @@ export class CreatePermisComponent implements OnInit {
 
   }
 
-  public onAddPermis() {
+  onAddPermis() {
     this.permisService.addPermisDTO(this.formDataPermisDTO).subscribe(
       (response: PermisDto) => {
-  //      this.dialogRef.close();
-  //      this.toastr.success("Permis Ajouté avec Succès");
+        this.toastr.success('avec succès','Permis Ajouté', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
         this.router.navigate(['/admin/accueil/listPermis']);
       },
       (error: HttpErrorResponse) => {
@@ -72,17 +74,23 @@ export class CreatePermisComponent implements OnInit {
     );
   }
 
-  public onUpdatePermis() {
+  onUpdatePermis() {
     this.permisService.updatePermisDTO(this.formDataPermisDTO.id, this.formDataPermisDTO).subscribe(
       (response: PermisDto) => {
-  //      this.dialogRef.close();
-  //      this.toastr.warning("Permis Update avec Succès");
+        this.toastr.warning('avec succès','Permis Modifié', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
         this.router.navigate(['/admin/accueil/listPermis']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  goBack() {
+    this.router.navigate(['/admin/accueil/listPermis']);
   }
 
 

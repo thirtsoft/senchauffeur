@@ -11,5 +11,4 @@ export class PermisDto {
   typePermis: string;
   designation: string;
   validite: number;
-
 }

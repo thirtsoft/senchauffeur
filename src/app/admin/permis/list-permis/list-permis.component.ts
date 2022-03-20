@@ -24,10 +24,8 @@ export class ListPermisComponent implements OnInit {
   searchText;
 
   constructor(private permisService: PermisService,
-              private dialog: MatDialog,
               private router: Router,
-   //           public toastr: ToastrService,
-   //           private dialogService: DialogService,
+              public toastr: ToastrService,
               private fb: FormBuilder
   ){}
 
@@ -36,7 +34,7 @@ export class ListPermisComponent implements OnInit {
   }
 
   public getListPermisDTOs() {
-    this.permisService.getPermisDTOs().subscribe(
+    this.permisService.getPermisDTOOrderByIdDesc().subscribe(
       (response: PermisDto[]) => {
         this.permisListDTO = response;
         console.log(this.permisListDTO);
@@ -49,37 +47,18 @@ export class ListPermisComponent implements OnInit {
   }
 
   onAddPermis() {
-    this.router.navigate(['/backend/admin/permis']);
+    this.router.navigate(['/admin/accueil/permis']);
   }
-
-/*
-
-  onAddPermis() {
-    this.openNoteDialog(null);
-  }
-
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(CreatePermisComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.permisListDTO.push(result);
-      }
-    });
-  }
-*/
-
 
 
   onDeletePermis(id: number): void{
-    if (window.confirm('Etes-vous sure de vouloir supprimer ce PErmis ?')) {
+    if (window.confirm('Etes-vous sure de vouloir supprimer ce type de Permis ?')) {
       this.permisService.deletePermisDTO(id).subscribe(data => {
-        this.getListPermisDTOs();
+        this.toastr.error('avec succès','Permis supprimé', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+          this.getListPermisDTOs();
         },
         (error: HttpErrorResponse) => {
           alert(error.message);

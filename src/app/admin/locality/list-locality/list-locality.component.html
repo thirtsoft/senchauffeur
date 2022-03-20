@@ -1,57 +1,78 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <h3><i class="fa fa-angle-right"></i> List of Localites</h3>
-                    <div class="row">
-                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-                        <button class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddLocality()">Add Locality</button>
+  <div class="row">
+    <div class="col-12">
+      <div class="card m-b-30">
+        <div class="card-body">
+          <h3><i class="fa fa-angle-right"></i> List of Localites</h3>
+          <div class="row">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              [(ngModel)]="searchText"
+            />
+            <button
+              class="btn-meeting"
+              type="submit"
+              style="margin-left: 5%; width: 30%"
+              (click)="onAddLocality()"
+            >
+              Add Locality
+            </button>
+          </div>
 
-                    </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Reference</th>
+                <th>Quartier</th>
+                <th>Rue</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let localityDTO of localityListDTO
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 20, currentPage: p }
+                "
+              >
+                <td>{{ localityDTO?.reference }}</td>
+                <td>{{ localityDTO?.quartier }}</td>
+                <td>{{ localityDTO?.rue }}</td>
+                <td>{{ localityDTO?.codePostal }}</td>
+                <td>{{ localityDTO?.ville }}</td>
+                <td>{{ localityDTO?.pays }}</td>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Reference</th>
-                                <th>Quartier</th>
-                                <th>Rue</th>
-                                <th>Code Postal</th>
-                                <th>Ville</th>
-                                <th>Pays</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let localityDTO of localityListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                                <td>{{localityDTO?.reference}}</td>
-                                <td>{{localityDTO?.quartier}}</td>
-                                <td>{{localityDTO?.ville}}</td>
-                                <td>{{localityDTO?.rue}}</td>
-                                <td>{{localityDTO?.codePostal}}</td>
-                                <td>{{localityDTO?.pays}}</td>
-
-                                <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/localite', localityDTO.id]">
-                                  <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
-                                    <button class="btn btn-success btn-sm" [routerLink]="['/admin/accueil/localite', localityDTO.id]">
-                                          <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
-
-                                    <button class="btn btn-danger btn-sm" (click)="onDeleteLocality(localityDTO.id)">
-                                            <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="pagination">
-                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                    </div>
-                </div>
-            </div>
+                <td>
+                  <button
+                    class="btn btn-warning btn-sm"
+                    [routerLink]="['/admin/accueil/localite', localityDTO.id]"
+                  >
+                    <i class="fa fa-edit" aria-hidden="true"></i></button
+                  >&nbsp;
+        
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="onDeleteLocality(localityDTO.id)"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i></button
+                  >&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </div>
-
+      </div>
     </div>
-
-
+  </div>
 </div>

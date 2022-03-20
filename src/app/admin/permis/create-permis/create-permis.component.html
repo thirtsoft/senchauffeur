@@ -1,51 +1,103 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Nouvelle Annonce</h1>
-            <form #addPermisForm="ngForm" name="form">
-                <div class="form-group">
-                    <label>Type Permis</label>
-                    <input type="text" placeholder="Type de permis" class="form-control" [(ngModel)]="formDataPermisDTO.typePermis" name="typePermis" id="typePermis" #typePermis="ngModel" required />
-                    <span class="text-danger" *ngIf="
-                          (typePermis.touched || addPermisForm.submitted) &&
-                            typePermis.errors?.required
-                          ">
-                          TypePermis est obligatoire
-                        </span>
-                </div>
-
-                <div class="form-group">
-                    <label>Designation</label>
-                    <input type="text" placeholder="Libellé du permis" class="form-control" [(ngModel)]="formDataPermisDTO.designation" name="designation" id="designation" #designation="ngModel" required />
-                    <span class="text-danger" *ngIf="
-                            (designation.touched || addPermisForm.submitted) &&
-                            designation.errors?.required
-                          ">
-                          designation est obligatoire
-                        </span>
-                </div>
-
-                <div class="form-group">
-                    <label>Validité</label>
-                    <input type="text" placeholder="Validé du permis" class="form-control" [(ngModel)]="formDataPermisDTO.validite" name="validite" id="validite" #validite="ngModel" required />
-                    <span class="text-danger" *ngIf="
-                          (validite.touched || addPermisForm.submitted) &&
-                            validite.errors?.required
-                          ">
-                          validite est obligatoire
-                        </span>
-                </div>
-
-                <div class="form-group">
-                    <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onAddPermis()">
-                  <i class="fa fa-database"></i> Submit</button>&nbsp;
-                    <button *ngIf="paramId" class="btn btn-warning" (click)="onUpdatePermis()">
-                  <i class="fa fa-database"></i>Update</button>
-                    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
-                </div>
-
-            </form>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 *ngIf="!paramId">Nouveau Permis</h1>
+      <h1 *ngIf="paramId">Modifié Annonce</h1>
+      <form #addPermisForm="ngForm" name="form">
+        <div class="form-group">
+          <label>Type Permis</label>
+          <input
+            type="text"
+            placeholder="Type de permis"
+            class="form-control"
+            [(ngModel)]="formDataPermisDTO.typePermis"
+            name="typePermis"
+            id="typePermis"
+            #typePermis="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (typePermis.touched || addPermisForm.submitted) &&
+              typePermis.errors?.required
+            "
+          >
+            TypePermis est obligatoire
+          </span>
         </div>
 
+        <div class="form-group">
+          <label>Designation</label>
+          <input
+            type="text"
+            placeholder="Libellé du permis"
+            class="form-control"
+            [(ngModel)]="formDataPermisDTO.designation"
+            name="designation"
+            id="designation"
+            #designation="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (designation.touched || addPermisForm.submitted) &&
+              designation.errors?.required
+            "
+          >
+            designation est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>Validité</label>
+          <input
+            type="text"
+            placeholder="example: 5"
+            class="form-control"
+            [(ngModel)]="formDataPermisDTO.validite"
+            name="validite"
+            id="validite"
+            #validite="ngModel"
+            required
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (validite.touched || addPermisForm.submitted) &&
+              validite.errors?.required
+            "
+          >
+            validite est obligatoire
+          </span>
+        </div>
+
+        <div class="form-group">
+          <button
+            *ngIf="!paramId"
+            type="submit"
+            class="btn btn-success"
+            (click)="onAddPermis()"
+            style="cursor: pointer"
+          >
+            <i class="fa fa-database"></i> Enregistrer</button
+          >&nbsp;
+          <button
+            *ngIf="paramId"
+            class="btn btn-warning"
+            (click)="onUpdatePermis()"
+            style="cursor: pointer"
+          >
+            <i class="fa fa-database"></i>Modifié
+          </button>
+          <button type="button" class="btn btn-danger ml-1"
+          (click)="goBack()"
+            style="cursor: pointer">
+            <i class="fa fa-close"></i> Close
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

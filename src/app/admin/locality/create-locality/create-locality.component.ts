@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalityService } from './../../../services/locality.service';
-import { Locality, AddresseDto } from './../../../models/locality';
+import { AddresseDto } from './../../../models/locality';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class CreateLocalityComponent implements OnInit {
 
   constructor(private localiteService: LocalityService,
               private router: Router,
-//              private toastr: ToastrService,
+              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
   ){
@@ -59,12 +59,14 @@ export class CreateLocalityComponent implements OnInit {
 
   }
 
-  public onAddLocality() {
+  onAddLocality() {
     this.localiteService.addLocalityDTO(this.formDataLocalityDTO).subscribe(
       (response: AddresseDto) => {
-  //      this.dialogRef.close();
- //       this.toastr.success("Addresse Ajouté avec Succès");
-        this.router.navigate(['/admin/accueil/localities']);
+        this.toastr.success('avec succès','Ville Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigate(['/admin/accueil/localites']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -72,17 +74,23 @@ export class CreateLocalityComponent implements OnInit {
     );
   }
 
-  public onUpdateLocality() {
+  onUpdateLocality() {
     this.localiteService.updateLocalityDTO(this.formDataLocalityDTO.id, this.formDataLocalityDTO).subscribe(
       (response: AddresseDto) => {
-  //      this.dialogRef.close();
-  //      this.toastr.warning("Addresse Update avec Succès");
-        this.router.navigate(['/admin/accueil/localities']);
+        this.toastr.warning('avec succès','Ville Modifiée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigate(['/admin/accueil/localites']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  goBack() {
+    this.router.navigate(['/admin/accueil/localites']);
   }
 
 

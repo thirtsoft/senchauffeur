@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
-import { DialogService } from './../../../services/dialog.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateLocalityComponent } from './../create-locality/create-locality.component';
 import { LocalityService } from './../../../services/locality.service';
 import { AddresseDto } from './../../../models/locality';
 
@@ -25,17 +22,15 @@ export class ListLocalityComponent implements OnInit {
   constructor(private localiteService: LocalityService,
               private dialog: MatDialog,
               private router: Router,
-  //            public toastr: ToastrService,
- //             private dialogService: DialogService,
-
+              public toastr: ToastrService
   ){}
 
   ngOnInit(): void {
     this.getListLocalitieDTOs();
   }
 
-  public getListLocalitieDTOs() {
-    this.localiteService.getLocaliteDTOs().subscribe(
+  getListLocalitieDTOs() {
+    this.localiteService.getLocaliteDTOOrderByIdDesc().subscribe(
       (response: AddresseDto[]) => {
         this.localityListDTO = response;
         console.log(this.localityListDTO);
@@ -48,36 +43,17 @@ export class ListLocalityComponent implements OnInit {
   }
 
   onAddLocality() {
-    this.router.navigate(['/backend/admin/localite']);
+    this.router.navigate(['/admin/accueil/localite']);
   }
-
-  /*
-  onAddLocality() {
-    this.openNoteDialog(null);
-  }
-
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(CreateLocalityComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.localityListDTO.push(result);
-      }
-
-    });
-  }
-
-  */
 
 
   onDeleteLocality(id: number): void{
     if (window.confirm('Etes-vous sure de vouloir supprimer cette Ville ?')) {
       this.localiteService.deleteLocalityDTO(id).subscribe(data => {
+        this.toastr.error('avec succès','Ville supprimée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
         this.getListLocalitieDTOs();
         },
         (error: HttpErrorResponse) => {

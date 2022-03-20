@@ -23,15 +23,15 @@ export class PermisService {
   }
 
   public getPermisById(permisId: number): Observable<Permis> {
-    return this.http.get<Permis>(`${this.apiServerUrl}/permis/${permisId}`);
+    return this.http.get<Permis>(`${this.apiServerUrl}/permis/findById/${permisId}`);
   }
 
   public addPermis(permis: Permis): Observable<Permis> {
     return this.http.post<Permis>(`${this.apiServerUrl}/permis/create`, permis);
   }
 
-  public updatePermis(permis: Permis): Observable<Permis> {
-    return this.http.put<Permis>(`${this.apiServerUrl}/permis/create`, permis);
+  public updatePermis(id: number, permis: Permis): Observable<Permis> {
+    return this.http.put<Permis>(`${this.apiServerUrl}/permis/update/${id}`, permis);
   }
 
   public deletePermis(permisId: number): Observable<void> {
@@ -43,8 +43,12 @@ export class PermisService {
     return this.http.get<PermisDto[]>(`${this.apiServerUrl}/permis/all`);
   }
 
+  public getPermisDTOOrderByIdDesc(): Observable<PermisDto[]> {
+    return this.http.get<PermisDto[]>(`${this.apiServerUrl}/permis/searchPermisOrderByIdDesc`);
+  }
+
   public getPermisDTOById(permisId: number): Observable<PermisDto> {
-    return this.http.get<PermisDto>(`${this.apiServerUrl}/permis/${permisId}`);
+    return this.http.get<PermisDto>(`${this.apiServerUrl}/permis/findById/${permisId}`);
   }
 
   public addPermisDTO(permisDTO: PermisDto): Observable<PermisDto> {
@@ -52,7 +56,7 @@ export class PermisService {
   }
 
   public updatePermisDTO(permisId: number, permisDTO: PermisDto): Observable<PermisDto> {
-    return this.http.put<PermisDto>(`${this.apiServerUrl}/chauffeurs/update/${permisId}`, permisDTO);
+    return this.http.put<PermisDto>(`${this.apiServerUrl}/permis/update/${permisId}`, permisDTO);
   }
 
   public deletePermisDTO(permisId: number): Observable<void> {
