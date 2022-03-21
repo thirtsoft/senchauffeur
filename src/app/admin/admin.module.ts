@@ -76,6 +76,12 @@ import { ChartComponent } from './chart/chart.component';
 import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
 import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
 import { UpdateUsernameComponent } from './authentication/update-username/update-username.component';
+import { ListReservationComponent } from './reservation/list-reservation/list-reservation.component';
+import { UpdateStatusOfReservationComponent } from './reservation/update-status-of-reservation/update-status-of-reservation.component';
+import { ListTypeAnnonceComponent } from './typeAnnonce/list-type-annonce/list-type-annonce.component';
+import { CreateTypeAnnonceComponent } from './typeAnnonce/create-type-annonce/create-type-annonce.component';
+import { ListPendingReservationComponent } from './reservation/list-pending-reservation/list-pending-reservation.component';
+import { ListValidatedReservationComponent } from './reservation/list-validated-reservation/list-validated-reservation.component';
 
 
 @NgModule({
@@ -128,7 +134,13 @@ import { UpdateUsernameComponent } from './authentication/update-username/update
     ChartComponent,
     UpdatePasswordComponent,
     UpdateProfilComponent,
-    UpdateUsernameComponent
+    UpdateUsernameComponent,
+    ListReservationComponent,
+    UpdateStatusOfReservationComponent,
+    ListTypeAnnonceComponent,
+    CreateTypeAnnonceComponent,
+    ListPendingReservationComponent,
+    ListValidatedReservationComponent
   ],
   imports: [
     CommonModule,
@@ -166,8 +178,8 @@ import { UpdateUsernameComponent } from './authentication/update-username/update
     UpdateUsernameInfo, UpdatePhotoChauffeurComponent,
     DashboardComponent, UpdateCvChauffeurComponent,
     ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent,
-    UpdatePasswordComponent,
-    
+    UpdatePasswordComponent, UpdateStatusOfReservationComponent
+
   ]
 })
 export class AdminModule { }

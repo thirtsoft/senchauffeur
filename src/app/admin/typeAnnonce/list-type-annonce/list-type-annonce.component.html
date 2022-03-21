@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card m-b-30">
         <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List of Tarifs</h3>
+          <h3><i class="fa fa-angle-right"></i> List of TypeAnnonce</h3>
           <div class="row">
             <input
               type="text"
@@ -16,7 +16,7 @@
               class="btn-meeting"
               type="submit"
               style="margin-left: 5%; width: 30%"
-              (click)="onAddTarif()"
+              (click)="onAddTypeAnnonce()"
             >
               Add Tarif
             </button>
@@ -25,40 +25,40 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Reference</th>
-                <th>Montant</th>
-                <th>Annonce</th>
-                <th>Description</th>
+                <th>#</th>
+                <th>Code</th>
+                <th>Libelle</th>
+                <th>Date Creation</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr
                 *ngFor="
-                  let tarifDTO of listTarifDTO
+                  let typeAnnonceDTO of listTypeAnnonceDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 4, currentPage: p };
                   let i = index
                 "
               >
-                <td>{{ tarifDTO?.reference }}</td>
-                <td>{{ tarifDTO?.montantTarif }}</td>
+                <td>{{ typeAnnonceDTO?.id }}</td>
+                <td>{{ typeAnnonceDTO?.code }}</td>
                 <td>
-                  {{ tarifDTO?.typeAnnonceDto?.libelle }}
+                  {{ typeAnnonceDTO?.libelle }}
                 </td>
-                <td>{{ tarifDTO?.description }}</td>
+                <td>{{ typeAnnonceDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
 
                 <td>
                   <button
                     class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/tarif', tarifDTO.id]"
+                    [routerLink]="['/admin/accueil/typeAnnonce', typeAnnonceDTO.id]"
                   >
                     <i class="fa fa-edit" aria-hidden="true"></i></button
                   >&nbsp;
 
                   <button
                     class="btn btn-danger btn-sm"
-                    (click)="onDeleteTarif(tarifDTO.id)"
+                    (click)="onDeleteTypeAnnonce(typeAnnonceDTO.id)"
                   >
                     <i class="fa fa-trash" aria-hidden="true"></i></button
                   >&nbsp;

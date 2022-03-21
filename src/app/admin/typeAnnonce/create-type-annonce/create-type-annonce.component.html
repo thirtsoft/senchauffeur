@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <h1  *ngIf="!paramId">Nouveau TypeAnnonceDTO</h1>
+  <h1  *ngIf="paramId">Modifier TypeAnnonceDTO</h1>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <form #addTarifForm="ngForm" name="form">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label>Code</label>
+              <input
+                type="text"
+                placeholder="Référence tarif"
+                class="form-control"
+                [(ngModel)]="typeAnnonceDTO.code"
+                name="code"
+                id="code"
+                #code="ngModel"
+                required
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  (code.touched || addTarifForm.submitted) &&
+                  code.errors?.required
+                "
+              >
+                code est obligatoire
+              </span>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Libelle</label>
+              <input
+                type="text"
+                placeholder="Montant tarif"
+                class="form-control"
+                [(ngModel)]="typeAnnonceDTO.libelle"
+                name="libelle"
+                id="libelle"
+                #libelle="ngModel"
+                required
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  (libelle.touched || addTarifForm.submitted) &&
+                  libelle.errors?.required
+                "
+              >
+                libelle est obligatoire
+              </span>
+            </div> </div>
+
+
+        </div>
+
+        <div class="form-group">
+          <button
+            *ngIf="!paramId"
+            type="submit"
+            class="btn btn-success"
+            (click)="onAddTypeAnnonce()"
+            style="cursor: pointer;"
+          >
+            <i class="fa fa-database"></i> Enregistrer</button
+          >&nbsp;
+          <button
+            *ngIf="paramId"
+            class="btn btn-warning"
+            (click)="onUpdateTypeAnnonce()"
+            style="cursor: pointer;"
+          >
+            <i class="fa fa-database"></i>Modifié
+          </button>
+          <button type="button" class="btn btn-danger ml-1"
+          (click)="goBack()"
+          style="cursor: pointer;" >
+            <i class="fa fa-close"></i> Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

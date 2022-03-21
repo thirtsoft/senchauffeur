@@ -1,3 +1,4 @@
+import { ReservationDto } from './../models/reservation';
 import { NotationDto } from './../models/notation';
 import { AnnonceDto } from './../models/annonce';
 import { Observable } from 'rxjs';
@@ -35,6 +36,23 @@ export class DashboardService {
   public countNumbersOfAnnoncePeerYear(): Observable<AnnonceDto[]>  {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/numberOfAnnonceByYear`);
   }
+
+  public countNumberOfReservationByStatusPending(): Observable<any>  {
+    return this.http.get(`${this.apiServerUrl}/reservations/NumbersOfReservationByStatusPending`);
+  }
+
+  public countNumbersOfReservationInYear(): Observable<any>  {
+    return this.http.get(`${this.apiServerUrl}/reservations/NumbersOfReservationInYear`);
+  }
+
+  public countNumbersOfReservationsPeerMonth(): Observable<ReservationDto[]>  {
+    return this.http.get<ReservationDto[]>(`${this.apiServerUrl}/reservations/numberOfReservationsPeerMonth`);
+  }
+
+  public countNumbersOfReservationsPeerYear(): Observable<ReservationDto[]>  {
+    return this.http.get<ReservationDto[]>(`${this.apiServerUrl}/reservations/numberOfReservationsPeerYeer`);
+  }
+
 
   public countNumberOfChauffeurs(): Observable<any> {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/NumbersOfChauffeurs`);

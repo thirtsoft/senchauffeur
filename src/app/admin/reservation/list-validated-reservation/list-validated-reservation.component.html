@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card m-b-30">
+        <div class="card-body">
+          <h3><i class="fa fa-angle-right"></i> Reservation Validées</h3>
+          <div class="row">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              [(ngModel)]="searchText"
+            />
+
+          </div>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Demandeur</th>
+                <th>Entreprise</th>
+                <th>Chauffeur</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Date Ajout</th>
+                <th>Date Souhaitée</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let annonceDTO of listReservationDTO
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 20, currentPage: p }
+                "
+              >
+                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
+                <td>{{ annonceDTO?.utilisateurDto?.nomEntreprise }}</td>
+                <td>{{ annonceDTO?.chauffeurDto?.firstName }}
+                  {{ annonceDTO?.chauffeurDto?.lastName }}
+                </td>
+                <td>{{ annonceDTO?.description }}</td>
+                <td>{{ annonceDTO?.status }}
+                </td>
+                <td>{{ annonceDTO?.createdDate | date: 'dd-MM-yyyy' }}</td>
+                <td>{{ annonceDTO?.dateDemarrage | date: 'dd-MM-yyyy' }}</td>
+                <td>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="viewAllReservations()"
+                  >
+                    <i class="fa fa-angle-right" aria-hidden="true"></i></button
+                  >&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

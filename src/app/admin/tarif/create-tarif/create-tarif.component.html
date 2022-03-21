@@ -30,24 +30,24 @@
             </div>
           </div>
 
-          <div class="col-sm-6"> 
+          <div class="col-sm-6">
             <div class="form-group">
               <label>Annonce</label>
               <div class="form-group">
                 <select
                   name="annonceDto"
-                  [(ngModel)]="tarifDTO.annonceDto"
+                  [(ngModel)]="tarifDTO.typeAnnonceDto"
                   class="form-control"
                 >
                   <option
-                    *ngFor="let annonceDTO of listAnnonceData"
+                    *ngFor="let typeannonceDTO of listTypeAnnonceData"
                     [ngValue]="
-                      annonceDTO.id == tarifDTO.annonceDto?.id
-                        ? tarifDTO.annonceDto
-                        : annonceDTO
+                    typeannonceDTO.id == tarifDTO.typeAnnonceDto?.id
+                        ? tarifDTO.typeAnnonceDto
+                        : typeannonceDTO
                     "
                   >
-                    {{ annonceDTO.reference }}
+                    {{ typeannonceDTO.libelle }}
                   </option>
                 </select>
               </div>
@@ -78,7 +78,7 @@
               </span>
             </div> </div>
 
-           
+
         </div>
 
         <div class="form-group">
@@ -103,7 +103,7 @@
             description est obligatoire
           </span>
         </div>
-        
+
 
         <div class="form-group">
           <button

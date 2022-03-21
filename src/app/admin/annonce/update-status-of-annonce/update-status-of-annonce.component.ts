@@ -16,7 +16,7 @@ export class UpdateStatusOfAnnonceComponent implements OnInit {
 
   annonceDTOList : AnnonceDto[];
 
-  statusListData= ['ENCOURS','VALIDEE','REJETEE'];
+  statusListData= ['ENCOURS','VALIDEE','REJETEE', 'ARCHIVEE'];
 
   formData:  FormGroup;
 

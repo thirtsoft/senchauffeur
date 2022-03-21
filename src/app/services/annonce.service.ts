@@ -15,7 +15,7 @@ export class AnnonceService {
 
   choixmenu : string  = 'A';
 
-  public formData:  FormGroup;
+  formData:  FormGroup;
 
 //  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 

@@ -1,3 +1,5 @@
+import { TypeAnnonceService } from './../../../services/type-annonce.service';
+import { TypeAnnonceDto } from './../../../models/type-annonce';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
@@ -17,14 +19,14 @@ import { TarifDto } from './../../../models/tarif';
 export class CreateTarifComponent implements OnInit {
 
   tarifDTO: TarifDto = new TarifDto();
-  listAnnonceData: AnnonceDto[];
+  listTypeAnnonceData: TypeAnnonceDto[];
 
   data;
   paramId :any = 0;
   mySubscription: any;
 
   constructor(private tarifService: TarifService,
-              private annonceService: AnnonceService,
+              private typeAService: TypeAnnonceService,
               private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
@@ -47,7 +49,7 @@ export class CreateTarifComponent implements OnInit {
       this.getTarifDTOById(this.paramId);
     }
 
-    this.getListAnnonceDTOs();
+    this.getListTypeAnnonceDTOs();
 
 
   }
@@ -66,10 +68,10 @@ export class CreateTarifComponent implements OnInit {
 
   }
 
-  getListAnnonceDTOs() {
-    this.annonceService.getAnnonceDTOs().subscribe(
-      (response: AnnonceDto[]) => {
-        this.listAnnonceData = response;
+  getListTypeAnnonceDTOs() {
+    this.typeAService.getTypeTypeAnnonceDtOs().subscribe(
+      (response: TypeAnnonceDto[]) => {
+        this.listTypeAnnonceData = response;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
@@ -84,7 +86,7 @@ export class CreateTarifComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/tarifs").then(() => {
-    
+
         });
       },
       (error: HttpErrorResponse) => {
@@ -101,7 +103,7 @@ export class CreateTarifComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/tarifs").then(() => {
-    
+
         });
       },
       (error: HttpErrorResponse) => {

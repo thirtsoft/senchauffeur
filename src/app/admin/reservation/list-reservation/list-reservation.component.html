@@ -1,9 +1,10 @@
+<p>list-pending-reservation works!</p>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
       <div class="card m-b-30">
         <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> Annonces Encours</h3>
+          <h3><i class="fa fa-angle-right"></i> Reservation Encours</h3>
           <div class="row">
             <input
               type="text"
@@ -17,59 +18,49 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Reference</th>
-                <th>Libelle</th>
-                <th>Annonceur</th>
-                <th>Permis</th>
-                 <th>Dispo</th>
+                <th>Demandeur</th>
+                <th>Entreprise</th>
+                <th>Chauffeur</th>
+                <th>Description</th>
                 <th>Status</th>
-                <th>Date</th>
+                <th>Date Ajout</th>
+                <th>Date Souhaitée</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr
                 *ngFor="
-                  let annonceDTO of annonceListDTO
+                  let annonceDTO of listReservationDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 20, currentPage: p }
                 "
               >
-                <td>{{ annonceDTO?.reference }}</td>
-                <td>{{ annonceDTO?.libelle }}</td>
                 <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
-                <td>{{ annonceDTO?.permisDto?.designation }}</td>
-                <td>{{annonceDTO?.time}}</td>
+                <td>{{ annonceDTO?.utilisateurDto?.nomEntreprise }}</td>
+                <td>{{ annonceDTO?.chauffeurDto?.firstName }}
+                  {{ annonceDTO?.chauffeurDto?.lastName }}
+                </td>
+                <td>{{ annonceDTO?.description }}</td>
                 <td>{{ annonceDTO?.status }}
-                  <button
+                  <span
                   type="button"
                   class="btn-success btn-sm pull-right"
-                  (click)="addEditStatusAnnonce(annonceDTO)"
+                  [ngClass]="{ disabled: annonceDTO.status == 'ARCHIVEE'}"
+                  (click)="addEditStatusReservation(annonceDTO)"
                   style="cursor: pointer"
                   >
-                    <i class="fa fa-edit" aria-hidden="true"></i></button
+                    <i class="fa fa-edit" aria-hidden="true"></i></span
                   >&nbsp;
-
                 </td>
-
-                <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
-
+                <td>{{ annonceDTO?.createdDate | date: 'dd-MM-yyyy' }}</td>
+                <td>{{ annonceDTO?.dateDemarrage | date: 'dd-MM-yyyy' }}</td>
                 <td>
-                  <button class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/annonce', annonceDTO.id]">
-                    <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
-
-                  <button
-                  class="btn btn-success btn-sm"
-                  [routerLink]="['/admin/accueil/viewAnnonce', annonceDTO.id]"
-                >
-                  <i class="fa fa-eye" aria-hidden="true"></i></button
-                >&nbsp;
                   <button
                     class="btn btn-danger btn-sm"
-                    (click)="viewAllAnnonces()"
+                    (click)="onDeleteReservation(annonceDTO.id)"
                   >
-                    <i class="fa fa-angle-right" aria-hidden="true"></i></button
+                    <i class="fa fa-trash" aria-hidden="true"></i></button
                   >&nbsp;
                 </td>
               </tr>

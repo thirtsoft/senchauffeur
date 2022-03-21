@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <h2>Modifier Status</h2>
+    <form [formGroup]="this.crudApi.formData" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Ref Annonce </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="id"
+          id="id"
+          disabled
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select
+          name="status"
+          formControlName="status"
+          id="status"
+          class="form-control"
+        >
+          <option value="ENCOURS">ENCOURS</option>
+          <option value="VALIDEE">VALIDEE</option>
+          <option value="REJETEE">REJETEE</option>
+          <option value="ARCHIVEE">ARCHIVEE</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success btn-sm">
+          <i class="fa fa-database"></i> Valider</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-danger btn-sm ml-1"
+          [mat-dialog-close]
+        >
+          <i class="fa fa-close"></i> Fermer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

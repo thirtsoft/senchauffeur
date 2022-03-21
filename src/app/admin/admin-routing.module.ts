@@ -1,3 +1,8 @@
+import { CreateTypeAnnonceComponent } from './typeAnnonce/create-type-annonce/create-type-annonce.component';
+import { ListTypeAnnonceComponent } from './typeAnnonce/list-type-annonce/list-type-annonce.component';
+import { ListReservationComponent } from './reservation/list-reservation/list-reservation.component';
+import { ListValidatedReservationComponent } from './reservation/list-validated-reservation/list-validated-reservation.component';
+import { ListPendingReservationComponent } from './reservation/list-pending-reservation/list-pending-reservation.component';
 import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
 import { ProfilComponent } from './authentication/profil/profil.component';
 import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
@@ -134,6 +139,36 @@ const routes: Routes = [
         path: 'annonceRejetes',
         component: ListRejectedAnnonceComponent
       },
+
+      {
+        path: 'reservations',
+        component: ListReservationComponent
+      },
+
+      {
+        path: 'reservationEncours',
+        component: ListPendingReservationComponent
+      },
+      {
+        path: 'reservationValides',
+        component: ListValidatedReservationComponent
+      },
+
+      {
+        path: 'typeAnnonces',
+        component: ListTypeAnnonceComponent
+      },
+
+      {
+        path: 'typeAnnonce',
+        component: CreateTypeAnnonceComponent
+      },
+
+      {
+        path: 'typeAnnonce/:id',
+        component: CreateTypeAnnonceComponent
+      },
+
       {
         path: 'graphes',
         component: ChartComponent
