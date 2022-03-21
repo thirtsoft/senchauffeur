@@ -40,9 +40,13 @@ public class Tarif implements Serializable {
 	@Lob
 	private String description;
 	
-//	@ManyToOne(cascade = CascadeType.PERSIST)
+	/*
 	@ManyToOne
 	@JoinColumn(name = "annonceId")
-	private Annonce annonce;
+	private Annonce annonce; */
+	
+	@ManyToOne
+	@JoinColumn(name = "typeAnnonceId")
+	private TypeAnnonce typeAnnonce;
 
 }

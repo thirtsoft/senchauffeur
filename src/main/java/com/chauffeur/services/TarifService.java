@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.chauffeur.dto.PermisDto;
 import com.chauffeur.dto.TarifDto;
 
 public interface TarifService {

@@ -21,7 +21,7 @@ public class TarifDto {
 	
 	private String description;
 	
-	private AnnonceDto annonceDto;
+	private TypeAnnonceDto typeAnnonceDto;
 
 	
 	public static TarifDto fromEntityToDto(Tarif tarif) {
@@ -34,7 +34,7 @@ public class TarifDto {
 				.reference(tarif.getReference())
 				.montantTarif(tarif.getMontantTarif())
 				.description(tarif.getDescription())
-				.annonceDto(AnnonceDto.fromEntityToDto(tarif.getAnnonce()))
+				.typeAnnonceDto(TypeAnnonceDto.fromEntityToDto(tarif.getTypeAnnonce()))
 				.build();
 		
 	}
@@ -48,7 +48,7 @@ public class TarifDto {
 		tarif.setReference(tarifDto.getReference());
 		tarif.setMontantTarif(tarifDto.getMontantTarif());
 		tarif.setDescription(tarifDto.getDescription());
-		tarif.setAnnonce(AnnonceDto.fromDtoToEntity(tarifDto.getAnnonceDto()));
+		tarif.setTypeAnnonce(TypeAnnonceDto.fromDtoToEntity(tarifDto.getTypeAnnonceDto()));
 		
 		return tarif;
 	}

@@ -58,7 +58,7 @@ public class TarifServiceImpl implements TarifService {
         tarifDtoResult.setReference(tarifDto.getReference());
         tarifDtoResult.setMontantTarif(tarifDto.getMontantTarif());
         tarifDtoResult.setDescription(tarifDto.getDescription());
-        tarifDtoResult.setAnnonceDto(tarifDto.getAnnonceDto());
+        tarifDtoResult.setTypeAnnonceDto(tarifDto.getTypeAnnonceDto());
        
         return TarifDto.fromEntityToDto(
         		tarifRepository.save(
