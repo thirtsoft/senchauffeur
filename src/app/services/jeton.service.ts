@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { JetonDto } from './../models/jeton';
@@ -26,6 +26,10 @@ export class JetonService {
     return this.http.get<JetonDto[]>(`${this.apiServerUrl}/jetons/searchJetonsByIdDesc`);
   }
 
+  public getJetonDTOsByCustomerIdByIdDesc(userId: number): Observable<JetonDto[]> {
+    return this.http.get<JetonDto[]>(`${this.apiServerUrl}/jetons/searchJetonsByCustomerId/${userId}`);
+  }
+
   public getJetonDTOById(idJetonDto: number): Observable<JetonDto> {
     return this.http.get<JetonDto>(`${this.apiServerUrl}/jetons/findById/${idJetonDto}`);
   }
@@ -36,6 +40,15 @@ export class JetonService {
 
   public updateJetonDTO(idJetonDto: number, jetonDto: JetonDto): Observable<JetonDto> {
     return this.http.put<JetonDto>(`${this.apiServerUrl}/jetons/update/${idJetonDto}`, jetonDto);
+  }
+
+  public updateEtatOfJetonDTO(id: number, etat: string): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    let data = {"etat":etat};
+    const urlUpdateEtat = (this.apiServerUrl+"/jetons/updateEtatOfJeton/"+id+"?etat="+data.etat);
+    return this.http.patch<any>(urlUpdateEtat, {headers: headers});
+
   }
 
   public deleteJetonDTO(idJetonDto: number): Observable<void> {

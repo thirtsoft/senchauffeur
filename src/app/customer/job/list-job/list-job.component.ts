@@ -1,3 +1,5 @@
+import { JetonDto } from './../../../models/jeton';
+import { JetonService } from './../../../services/jeton.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, FormGroup, Validators } from '@angular/forms';
@@ -68,12 +70,10 @@ export class ListJobComponent implements OnInit {
   showUserBoard = false;
   showVendeurBoard = false;
 
-  photo;
-
   addEditAnnonceDTO: AnnonceDto = new AnnonceDto();
   listPermisDTOs: PermisDto[];
-  listVilleDTOs: VilleDto[];
   listAddressDTOs: AddresseDto[];
+  listJetonDTOs: JetonDto[];
 
   listTypeContrats = ["Stage", "CDD", "CDI"];
   listExperiences = ["Débutant", "1ans-3ans", "3ans-5ans", "10ans et plus"];
@@ -81,10 +81,6 @@ export class ListJobComponent implements OnInit {
 
   data;
   addJobForm: NgForm;
-
-  model: NgbDateStruct;
-//  today = this.calendar.getToday();
-  today;
 
   formData:  FormGroup;
 
@@ -94,6 +90,7 @@ export class ListJobComponent implements OnInit {
               public tokenService: TokenStorageService,
               public userService: UtilisateurService,
               public authService: AuthService,
+              private job: JetonService,
               public toastr: ToastrService,
               public fb: FormBuilder,
               public router: Router,
@@ -121,6 +118,9 @@ export class ListJobComponent implements OnInit {
       this.getAnnonceDTOByUserId(this.paramId);
 
       this.getUtilisateurDTOById(this.paramId);
+
+      this.getListJetonsDTOByCustomerId(this.paramId);
+
     }
 
     this.isLoggedIn = !!this.tokenService.getToken();
@@ -134,11 +134,7 @@ export class ListJobComponent implements OnInit {
 
       this.username = user.username;
       this.userId = user.id;
-      this.photo = user.photo;
-
-      console.log("Username : " + this.username);
-
-      console.log("IdUser : " + this.userId);
+ 
     }
 
     this.getListPermisDTOs();
@@ -201,6 +197,18 @@ export class ListJobComponent implements OnInit {
       }
     );
 
+  }
+
+  getListJetonsDTOByCustomerId(id: number) {
+    this.job.getJetonDTOsByCustomerIdByIdDesc(id).subscribe(
+      (response: JetonDto[]) => {
+        console.log('data--', response);
+        this.listJetonDTOs = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   getUtilisateurDTOById(id: number) {
@@ -323,11 +331,13 @@ export class ListJobComponent implements OnInit {
     this.annonceService.addAnnonceDTOWithUser(this.formData.value,  this.userId)
       .subscribe(
       (response: AnnonceDto) => {
-        this.toastr.success('avec succès','Annonce ajouée', {
+        this.toastr.success('avec succès','Annonce ajoutée', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
           });
-           this.getListAnnonceDTOs();
+          this.router.navigateByUrl("jobs/" + this.userId).then(() => {
+            window.location.reload();
+          });
 
       },
       (error: HttpErrorResponse) => {
@@ -335,6 +345,8 @@ export class ListJobComponent implements OnInit {
       }
 
     );
+
+    this.formData = null;
 
   }
 

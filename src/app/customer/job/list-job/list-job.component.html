@@ -134,7 +134,7 @@
                 role="tabpanel"
                 aria-labelledby="dashboard-nav"
               >
-                <h4>Dashboard</h4>
+                <h4>Tableau de bord</h4>
                 <div class="table-responsive">
                   <table class="table table-bordered" aria-label="">
                     <thead class="thead-dark">
@@ -144,8 +144,7 @@
                         <th>Email Poste</th>
                         <th>Salaire</th>
                         <th>Status</th>
-                        <th>Date</th>
-                        <th>Action</th>
+                        <th>Expiration</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -212,13 +211,14 @@
                         <th>Email Poste</th>
                         <th>Salaire</th>
                         <th>Disponibilité</th>
-                        <th>Lieu Poste</th>
                         <th>Expérience</th>
                         <th>Contrat</th>
                         <th>Permis</th>
                         <th>Addresse</th>
                         <th>Description</th>
-                        <th>Date Cloture</th>
+                        <th>status</th>
+                        <th>Publiée</th>
+                        <th>Expire</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -234,13 +234,17 @@
                         <td>{{ annonceDTO.libelle }}</td>
                         <td>{{ annonceDTO.emailPoste }}</td>
                         <td>{{ annonceDTO.salaire }}</td>
-                        <td>{{ annonceDTO.lieuPoste }}</td>
                         <td>{{ annonceDTO.time }}</td>
                         <td>{{ annonceDTO.experience }}</td>
                         <td>{{ annonceDTO.typeContrat }}</td>
                         <td>{{ annonceDTO.permisDto.designation }}</td>
                         <td>{{ annonceDTO.addresseDto.ville }}</td>
                         <td>{{ annonceDTO.description }}</td>
+                        <td>{{ annonceDTO.status }}</td>
+                        <td>
+                          {{ annonceDTO.dateCandidature | date: "dd-MM-yyyy" }}
+                        </td>
+
                         <td>
                           {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
                         </td>
@@ -257,7 +261,7 @@
                             ></i></button
                           >&nbsp;
 
-                          <button
+                         <!--  <button
                             class="btn btn-danger btn-sm"
                             (click)="onDeleteAnnonce(annonceDTO.id)"
                           >
@@ -265,7 +269,7 @@
                               class="fa fa-trash"
                               aria-hidden="true"
                             ></i></button
-                          >&nbsp;
+                          >&nbsp; -->
                         </td>
                       </tr>
                     </tbody>
@@ -628,13 +632,7 @@
                     />
                   </div>
                   <div class="col-sm-6">
-                   <!--  <button
-                      (click)="onAddEditJeton(null)"
-                      type="submit"
-                      class="btn btn-primary"
-                    >
-                      <em class="fa fa-plus"> </em> Recharge jeton
-                    </button> -->
+             
                   </div>
                 </div>
                 &nbsp;
@@ -643,29 +641,24 @@
                     <thead class="thead-dark">
                       <tr>
                         <th>#</th>
-                        <th>Libellé</th>
-                        <th>Email Poste</th>
-                        <th>Salaire</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Action</th>
+                        <th>Montant</th>
+                        <th>Etat</th>
+                        <th>DateDépot</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr
                         *ngFor="
-                          let annonceDTO of listAnnonceDataDTO
+                          let jetonDTO of listJetonDTOs
                             | paginate: { itemsPerPage: 15, currentPage: p };
                           let i = index
                         "
                       >
-                        <td>{{ annonceDTO.id }}</td>
-                        <td>{{ annonceDTO.libelle }}</td>
-                        <td>{{ annonceDTO.emailPoste }}</td>
-                        <td>{{ annonceDTO.salaire }}</td>
-                        <td>{{ annonceDTO.status }}</td>
+                        <td>{{ jetonDTO.id }}</td>
+                        <td>{{ jetonDTO.montant }}</td> 
+                        <td>{{ jetonDTO.etat }}</td>
                         <td>
-                          {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
+                          {{ jetonDTO.createdDate | date: "dd-MM-yyyy" }}
                         </td>
                       </tr>
                     </tbody>
@@ -845,33 +838,6 @@
               </div>
             </div>
           </div>
-          <!--  <div
-            class="col-xl-10 col-lg-12 col-sm-12 table-responsive"
-            style="margin-left: -10px"
-          >
-                    <button
-                      class="btn btn-warning btn-sm"
-                      [routerLink]="['/createJob', annonceDTO.id]"
-                    >
-                      <i class="fa fa-eye" aria-hidden="true"></i>
-                    </button>
-                    <button
-                      class="btn btn-info btn-sm"
-                      [routerLink]="['/createJob', annonceDTO.id]"
-                    >
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </button>
-                    <button
-                      class="btn btn-danger btn-sm"
-                      (click)="onDeleteAnnonce(annonceDTO.id)"
-                    >
-                      <i class="fa fa-trash-o"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody> -->
-          <!--  </table>
-          </div> -->
         </div>
       </div>
     </div>

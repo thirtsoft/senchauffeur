@@ -46,9 +46,7 @@ export class AnnonceDto {
 
   permisDto: PermisDto;
 
-  recruteurDto: RecruteurDto;
-
-  villeDto: VilleDto;
+//  recruteurDto: RecruteurDto;
 
   addresseDto: AddresseDto;
 
