@@ -22,7 +22,7 @@ public interface NotificationService {
 
     List<NotificationDto> findByOrderByIdDesc();
 
-    List<NotificationDto> findTop4ByOrderByCreatedDateDescByChauffeurId(String chauffRef);
+    List<NotificationDto> findTop4ByOrderByCreatedDateDescByChauffeurId(Long chauffRef);
 
     BigDecimal countNumberOfNotificationByChauffeurId(String chauffRef);
     

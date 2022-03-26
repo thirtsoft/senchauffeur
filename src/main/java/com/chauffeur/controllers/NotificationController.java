@@ -101,7 +101,7 @@ public class NotificationController implements NotificationApi {
 	}
 	
 	@Override
-	public ResponseEntity<List<NotificationDto>> getTop4ByOrderByCreatedDateDescByProductId(String chauffRef) {
+	public ResponseEntity<List<NotificationDto>> getTop4ByOrderByCreatedDateDescByProductId(Long chauffRef) {
 		List<NotificationDto> notificationDtoList = notificationService.findTop4ByOrderByCreatedDateDescByChauffeurId(chauffRef);
 	    return new ResponseEntity(notificationDtoList, HttpStatus.OK);
 	}

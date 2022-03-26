@@ -1,6 +1,7 @@
 package com.chauffeur.controllers;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chauffeur.controllers.api.JetonApi;
+import com.chauffeur.dto.AnnonceDto;
+import com.chauffeur.dto.HistoriqueAnnonceDto;
 import com.chauffeur.dto.JetonDto;
 import com.chauffeur.services.JetonService;
 
@@ -26,6 +29,8 @@ public class JetonController implements JetonApi {
 
 	@Override
 	public ResponseEntity<JetonDto> save(JetonDto jetonDto) {
+		jetonDto.setEtat("ENCOURS");
+		jetonDto.setCreatedDate(new Date());
 		JetonDto newJetonDto = jetonService.save(jetonDto);
 		return new ResponseEntity<>(newJetonDto, HttpStatus.CREATED);
 	}
@@ -36,7 +41,14 @@ public class JetonController implements JetonApi {
 		JetonDto newJetonDto = jetonService.save(jetonDto);
 		return new ResponseEntity<>(newJetonDto, HttpStatus.OK);
 	}
+	
+	@Override
+	public ResponseEntity<JetonDto> updateEtatOfJeton(String etat, String id) {
+		JetonDto newAnnonceDto = jetonService.updateEtatOfJetonDto(etat, id);    
+        return new ResponseEntity<>(newAnnonceDto, HttpStatus.OK);
+	}
 
+	
 	@Override
 	public ResponseEntity<JetonDto> getJetonById(Long idJeton) {
 		JetonDto newJetonDto = jetonService.findById(idJeton);
@@ -54,6 +66,12 @@ public class JetonController implements JetonApi {
 		List<JetonDto> jetonDtos = jetonService.findAllJetonsByOrderByIdDesc();
 		return new ResponseEntity<>(jetonDtos, HttpStatus.OK);
 	}
+	
+	@Override
+	public ResponseEntity<List<JetonDto>> getAllJetonByCustomerIdOrderIdDesc(Long userId) {
+		List<JetonDto> jetonDtos = jetonService.FindListJetonByCustomerId(userId);
+		return new ResponseEntity<>(jetonDtos, HttpStatus.OK);
+	}
 
 	@Override
 	public BigDecimal getNumbersOfjetons() {
@@ -66,4 +84,5 @@ public class JetonController implements JetonApi {
 		
 	}
 
+	
 }

@@ -147,6 +147,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/notifications/searchAllNotificationsOrderByIdDesc").permitAll()
                 .antMatchers("/**/notifications/create").permitAll()
                 .antMatchers("/**/notifications/update/**").permitAll()
+                .antMatchers("/**/notifications/countNumberOfNotification").permitAll()
                 .antMatchers("/**/notifications/countNumberOfNotificationByChauffeurId/{idChauff}").permitAll()
                 .antMatchers("/**/notifications/searchTop4RatingOrderByCreatedDateDescByChauffeurId/{idChauff}").permitAll()
                 
@@ -161,7 +162,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/reservations/searchReservationByChauffeurId/{chauffId}").permitAll()
                 .antMatchers("/**/reservations/create").permitAll()
                 .antMatchers("/**/reservations/update/*").permitAll()
-                .antMatchers("/**/reservations/updateStatusOfReservation/{id}").permitAll()
+                .antMatchers("/**/reservations/findById/*").permitAll()
+                .antMatchers("/**/reservations/updateStatusOfReservation/*").permitAll()
                 .antMatchers("/**/reservations/numberOfReservationsPeerMonth").permitAll()
                 .antMatchers("/**/reservations/numberOfReservationsPeerYeer").permitAll() 
                 .antMatchers("/**/reservations/delete/{idReservation}").permitAll()
@@ -183,7 +185,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 
                 .antMatchers("/**/jetons/create").permitAll()
                 .antMatchers("/**/jetons/update/*").permitAll()
+                .antMatchers("/**/jetons/updateEtatOfJeton/*").permitAll()
                 .antMatchers("/**/jetons/searchJetonsByIdDesc").permitAll()
+                .antMatchers("/**/jetons/searchJetonsByCustomerId/*").permitAll()
                 .antMatchers("/**/jetons/delete/{idJeton}").permitAll()
                 .antMatchers("/**/jetons/findById/*").permitAll()
                 .antMatchers("/**/jetons/*").permitAll()

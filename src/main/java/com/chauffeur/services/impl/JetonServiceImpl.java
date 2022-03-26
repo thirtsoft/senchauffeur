@@ -10,8 +10,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chauffeur.dto.AnnonceDto;
 import com.chauffeur.dto.JetonDto;
 import com.chauffeur.exceptions.ResourceNotFoundException;
+import com.chauffeur.models.Annonce;
 import com.chauffeur.models.Jeton;
 import com.chauffeur.repository.JetonRepository;
 import com.chauffeur.services.JetonService;
@@ -32,6 +34,7 @@ public class JetonServiceImpl implements JetonService {
 
 	@Override
 	public JetonDto save(JetonDto jetonDto) {
+		jetonDto.setEtat("ENCOURS");
 		return JetonDto.fromEntityToDto(
 				jetonRepository.save(
 						JetonDto.fromDtoToEntity(jetonDto)
@@ -63,6 +66,22 @@ public class JetonServiceImpl implements JetonService {
                 )
         );
 	}
+	
+	@Override
+	public JetonDto updateEtatOfJetonDto(String etat, String id) {
+		Optional<Jeton> annonceOptional = jetonRepository.findById(Long.valueOf(id));
+
+		JetonDto annonceDtoResult = JetonDto.fromEntityToDto(annonceOptional.get());
+
+		annonceDtoResult.setEtat(etat);
+
+        return JetonDto.fromEntityToDto(
+        		jetonRepository.save(
+        				JetonDto.fromDtoToEntity(annonceDtoResult)
+                )
+        );
+	}
+
 
 	@Override
 	public JetonDto findById(Long id) {
@@ -92,6 +111,13 @@ public class JetonServiceImpl implements JetonService {
                 .map(JetonDto::fromEntityToDto)
                 .collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<JetonDto> FindListJetonByCustomerId(Long userId) {
+		return jetonRepository.FindListJetonByCustomerId(userId).stream()
+                .map(JetonDto::fromEntityToDto)
+                .collect(Collectors.toList());
+	}
 
 	@Override
 	public BigDecimal countNumbersOfJetons() {
@@ -107,5 +133,8 @@ public class JetonServiceImpl implements JetonService {
 		jetonRepository.deleteById(id);
 		
 	}
+	
+	
+	
 
 }

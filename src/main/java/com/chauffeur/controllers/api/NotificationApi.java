@@ -48,7 +48,7 @@ public interface NotificationApi {
 	ResponseEntity<List<NotificationDto>> getTop3ByOrderByCreatedDateDesc();
 	
 	@GetMapping(value = APP_ROOT + "/notifications/searchTop4RatingOrderByCreatedDateDescByChauffeurId/{idChauff}", produces = MediaType.APPLICATION_JSON_VALUE)   
-	ResponseEntity<List<NotificationDto>> getTop4ByOrderByCreatedDateDescByProductId(@PathVariable("idChauff") String chauffRef);
+	ResponseEntity<List<NotificationDto>> getTop4ByOrderByCreatedDateDescByProductId(@PathVariable("idChauff") Long id);
 	
 	@GetMapping(value = APP_ROOT + "/notifications/countNumberOfNotificationByProductId/{idChauff}", produces = MediaType.APPLICATION_JSON_VALUE)    
 	BigDecimal countNumberOfNotificationByChauffeurId(@PathVariable("idChauff") String chauffRef);

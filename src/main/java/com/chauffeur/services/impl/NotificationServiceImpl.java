@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NotificationServiceImpl implements NotificationService {
 	
-//	@Autowired
     private final NotificationRepository notificationRepository;
 	
     private final ChauffeurService chauffeurService;
@@ -129,7 +128,7 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public List<NotificationDto> findTop4ByOrderByCreatedDateDescByChauffeurId(String chauffRef) {
+	public List<NotificationDto> findTop4ByOrderByCreatedDateDescByChauffeurId(Long chauffRef) {
 		return notificationRepository.findTop4NotificationOrderByCreatedDateDesc(chauffRef).stream()
                 .map(NotificationDto::fromEntityToDto)
                 .collect(Collectors.toList());
