@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 pull-center">
       <h3 *ngIf="!paramId">Nouvelle Jeton</h3>
       <h3 *ngIf="paramId">Modifier Jeton</h3>
       <form #addJetonForm="ngForm" name="form">
@@ -24,28 +24,6 @@
             "
           >
             montant est obligatoire
-          </span>
-        </div>
-
-        <div class="form-group">
-          <label>Etat</label>
-          <input
-            type="text"
-            placeholder="etat jeton"
-            class="form-control"
-            [(ngModel)]="jetonDTO.etat"
-            name="etat"
-            id="etat"
-            #etat="ngModel"
-            required
-          />
-          <span
-            class="text-danger"
-            *ngIf="
-              (etat.touched || addJetonForm.submitted) && etat.errors?.required
-            "
-          >
-            etat est obligatoire
           </span>
         </div>
 

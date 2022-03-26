@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './../security/auth.service';
@@ -24,9 +25,9 @@ export class RegisterComponent implements OnInit {
   ];
   selectedRoles: string[];
 
-  constructor(
-    private authService: AuthService,
-    private router : Router
+  constructor(private authService: AuthService,
+              private toastr: ToastrService,
+              private router : Router
   ){}
 
   ngOnInit(): void {
@@ -64,13 +65,15 @@ export class RegisterComponent implements OnInit {
       console.log(response);
       this.isRegistered = true;
       this.isSignUpFailed = false;
-      console.log("User register Succeffuly");
-      window.alert("User register Succeffuly");
-//      this.toastr.warning("User register Succeffuly");
-      this.router.navigateByUrl("auth/success-register");
+      this.toastr.success('avec succès','Vote compte est crée', {
+        timeOut: 1500,
+        positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("auth/success-register");
     },
     error => {
       this.errorMessage = error.error.message;
+      this.toastr.error("Veuillez remplir tous les champs");
       this.isSignUpFailed = true;
     }
     );

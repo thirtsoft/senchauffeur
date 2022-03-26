@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from './../../auth/security/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
@@ -18,7 +20,20 @@ export class FooterComponent implements OnInit {
   mySubscription: any;
   addNewsleterForm: NgForm;
 
+  info: any;
+  roles: string[];
+
+  isLoggedIn = false;
+  showUserBoard = false;
+
+  username: string;
+  email: String;
+  userId;
+  currentTime: number = 0;
+
   constructor(private crudApi: NewsleterService,
+              private tokenService: TokenStorageService,
+              private toastr: ToastrService,
               private actRoute: ActivatedRoute,
               private router: Router
   ) {
@@ -32,14 +47,28 @@ export class FooterComponent implements OnInit {
      });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+      this.userId = user.id;
+
+    }
+
+  }
 
   onAddNewsleter() {
     console.log(this.addEditNewsleterDTO);
     this.crudApi.addNewsleterDTO(this.addEditNewsleterDTO).subscribe(
       (response: NewsleterDto) => {
-        alert("Vous étes bien inscrit à notre Newsleter");
-        this.router.navigate(['/']);
+        this.toastr.success('à notre Newsleter','Vous etes bien inscrit', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("/").then(() => {
+          });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

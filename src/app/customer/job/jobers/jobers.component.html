@@ -5,12 +5,11 @@
       <h6 class="fw3">+{{ numberOfChauffeur }} Chauffeurs pour vous servir</h6>
     </div>
     <div class="head-counter-bx">
-      <h2 class="m-b5 counter">{{ numberOfChauffeur }}</h2>
+      <h2 class="m-b5 counter">+{{ numberOfChauffeur }}</h2>
       <h6 class="fw3">Chauffeurs</h6>
     </div>
     <div class="head-counter-bx">
-      <!--  <h2 class="m-b5 counter">4500</h2>
-            <h6 class="fw3">Tasks Posted</h6> -->
+
     </div>
     <div class="head-counter-bx">
       <h2 class="m-b5 counter">+{{ numberOfAnnonce }}</h2>
@@ -24,8 +23,6 @@
     >
       <div class="icon-bx-wraper">
         <div class="icon-content">
-          <!--   <div class="icon-md text-primary m-b20"><i class="ti-location-pin"></i></div> -->
-          <!--   <a href="#" class="dez-tilte">Design, Art & Multimedia</a> -->
           <img
             [routerLink]="['/detail-chauffeur', chaufDTO.id]"
             src="{{
@@ -45,22 +42,10 @@
           >
           <a href="#" class="dez-tilte">{{ chaufDTO?.reference }}</a>
 
-          <a
-            *ngIf="!this.isLoggedIn"
-            [routerLink]="['/auth/signIn']"
-            class="btn btn-outline-light"
-            style="margin-top: 25px;
-            cursor: pointer;"
-            >Choisir</a
-          >
-          <a
-            *ngIf="this.isLoggedIn"
-            href="#"
-            class="btn btn-outline-light"
-            style="margin-top: 25px;
-            cursor: pointer;"
-            >Réserver</a
-          >
+          <a 
+          class="dez-tilte"
+          href="https://wa.me/+221771055941" 
+          style="cursor: pointer; margin-top: 25px; font-size: 20px;">Réserver</a>
 
           <div class="rotate-icon col-lg-12 text-center m-t30">
 
@@ -69,14 +54,16 @@
       </div>
     </div>
 
-    <div class="col-lg-12 text-center m-t30">
+    <div class="col-lg-12 text-center m-t30" *ngIf="this.isLoggedIn">
       <button class="site-button radius-xl" routerLink="/browse-candidates">
         Voirs tous les Chauffeurs
       </button>
     </div>
 
-    <!--  <div class="col-lg-12 text-center m-t30">
-          <button class="site-button radius-xl" routerLink="/auth/signIn">Voirs tous les Chauffeurs</button>
-      </div> -->
+    <div class="col-lg-12 text-center m-t30" *ngIf="!this.isLoggedIn">
+      <button class="site-button radius-xl" routerLink="/auth/signIn">
+        Voirs tous les Chauffeurs
+      </button>
+    </div>
   </div>
 </div>

@@ -82,6 +82,7 @@ import { ListTypeAnnonceComponent } from './typeAnnonce/list-type-annonce/list-t
 import { CreateTypeAnnonceComponent } from './typeAnnonce/create-type-annonce/create-type-annonce.component';
 import { ListPendingReservationComponent } from './reservation/list-pending-reservation/list-pending-reservation.component';
 import { ListValidatedReservationComponent } from './reservation/list-validated-reservation/list-validated-reservation.component';
+import { UpdateEtatJetonComponent } from './jeton/update-etat-jeton/update-etat-jeton.component';
 
 
 @NgModule({
@@ -140,7 +141,8 @@ import { ListValidatedReservationComponent } from './reservation/list-validated-
     ListTypeAnnonceComponent,
     CreateTypeAnnonceComponent,
     ListPendingReservationComponent,
-    ListValidatedReservationComponent
+    ListValidatedReservationComponent,
+    UpdateEtatJetonComponent
   ],
   imports: [
     CommonModule,

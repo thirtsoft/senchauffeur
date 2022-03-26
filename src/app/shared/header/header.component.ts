@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './../../auth/security/token-storage.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,20 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   info: any;
-  private roles: string[];
+  roles: string[];
 
   isLoggedIn = false;
-  showAdminBoard = false;
   showUserBoard = false;
-  showVendeurBoard = false;
 
   username: string;
   email: String;
   userId;
-  photo;
   currentTime: number = 0;
 
   constructor(private tokenService: TokenStorageService,
+              private toastr: ToastrService,
               private router: Router
               )
   {}
@@ -33,39 +32,34 @@ export class HeaderComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
       this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showVendeurBoard = this.roles.includes("ROLE_VENDEUR");
       this.showUserBoard = this.roles.includes('ROLE_USER');
 
       this.username = user.username;
       this.userId = user.id;
-      this.photo = user.photo;
-
-      console.log("Username : " + this.username);
-
-      console.log("Header UserID : " + this.userId);
 
     }
   }
 
-
-  logout() {
-    this.tokenService.signOut();
-    this.router.navigateByUrl("").then(() => {
-      window.location.reload();
-    });
-
-  }
-
   getProfile() {
-    this.router.navigate(['/home/profile/' + this.userId]);
+    this.router.navigate(['/jobs/' + this.userId]);
   }
 
   getUserPublication() {
     this.router.navigate(['/jobs/' + this.userId]);
   }
 
+
+  logout() {
+    this.tokenService.signOut();
+    this.toastr.info('bye bye a bientot','Vous etes bien déconnecté', {
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      });
+      this.router.navigateByUrl("/").then(() => {
+        window.location.reload();
+      });
+
+  }
   getTS() {
     return this.currentTime;
   }
