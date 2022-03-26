@@ -14,7 +14,7 @@ export class JobbrowserComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
 
-  public size: number = 2;
+  public size: number = 6;
   public currentPage: number = 1;
   public totalPages: number;
   public pages: Array<number>;
@@ -89,7 +89,7 @@ export class JobbrowserComponent implements OnInit {
 
   public getListAnnonceDTOByPageables() {
     this.annonceService.getListAnnonceDTOByPageable(
-      this.currentPage - 1,
+      this.currentPage,
       this.size
       ).subscribe(
       (response: AnnonceDto[]) => {

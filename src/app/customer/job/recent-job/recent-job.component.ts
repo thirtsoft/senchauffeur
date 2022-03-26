@@ -21,6 +21,7 @@ export class RecentJobComponent implements OnInit {
   p : number=1;
   searchText;
   permId;
+  validated: boolean=false;
 
   public size: number = 6;
   public currentPage: number = 1;
@@ -42,14 +43,13 @@ export class RecentJobComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.get5LatestAnnonceListDTOs();
+    this.get6LatestAnnonceListDTOs();
 
     this.getNumberOfAnnonces();
 
-
   }
 
-  public get5LatestAnnonceListDTOs() {
+  public get6LatestAnnonceListDTOs() {
     this.annonceService.get5LatestAnnonceDTOByOrderByIdDesc().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;

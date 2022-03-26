@@ -23,7 +23,7 @@
           <div class="col-lg-4">
             <div class="sticky-top">
               <div class="row">
-                <div class="col-lg-12 col-md-6">
+                <div class="col-lg-12 col-sm-6">
                   <div class="m-b30">
                     <img
                       src="{{
@@ -35,7 +35,7 @@
                     />
                   </div>
                 </div>
-                <div class="col-lg-12 col-md-6">
+                <div class="col-lg-12 col-sm-6">
                   <div
                     class="widget bg-white p-lr20 p-t20 widget_getintuch radius-sm"
                   >
@@ -49,15 +49,14 @@
                           >Address</strong
                         >
                         <span class="text-black-light">{{
-                          chauffeurDTO?.addresseDto?.quartier
+                          chauffeurDTO?.addresseDto?.ville
                         }}</span>
                       </li>
                       <li>
-                        <i class="ti-money"></i
-                        ><strong class="font-weight-700 text-black"
-                          >Salary</strong
+                       <strong class="font-weight-700 text-black"
+                          >Salaire</strong
                         >
-                        ${{ chauffeurDTO?.pretentionSalaire }} Monthy
+                        {{ chauffeurDTO?.pretentionSalaire }} F/ Mois
                       </li>
                       <li>
                         <i class="ti-shield"></i
@@ -68,107 +67,132 @@
                     </ul>
                   </div>
                 </div>
+
+                <div class="col-lg-12 col-sm-6">
+                  <div class="page-content bg-white" *ngFor="let rat of notificationListDTO; let i=index;">
+                    <div class="content-block">
+                      <h5>{{ rat.utilisateurDto.name }} - <span>{{ rat.createdDate | date:'dd-MM-yyyy' }}</span></h5>
+      
+                      <div class="ratting" style="font-size: 15px;">
+                        <ngb-rating
+      
+                        [(rate)]="rat.nbreEtoile"
+                        [id]="'rating3'"
+                        [readonly]="true"
+                        [max]="maxRatingValue"
+                      >
+                      </ngb-rating>
+      
+                    </div>
+                    <p style="font-size: 15px;">
+                      {{ rat.observation }}
+                    </p>
+                    </div>
+                  </div>
+                </div>
+                
               </div>
             </div>
           </div>
+
+
+
           <div class="col-lg-8">
             <div class="job-info-box">
-              <h3 class="m-t0 m-b10 font-weight-700 title-head">
-                <a href="#" class="text-secondry m-r30">
-                  {{ chauffeurDTO?.firstName }} {{ chauffeurDTO?.lastName }}</a
-                >
+              <h3
+                class="m-t0 m-b10 font-weight-700 title-head"
+                style="font-size: 28px"
+              >
+                {{ chauffeurDTO?.firstName }} {{ chauffeurDTO?.lastName }}
               </h3>
-              <ul class="job-info">
-                <li>
-                  Sexe : <strong> {{ chauffeurDTO?.sexe }} </strong>
-                </li>
-                <!-- <li>Adress: <strong> {{chauffeurDTO?.addressActuel}} Deadline : </strong>{{chauffeurDTO?.disponibity}}</li>
-                                <li><i class="ti-location-pin text-black m-r5"></i>{{chauffeurDTO?.addressActuel}}</li> -->
-              </ul>
-              <p class="p-t20">
-                <a href="#"
-                  >Adresse :
-                  <strong>{{ chauffeurDTO?.addressActuel }}</strong></a
-                >
+              <p class="p-t20" style="font-size: 28px">
+                Sexe :
+                <strong>{{ chauffeurDTO?.sexe }}</strong>
               </p>
-              <h5 class="font-weight-600">Informations Utiles</h5>
+
+              <p class="p-t20" style="font-size: 28px">
+                Adresse :
+                <strong>{{ chauffeurDTO?.addresseDto?.ville }}</strong>
+              </p>
+              <h5 class="font-weight-600" style="font-size: 30px">
+                Informations Utiles
+              </h5>
               <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-              <p *ngIf="this.isLoggedIn">
+              <p *ngIf="this.isLoggedIn" style="font-size: 28px">
                 Téléphone : <strong>{{ chauffeurDTO?.phoneChauffeur }}</strong>
               </p>
-              <p *ngIf="this.isLoggedIn">
+              &nbsp;
+              <p *ngIf="this.isLoggedIn" style="font-size: 28px">
                 Email : <strong>{{ chauffeurDTO?.email }}</strong>
               </p>
+              &nbsp;
               <a href="">
-                <p>CV Chauffeur :</p>
-                <!--
-                                <a *ngIf="this.isLoggedIn" (click)="openPDF()" class="btn btn-info">&nbsp;&nbsp;
-                                  <i class="fa fa-eye" style="cursor:pointer; align-items: flex-end;"></i>
-
-                                  Voir CV
-                                </a>&nbsp;&nbsp;&nbsp;&nbsp; -->
-                <!--  <pdf-viewer src="{{this.chauffService.apiServerUrl+'/chauffeurs/cvChauffeur/'+chauffeurDTO.id}}"
-                                  #pdfViewerOnDemand
-                                  [stick-to-page]="true"
-                                  [original-size]="true"
-                                  [render-text]="true" style="display: block;">
-                                </pdf-viewer> -->
-
-                <!--  <a *ngIf="this.isLoggedIn" class="btn btn-warning" href="https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{chauffeurDTO.cvChauffeur}}">&nbsp;&nbsp;
-                                  <i class="fa fa-download" style="cursor:pointer; align-items: flex-end;"></i>&nbsp;&nbsp;
-                                  Télécharger CV
-                                </a> -->
-
+                <p style="font-size: 28px">CV Chauffeur :</p>
                 <a
                   *ngIf="this.isLoggedIn"
                   class="btn btn-warning"
                   href="http://localhost:8081/sen-chauffeurs/v1/chauffeurs/downloadContratFile/{{
                     chauffeurDTO.cvChauffeur
                   }}"
-                  >&nbsp;&nbsp;
+                  >&nbsp;
                   <i
                     class="fa fa-download"
                     style="cursor: pointer; align-items: flex-end"
                   ></i
-                  >&nbsp;&nbsp; Télécharger CV
-                </a>
+                  >&nbsp; Télécharger CV </a
+                >&nbsp;&nbsp;
 
                 <a
                   *ngIf="!this.isLoggedIn"
                   class="btn btn-warning"
                   routerLink="/auth/signIn"
-                  >&nbsp;&nbsp;
+                  >&nbsp;
                   <i
                     class="fa fa-download"
                     style="cursor: pointer; align-items: flex-end"
                   ></i
-                  >&nbsp;&nbsp; Télécharger CV
-                </a>
-              </a>
+                  >&nbsp; Télécharger CV
+                </a> </a
+              >&nbsp;&nbsp;
 
-              <!-- <p>Disponibilité: <strong>{{chauffeurDTO?.disponibity}}</strong></p>
-                            <p>Mobilité: <strong>{{chauffeurDTO?.mobilite}}</strong></p> -->
-              <h5 class="font-weight-600">Informations Permis</h5>
+              <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>&nbsp;&nbsp;
+              <h5 class="font-weight-600" style="font-size: 30px">
+                Informations Permis
+              </h5>
               <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-              <p>
+              <p style="font-size: 28px">
                 Type permis :
                 <strong>{{ chauffeurDTO?.permisDto?.typePermis }}</strong>
               </p>
-              <p>
+              &nbsp;
+              <p style="font-size: 28px">
                 Permis :
                 <strong>{{ chauffeurDTO?.permisDto?.designation }}</strong>
               </p>
-              <h5 class="font-weight-600">Disponilités et Localité</h5>
+              &nbsp;
+              <h5 class="font-weight-600" style="font-size: 30px">
+                Disponilités et Localité
+              </h5>
+
               <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-              <p>
+              <p style="font-size: 28px">
                 Disponilité : <strong>{{ chauffeurDTO?.disponibity }}</strong>
               </p>
-              <p>
-                Quartier :
-                <strong>{{ chauffeurDTO?.addresseDto?.quartier }}</strong>
+              &nbsp;
+              <p style="font-size: 28px">
+                Addresse :
+                <strong>{{ chauffeurDTO?.addresseDto?.ville }}</strong>
               </p>
-              <p>
+              &nbsp;
+              <p style="font-size: 28px">
                 Mobilité : <strong>{{ chauffeurDTO?.mobilite }}</strong>
+              </p>
+              &nbsp;&nbsp;
+              <p style="font-size: 28px">
+                Membre depuis :
+                <strong>{{
+                  chauffeurDTO?.dateInscription | date: "dd-MM-yyyy"
+                }}</strong>
               </p>
               <!-- <ul class="list-num-count no-round">
                                 <li>Type de Permis: <strong>{{chauffeurDTO?.permisDto.typePermis}}</strong></li>
@@ -182,9 +206,9 @@
           </div>
         </div>
         <div class="row">
+          
+           
           <div class="col-lg-4" *ngIf="this.isLoggedIn">
-            <!--   <app-create-rating></app-create-rating> -->
-
             <div class="page-content bg-white">
               <div class="content-block">
                 <h4>Votre Avis:</h4>
@@ -251,90 +275,6 @@
               </div>
             </div>
           </div>
-          <!--  <div class="col-lg-4" *ngIf="this.isLoggedIn">
-            <div class="page-content bg-white">
-              <div class="content-block">
-                <form #addNotationForm="ngForm" name="form">
-                  <div class="form-group">
-                    <label>Reference</label>
-                    <input
-                      type="text "
-                      [(ngModel)]="addNotificationDTO.reference"
-                      name="reference "
-                      id="reference"
-                      class="form-control"
-                      placeholder="reference de la notification"
-                      #reference="ngModel"
-                      required
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
-                        (reference.touched || addNotationForm.submitted) &&
-                        reference.errors?.required
-                      "
-                    >
-                      Reference Obligatoire
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label>Nbre Etoile</label>
-                    <input
-                      type="text "
-                      class="form-control"
-                      [(ngModel)]="addEditNotationDTO.nbreEtoile"
-                      name="nbreEtoile"
-                      id="nbreEtoile"
-                      placeholder="nombre étoiles"
-                      #nbreEtoile="ngModel"
-                      required
-                    />
-                    <span
-                      class="text-danger"
-                      *ngIf="
-                        (nbreEtoile.touched || addNotationForm.submitted) &&
-                        nbreEtoile.errors?.required
-                      "
-                    >
-                      nbre etoile est obligatoire
-                    </span>
-                  </div>
-
-                  <div class="form-group">
-                    <label>Observation</label>
-                    <textarea
-                      class="form-control"
-                      rows="5"
-                      [(ngModel)]="addEditNotationDTO.observation"
-                      name="observation"
-                      placeholder="commentaire"
-                      id="observation "
-                      #observation="ngModel"
-                    ></textarea>
-                    <span
-                      class="text-danger"
-                      *ngIf="
-                        (observation.touched || addNotationForm.submitted) &&
-                        observation.errors?.required
-                      "
-                    >
-                      observation est obligatoire
-                    </span>
-                  </div>
-
-                  <div class="form-group">
-                    <button
-                      type="submit "
-                      class="btn btn-success btn-block"
-                      (click)="onAddNotation()"
-                    >
-                      <i class="fa fa-database"></i> Submit</button
-                    >&nbsp;
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div> -->
 
           <div class="col-lg-2"></div>
           <!-- <div class="col-lg-6 ">

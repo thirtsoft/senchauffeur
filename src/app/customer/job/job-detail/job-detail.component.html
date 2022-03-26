@@ -1,89 +1,183 @@
 <!-- Content -->
 <div class="page-content bg-white">
-    <!-- inner page banner -->
-    <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(assets/customer/images/banner/bnr1.jpg);">
-        <div class="container">
-            <div class="dez-bnr-inr-entry">
-                <h1 class="text-white">Detail Offre</h1>
-                <!-- Breadcrumb row -->
-                <div class="breadcrumb-row">
-                    <ul class="list-inline">
-                        <li><a routerLink="/">Accueil</a></li>
-                        <li>Détail de l'Offre</li>
-                    </ul>
-                </div>
-                <!-- Breadcrumb row END -->
-            </div>
+  <!-- inner page banner -->
+  <div
+    class="dez-bnr-inr overlay-black-middle"
+    style="background-image: url(assets/customer/images/banner/bnr1.jpg)"
+  >
+    <div class="container">
+      <div class="dez-bnr-inr-entry">
+        <h1 class="text-white">Detail Offre</h1>
+        <!-- Breadcrumb row -->
+        <div class="breadcrumb-row">
+          <ul class="list-inline">
+            <li><a routerLink="/">Accueil</a></li>
+            <li>Détail de l'Offre</li>
+          </ul>
         </div>
+        <!-- Breadcrumb row END -->
+      </div>
     </div>
-    <!-- inner page banner END -->
-    <!-- contact area -->
-    <div class="content-block">
-        <!-- Job Detail -->
-        <div class="section-full content-inner-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="sticky-top">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="m-b30">
-                                        <img src="assets/customer/images/blog/grid/pic1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="widget bg-white p-lr20 p-t20  widget_getintuch radius-sm">
-                                        <h4 class="text-black font-weight-700 p-t10 m-b15">Details Offre</h4>
-                                        <ul>
-                                            <li><i class="ti-location-pin"></i><strong class="font-weight-700 text-black">Address</strong>
-                                                <span class="text-black-light">{{annonceDTO?.villeDto?.nom}}</span>
-                                            </li>
-                                            <li><i class="ti-money"></i><strong class="font-weight-700 text-black">Salary</strong> ${{annonceDTO?.salaire}} Monthy</li>
-                                            <li><i class="ti-shield"></i><strong class="font-weight-700 text-black">Experience</strong>{{annonceDTO?.experience}} Experience</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="job-info-box">
-                            <h3 class="m-t0 m-b10 font-weight-700 title-head">
-                                <a href="#" class="text-secondry m-r30">{{annonceDTO?.libelle}}</a>
-                            </h3>
-                            <ul class="job-info">
-                                <li><strong>{{annonceDTO?.permisDto?.typePermis}}</strong> {{annonceDTO?.permisDto?.designation}}</li>
-                                <li><strong>Date Limite Candidature : </strong>{{annonceDTO?.dateCandidature}}</li>
-                                <li><i class="ti-location-pin text-black m-r5"></i>{{annonceDTO?.recruteurDto?.addressRecruteur}}</li>
-                            </ul>
-                            <p class="p-t20">
-                                <a href="#">Secteur d'activité: <strong>{{annonceDTO?.recruteurDto.secteurActivite}}</strong></a>, <strong>{{annonceDTO?.recruteurDto.nomEntreprise}}</strong> {{annonceDTO?.recruteurDto?.information}}</p>
-                            <h5 class="font-weight-600">Description Offre</h5>
-                            <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <p>{{annonceDTO?.description}}.</p>
-                            <h5 class="font-weight-600">Comment Postuler ?</h5>
-                            <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <p>Lorem Ipsum is simply dummy text <strong>Visitez notre site web : {{annonceDTO?.recruteurDto?.website}}</strong> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                                an unknown printer took a galley of type and scrambled <strong>{{annonceDTO?.libelle}}</strong> it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing <strong>{{annonceDTO?.lieuPoste}}</strong> Lorem Ipsum passages.</p>
-                            <h5 class="font-weight-600">Job Requirements</h5>
-                            <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-                            <ul class="list-num-count no-round">
-                                <li>Type de Permis: <strong>{{annonceDTO?.permisDto.typePermis}}</strong></li>
-                                <li>Who We Are and <strong>{{annonceDTO?.permisDto.designation}}</strong></li>
-                                <li>Remaining <strong>{{annonceDTO?.permisDto.validite}}</strong> in the 1960s </li>
-                                <li>Lorem Ipsum <strong>{{annonceDTO?.experience}}</strong> standard dummy text ever since the 1500s,</li>
-                                <li>DexignLab standard dummy text ever since</li>
-                            </ul>
-                             <a href="#" class="site-button">Apply This Job</a>
-                        </div>
-                    </div>
+  </div>
+  <!-- inner page banner END -->
+  <!-- contact area -->
+  <div class="content-block">
+    <!-- Job Detail -->
+    <div class="section-full content-inner-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="sticky-top">
+              <div class="row">
+                <div class="col-lg-12 col-md-6">
+                  <div class="m-b30">
+                    <img
+                      src="assets/customer/images/blog/grid/pic1.jpg"
+                      alt=""
+                    />
+                  </div>
                 </div>
+                <div class="col-lg-12 col-md-6">
+                  <div
+                    class="widget bg-white p-lr20 p-t20 widget_getintuch radius-sm"
+                  >
+                    <h4 class="text-black font-weight-700 p-t10 m-b15">
+                      Details Offre
+                    </h4>
+                    <ul>
+                      <li>
+                        <i class="ti-location-pin"></i
+                        ><strong class="font-weight-700 text-black"
+                          >Address</strong
+                        >
+                        <span class="text-black-light">{{
+                          annonceDTO?.addresseDto?.ville
+                        }}</span>
+                      </li>
+                      <li>
+                        <i class="ti-money"></i
+                        ><strong class="font-weight-700 text-black"
+                          >Salaire</strong
+                        >
+                        {{ annonceDTO?.salaire }} F.CFA / Mois
+                      </li>
+                      <li>
+                        <i class="ti-shield"></i
+                        ><strong class="font-weight-700 text-black"
+                          >Experience</strong
+                        >{{ annonceDTO?.experience }} Experience
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="job-info-box">
+              
+              <h3 class="m-t0 m-b10 font-weight-700 title-head">
+                Libellé: 
+                <a href="#" class="text-secondry m-r30">{{
+                  annonceDTO?.libelle
+                }}</a>
+              </h3>
+              <p class="p-t20">
+                <a>Nom Entreprise:
+                  <strong>{{
+                    annonceDTO?.utilisateurDto.nomEntreprise
+                  }}</strong></a
+                >
+              </p>
+              <p class="p-t20">
+                <a>Status:
+                  <strong *ngIf="this.dateEncours==annonceDTO.dateCloture">encours
+                   </strong></a
+                >
+              </p>
+              <ul class="job-info">
+                <li>
+                  <strong>Date Limite : </strong
+                  >{{ annonceDTO?.dateCloture | date: 'dd-MM-yyyy' }}
+                </li>
+              </ul>
+              <p class="p-t20">
+                <a
+                  >Secteur d'activité:
+                  <strong>{{
+                    annonceDTO?.utilisateurDto.secteurActivite
+                  }}</strong></a
+                >
+              </p>
+              <h5 class="font-weight-600">Description Offre</h5>
+              <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
+              <p>{{ annonceDTO?.description }}.</p>
+              <h5 class="font-weight-600">Comment Postuler ?</h5>
+              <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
+              <p>
+
+                <strong
+                  >Mentionné la Référence du Poste :
+                  {{ annonceDTO?.reference }}</strong
+                >
+                
+              </p>
+
+              <p>
+
+                <strong
+                  >Bien lire les conditions
+                  </strong
+                >
+              </p>
+
+              <p>
+
+                <strong
+                  >Visitez notre site :
+                  {{ annonceDTO?.utilisateurDto.website }}</strong
+                >
+              </p>
+
+              <h5 class="font-weight-600">Conditions à Remplir</h5>
+              <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
+              <ul class="list-num-count no-round">
+                <li>
+                  Type de Permis:
+                  <strong>{{ annonceDTO?.permisDto.typePermis }}</strong>
+                </li>
+                <li>
+                  Libelle Permis :
+                  <strong>{{ annonceDTO?.permisDto.designation }}</strong>
+                </li>
+                <li>
+                  Disponibilité :
+                  <strong>{{ annonceDTO?.time }}</strong> 
+                  
+                </li>
+                <li>
+                  Expérience : 
+                  <strong>{{ annonceDTO?.experience }}</strong>
+                 
+                </li>
+                <li>
+                  Email Pour Postulé :
+                  <strong>{{ annonceDTO?.emailPoste }}</strong> 
+                </li>
+              </ul>
+              <!--
+              <a href="#" 
+                class="site-button">
+                Apply This Job</a>
+              -->
+            </div>
+          </div>
         </div>
-        <!-- Job Detail -->
-        <!-- Our Jobs -->
-       <!--  <div class="section-full content-inner">
+      </div>
+    </div>
+    <!-- Job Detail -->
+    <!-- Our Jobs -->
+    <!--  <div class="section-full content-inner">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-3 col-lg-6 col-md-6">
@@ -185,7 +279,7 @@
                 </div>
             </div>
         </div> -->
-        <!-- Our Jobs END -->
-    </div>
+    <!-- Our Jobs END -->
+  </div>
 </div>
 <!-- Content END-->

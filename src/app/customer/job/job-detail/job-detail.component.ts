@@ -19,6 +19,8 @@ export class JobDetailComponent implements OnInit {
 
   searchMode: boolean = false;
 
+  dateEncours = new Date();
+
   constructor(private annonceService: AnnonceService,
               private router: Router,
               private fb: FormBuilder,

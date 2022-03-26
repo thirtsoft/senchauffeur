@@ -32,6 +32,10 @@ export class NotationService {
     return this.http.get<NotationDto[]>(`${this.apiServerUrl}/notifications/searchTop3RatingOrderByCreatedDateDesc`);
   }
 
+  public getTop4RatingByChauffeurIdOrderByCreatedDateDesc(chauffId: number): Observable<NotationDto[]> {
+    return this.http.get<NotationDto[]>(`${this.apiServerUrl}/notifications/searchTop4RatingOrderByCreatedDateDescByChauffeurId/${chauffId}`);
+  }
+
   public getNotationDTOById(noteId: number): Observable<NotationDto> {
     return this.http.get<NotationDto>(`${this.apiServerUrl}/notifications/findById/${noteId}`);
   }

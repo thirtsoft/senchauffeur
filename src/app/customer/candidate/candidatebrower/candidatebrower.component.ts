@@ -37,8 +37,6 @@ export class CandidatebrowerComponent implements OnInit {
     this.route.paramMap.subscribe(()=> {
       this.getListChauffeurDTOs();
     });
-  //  this.getListChauffeurDTOByPageables();
-
   }
 
   public getChauffeurListDTOs() {
@@ -90,7 +88,6 @@ export class CandidatebrowerComponent implements OnInit {
 
   }
 
-  // Liste des produits par page
   getListChauffeurDTOByPageable() {
     this.chauffService.getListChauffeurDTOByPageable(this.currentPage, this.size)
       .subscribe(data=> {
@@ -101,7 +98,6 @@ export class CandidatebrowerComponent implements OnInit {
       },err=> {
         console.log(err);
       });
-
   }
 
   getChauffeurListDTOsByDisponibility() {
@@ -110,12 +106,10 @@ export class CandidatebrowerComponent implements OnInit {
       data  => {
         this.chauffeurListDTO = data;
       }
-
-    )
-
+    );
   }
 
-  public getListChauffeurDTOByPageables() {
+  getListChauffeurDTOByPageables() {
     this.chauffService.getListChauffeurDTOByPageable(this.currentPage - 1, this.size).subscribe(
       (response: ChauffeurDto[]) => {
         console.log("Response Pageable--", response);
@@ -138,6 +132,5 @@ export class CandidatebrowerComponent implements OnInit {
     this.currentPage = i;
     this.getListChauffeurDTOByPageables();
   }
-
 
 }

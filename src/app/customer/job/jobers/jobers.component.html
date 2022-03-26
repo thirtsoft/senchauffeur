@@ -44,7 +44,27 @@
             >{{ chaufDTO.firstName }}, {{ chaufDTO.lastName }}</a
           >
           <a href="#" class="dez-tilte">{{ chaufDTO?.reference }}</a>
-          <div class="rotate-icon"><i class="ti-location-pin"></i></div>
+
+          <a
+            *ngIf="!this.isLoggedIn"
+            [routerLink]="['/auth/signIn']"
+            class="btn btn-outline-light"
+            style="margin-top: 25px;
+            cursor: pointer;"
+            >Choisir</a
+          >
+          <a
+            *ngIf="this.isLoggedIn"
+            href="#"
+            class="btn btn-outline-light"
+            style="margin-top: 25px;
+            cursor: pointer;"
+            >Réserver</a
+          >
+
+          <div class="rotate-icon col-lg-12 text-center m-t30">
+
+          <i class="ti-location-pin"></i></div>
         </div>
       </div>
     </div>

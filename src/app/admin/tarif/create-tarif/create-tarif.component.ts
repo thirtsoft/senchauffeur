@@ -90,7 +90,7 @@ export class CreateTarifComponent implements OnInit {
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastr.error("Tarrif non ajouté, Veuillez contactez l'administrateur")
       }
     );
   }
