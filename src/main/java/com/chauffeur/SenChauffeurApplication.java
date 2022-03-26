@@ -88,7 +88,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/*
 		Role useRole = new Role(RoleName.ROLE_USER);
         Role roleGestionnaire = new Role(RoleName.ROLE_GESTIONNAIRE);
         Role roleManager = new Role(RoleName.ROLE_MANAGER);
@@ -121,6 +121,7 @@ public class SenChauffeurApplication implements CommandLineRunner {
         
         utilisateurService.addRoleToUser("Admin", RoleName.ROLE_ADMIN);
         utilisateurService.addRoleToUser("User", RoleName.ROLE_USER);
+        */
 
 		
 		
