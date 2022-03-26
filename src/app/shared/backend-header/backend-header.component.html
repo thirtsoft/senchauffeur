@@ -132,54 +132,27 @@
           aria-expanded="false"
         >
           <i class="ti-bell noti-icon"></i>
-          <span class="badge badge-success noti-icon-badge">{{
-            this.numberOfNotificationInMonth
-          }}</span>
+          <span class="badge badge-danger noti-icon-badge">{{numberOfNotificationInMonth}}</span>
         </a>
         <div
           class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg"
         >
-          <div class="dropdown-item noti-title">
+          <div class="dropdown-item noti-title" routerLink="/admin/accueil/notifications">
             <h5>
-              <span class="badge badge-danger float-right">87</span>Notification
+              <span class="badge badge-danger float-right">{{numberOfNotificationInMonth}}</span>Notifications
             </h5>
           </div>
 
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            <div class="notify-icon bg-primary">
-              <i class="mdi mdi-cart-outline"></i>
-            </div>
-            <p class="notify-details">
-              <b>Your order is placed</b
-              ><small class="text-muted"
-                >Dummy text of the printing and typesetting industry.</small
-              >
-            </p>
-          </a>
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            <div class="notify-icon bg-success">
-              <i class="mdi mdi-message"></i>
-            </div>
-            <p class="notify-details">
-              <b>New Message received</b
-              ><small class="text-muted">You have 87 unread messages</small>
-            </p>
-          </a>
 
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
+          <a href="javascript:void(0);" class="dropdown-item notify-item"
+          routerLink="/admin/accueil/notifications">
             <div class="notify-icon bg-warning">
               <i class="mdi mdi-martini"></i>
             </div>
             <p class="notify-details">
-              <b>Your item is shipped</b
-              ><small class="text-muted"
-                >It is a long established fact that a reader will</small
+              <b> +{{numberOfNotificationInMonth}} notes attribués aux chauffeurs</b
               >
             </p>
-          </a>
-
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            View All
           </a>
         </div>
       </li>
@@ -194,55 +167,28 @@
           aria-expanded="false"
         >
           <i class="ti-bell noti-icon"></i>
-          <span class="badge badge-success noti-icon-badge">{{
-            this.numberOfNotificationInMonth
-          }}</span>
+          <span class="badge badge-danger noti-icon-badge">{{numberOfPendingAnnonce}}</span>
         </a>
         <div
           class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg"
         >
-          <div class="dropdown-item noti-title">
-            <h5>
-              <span class="badge badge-danger float-right">87</span>Notification
+          <div class="dropdown-item noti-title" routerLink="/admin/accueil/annonceEncours" >
+            <h5 style="cursor: pointer;">
+              <span class="badge badge-danger float-right"
+              >{{numberOfPendingAnnonce}}</span>Annonce-Encours
             </h5>
           </div>
 
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
+          <a href="javascript:void(0);" routerLink="/admin/accueil/annonceEncours" class="dropdown-item notify-item">
             <div class="notify-icon bg-primary">
               <i class="mdi mdi-cart-outline"></i>
             </div>
-            <p class="notify-details">
-              <b>Your order is placed</b
-              ><small class="text-muted"
-                >Dummy text of the printing and typesetting industry.</small
-              >
-            </p>
-          </a>
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            <div class="notify-icon bg-success">
-              <i class="mdi mdi-message"></i>
-            </div>
-            <p class="notify-details">
-              <b>New Message received</b
-              ><small class="text-muted">You have 87 unread messages</small>
-            </p>
-          </a>
-
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            <div class="notify-icon bg-warning">
-              <i class="mdi mdi-martini"></i>
-            </div>
-            <p class="notify-details">
-              <b>Your item is shipped</b
-              ><small class="text-muted"
-                >It is a long established fact that a reader will</small
+            <p class="notify-details" style="cursor: pointer;">
+              <b>Vous avez {{numberOfPendingAnnonce}} annonces encours</b
               >
             </p>
           </a>
 
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            View All
-          </a>
         </div>
       </li>
 
@@ -287,13 +233,7 @@
             ><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Mon
             Profil</a
           >
-          <!-- <a class="dropdown-item" href="#"
-            ><i class="mdi mdi-wallet m-r-5 text-muted"></i> My Wallet</a
-          >
-          <a class="dropdown-item" href="#"
-            ><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i> Lock
-            screen</a
-          > -->
+
           <a
             class="dropdown-item"
             (click)="goToHistoriqueConnexion()"
@@ -303,7 +243,8 @@
           >
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()"
-            ><i class="mdi mdi-logout m-r-5 text-muted"></i> Deconnexion</a
+            style="cursor: pointer;"
+            ><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a
           >
         </div>
       </li>

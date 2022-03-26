@@ -24,11 +24,23 @@
     <div class="section-full bg-white browse-job content-inner-2">
       <div class="container">
         <div class="row">
+          <div class="col-xl-3 col-lg-4">
+            <div class="sticky-top" style="margin-top: 15px">
+              <div class="clearfix m-b30"></div>
+
+              <div class="clearfix m-b30">
+                <h5 class="widget-title font-weight-700 text-uppercase">
+                  Rechercher par ville
+                </h5>
+              </div>
+
+              <div class="clearfix m-b10">
+                <app-list-locality></app-list-locality>
+              </div>
+            </div>
+          </div>
           <div class="col-xl-9 col-lg-8">
             <app-search-in-candidates></app-search-in-candidates>
-            <!--  <div class="m-b30">
-                            <input type="text" class="form-control" placeholder="Search freelancer services">
-                        </div> -->
             <ul class="post-job-bx">
               <li *ngFor="let chauffDTO of chauffeurListDTO; let i = index">
                 <a [routerLink]="['/detail-chauffeur', chauffDTO.id]">
@@ -96,21 +108,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-4">
-            <div class="sticky-top" style="margin-top: 20px">
-              <div class="clearfix m-b30"></div>
-
-              <div class="clearfix m-b30">
-                <h5 class="widget-title font-weight-700 text-uppercase">
-                  Rechercher par ville
-                </h5>
-              </div>
-
-              <div class="clearfix m-b10">
-                <app-list-locality></app-list-locality>
-              </div>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

@@ -164,11 +164,7 @@
                         <td>
                           {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
                         </td>
-                        <td>
-                          <button class="btn" (click)="viewAnnonce(annonceDTO)">
-                            <i class="fa fa-file-pdf" aria-hidden="true"> </i>
-                          </button>
-                        </td>
+                      
                       </tr>
                     </tbody>
                   </table>
@@ -197,13 +193,13 @@
                   </div>
 
                   <div class="col-sm-6">
-                    <button
+                   <!--  <button
                       (click)="onAddEditAnnonce(null)"
                       class="btn btn-primary"
                       type="submit"
                     >
                       <em class="fa fa-plus"> </em> Ajouter Annonce
-                    </button>
+                    </button> -->
                   </div>
                 </div>
                 &nbsp;
@@ -240,7 +236,7 @@
                         <td>{{ annonceDTO.salaire }}</td>
                         <td>{{ annonceDTO.lieuPoste }}</td>
                         <td>{{ annonceDTO.time }}</td>
-                        <td>{{ annonceDTO.anneeExperience }}</td>
+                        <td>{{ annonceDTO.experience }}</td>
                         <td>{{ annonceDTO.typeContrat }}</td>
                         <td>{{ annonceDTO.permisDto.designation }}</td>
                         <td>{{ annonceDTO.addresseDto.ville }}</td>
@@ -250,19 +246,10 @@
                         </td>
 
                         <td class="text-right">
-                          <button
-                            class="btn btn-warning btn-sm"
-                            [routerLink]="['/createJob', annonceDTO.id]"
-                          >
-                            <i
-                              class="fa fa-medkit"
-                              aria-hidden="true"
-                            ></i></button
-                          >&nbsp;
 
                           <button
                             class="btn btn-primary btn-sm"
-                            (click)="onAddEditAnnonce(i)"
+                            [routerLink]="['/createJob', annonceDTO.id]"
                           >
                             <i
                               class="fa fa-edit"
@@ -296,9 +283,8 @@
                 role="tabpanel"
                 aria-labelledby="payment-nav"
               >
-                <h4>Ajouter/Modifier Annonce</h4>
-                <!-- <p> -->
-                <!-- <app-create-job></app-create-job> -->
+                <h4>Ajouter Annonce</h4>
+            
                 <form [formGroup]="this.formData" name="form">
                   <div class="form-group">
                     <label>Reference</label>
@@ -385,15 +371,15 @@
                         >
                           <option value="0">--choisir Permis--</option>
                           <option
-                            *ngFor="let permis of listPermisDTOs"
+                            *ngFor="let pmDTO of listPermisDTOs"
                             class="form-control"
                             [ngValue]="
-                              permis.id == addEditAnnonceDTO.permisDto?.id
+                            pmDTO.id == addEditAnnonceDTO.permisDto?.id
                                 ? addEditAnnonceDTO.permisDto
-                                : permis
+                                : pmDTO
                             "
                           >
-                            {{ permis.designation }}
+                            {{ pmDTO.designation }}
                           </option>
                         </select>
                       </div>
@@ -417,7 +403,7 @@
                                 : addDTO
                             "
                           >
-                            {{ addDTO.quartier }}
+                            {{ addDTO.ville }}
                           </option>
                         </select>
                       </div>
@@ -509,9 +495,9 @@
                     <div class="form-group col-md-6 col-sm-12">
                       <label>Nombre Années Experience</label>
                       <select
-                        formControlName="anneeExperience"
-                        name="anneeExperience"
-                        id="anneeExperience"
+                        formControlName="experience"
+                        name="experience"
+                        id="experience"
                         class="form-control"
                         required
                       >
@@ -527,14 +513,14 @@
                       </select>
                       <div
                         *ngIf="
-                          f['anneeExperience'].invalid &&
-                          (f['anneeExperience'].dirty ||
-                            f['anneeExperience'].touched)
+                          f['experience'].invalid &&
+                          (f['experience'].dirty ||
+                            f['experience'].touched)
                         "
                         class="alert alert-danger"
                       >
-                        <span *ngIf="f['anneeExperience'].errors.required"
-                          >Le anneeExperience est obligatoire.</span
+                        <span *ngIf="f['experience'].errors.required"
+                          >Le experience est obligatoire.</span
                         >
                       </div>
                     </div>
@@ -573,24 +559,19 @@
                       </div>
                     </div>
 
-                    <div class="form-group">
-                      <label for="">Date cloture</label>
-                      <!--  <form class="form-inline"> -->
-                      <div class="form-group">
-                        <div class="input-group">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label>Date cloture</label>
+                     
                           <input
-                            class="form-control"
-                            placeholder="yyyy-mm-dd"
-                            formControlName="dateCloture"
-                            name="dateCloture"
-                            ngbDatepicker
-                            id="dateCloture"
-                            ngbDatepicker
-                            [footerTemplate]="footerTemplate"
-                            #d="ngbDatepicker"
-                            [minDate]="today"
-                            readonly
-                          />
+                          type="date"
+                          placeholder="Date limite candidature"
+                          class="form-control"
+                          formControlName="dateCloture"
+                          name="dateCloture"
+                          id="dateCloture"
+                          required
+                        />
+                         
                           <div
                             *ngIf="
                               f['dateCloture'].invalid &&
@@ -604,29 +585,7 @@
                             >
                           </div>
 
-                          <button
-                            class="btn btn-outline-secondary calendar"
-                            (click)="d.toggle()"
-                          ></button>
 
-                          <ng-template #footerTemplate>
-                            <hr class="my-0" />
-                            <button
-                              class="btn btn-primary btn-sm m-2 float-left"
-                              (click)="model = today; d.close()"
-                            >
-                              Today
-                            </button>
-                            <button
-                              class="btn btn-secondary btn-sm m-2 float-right"
-                              (click)="d.close()"
-                            >
-                              Close
-                            </button>
-                          </ng-template>
-                        </div>
-                      </div>
-                      <!--   </form> -->
                     </div>
                   </div>
 
@@ -647,12 +606,10 @@
                     >
                       <i class="fa fa-database"></i> Enregistrer</button
                     >&nbsp;
-                    <!-- <button *ngIf="paramId" class="btn btn-warning btn-block" (click)="onUpdateJob()">
-                        <i class="fa fa-database"></i>Modifier
-                      </button> -->
+                
                   </div>
                 </form>
-                <!--  </p> -->
+           
               </div>
               <div
                 class="tab-pane fade"
@@ -671,13 +628,13 @@
                     />
                   </div>
                   <div class="col-sm-6">
-                    <button
+                   <!--  <button
                       (click)="onAddEditJeton(null)"
                       type="submit"
                       class="btn btn-primary"
                     >
                       <em class="fa fa-plus"> </em> Recharge jeton
-                    </button>
+                    </button> -->
                   </div>
                 </div>
                 &nbsp;
@@ -892,16 +849,12 @@
             class="col-xl-10 col-lg-12 col-sm-12 table-responsive"
             style="margin-left: -10px"
           >
-
-
-
                     <button
                       class="btn btn-warning btn-sm"
                       [routerLink]="['/createJob', annonceDTO.id]"
                     >
                       <i class="fa fa-eye" aria-hidden="true"></i>
                     </button>
-
                     <button
                       class="btn btn-info btn-sm"
                       [routerLink]="['/createJob', annonceDTO.id]"

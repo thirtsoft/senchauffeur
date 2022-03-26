@@ -98,6 +98,11 @@ const routes: Routes = [
     path: 'createJob/:id',
     component: CreateJobComponent
   },
+  /*
+  {
+    path: 'createJob/:id',
+    component: CreateJobComponent
+  },*/
  /*  {
     path: 'createJob/:id',
     component: CreateJobComponent

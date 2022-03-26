@@ -14,6 +14,7 @@ export class BackendHeaderComponent implements OnInit {
 
   numberOfNotificationInMonth: any;
   numberOfCustomerEmail: any;
+  numberOfPendingAnnonce: any;
 
   info: any;
   private roles: string[];
@@ -41,8 +42,6 @@ export class BackendHeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getNumberOfNotificationInMonth();
-
     this.isLoggedIn = !!this.tokenService.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
@@ -61,6 +60,10 @@ export class BackendHeaderComponent implements OnInit {
       else this.img = true;
 
     }
+
+    this.getNumberOfNotificationInMonth();
+
+    this.getNumberOfPendingAnnonce();
 
   }
 
@@ -85,6 +88,13 @@ export class BackendHeaderComponent implements OnInit {
     this.dashboardService.countNumberOfNotification()
       .subscribe(response => {
       this.numberOfNotificationInMonth = response;
+    });
+  }
+
+  getNumberOfPendingAnnonce(): void {
+    this.dashboardService.countNumberOfAnnonceByStatusPending()
+      .subscribe(response => {
+      this.numberOfPendingAnnonce = response;
     });
   }
 

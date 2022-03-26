@@ -1,13 +1,10 @@
-import { FormBuilder } from '@angular/forms';
-import { DialogService } from './../../../services/dialog.service';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CreateAnnonceComponent } from './../create-annonce/create-annonce.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AnnonceService } from './../../../services/annonce.service';
 import { Annonce, AnnonceDto } from './../../../models/annonce';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-annonce',
@@ -17,7 +14,6 @@ import { Component, OnInit } from '@angular/core';
 export class ListAnnonceComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
-  editAnnonceDTO: AnnonceDto;
 
   id : number;
   p : number=1;
@@ -26,10 +22,7 @@ export class ListAnnonceComponent implements OnInit {
   constructor(private annonceService: AnnonceService,
               private dialog: MatDialog,
               private router: Router,
-
-     //         public toastr: ToastrService,
-     //         private dialogService: DialogService,
-
+              public toastr: ToastrService
   ){}
 
   ngOnInit(): void {
@@ -55,7 +48,11 @@ export class ListAnnonceComponent implements OnInit {
   onDeleteAnnonce(id: number): void{
     if (window.confirm('Etes-vous sure de vouloir supprimer cette annonce ?')) {
       this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
-        this.getListAnnonceDTOs();
+        this.toastr.error('avec succès','Annonce supprimé', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+           this.getListAnnonceDTOs();
         },
         (error: HttpErrorResponse) => {
           alert(error.message);

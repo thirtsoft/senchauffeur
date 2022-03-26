@@ -115,7 +115,7 @@ export class CreateAnnonceComponent implements OnInit {
     )
   }
 
-  public onAddAnnonce() {
+  onAddAnnonce() {
     console.log("Data start");
     console.log(this.annonceDTO);
     console.log("Data USER");
@@ -136,7 +136,7 @@ export class CreateAnnonceComponent implements OnInit {
     );
   }
 
-  public onUpdateAnnonce() {
+  onUpdateAnnonce() {
     this.annonceService.updateAnnonceDTO(this.annonceDTO.id, this.annonceDTO).subscribe(
       (response: AnnonceDto) => {
         this.toastr.warning('avec succès','Annonce Modifiée', {

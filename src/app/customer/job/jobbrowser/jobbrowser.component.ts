@@ -14,12 +14,12 @@ export class JobbrowserComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
 
-  public size: number = 6;
-  public currentPage: number = 1;
-  public totalPages: number;
-  public pages: Array<number>;
+  size: number = 5;
+  currentPage: number = 1;
+  totalPages: number;
+  pages: Array<number>;
 
-  public currentTime: number = 0;
+  currentTime: number = 0;
 
   currentAnnonceId: number;
 
@@ -37,10 +37,9 @@ export class JobbrowserComponent implements OnInit {
     this.route.paramMap.subscribe(()=> {
       this.getListAnnonceDTOs();
     });
-  //  this.getListAnnonceDTOByPageables();
   }
 
-  public getListAnnonceDTOs() {
+  getListAnnonceDTOs() {
     this.searchMode = this.route.snapshot.paramMap.has('libelle');
     if (this.searchMode) {
       this.getAnnonceListDTOsByReferenceJob();
@@ -76,6 +75,10 @@ export class JobbrowserComponent implements OnInit {
 
   }
 
+  doing() {
+    this.getListAnnonceDTOs();
+  }
+
   getAnnonceListDTOsByReferenceJob() {
     const libelle: string = this.route.snapshot.paramMap.get('libelle');
     this.annonceService.getListAnnonceDTOByLibeele(libelle).subscribe(
@@ -87,7 +90,7 @@ export class JobbrowserComponent implements OnInit {
 
   }
 
-  public getListAnnonceDTOByPageables() {
+  getListAnnonceDTOByPageables() {
     this.annonceService.getListAnnonceDTOByPageable(
       this.currentPage,
       this.size

@@ -28,7 +28,7 @@ export class ListJetonComponent implements OnInit {
     this.getListJetonDTOs();
   }
 
-  public getListJetonDTOs() {
+  getListJetonDTOs() {
     this.crudApi.getJetonDTOsOrderByIdDesc().subscribe(
       (response: JetonDto[]) => {
         this.jetonListDTO = response;

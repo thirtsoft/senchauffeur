@@ -8,14 +8,13 @@
     <div class="container">
       <div class="dez-bnr-inr-entry">
         <h1 class="text-white">Voir tous les annonces</h1>
-        <!-- Breadcrumb row -->
+
         <div class="breadcrumb-row">
           <ul class="list-inline">
             <li><a routerLink="/">Accueil</a></li>
             <li>Liste des Annonces</li>
           </ul>
         </div>
-        <!-- Breadcrumb row END -->
       </div>
     </div>
   </div>
@@ -26,12 +25,28 @@
     <div class="section-full bg-white browse-job content-inner-2">
       <div class="container">
         <div class="row">
+          <div class="col-xl-4 col-lg-5">
+            <div class="sticky-top" style="margin-top: 15px">
+              <div class="clearfix m-b30"></div>
+
+              <div class="clearfix m-b30">
+                <h6 class="widget-title font-weight-700 text-uppercase">
+                  Rechercher par Permis
+                </h6>
+              </div>
+
+              <div class="clearfix m-b10">
+                <app-list-job-permis></app-list-job-permis>
+              </div>
+            </div>
+          </div>
           <div class="col-xl-8 col-lg-7">
             <app-search-job-by-reference></app-search-job-by-reference>
-            <!--   <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5> -->
-            <ul class="post-job-bx"
-            *ngFor="let annonceDTO of annonceListDTO; let i = index">
-              <li *ngIf="annonceDTO.status=='VALIDEE'">
+            <ul
+              class="post-job-bx"
+              *ngFor="let annonceDTO of annonceListDTO; let i = index"
+            >
+              <li *ngIf="annonceDTO.status == 'VALIDEE'">
                 <a [routerLink]="['/job-detail', annonceDTO.reference]">
                   <div class="d-flex m-b30">
                     <div class="job-post-company">
@@ -43,8 +58,7 @@
                       <h4>{{ annonceDTO.libelle }}</h4>
                       <ul>
                         <li>
-                          <i class="fa fa-map-marker"></i
-                            >
+                          <i class="fa fa-map-marker"></i>
                           Addresse : {{ annonceDTO.addresseDto?.ville }}
                         </li>
                         <li>
@@ -62,21 +76,19 @@
                     <div class="job-time mr-auto">
                       Permis : {{ annonceDTO?.permisDto?.designation }}
                     </div>
-                    <!--  <div class="job-time mr-auto">
-                                          Disponibilité :   {{ annonceDTO.time }}
-                                        </div> -->
 
                     <div class="salary-bx">
                       Salaire : <span>{{ annonceDTO.salaire }} F.CFA</span>
                     </div>
                   </div>
-                  <!--   <span class="post-like fa fa-heart-o"></span> -->
                 </a>
               </li>
             </ul>
             <div class="pagination-bx m-t30">
-              <ul class="pagination" *ngIf="pages">
-                <!-- <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li> -->
+            <!--   <ul *ngFor="let p of pages; let i = index;">  -->
+                
+             
+             <ul class="pagination" *ngIf="pages">
                 <li
                   class="active"
                   class="clikable"
@@ -88,27 +100,17 @@
                   }}</a>
                 </li>
 
-                <!-- <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li> -->
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-5">
-            <div class="sticky-top" style="margin-top: 20px">
-              <div class="clearfix m-b30"></div>
+              </ul> 
 
-              <!--  <app-search-job-by-reference></app-search-job-by-reference> -->
-              <div class="clearfix m-b30">
-                <h6 class="widget-title font-weight-700 text-uppercase">
-                  Rechercher par Permis
-                </h6>
-                <!--  <div class="">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div> -->
-              </div>
+             <!--   <ngb-pagination [(page)]="this.currentPage" [pageSize]="size" [collectionSize]="processResult()"
+                (pageChange)="onPageAnnonce(i)" [maxSize]="5" [boundaryLinks]="true">
+                {{
+                  i
+                }}
 
-              <div class="clearfix m-b10">
-                <app-list-job-permis></app-list-job-permis>
-              </div>
+              </ngb-pagination>
+            </ul>  -->
+
             </div>
           </div>
         </div>

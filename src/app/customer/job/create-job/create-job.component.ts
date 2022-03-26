@@ -1,19 +1,15 @@
+import { TokenStorageService } from './../../../auth/security/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { RecruteurService } from './../../../services/recruteur.service';
 import { PermisService } from './../../../services/permis.service';
 import { AnnonceService } from './../../../services/annonce.service';
-import { RecruteurDto } from './../../../models/recruteur';
 import { PermisDto } from './../../../models/permis';
 import { AnnonceDto } from './../../../models/annonce';
 import { AddressService } from './../../../services/address.service';
 import { AddresseDto } from './../../../models/locality';
-import { VilleService } from './../../../services/ville.service';
-import { VilleDto } from './../../../models/ville';
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -25,8 +21,6 @@ export class CreateJobComponent implements OnInit {
 
   addEditAnnonceDTO: AnnonceDto = new AnnonceDto();
   listPermisDTOs: PermisDto[];
-  listRecruteurDTOs: RecruteurDto[];
-  listVilleDTOs: VilleDto[];
   listAddressDTOs: AddresseDto[];
 
   listTypeContrats = ["Stage", "CDD", "CDI"];
@@ -36,16 +30,27 @@ export class CreateJobComponent implements OnInit {
   mySubscription: any;
   addJobForm: NgForm;
 
-  model: NgbDateStruct;
-  today = this.calendar.getToday();
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showUserBoard = false;
+  showVendeurBoard = false;
+
+  
+  roles: string[];
+
+  currentTime: number = 0;
+
+  username: string;
+  email: String;
+  userId;
 
   constructor(private annonceService: AnnonceService,
               private permisService: PermisService,
               private addressService: AddressService,
+              public tokenService: TokenStorageService,
               private toastr: ToastrService,
               private actRoute: ActivatedRoute,
-              private router: Router,
-              private calendar: NgbCalendar
+              private router: Router
   ) {
      //--for reload componant
      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -64,9 +69,16 @@ export class CreateJobComponent implements OnInit {
       this.getAnnonceDTOById(this.paramId);
     }
 
-    this.getListPermisDTOs();
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
 
-  //  this.getListRecruteurDTOs();
+      this.userId = user.id;
+     
+    }
+
+    this.getListPermisDTOs();
 
     this.annonceService.getUserId();
 
@@ -108,34 +120,14 @@ export class CreateJobComponent implements OnInit {
     )
   }
 
-
-  public onAddJob() {
-    console.log(this.addEditAnnonceDTO);
-    this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
-      (response: AnnonceDto) => {
-        this.toastr.warning('avec succès','Annonce Ajoutée', {
-          timeOut: 1500,
-          positionClass: 'toast-top-right',
-        });
-        window.location.reload();
-      //  alert("Job Ajouté avec success");
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-
-  }
-
   onUpdateJob() {
     this.annonceService.updateAnnonceDTO(this.addEditAnnonceDTO.id, this.addEditAnnonceDTO).subscribe(
       (response: AnnonceDto) => {
         this.toastr.warning('avec succès','Annonce Modifiée', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
-        });
-        window.location.reload();
-    //    alert("Job update avec success");
+          });
+          this.goToAnnonce();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -143,8 +135,23 @@ export class CreateJobComponent implements OnInit {
     );
   }
 
-  logout() {
-
+  goToAnnonce() {
+    this.router.navigate(['/jobs/' + this.userId ]).then(() => {
+    });
   }
+
+  logout() {
+    this.tokenService.signOut();
+    this.toastr.info('bye bye','Vous etes bien déconnecté', {
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      });
+      this.router.navigateByUrl("/").then(() => {
+        window.location.reload();
+      });
+
+  
+  }
+
 
 }

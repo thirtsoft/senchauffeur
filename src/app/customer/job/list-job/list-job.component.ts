@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -93,7 +94,7 @@ export class ListJobComponent implements OnInit {
               public tokenService: TokenStorageService,
               public userService: UtilisateurService,
               public authService: AuthService,
-              //            public toastr: ToastrService,
+              public toastr: ToastrService,
               public fb: FormBuilder,
               public router: Router,
               public matDialog: MatDialog,
@@ -118,8 +119,6 @@ export class ListJobComponent implements OnInit {
     console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getAnnonceDTOByUserId(this.paramId);
-
-//      this.getAnnonceDTOByCustomerId(this.paramId);
 
       this.getUtilisateurDTOById(this.paramId);
     }
@@ -156,7 +155,7 @@ export class ListJobComponent implements OnInit {
       emailPoste: ['', Validators.required],
       time: ['', Validators.required],
       disponibilite: ['', Validators.required],
-      anneeExperience: ['', Validators.required],
+      experience: ['', Validators.required],
       typeContrat: ['', Validators.required],
       description: ['', Validators.required],
       dateCloture: new Date(),
@@ -166,7 +165,7 @@ export class ListJobComponent implements OnInit {
 
   }
 
-  public getListAnnonceDTOs() {
+  getListAnnonceDTOs() {
     this.annonceService.getAnnonceDTOs().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
@@ -218,36 +217,9 @@ export class ListJobComponent implements OnInit {
 
   }
 
-  onAddEditAnnonce(item) {
-
-  }
-
-  onAddEditJeton(item) {}
 
   onAddNewJob() {
     this.router.navigate(['/createJob']);
-    //this.router.navigate(['/createJob/' + this.userId]);
-  }
-
-  onDeleteAnnonce(id: number): void{
-  /*  this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        */
-        this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
-
-   //       this.toastr.warning('Job supprimé avec succès!');
-  //        this.annonceListDTO = this.annonceListDTO.filter(u => u !== annonceDTO);
-          this.getListAnnonceDTOs();
-          this.router.navigateByUrl("/").then(() => {
-            window.location.reload();
-          });
-
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
   }
 
   getEmploye() {
@@ -288,18 +260,20 @@ export class ListJobComponent implements OnInit {
 
   }
 
-  viewAnnonce(item) {
-
-  }
+ 
 
   update() {
     console.log('Data send--', this.listDataProfil);
     this.userService.updateUtilisateurDTO(this.listDataProfil.id, this.listDataProfil).subscribe(
       (response: UtilisateurDto) => {
-        alert("Utilisateur Modifiée avec success");
-        this.router.navigateByUrl("/").then(() => {
-          window.location.reload();
-        });
+        this.toastr.warning('avec succès','Profil modifié', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("/").then(() => {
+            window.location.reload();
+          });
+        
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -349,15 +323,15 @@ export class ListJobComponent implements OnInit {
     this.annonceService.addAnnonceDTOWithUser(this.formData.value,  this.userId)
       .subscribe(
       (response: AnnonceDto) => {
-        alert("Job Ajouté avec success");
-        console.log('Response--', response);
-        this.router.navigateByUrl("/").then(() => {
-          window.location.reload();
-        });
+        this.toastr.success('avec succès','Annonce ajouée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+           this.getListAnnonceDTOs();
 
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastr.error("Veuillez remplir tous les champs");
       }
 
     );
@@ -365,42 +339,50 @@ export class ListJobComponent implements OnInit {
   }
 
 
-/*
-  public onAddJob() {
-    console.log(this.addEditAnnonceDTO);
-    this.annonceService.addAnnonceDTOWithUser(this.addEditAnnonceDTO, this.annonceService.id).subscribe(
-      (response: AnnonceDto) => {
-        alert("Job Ajouté avec success");
-        this.router.navigate(['/jobs']);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-
-  }
-  */
-
-  public onUpdateJob() {
+  onUpdateJob() {
     this.annonceService.updateAnnonceDTO(this.addEditAnnonceDTO.id, this.addEditAnnonceDTO).subscribe(
       (response: AnnonceDto) => {
-        alert("Job update avec success");
-     //   this.router.navigate(['/jobs']);
+        this.toastr.warning('avec succès','Annonce modifiée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+           this.getListAnnonceDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  onDeleteAnnonce(id: number): void{
+    if (window.confirm('Etes-vous sure de vouloir supprimer cette annonce ?')) {
+      this.annonceService.deleteAnnonceDTO(id).subscribe(data => {
+        this.toastr.error('avec succès','Annonce supprimé', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+           this.getListAnnonceDTOs();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
   }
 
 
   logout() {
     this.tokenService.signOut();
-    this.router.navigateByUrl("/").then(() => {
-      window.location.reload();
-    });
-  
+    this.toastr.info('bye bye a bientot','Vous etes bien déconnecté', {
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      });
+      this.router.navigateByUrl("/").then(() => {
+        window.location.reload();
+      });
+
   }
+
 
 
 

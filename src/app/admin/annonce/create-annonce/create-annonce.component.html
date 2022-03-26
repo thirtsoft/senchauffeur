@@ -184,16 +184,6 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label>Disponibilite </label>
-              <!--  <input
-              type="text"
-              placeholder="Disponibilité"
-              class="form-control"
-              [(ngModel)]="annonceDTO.time"
-              name="time"
-              id="time"
-              #time="ngModel"
-              required
-            /> -->
               <select
                 name="time"
                 [(ngModel)]="annonceDTO.time"
@@ -235,23 +225,6 @@
                 #experience="ngModel"
                 required
               />
-             <!--  <select
-                name="experience"
-                class="form-control"
-                [(ngModel)]="annonceDTO.experience"
-                name="experience"
-                id="experience"
-                #experience="ngModel"
-                required
-              >
-                <option [ngValue]="0" disabled>--choisir Expereience--</option>
-                <option
-                  *ngFor="let item of listTypeExperiences"
-                  [ngValue]="item"
-                >
-                  {{ item }}
-                </option>
-              </select> -->
               <span
                 class="text-danger"
                 *ngIf="
