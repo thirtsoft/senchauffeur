@@ -1,9 +1,10 @@
+import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Utilisateur, UtilisateurDto } from './../models/utilisateur';
-import { Injectable } from '@angular/core';
+
 import { environment } from 'src/environments/environment';
-//import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ import { environment } from 'src/environments/environment';
 export class UtilisateurService {
 
   public apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+  dataForm:  FormGroup;
 
 //  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 

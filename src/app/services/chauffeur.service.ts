@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Chauffeur, ChauffeurDto } from './../models/chauffeur';
 import { Observable } from 'rxjs';
@@ -11,6 +12,9 @@ import { environment } from 'src/environments/environment';
 export class ChauffeurService {
 
   public apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+  dataForm:  FormGroup;
 
   //public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 

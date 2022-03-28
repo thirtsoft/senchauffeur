@@ -11,10 +11,10 @@
                 placeholder="Search"
                 [(ngModel)]="searchText"
               />
-  
-             
+
+
             </div>
-  
+
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -42,9 +42,16 @@
                   </td>
                   <td>{{ mailDTO?.message }}</td>
                   <td>{{ mailDTO?.createDate | date: 'dd-MM-yyyy' }}</td>
-  
+
                   <td>
-                
+
+                    <button
+                    class="btn btn-warning btn-sm"
+                    (click)="responseToMail(mailDTO)"
+                  >
+                    <i class="fa fa-envelop" aria-hidden="true"></i></button
+                  >&nbsp;
+
                     <button
                       class="btn btn-danger btn-sm"
                       (click)="onDeleteMailDTO(mailDTO.id)"
@@ -65,4 +72,3 @@
       </div>
     </div>
   </div>
-  

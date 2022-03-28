@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +13,9 @@ import { environment } from './../../environments/environment';
 export class NewsleterService {
 
   public apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+  dataForm:  FormGroup;
 
   //public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-NewsleterDtos/v1";
 

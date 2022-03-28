@@ -83,6 +83,8 @@ import { CreateTypeAnnonceComponent } from './typeAnnonce/create-type-annonce/cr
 import { ListPendingReservationComponent } from './reservation/list-pending-reservation/list-pending-reservation.component';
 import { ListValidatedReservationComponent } from './reservation/list-validated-reservation/list-validated-reservation.component';
 import { UpdateEtatJetonComponent } from './jeton/update-etat-jeton/update-etat-jeton.component';
+import { SendEmailToAllVisitorComponent } from './email/send-email-to-all-visitor/send-email-to-all-visitor.component';
+import { ResponseMailComponent } from './email/response-mail/response-mail.component';
 
 
 @NgModule({
@@ -142,7 +144,9 @@ import { UpdateEtatJetonComponent } from './jeton/update-etat-jeton/update-etat-
     CreateTypeAnnonceComponent,
     ListPendingReservationComponent,
     ListValidatedReservationComponent,
-    UpdateEtatJetonComponent
+    UpdateEtatJetonComponent,
+    SendEmailToAllVisitorComponent,
+    ResponseMailComponent
   ],
   imports: [
     CommonModule,
@@ -180,7 +184,10 @@ import { UpdateEtatJetonComponent } from './jeton/update-etat-jeton/update-etat-
     UpdateUsernameInfo, UpdatePhotoChauffeurComponent,
     DashboardComponent, UpdateCvChauffeurComponent,
     ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent,
-    UpdatePasswordComponent, UpdateStatusOfReservationComponent
+    UpdatePasswordComponent, UpdateStatusOfReservationComponent,
+    UpdateEtatJetonComponent, ResponseMailComponent,
+    SendEmailToChauffeurComponent, SendEmailToEmployeurComponent,
+    SendEmailToNewsleterComponent, SendEmailToAllVisitorComponent
 
   ]
 })

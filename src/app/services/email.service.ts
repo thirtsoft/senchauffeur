@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { ChauffeurDto } from './../models/chauffeur';
 import { NewsleterDto } from './../models/newsleter';
 import { UtilisateurDto } from './../models/utilisateur';
@@ -15,6 +16,9 @@ export class EmailService {
 
   public apiServerUrl = environment.apiBaseUrl;
 
+  choixmenu : string  = 'A';
+  dataForm:  FormGroup;
+
   constructor(private http: HttpClient) {
   }
 
@@ -25,10 +29,14 @@ export class EmailService {
 
   public getEmailDtoById(emailId: number): Observable<EmailDto> {
     return this.http.get<EmailDto>(`${this.apiServerUrl}/emails/findById/${emailId}`);
-  }
+  } responseMailToCustomer
 
   public senEmailToManager(emailDto: EmailDto): Observable<EmailDto> {
     return this.http.post<EmailDto>(`${this.apiServerUrl}/emails/sendMailToManager`, emailDto);
+  }
+
+  public responseToEmailByManager(emailDto: EmailDto): Observable<EmailDto> {
+    return this.http.post<EmailDto>(`${this.apiServerUrl}/emails/responseMailToCustomer`, emailDto);
   }
 
   public senEmailToRecruteur(userDTO: UtilisateurDto): Observable<UtilisateurDto> {
@@ -51,6 +59,6 @@ export class EmailService {
     return this.http.delete<void>(`${this.apiServerUrl}/emails/delete/${emailId}`);
   }
 
-  
+
 
 }

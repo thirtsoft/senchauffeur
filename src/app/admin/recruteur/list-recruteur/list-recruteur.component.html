@@ -26,17 +26,17 @@
                 <th>Information</th>
                 <th>Website</th>
                 <th>Action</th>
-              </tr>	 
+              </tr>
 
             </thead>
-            <tbody 
+            <tbody
               *ngFor="
               let recruteur of recruteurListDTO
                 | filter: searchText
                 | paginate: { itemsPerPage: 15, currentPage: p }
                 ">
               <tr *ngIf="recruteur.roles[0]?.name == 'ROLE_USER'"
-               
+
               >
                 <td>{{ recruteur?.name }}</td>
                 <td>{{ recruteur?.username }}</td>
@@ -51,7 +51,7 @@
                 <td>
                   <button
                     class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/recruteur', recruteur.id]"
+                    (click)="sendMailToEmployeur(recruteur)"
                   >
                     <i class="fa fa-envelop" aria-hidden="true"></i></button
                   >&nbsp;

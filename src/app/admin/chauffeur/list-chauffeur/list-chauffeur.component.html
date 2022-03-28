@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card m-b-30">
         <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List of Chauffeurs</h3>
+          <h3><i class="fa fa-angle-right"></i> Liste des Chauffeurs</h3>
           <div class="row">
             <input
               type="text"
@@ -18,7 +18,7 @@
               style="margin-left: 5%; width: 30%"
               (click)="onAddChauffeur()"
             >
-              Add Chauffeur
+              Ajouter Chauffeur
             </button>
           </div>
 
@@ -105,6 +105,13 @@
                   >
                     <i class="fa fa-eye" aria-hidden="true"></i></button
                   >&nbsp;
+
+                  <button
+                  class="btn btn-warning btn-sm"
+                  (click)="sendMailToChauffeur(chauffDTO)"
+                >
+                  <i class="fa fa-envelop" aria-hidden="true"></i></button
+                >&nbsp;
 
                   <button
                     class="btn btn-danger btn-sm"

@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-md-8 col-md-offset-2">
-    <h3>Envoi Email au Visitor</h3>
-    <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+    <h3>Répondre à l'Email</h3>
+    <form [formGroup]="this.mailService.dataForm" (ngSubmit)="onSubmit()">
       <input type="hidden" formControlName="id" id="id" />
       <div class="form-group">
         <label>A</label>

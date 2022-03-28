@@ -1,6 +1,9 @@
+import { SendEmailToNewsleterComponent } from './../send-email-to-newsleter/send-email-to-newsleter.component';
+import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewsleterService } from './../../../services/newsleter.service';
 import { NewsleterDto } from './../../../models/newsleter';
 import { Component, OnInit } from '@angular/core';
@@ -19,12 +22,10 @@ export class ListNewsleterComponent implements OnInit {
   searchText;
 
   constructor(private crudApi: NewsleterService,
-              private dialog: MatDialog,
-              private router: Router,
-
-     //         public toastr: ToastrService,
-     //         private dialogService: DialogService,
-
+              public toastr: ToastrService,
+              private matDialog: MatDialog,
+              private fb: FormBuilder,
+              private router: Router
   ){}
 
   ngOnInit(): void {
@@ -43,11 +44,22 @@ export class ListNewsleterComponent implements OnInit {
     );
   }
 
+  sendMailToNewsleter(item: NewsleterDto) {
+    this.crudApi.choixmenu = "M";
+    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(SendEmailToNewsleterComponent, dialogConfig);
+  }
+
   onDeletegetNewsleterDTO(id: number): void{
-    if (window.confirm('Etes-vous sure de vouloir supprimer cette annonce ?')) {
+    if (window.confirm('Etes-vous sure de vouloir supprimer cet visiteur ?')) {
       this.crudApi.deleteNewsleterDTO(id)
         .subscribe(data => {
-          this.getListNewsleterDTOs();
+          this.toastr.success("Email Envoyé avec Succès");
+          this.router.navigate(['/admin/accueil/newsleters']);
         },
         (error: HttpErrorResponse) => {
           alert(error.message);

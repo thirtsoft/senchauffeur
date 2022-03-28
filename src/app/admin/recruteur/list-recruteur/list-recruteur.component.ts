@@ -1,16 +1,12 @@
-import { TokenStorageService } from './../../../auth/security/token-storage.service';
-import { UtilisateurDto } from './../../../models/utilisateur';
-import { UtilisateurService } from './../../../services/utilisateur.service';
+import { SendEmailToEmployeurComponent } from './../../email/send-email-to-employeur/send-email-to-employeur.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
-import { DialogService } from './../../../services/dialog.service';
-import { ToastrService } from 'ngx-toastr';
-import { RecruteurService } from './../../../services/recruteur.service';
-import { RecruteurDto } from './../../../models/recruteur';
-import { CreateRecruteurComponent } from './../create-recruteur/create-recruteur.component';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { UtilisateurService } from './../../../services/utilisateur.service';
+import { ToastrService } from 'ngx-toastr';
+import { UtilisateurDto } from './../../../models/utilisateur';
 
 @Component({
   selector: 'app-list-recruteur',
@@ -39,9 +35,8 @@ export class ListRecruteurComponent implements OnInit {
   currentTime: number = 0;
 
   constructor(private crudApi: UtilisateurService,
-              private router: Router,
               public toastr: ToastrService,
-        //      private dialogService: DialogService,
+              private matDialog: MatDialog,
               private fb: FormBuilder
   ){}
 
@@ -59,6 +54,16 @@ export class ListRecruteurComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  sendMailToEmployeur(item: UtilisateurDto) {
+    this.crudApi.choixmenu = "M";
+    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(SendEmailToEmployeurComponent, dialogConfig);
   }
 
 

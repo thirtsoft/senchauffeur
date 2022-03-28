@@ -1,3 +1,6 @@
+import { ResponseMailComponent } from './../response-mail/response-mail.component';
+import { FormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { EmailService } from './../../../services/email.service';
@@ -19,8 +22,10 @@ export class ListEmailComponent implements OnInit {
   searchText;
 
   constructor(public crudApi: EmailService,
+              public toastr: ToastrService,
               private router: Router,
-              public toastr: ToastrService
+              private matDialog: MatDialog,
+              private fb: FormBuilder
   ){}
 
   ngOnInit(): void {
@@ -36,6 +41,16 @@ export class ListEmailComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  responseToMail(item: EmailDto) {
+    this.crudApi.choixmenu = "M";
+    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(ResponseMailComponent, dialogConfig);
   }
 
   onDeleteMailDTO(id: number): void{
