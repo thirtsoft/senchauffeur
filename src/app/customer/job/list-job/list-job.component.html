@@ -163,7 +163,6 @@
                         <td>
                           {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
                         </td>
-                      
                       </tr>
                     </tbody>
                   </table>
@@ -192,7 +191,7 @@
                   </div>
 
                   <div class="col-sm-6">
-                   <!--  <button
+                    <!--  <button
                       (click)="onAddEditAnnonce(null)"
                       class="btn btn-primary"
                       type="submit"
@@ -250,10 +249,12 @@
                         </td>
 
                         <td class="text-right">
-
                           <button
                             class="btn btn-primary btn-sm"
                             [routerLink]="['/createJob', annonceDTO.id]"
+                            [ngClass]="{
+                              disabled: annonceDTO.status == 'VALIDEE'
+                            }"
                           >
                             <i
                               class="fa fa-edit"
@@ -261,7 +262,7 @@
                             ></i></button
                           >&nbsp;
 
-                         <!--  <button
+                          <!--  <button
                             class="btn btn-danger btn-sm"
                             (click)="onDeleteAnnonce(annonceDTO.id)"
                           >
@@ -288,7 +289,7 @@
                 aria-labelledby="payment-nav"
               >
                 <h4>Ajouter Annonce</h4>
-            
+
                 <form [formGroup]="this.formData" name="form">
                   <div class="form-group">
                     <label>Reference</label>
@@ -378,7 +379,7 @@
                             *ngFor="let pmDTO of listPermisDTOs"
                             class="form-control"
                             [ngValue]="
-                            pmDTO.id == addEditAnnonceDTO.permisDto?.id
+                              pmDTO.id == addEditAnnonceDTO.permisDto?.id
                                 ? addEditAnnonceDTO.permisDto
                                 : pmDTO
                             "
@@ -509,17 +510,16 @@
                           --choisir Experience--
                         </option>
                         <option
-                        *ngFor="let item of listExperiences"
-                        [ngValue]="item"
-                      >
-                        {{ item }}
-                      </option>
+                          *ngFor="let item of listExperiences"
+                          [ngValue]="item"
+                        >
+                          {{ item }}
+                        </option>
                       </select>
                       <div
                         *ngIf="
                           f['experience'].invalid &&
-                          (f['experience'].dirty ||
-                            f['experience'].touched)
+                          (f['experience'].dirty || f['experience'].touched)
                         "
                         class="alert alert-danger"
                       >
@@ -565,31 +565,28 @@
 
                     <div class="form-group col-md-6 col-sm-12">
                       <label>Date cloture</label>
-                     
-                          <input
-                          type="date"
-                          placeholder="Date limite candidature"
-                          class="form-control"
-                          formControlName="dateCloture"
-                          name="dateCloture"
-                          id="dateCloture"
-                          required
-                        />
-                         
-                          <div
-                            *ngIf="
-                              f['dateCloture'].invalid &&
-                              (f['dateCloture'].dirty ||
-                                f['dateCloture'].touched)
-                            "
-                            class="alert alert-danger"
-                          >
-                            <span *ngIf="f['dateCloture'].errors.required"
-                              >Le dateCloture est obligatoire.</span
-                            >
-                          </div>
 
+                      <input
+                        type="date"
+                        placeholder="Date limite candidature"
+                        class="form-control"
+                        formControlName="dateCloture"
+                        name="dateCloture"
+                        id="dateCloture"
+                        required
+                      />
 
+                      <div
+                        *ngIf="
+                          f['dateCloture'].invalid &&
+                          (f['dateCloture'].dirty || f['dateCloture'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['dateCloture'].errors.required"
+                          >Le dateCloture est obligatoire.</span
+                        >
+                      </div>
                     </div>
                   </div>
 
@@ -610,10 +607,8 @@
                     >
                       <i class="fa fa-database"></i> Enregistrer</button
                     >&nbsp;
-                
                   </div>
                 </form>
-           
               </div>
               <div
                 class="tab-pane fade"
@@ -631,9 +626,7 @@
                       [(ngModel)]="searchText"
                     />
                   </div>
-                  <div class="col-sm-6">
-             
-                  </div>
+                  <div class="col-sm-6"></div>
                 </div>
                 &nbsp;
                 <div class="table-responsive">
@@ -655,7 +648,7 @@
                         "
                       >
                         <td>{{ jetonDTO.id }}</td>
-                        <td>{{ jetonDTO.montant }}</td> 
+                        <td>{{ jetonDTO.montant }}</td>
                         <td>{{ jetonDTO.etat }}</td>
                         <td>
                           {{ jetonDTO.createdDate | date: "dd-MM-yyyy" }}
@@ -822,7 +815,7 @@
                     <br /><br />
                   </div>
                 </div>
-               
+
                 <h5>Editer Password</h5>
                 <div class="row">
                   <div class="col-md-12">

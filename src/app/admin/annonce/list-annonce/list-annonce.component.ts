@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { UpdateStatusOfAnnonceComponent } from './../update-status-of-annonce/update-status-of-annonce.component';
+import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { AnnonceService } from './../../../services/annonce.service';
 import { Annonce, AnnonceDto } from './../../../models/annonce';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -20,17 +22,20 @@ export class ListAnnonceComponent implements OnInit {
   searchText;
 
   constructor(private annonceService: AnnonceService,
-              private dialog: MatDialog,
+              public toastr: ToastrService,
+              private matDialog: MatDialog,
               private router: Router,
-              public toastr: ToastrService
+              public fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef:MatDialogRef<UpdateStatusOfAnnonceComponent>,
   ){}
 
   ngOnInit(): void {
     this.getListAnnonceDTOs();
   }
 
-  public getListAnnonceDTOs() {
-    this.annonceService.getAnnonceDTOs().subscribe(
+  getListAnnonceDTOs() {
+    this.annonceService.getAnnonceDTOOrderByIdDesc().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
         console.log(this.annonceListDTO);
@@ -43,6 +48,17 @@ export class ListAnnonceComponent implements OnInit {
 
   onAddAnnonce() {
     this.router.navigate(['/admin/accueil/annonce']);
+  }
+
+  addEditStatusAnnonce(item : AnnonceDto) {
+    this.annonceService.choixmenu == 'M';
+    this.annonceService.formData = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(UpdateStatusOfAnnonceComponent, dialogConfig);
+
   }
 
   onDeleteAnnonce(id: number): void{

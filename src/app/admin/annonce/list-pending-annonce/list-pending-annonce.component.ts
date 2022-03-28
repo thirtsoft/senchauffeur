@@ -34,7 +34,7 @@ export class ListPendingAnnonceComponent implements OnInit {
     this.getListAnnonceDTOsByStatusPending();
   }
 
-  public getListAnnonceDTOsByStatusPending() {
+  getListAnnonceDTOsByStatusPending() {
     this.crudApi.getAnnonceDTOByStatusPending().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
@@ -58,7 +58,7 @@ export class ListPendingAnnonceComponent implements OnInit {
   }
 
   viewAllAnnonces() {
-    this.router.navigate(['/admin/accueil/annonces']);
+    this.router.navigate(['/admin/accueil/annonce']);
   }
 
 
