@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { NewsleterService } from './../../services/newsleter.service';
@@ -18,7 +19,7 @@ export class AddNewsleterComponent implements OnInit {
   addNewsleterForm: NgForm;
 
   constructor(private crudApi: NewsleterService,
-              private actRoute: ActivatedRoute,
+              private toastr: ToastrService,
               private router: Router
   ) {
      //--for reload componant
@@ -37,8 +38,12 @@ export class AddNewsleterComponent implements OnInit {
     console.log(this.addEditNewsleterDTO);
     this.crudApi.addNewsleterDTO(this.addEditNewsleterDTO).subscribe(
       (response: NewsleterDto) => {
-        alert("Vous étes bien inscrit à notre Newsleter");
-        this.router.navigate(['/']);
+        this.toastr.success('à notre Newsleter','Vous étes bien inscrit', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("").then(() => {
+          });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

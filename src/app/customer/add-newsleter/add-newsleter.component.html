@@ -1,29 +1,3 @@
-<!-- <form #addNewsleterForm="ngForm" name="form">
-<div class="input-group">
-  <input
-    class="form-control"
-    [(ngModel)]="addEditNewsleterDTO.emailVisiteur"
-    name="emailVisiteur"
-    id="emailVisiteur"
-    #emailVisiteur="ngModel"
-    required="required"
-
-    placeholder="Votre Email Id"
-    type="email"
-  />
-  <span class="input-group-btn">
-    <button
-      name="submit"
-      value="Submit"
-      type="submit"
-      class="site-button radius-xl"
-      (click)="onAddNewsleter()"
-    >
-      Souscrire
-    </button>
-  </span>
-</div>
-</form> -->
 
 <form
   #addNewsleterForm="ngForm"
@@ -51,6 +25,7 @@
         type="submit"
         class="site-button radius-xl"
         (click)="onAddNewsleter()"
+        style="cursor: pointer;"
       >
         Souscrire
       </button>
