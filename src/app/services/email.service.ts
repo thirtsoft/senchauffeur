@@ -51,8 +51,6 @@ export class EmailService {
     return this.http.delete<void>(`${this.apiServerUrl}/emails/delete/${emailId}`);
   }
 
-  public countNumberOfemails(): Observable<any> {
-    return this.http.get(`${this.apiServerUrl}/emails/countNumberOfEmailInMonth`);
-  }
+  
 
 }

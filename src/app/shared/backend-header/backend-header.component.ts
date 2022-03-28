@@ -17,7 +17,7 @@ export class BackendHeaderComponent implements OnInit {
   numberOfPendingAnnonce: any;
 
   info: any;
-  private roles: string[];
+  roles: string[];
 
   currentTime: number = 0;
 
@@ -65,6 +65,8 @@ export class BackendHeaderComponent implements OnInit {
 
     this.getNumberOfPendingAnnonce();
 
+    this.getNumberOfEmailInMonth();
+
   }
 
   logout() {
@@ -95,6 +97,13 @@ export class BackendHeaderComponent implements OnInit {
     this.dashboardService.countNumberOfAnnonceByStatusPending()
       .subscribe(response => {
       this.numberOfPendingAnnonce = response;
+    });
+  }
+
+  getNumberOfEmailInMonth(): void {
+    this.dashboardService.countNumberOfEmails()
+      .subscribe(response => {
+      this.numberOfCustomerEmail = response;
     });
   }
 

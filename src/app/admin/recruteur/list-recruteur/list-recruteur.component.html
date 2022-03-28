@@ -1,63 +1,81 @@
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card m-b-30">
+        <div class="card-body">
+          <h3><i class="fa fa-angle-right"></i> Liste des Recruteurs</h3>
+          <div class="row">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              [(ngModel)]="searchText"
+            />
+          </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <h3><i class="fa fa-angle-right"></i> List of Recruteurs</h3>
-                    <div class="row">
-                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+          <table class="table table-striped">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Recruteur</th>
+                <th>Username</th>
+                <th>Entreprise</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Ville</th>
+                <th>Sect.Activité</th>
+                <th>Information</th>
+                <th>Website</th>
+                <th>Action</th>
+              </tr>	 
 
-                        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddRecruteur()">Add Recruteur</button>
+            </thead>
+            <tbody 
+              *ngFor="
+              let recruteur of recruteurListDTO
+                | filter: searchText
+                | paginate: { itemsPerPage: 15, currentPage: p }
+                ">
+              <tr *ngIf="recruteur.roles[0]?.name == 'ROLE_USER'"
+               
+              >
+                <td>{{ recruteur?.name }}</td>
+                <td>{{ recruteur?.username }}</td>
+                <td>{{ recruteur?.nomEntreprise }}</td>
+                <td>{{ recruteur?.mobile }}</td>
+                <td>{{ recruteur?.email }}</td>
+                <td>{{ recruteur?.villeRecruteur }}</td>
+                <td>{{ recruteur?.secteurActivite }}</td>
+                <td>{{ recruteur?.information }}</td>
+                <td>{{ recruteur?.website }}</td>
 
-                    </div>
+                <td>
+                  <button
+                    class="btn btn-warning btn-sm"
+                    [routerLink]="['/admin/accueil/recruteur', recruteur.id]"
+                  >
+                    <i class="fa fa-envelop" aria-hidden="true"></i></button
+                  >&nbsp;
+                  <button
+                    class="btn btn-success btn-sm"
+                    [routerLink]="[
+                      '/admin/accueil/viewrecruteur',
+                      recruteur.id
+                    ]"
+                  >
+                    <i class="fa fa-mobile-phone" aria-hidden="true"></i></button
+                  >&nbsp;
 
-                    <table class="table table-striped">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Entreprise</th>
-                                <th>Recruteur</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Ville</th>
-                                <th>Addresse</th>
-                                <th>Secteur Activité</th>
-                                <th>Website</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let recruteur of recruteurListDTO | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                                <td>{{recruteur?.nomEntreprise}}</td>
-                                <td>{{recruteur?.firstName}} {{recruteur?.lastName}}</td>
-                                <td>{{recruteur?.phoneRecruteur}}</td>
-                                <td>{{recruteur?.email}}</td>
-                                <td>{{recruteur?.villeRecruteur}}</td>
-                                <td>{{recruteur?.addressRecruteur}}</td>
-                                <td>{{recruteur?.secteurActivite}}</td>
-                                <td>{{recruteur?.website}}</td>
-
-                                <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/recruteur', recruteur.id]">
-                                  <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
-                                    <button class="btn btn-success btn-sm" [routerLink]="['/admin/accueil/viewrecruteur', recruteur.id]">
-                                          <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
-
-                                    <button class="btn btn-danger btn-sm" (click)="onDeleteRecruteur(recruteur.id)">
-                                            <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="pagination">
-                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                    </div>
-                </div>
-            </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </div>
-
+      </div>
     </div>
-
-
+  </div>
 </div>

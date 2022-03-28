@@ -1,3 +1,6 @@
+import { TokenStorageService } from './../../../auth/security/token-storage.service';
+import { UtilisateurDto } from './../../../models/utilisateur';
+import { UtilisateurService } from './../../../services/utilisateur.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,17 +19,28 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ListRecruteurComponent implements OnInit {
 
-  recruteurListDTO: RecruteurDto[];
-  addEditRecruteurDTO: RecruteurDto;
+  recruteurListDTO: UtilisateurDto[];
 
   id : number;
   p : number=1;
   searchText;
 
-  constructor(private recruteurService: RecruteurService,
-              private dialog: MatDialog,
+  info: any;
+  roles: string[];
+
+  isLoggedIn = false;
+  showUserBoard = false;
+  showManagerBoard = false;
+  showAdminBoard = false;
+
+  username: string;
+  email: String;
+  userId;
+  currentTime: number = 0;
+
+  constructor(private crudApi: UtilisateurService,
               private router: Router,
-      //        public toastr: ToastrService,
+              public toastr: ToastrService,
         //      private dialogService: DialogService,
               private fb: FormBuilder
   ){}
@@ -35,9 +49,9 @@ export class ListRecruteurComponent implements OnInit {
     this.getListRecruteurDTOs();
   }
 
-  public getListRecruteurDTOs(): void {
-    this.recruteurService.getRecruteurDTOs().subscribe(
-      (response: RecruteurDto[]) => {
+  getListRecruteurDTOs(): void {
+    this.crudApi.getAllUtilisateurDtosOrderByIdDesc().subscribe(
+      (response: UtilisateurDto[]) => {
         this.recruteurListDTO = response;
         console.log(this.recruteurListDTO);
       },
@@ -47,42 +61,6 @@ export class ListRecruteurComponent implements OnInit {
     );
   }
 
-  onAddRecruteur() {
-    this.router.navigate(['/admin/accueil/recruteur']);
-  }
-/*
-  onAddRecruteur() {
-    this.openNoteDialog(null);
-  }
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(CreateRecruteurComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.recruteurListDTO.push(result);
-      }
-
-    });
-  }
-*/
-
-
-
-  onDeleteRecruteur(id: number): void{
-    if (window.confirm('Etes-vous sure de vouloir supprimer ce Recruteur ?')) {
-      this.recruteurService.deleteRecruteurDTO(id).subscribe(data => {
-        this.getListRecruteurDTOs();
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message);
-        }
-      );
-    }
-  }
 
 
 }

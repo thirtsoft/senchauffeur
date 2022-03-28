@@ -1,3 +1,4 @@
+import { Role } from './role';
 export class Utilisateur {
   id: number;
   name: string;
@@ -29,4 +30,6 @@ export class UtilisateurDto {
   information: string;
   photo: string;
   password: string;
+
+  roles?: Role[];
 }

@@ -1,1 +1,68 @@
-<p>list-email works!</p>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card m-b-30">
+          <div class="card-body">
+            <h3><i class="fa fa-angle-right"></i> Liste des emails</h3>
+            <div class="row">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search"
+                [(ngModel)]="searchText"
+              />
+  
+             
+            </div>
+  
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Date Envoi</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let mailDTO of listMailDTO
+                      | filter: searchText
+                      | paginate: { itemsPerPage: 15, currentPage: p };
+                    let i = index
+                  "
+                >
+                  <td>{{ mailDTO?.id }}</td>
+                  <td>{{ mailDTO?.customerName }}</td>
+                  <td>
+                    {{ mailDTO?.recipient }}
+                  </td>
+                  <td>{{ mailDTO?.message }}</td>
+                  <td>{{ mailDTO?.createDate | date: 'dd-MM-yyyy' }}</td>
+  
+                  <td>
+                
+                    <button
+                      class="btn btn-danger btn-sm"
+                      (click)="onDeleteMailDTO(mailDTO.id)"
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i></button
+                    >&nbsp;
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <pagination-controls
+                (pageChange)="p = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -78,4 +78,8 @@ export class DashboardService {
     return this.http.get<NotationDto>(`${this.apiServerUrl}/notifications/countNumberOfNotificationByProductId/${noteId}`);
   }
 
+  public countNumberOfEmails(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/emails/countNumberOfEmailInMonth`);
+  }
+
 }
