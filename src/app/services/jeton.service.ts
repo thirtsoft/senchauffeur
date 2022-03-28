@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,6 +12,9 @@ import { environment } from './../../environments/environment';
 export class JetonService {
 
   public apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+  formData:  FormGroup;
 
   //public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-JetonDtos/v1";
 

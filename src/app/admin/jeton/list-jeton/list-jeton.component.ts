@@ -1,10 +1,12 @@
+import { UpdateEtatJetonComponent } from './../update-etat-jeton/update-etat-jeton.component';
+import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { JetonService } from './../../../services/jeton.service';
 import { JetonDto } from './../../../models/jeton';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-list-jeton',
@@ -20,8 +22,12 @@ export class ListJetonComponent implements OnInit {
   searchText;
 
   constructor(private crudApi: JetonService,
+              public toastr: ToastrService,
+              private matDialog: MatDialog,
               private router: Router,
-              public toastr: ToastrService
+              public fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef:MatDialogRef<UpdateEtatJetonComponent>,
   ){}
 
   ngOnInit(): void {
@@ -42,6 +48,17 @@ export class ListJetonComponent implements OnInit {
 
   onAddJeton() {
     this.router.navigate(['/admin/accueil/jeton']);
+  }
+
+  addEditEtatJeton(item : JetonDto) {
+    this.crudApi.choixmenu == 'M';
+    this.crudApi.formData = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(UpdateEtatJetonComponent, dialogConfig);
+
   }
 
   onDeleteJeton(id: number): void{

@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card m-b-30">
         <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List Jetons</h3>
+          <h3><i class="fa fa-angle-right"></i> Liste des Jetons</h3>
           <div class="row">
             <input
               type="text"
@@ -18,7 +18,7 @@
               style="margin-left: 5%; width: 30%"
               (click)="onAddJeton()"
             >
-              Add Jeton
+              Ajouter Jeton
             </button>
           </div>
 
@@ -49,7 +49,18 @@
                 <td>{{ jetonDTO?.utilisateurDto?.email }}</td>
                 <td>{{ jetonDTO?.utilisateurDto?.mobile }}</td>
                 <td>{{ jetonDTO?.montant }}</td>
-                <td>{{ jetonDTO?.etat }}</td>
+                <td>{{ jetonDTO?.etat }}
+
+                  <span
+              [ngClass]="{ disabled: jetonDTO.etat == 'EPUISEE' }"
+              class="btn btn-info btn-sm pull-right"
+              (click)="addEditEtatJeton(jetonDTO)"
+              style="cursor: pointer"
+            >
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </span>
+
+                </td>
                 <td>{{ jetonDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
 
                 <td>

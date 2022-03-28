@@ -16,14 +16,19 @@
       <div class="form-group">
         <label>Status</label>
         <select
+          type="text"
+          class="form-control"
           name="status"
           formControlName="status"
           id="status"
-          class="form-control"
         >
-          <option value="ENCOURS">ENCOURS</option>
+          <option *ngFor="let item of statusListData" [ngValue]="item">
+            {{ item }}
+          </option>
+
+          <!-- <option value="ENCOURS">ENCOURS</option>
           <option value="VALIDEE">VALIDEE</option>
-          <option value="REJETEE">REJETEE</option>
+          <option value="REJETEE">REJETEE</option> -->
         </select>
       </div>
 
