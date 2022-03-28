@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,16 @@ public interface EmailApi {
             @ApiResponse(code = 400, message = "Aucun Email  envoyé")
     })
     ResponseEntity<EmailDto> sendEmailToManager(@RequestBody EmailDto emailDto);
+	
+	@PostMapping(value = APP_ROOT + "/emails/responseMailToCustomer")
+    @ApiOperation(value = "Repondre à un email client",
+            notes = "Cette méthode permet de répondre au client",
+            response = EmailDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "L'email a été envoyé / modifié"),
+            @ApiResponse(code = 400, message = "Aucun Email  envoyé")
+    })
+	ResponseEntity<EmailDto> responseEmailToCustomer(@RequestBody EmailDto emailDto); 
 
     @PostMapping(value = APP_ROOT + "/emails/sendToRecruteur")
     @ApiOperation(value = "Envoyer un email à un Recruteur",

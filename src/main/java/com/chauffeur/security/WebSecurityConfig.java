@@ -231,6 +231,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/newsleters/**").permitAll()
                               
                 .antMatchers("/**/emails/sendMailToManager").permitAll()
+                .antMatchers("/**/emails/responseMailToCustomer").permitAll()
                 .antMatchers("/**/emails/sendToRecruteur").permitAll()
                 .antMatchers("/**/emails/sendToChauffeur").permitAll()
                 .antMatchers("/**/emails/sendToNewsletter").permitAll()

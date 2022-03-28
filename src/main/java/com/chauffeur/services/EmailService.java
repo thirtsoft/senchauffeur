@@ -14,6 +14,8 @@ public interface EmailService {
 	
 	void sendEmailToManager(EmailDto emailDto) throws MailException;
 	
+	void responseEmailToCustomer(EmailDto emailDto) throws MailException;
+	
 	void sendEmailToRecruteur(UtilisateurDto utilisateurDto) throws MailException;
 	
 	void sendEmailToChauffeur(ChauffeurDto chauffeurDto) throws MailException;

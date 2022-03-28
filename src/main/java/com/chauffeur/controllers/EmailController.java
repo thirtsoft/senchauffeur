@@ -39,6 +39,18 @@ public class EmailController implements EmailApi {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @Override
+	public ResponseEntity<EmailDto> responseEmailToCustomer(EmailDto emailDto) {
+    	try {
+        	emailDto.setCreateDate(new Date());
+            emailService.responseEmailToCustomer(emailDto);
+            return new ResponseEntity<EmailDto>(emailDto, HttpStatus.CREATED);
+        } catch (MailException e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+	}
+
 
     @Override
     public ResponseEntity<UtilisateurDto> sendMailToRecruteur(UtilisateurDto utilisateurDto) {
@@ -102,9 +114,6 @@ public class EmailController implements EmailApi {
     public void delete(Long id) {
         emailService.delete(id);
     }
-
-	
-
 
 
 }
