@@ -45,6 +45,10 @@ public class ChauffeurDto {
 	
 	private Date dateInscription;
 	
+	private String subject;
+	
+	private String message;
+	
 	private PermisDto permisDto;
 	
 	private AddresseDto addresseDto;

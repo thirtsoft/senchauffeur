@@ -1,8 +1,15 @@
 package com.chauffeur.security;
 
+import static com.chauffeur.utils.Constants.APP_ROOT;
+
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -13,13 +20,25 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.chauffeur.dto.EmailDto;
+import com.chauffeur.dto.NewsleterDto;
+import com.chauffeur.dto.UtilisateurDto;
 import com.chauffeur.security.jwt.JwtAuthEntryPoint;
 import com.chauffeur.security.jwt.JwtAuthTokenFilter;
 import com.chauffeur.security.service.UserDetailsServiceImpl;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 
 @SuppressWarnings("deprecation")
@@ -210,11 +229,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/newsleters/delete/{idNewsleter}").permitAll()
                 .antMatchers("/**/newsleters/*").permitAll()
                 .antMatchers("/**/newsleters/**").permitAll()
-                
-                .antMatchers("/**/historiqueLogins/searchHistoriqueLoginByIdDesc").permitAll()
-                .antMatchers("/**/historiqueLogins/*").permitAll()
-                .antMatchers("/**/historiqueLogins/**").permitAll() 
-                
+                              
+                .antMatchers("/**/emails/sendMailToManager").permitAll()
+                .antMatchers("/**/emails/sendToRecruteur").permitAll()
+                .antMatchers("/**/emails/sendToChauffeur").permitAll()
+                .antMatchers("/**/emails/sendToNewsletter").permitAll()
+                .antMatchers("/**/emails/sendMailToAllCustomers").permitAll()
+                .antMatchers("/**/emails/findById/{idEmail}").permitAll()
+                .antMatchers("/**/emails/searchAllEmailsOrderByIdDesc").permitAll()
+                .antMatchers("/**/emails/countNumberOfEmailInMonth").permitAll()
+                .antMatchers("/**/emails/delete/{idEmail}").permitAll()
+         
                 .antMatchers("/**/utilisateurs/all").permitAll()
                 .antMatchers("/**/utilisateurs/searchAllUtilisateurOrderByIdDesc").permitAll()
                 .antMatchers("/**/utilisateurs/findById/{idUtilisateur}").permitAll()
@@ -225,8 +250,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/utilisateurs/*").permitAll()
                 .antMatchers("/**/utilisateurs/updateCustomerProfileByUsername").permitAll()
                 
-                
-                
+                .antMatchers("/**/historiqueLogins/searchHistoriqueLoginByIdDesc").permitAll()
+                .antMatchers("/**/historiqueLogins/*").permitAll()
+                .antMatchers("/**/historiqueLogins/**").permitAll() 
+         
+                 
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

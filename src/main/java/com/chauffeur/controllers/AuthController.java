@@ -140,14 +140,6 @@ public class AuthController implements AuthApi {
         return ResponseEntity.ok(utilisateurRepository.save(utilisateur));
 
     }
-
-
-	@Override
-	public ResponseEntity<?> signUp(@Valid SignUpForm signUpForm) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	
 

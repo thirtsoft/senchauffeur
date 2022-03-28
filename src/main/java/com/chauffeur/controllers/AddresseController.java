@@ -42,8 +42,9 @@ public class AddresseController implements AddresseApi {
 	}
 
 	@Override
-	public List<AddresseDto> getAllAddresses() {
-		return addressService.findAll();
+	public ResponseEntity<List<AddresseDto>> getAllAddresses() {
+		List<AddresseDto> addresseDtoList = addressService.findAll();
+        return new ResponseEntity<>(addresseDtoList, HttpStatus.OK);
 	}
 
 

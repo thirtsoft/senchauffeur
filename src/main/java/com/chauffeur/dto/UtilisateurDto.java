@@ -41,6 +41,10 @@ public class UtilisateurDto {
 	 private String password;
 	 
 	 private String photo = "avatar.jpg";
+	 
+	 private String subject;
+	 
+	 private String message;
 
 	 private Set<RoleDto> roles = new HashSet<>();
 	 

@@ -19,6 +19,10 @@ public class NewsleterDto {
 
     private String emailVisiteur;
     
+    private String subject;
+	 
+	 private String message;
+    
     private Date createdDate;
     
     public static NewsleterDto fromEntityToDto(Newsleter newsleter) {
