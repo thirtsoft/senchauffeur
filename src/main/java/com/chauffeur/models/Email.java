@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -45,15 +46,15 @@ public class Email implements Serializable {
     private Date createDate;
 
     @ManyToOne
-    @Column(name = "userId")
+    @JoinColumn(name = "userId")
     private Utilisateur utilisateur;
     
     @ManyToOne
-    @Column(name = "chauffId")
+    @JoinColumn(name = "chauffId")
     private Chauffeur chauffeur;
 
     @ManyToOne
-    @Column(name = "visitorId")
+    @JoinColumn(name = "visitorId")
     private Newsleter newsleter;
 
    

@@ -56,8 +56,8 @@ public class Annonce implements Serializable {
 	@Column(name = "time", length = 200)
 	private String time;
 	
-	@Column(name = "experience", length = 150)
-	private String experience;
+	@Column(name = "proExperience", length = 150)
+	private String proExperience;
 	
 	@Column(name = "typeContrat", length = 100)
 	private String typeContrat;
@@ -78,23 +78,16 @@ public class Annonce implements Serializable {
 	@Column(name = "dateCloture", length = 150)
 	private Date dateCloture;
 
-//	@ManyToOne(cascade = CascadeType.PERSIST)
 	@ManyToOne
 	@JoinColumn(name = "permId")
 	private Permis permis;
 	 
-	/*
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "recrId")
-	private Recruteur recruteur;
-	*/
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private Utilisateur utilisateur;
 	
 	
-//	@ManyToOne(cascade = CascadeType.PERSIST)
 	@ManyToOne
 	@JoinColumn(name = "addresseId")
 	private Addresse addresse;
