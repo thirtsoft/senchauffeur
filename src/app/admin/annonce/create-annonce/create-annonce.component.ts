@@ -1,4 +1,3 @@
-import { VilleDto } from './../../../models/ville';
 import { AddresseDto } from './../../../models/address';
 import { AddressService } from './../../../services/address.service';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -24,12 +23,10 @@ export class CreateAnnonceComponent implements OnInit {
   annonceDTO: AnnonceDto = new AnnonceDto();
   listPermisData: PermisDto[];
   listRecruteurData: RecruteurDto[];
-  listVilleDTOs: VilleDto[];
   listAddressDTOs: AddresseDto[];
 
-  listTypeContrats = ["Stage", "Sejour", "CDD", "CDI"];
-  listTypeExperiences = ["1ans", "2ans-5ans", "+5ans"];
-  listTypeDisponibilites = ["Immediate", "Temps Partial", "Temps Plein"];
+  listTypeContrats = ["Sejour", "CDD", "CDI"];
+  listTypeDisponibilites = ["Temps Partial", "Temps Plein"];
 
   data;
   paramId :any = 0;
@@ -116,10 +113,6 @@ export class CreateAnnonceComponent implements OnInit {
   }
 
   onAddAnnonce() {
-    console.log("Data start");
-    console.log(this.annonceDTO);
-    console.log("Data USER");
-    console.log(this.annonceService.id);
     this.annonceService.addAnnonceDTOWithUser(this.annonceDTO, this.annonceService.id).subscribe(
       (response: AnnonceDto) => {
         this.toastr.success('avec succès','Annonce Ajoutée', {
@@ -144,7 +137,6 @@ export class CreateAnnonceComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/annonceEncours").then(() => {
-    //      window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {

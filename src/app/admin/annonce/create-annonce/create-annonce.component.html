@@ -217,22 +217,22 @@
               <label>Nombre Année Expérience </label>
               <input
                 type="text"
-                placeholder="experience annonce"
+                placeholder="proExperience annonce"
                 class="form-control"
-                [(ngModel)]="annonceDTO.experience"
-                name="experience"
-                id="experience"
-                #experience="ngModel"
+                [(ngModel)]="annonceDTO.proExperience"
+                name="proExperience"
+                id="proExperience"
+                #proExperience="ngModel"
                 required
               />
               <span
                 class="text-danger"
                 *ngIf="
-                  (experience.touched || addAnnonceForm.submitted) &&
-                  experience.errors?.required
+                  (proExperience.touched || addAnnonceForm.submitted) &&
+                  proExperience.errors?.required
                 "
               >
-                annee Experience est obligatoire
+                annee proExperience est obligatoire
               </span>
             </div>
           </div>

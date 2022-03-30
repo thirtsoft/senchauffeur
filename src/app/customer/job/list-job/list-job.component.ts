@@ -75,9 +75,8 @@ export class ListJobComponent implements OnInit {
   listAddressDTOs: AddresseDto[];
   listJetonDTOs: JetonDto[];
 
-  listTypeContrats = ["Stage", "CDD", "CDI"];
-  listExperiences = ["Débutant", "1ans-3ans", "3ans-5ans", "10ans et plus"];
-  listDisponibilites = ["Immediate", "Temps Partiel", "Temps Plein"];
+  listTypeContrats = ["Séjour", "CDD", "CDI"];
+  listDisponibilites = ["Temps Partiel", "Temps Plein"];
 
   data;
   addJobForm: NgForm;
@@ -134,7 +133,7 @@ export class ListJobComponent implements OnInit {
 
       this.username = user.username;
       this.userId = user.id;
- 
+
     }
 
     this.getListPermisDTOs();
@@ -146,12 +145,11 @@ export class ListJobComponent implements OnInit {
     this.formData = this.fb.group({
       reference: ['', Validators.required],
       libelle: ['', Validators.required],
-      lieuPoste: ['', Validators.required],
-      salaire: ['', Validators.required],
+      lieuPoste: [''],
+      salaire: ['',0],
       emailPoste: ['', Validators.required],
       time: ['', Validators.required],
-      disponibilite: ['', Validators.required],
-      experience: ['', Validators.required],
+      proExperience: ['', Validators.required],
       typeContrat: ['', Validators.required],
       description: ['', Validators.required],
       dateCloture: new Date(),
@@ -268,7 +266,7 @@ export class ListJobComponent implements OnInit {
 
   }
 
- 
+
 
   update() {
     console.log('Data send--', this.listDataProfil);
@@ -281,7 +279,7 @@ export class ListJobComponent implements OnInit {
           this.router.navigateByUrl("/").then(() => {
             window.location.reload();
           });
-        
+
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -326,8 +324,6 @@ export class ListJobComponent implements OnInit {
   }
 
   onAddJob() {
-    console.log(this.formData.value);
-    console.log(this.formData.value,  this.userId);
     this.annonceService.addAnnonceDTOWithUser(this.formData.value,  this.userId)
       .subscribe(
       (response: AnnonceDto) => {

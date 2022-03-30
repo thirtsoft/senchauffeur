@@ -23,7 +23,7 @@ export class CreateJobComponent implements OnInit {
   listPermisDTOs: PermisDto[];
   listAddressDTOs: AddresseDto[];
 
-  listTypeContrats = ["Stage", "CDD", "CDI"];
+  listTypeContrats = ["Séjour", "CDD", "CDI"];
 
   data;
   paramId :any = 0;

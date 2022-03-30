@@ -36,7 +36,7 @@ export class AnnonceDto {
   emailPoste: string;
   time: string;
   status: string;
-  experience: string;
+  proExperience: string;
   typeContrat: string;
   description: string;
   dateCandidature: Date;

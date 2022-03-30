@@ -234,7 +234,7 @@
                         <td>{{ annonceDTO.emailPoste }}</td>
                         <td>{{ annonceDTO.salaire }}</td>
                         <td>{{ annonceDTO.time }}</td>
-                        <td>{{ annonceDTO.experience }}</td>
+                        <td>{{ annonceDTO.proExperience }}</td>
                         <td>{{ annonceDTO.typeContrat }}</td>
                         <td>{{ annonceDTO.permisDto.designation }}</td>
                         <td>{{ annonceDTO.addresseDto.ville }}</td>
@@ -426,17 +426,7 @@
                         required
                         placeholder="lieuPoste du poste"
                       />
-                      <div
-                        *ngIf="
-                          f['lieuPoste'].invalid &&
-                          (f['lieuPoste'].dirty || f['lieuPoste'].touched)
-                        "
-                        class="alert alert-danger"
-                      >
-                        <span *ngIf="f['lieuPoste'].errors.required"
-                          >Le lieuPoste est obligatoire.</span
-                        >
-                      </div>
+                     
                     </div>
 
                     <div class="form-group col-md-6 col-sm-12">
@@ -450,17 +440,7 @@
                         required
                         placeholder="salaire du poste"
                       />
-                      <div
-                        *ngIf="
-                          f['salaire'].invalid &&
-                          (f['salaire'].dirty || f['salaire'].touched)
-                        "
-                        class="alert alert-danger"
-                      >
-                        <span *ngIf="f['salaire'].errors.required"
-                          >Le salaire est obligatoire.</span
-                        >
-                      </div>
+                     
                     </div>
                   </div>
 
@@ -499,31 +479,24 @@
 
                     <div class="form-group col-md-6 col-sm-12">
                       <label>Nombre Années Experience</label>
-                      <select
-                        formControlName="experience"
-                        name="experience"
-                        id="experience"
+                      <input
+                        type="number"
                         class="form-control"
+                        formControlName="proExperience"
+                        name="proExperience"
+                        id="proExperience"
                         required
-                      >
-                        <option [ngValue]="0" disabled>
-                          --choisir Experience--
-                        </option>
-                        <option
-                          *ngFor="let item of listExperiences"
-                          [ngValue]="item"
-                        >
-                          {{ item }}
-                        </option>
-                      </select>
+                        placeholder="Nombre Années Experience"
+                      />
+                     
                       <div
                         *ngIf="
-                          f['experience'].invalid &&
-                          (f['experience'].dirty || f['experience'].touched)
+                          f['proExperience'].invalid &&
+                          (f['proExperience'].dirty || f['proExperience'].touched)
                         "
                         class="alert alert-danger"
                       >
-                        <span *ngIf="f['experience'].errors.required"
+                        <span *ngIf="f['proExperience'].errors.required"
                           >Le experience est obligatoire.</span
                         >
                       </div>
@@ -534,6 +507,7 @@
                     <div class="form-group col-md-6 col-sm-12">
                       <label>Type de Contrat </label>
                       <select
+                      type="text"
                         formControlName="typeContrat"
                         name="typeContrat"
                         id="typeContrat"

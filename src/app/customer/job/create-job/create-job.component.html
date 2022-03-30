@@ -34,7 +34,7 @@
                   href="#dashboard-tab"
                   role="tab"
                   (click)="goToAnnonce()"
-                 
+
                 >
                   <i class="fa fa-tachometer-alt"></i>Tableau de bord</a
                 >
@@ -56,7 +56,7 @@
                   role="tab"
                 >
                   <i class="fa fa-edit"></i> Modifier Annonce</a
-                
+
                 >
                 <a
                   class="nav-link"
@@ -65,7 +65,7 @@
                   href="#address-tab"
                   role="tab"
                   (click)="goToAnnonce()"
-                 
+
                 >
                   <i class="fa fa-dollar"></i> Mes Jetons</a
                 >
@@ -94,9 +94,9 @@
                   aria-labelledby="dashboard-nav"
                 >
                   <h4>Dashboard</h4>
-                 
+
                 </div>
-                
+
                 <div
                   class="tab-pane fade"
                   id="payment-tab"
@@ -127,7 +127,7 @@
                         Reference Obligatoire
                       </span>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Libellé Post</label>
@@ -151,7 +151,7 @@
                           libelle Obligatoire
                         </span>
                       </div>
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Email Post</label>
                         <input
@@ -175,7 +175,7 @@
                         </span>
                       </div>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Permis</label>
@@ -200,7 +200,7 @@
                           </select>
                         </div>
                       </div>
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Ville Poste</label>
                         <div class="form-group">
@@ -248,7 +248,7 @@
                           lieuPoste est obligatoire
                         </span>
                       </div>
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Salaire</label>
                         <input
@@ -272,7 +272,7 @@
                         </span>
                       </div>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Disponibilité</label>
@@ -292,34 +292,34 @@
                             (time.touched || addJobForm.submitted) && time.errors?.required
                           "
                         >
-                          time est obligatoire
+                          Disponibilité est obligatoire
                         </span>
                       </div>
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Nombre Années Experience</label>
                         <input
                           type="text"
                           class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.experience"
-                          name="experience"
-                          id="experience"
-                          #experience="ngModel"
+                          [(ngModel)]="addEditAnnonceDTO.proExperience"
+                          name="proproExperience"
+                          id="proExperience"
+                          #proExperience="ngModel"
                           placeholder="Nombre d'année d'expérience pour ce poste"
                           required
                         />
                         <span
                           class="text-danger"
                           *ngIf="
-                            (experience.touched || addJobForm.submitted) &&
-                            experience.errors?.required
+                            (proExperience.touched || addJobForm.submitted) &&
+                            proExperience.errors?.required
                           "
                         >
-                          experience est obligatoire
+                          proExperience est obligatoire
                         </span>
                       </div>
                     </div>
-                
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label>Type de Contrat </label>
@@ -346,17 +346,17 @@
                           typeContrat est obligatoire
                         </span>
                       </div>
-                
+
                       <!--  <div class="form-group col-md-6 col-sm-12">
                           <label>Logo Entreprise (optional)</label>
                           <div class="custom-file">
                               <input type="file" placeholder="choisir logo entreprise" class="site-button" id="customFile">
                           </div>
                        </div> -->
-                
+
                       <div class="form-group col-md-6 col-sm-12">
                         <label for="">Date cloture</label>
-                      
+
                             <div class="input-group">
                               <input
                               type="date"
@@ -368,7 +368,7 @@
                               #dateCloture="ngModel"
                               required
                             />
-                             
+
                               <span
                                 class="text-danger"
                                 *ngIf="
@@ -378,13 +378,13 @@
                               >
                                 dateCloture est obligatoire
                               </span>
-                
-                             
+
+
                             </div>
-                      
+
                       </div>
                     </div>
-                
+
                     <div class="form-group">
                       <label>Description</label>
                       <editor
@@ -394,7 +394,7 @@
                         #description="ngModel"
                       ></editor>
                     </div>
-                
+
                     <div class="form-group">
                       <button
                         *ngIf="paramId"
@@ -407,8 +407,7 @@
                     </div>
                   </form>
                 </div>
-              
+
               </div>
             </div>
 
- 
