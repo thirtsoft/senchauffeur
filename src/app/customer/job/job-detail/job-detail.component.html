@@ -48,24 +48,26 @@
                       <li>
                         <i class="ti-location-pin"></i
                         ><strong class="font-weight-700 text-black"
-                          >Address</strong
+                          ></strong
                         >
-                        <span class="text-black-light">{{
-                          annonceDTO?.addresseDto?.ville
-                        }}</span>
+                        <span class="text-black-light">
+                          <i class="fa fa-map-marker"></i>
+                          {{annonceDTO?.addresseDto?.ville}},
+                          {{annonceDTO?.addresseDto?.pays}}
+                        </span>
                       </li>
                       <li>
                         <i class="ti-money"></i
                         ><strong class="font-weight-700 text-black"
-                          >Salaire</strong
+                          ></strong
                         >
-                        {{ annonceDTO?.salaire }} F.CFA / Mois
+                        {{ annonceDTO?.typeContrat }}
                       </li>
                       <li>
                         <i class="ti-shield"></i
                         ><strong class="font-weight-700 text-black"
-                          >Experience</strong
-                        >{{ annonceDTO?.experience }} Experience
+                          ></strong
+                        >{{ annonceDTO?.proExperience }} Experience
                       </li>
                     </ul>
                   </div>
@@ -75,40 +77,36 @@
           </div>
           <div class="col-lg-8">
             <div class="job-info-box">
-              
+
               <h3 class="m-t0 m-b10 font-weight-700 title-head">
-                Libellé: 
+                
                 <a href="#" class="text-secondry m-r30">{{
                   annonceDTO?.libelle
                 }}</a>
               </h3>
               <p class="p-t20">
-                <a>Nom Entreprise:
+                <a>
                   <strong>{{
                     annonceDTO?.utilisateurDto.nomEntreprise
                   }}</strong></a
                 >
-              </p>
-              <p class="p-t20">
-                <a>Status:
-                  <strong *ngIf="this.dateEncours==annonceDTO.dateCloture">encours
-                   </strong></a
-                >
-              </p>
-              <ul class="job-info">
-                <li>
-                  <strong>Date Limite : </strong
-                  >{{ annonceDTO?.dateCloture | date: 'dd-MM-yyyy' }}
-                </li>
-              </ul>
-              <p class="p-t20">
+             
+            &nbsp;&nbsp;
                 <a
-                  >Secteur d'activité:
+                  >
                   <strong>{{
                     annonceDTO?.utilisateurDto.secteurActivite
                   }}</strong></a
                 >
               </p>
+             
+              <ul class="job-info">
+                <li> Publié le :
+                  <strong> {{ annonceDTO?.dateCandidature | date: 'dd-MM-yyyy' }} </strong
+                  >
+                </li>
+              </ul>&nbsp;&nbsp;
+              
               <h5 class="font-weight-600">Description Offre</h5>
               <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
               <p>{{ annonceDTO?.description }}.</p>
@@ -116,30 +114,28 @@
               <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
               <p>
 
+                 Référence du Poste :
                 <strong
-                  >Mentionné la Référence du Poste :
+                  >
                   {{ annonceDTO?.reference }}</strong
                 >
-                
+
+              </p>
+
+              <p>
+        
+                  Bien lire les conditions
+        
               </p>
 
               <p>
 
-                <strong
-                  >Bien lire les conditions
-                  </strong
-                >
+               Notre site :
+                  {{ annonceDTO?.utilisateurDto.website }}
+               
               </p>
 
-              <p>
-
-                <strong
-                  >Visitez notre site :
-                  {{ annonceDTO?.utilisateurDto.website }}</strong
-                >
-              </p>
-
-              <h5 class="font-weight-600">Conditions à Remplir</h5>
+              <h5 class="font-weight-600">Profil Recherché</h5>
               <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
               <ul class="list-num-count no-round">
                 <li>
@@ -152,21 +148,26 @@
                 </li>
                 <li>
                   Disponibilité :
-                  <strong>{{ annonceDTO?.time }}</strong> 
-                  
+                  <strong>{{ annonceDTO?.time }}</strong>
+
                 </li>
                 <li>
-                  Expérience : 
-                  <strong>{{ annonceDTO?.experience }}</strong>
-                 
+                  Expérience :
+                  <strong>{{ annonceDTO?.proExperience }}</strong>
+
                 </li>
                 <li>
-                  Email Pour Postulé :
-                  <strong>{{ annonceDTO?.emailPoste }}</strong> 
+                  Email Poste :
+                  <strong>{{ annonceDTO?.emailPoste }}</strong>
+                </li>
+
+                <li>
+                  Date limite :
+                  <strong>{{ annonceDTO?.dateCloture | date: 'dd-MM-yyyy' }}</strong>
                 </li>
               </ul>
               <!--
-              <a href="#" 
+              <a href="#"
                 class="site-button">
                 Apply This Job</a>
               -->
@@ -177,108 +178,7 @@
     </div>
     <!-- Job Detail -->
     <!-- Our Jobs -->
-    <!--  <div class="section-full content-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="m-b30 blog-grid">
-                            <div class="dez-post-media dez-img-effect ">
-                                <a href="#"><img src="assets/customer/images/blog/grid/pic1.jpg" alt=""></a>
-                            </div>
-                            <div class="dez-info p-a20 border-1">
-                                <div class="dez-post-title ">
-                                    <h5 class="post-title"><a href="#">Title of blog post</a></h5>
-                                </div>
-                                <div class="dez-post-meta ">
-                                    <ul>
-                                        <li class="post-date"> <i class="ti-location-pin"></i> London </li>
-                                        <li class="post-author"><i class="ti-user"></i>By <a href="#">Jone</a> </li>
-                                    </ul>
-                                </div>
-                                <div class="dez-post-text">
-                                    <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks.</p>
-                                </div>
-                                <div class="dez-post-readmore">
-                                    <a href="#" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="m-b30 blog-grid">
-                            <div class="dez-post-media dez-img-effect ">
-                                <a href="#"><img src="assets/customer/images/blog/grid/pic2.jpg" alt=""></a>
-                            </div>
-                            <div class="dez-info p-a20 border-1">
-                                <div class="dez-post-title ">
-                                    <h5 class="post-title"><a href="#">Title of blog post</a></h5>
-                                </div>
-                                <div class="dez-post-meta ">
-                                    <ul>
-                                        <li class="post-date"> <i class="ti-location-pin"></i> London </li>
-                                        <li class="post-author"><i class="ti-user"></i>By <a href="#">Jone</a> </li>
-                                    </ul>
-                                </div>
-                                <div class="dez-post-text">
-                                    <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks.</p>
-                                </div>
-                                <div class="dez-post-readmore">
-                                    <a href="#" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="m-b30 blog-grid">
-                            <div class="dez-post-media dez-img-effect ">
-                                <a href="#"><img src="assets/customer/images/blog/grid/pic3.jpg" alt=""></a>
-                            </div>
-                            <div class="dez-info p-a20 border-1">
-                                <div class="dez-post-title ">
-                                    <h5 class="post-title"><a href="#">Title of blog post</a></h5>
-                                </div>
-                                <div class="dez-post-meta ">
-                                    <ul>
-                                        <li class="post-date"> <i class="ti-location-pin"></i> London </li>
-                                        <li class="post-author"><i class="ti-user"></i>By <a href="#">Jone</a> </li>
-                                    </ul>
-                                </div>
-                                <div class="dez-post-text">
-                                    <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks.</p>
-                                </div>
-                                <div class="dez-post-readmore">
-                                    <a href="#" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="m-b30 blog-grid">
-                            <div class="dez-post-media dez-img-effect ">
-                                <a href="#"><img src="assets/customer/images/blog/grid/pic4.jpg" alt=""></a>
-                            </div>
-                            <div class="dez-info p-a20 border-1">
-                                <div class="dez-post-title ">
-                                    <h5 class="post-title"><a href="#">Title of blog post</a></h5>
-                                </div>
-                                <div class="dez-post-meta ">
-                                    <ul>
-                                        <li class="post-date"> <i class="ti-location-pin"></i> London </li>
-                                        <li class="post-author"><i class="ti-user"></i>By <a href="#">Jone</a> </li>
-                                    </ul>
-                                </div>
-                                <div class="dez-post-text">
-                                    <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks.</p>
-                                </div>
-                                <div class="dez-post-readmore">
-                                    <a href="#" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+
     <!-- Our Jobs END -->
   </div>
 </div>

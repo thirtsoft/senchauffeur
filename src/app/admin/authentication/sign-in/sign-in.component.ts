@@ -19,10 +19,15 @@ export class SignInComponent implements OnInit {
   roles: string[] = [];
   loginInfo: Login;
 
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
+
+
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
               private router: Router,
-      //        private location: Location
   ) {}
 
   ngOnInit() {
@@ -30,6 +35,11 @@ export class SignInComponent implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
       console.log("Login start : " + this.roles);
+      
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
     }
   }
 
@@ -49,7 +59,9 @@ export class SignInComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         console.log("Login Success");
-        this.router.navigateByUrl("admin/accueil");
+        if (!this.showUserBoard)
+            this.router.navigateByUrl("admin/accueil");
+        this.router.navigateByUrl("signIn");
 
       },
       error => {

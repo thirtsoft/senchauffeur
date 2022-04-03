@@ -21,34 +21,30 @@
               </div>
               <div class="job-post-info">
                 <h4>{{ annononceDTO.libelle }}</h4>
-                <ul>
-                  <li>
+                <div class="d-flex">
+                  <div class="job-time mr-auto">
+                    {{ annononceDTO?.utilisateurDto.nomEntreprise }}
+                  </div>
+                  <div class="job-time align-center" style="margin-left: 350px;">
                     <i class="fa fa-map-marker"></i>
                     {{ annononceDTO?.addresseDto.ville }}
-                  </li>
-                  <li>
-                    <i class="fa fa-bookmark-o"></i> {{ annononceDTO.time }}
-                  </li>
-                  <li>
-                    <i class="fa fa-clock-o"></i> Publié le
-                    {{ annononceDTO.dateCandidature | date: "dd-MM-yyyy" }}
-                  </li>
-                  <!--    <li><i class="fa fa-clock-o"></i> {{annononceDTO.statusAnnonce}}</li> -->
-                </ul>
+                    ,  {{ annononceDTO?.addresseDto.pays }}
+                  </div>
+                  <div class="salary-bx" style="margin-left: 430px;">
+                    <span>{{ annononceDTO.typeContrat }}</span>
+                  </div>
+                </div>
+               
               </div>
             </div>
             <div class="d-flex">
               <div class="job-time mr-auto">
                 Disponobilité : {{ annononceDTO.time }}
               </div>
-              <div class="job-time mr-auto">
-                Expire le : {{ annononceDTO.dateCloture | date: "dd-MM-yyyy" }}
-              </div>
               <div class="salary-bx">
-                <span>{{ annononceDTO.salaire }}</span>
+                <span> Publié le : {{ annononceDTO.dateCandidature | date: "dd-MM-yyyy" }}</span>
               </div>
             </div>
-            <!--  <span class="post-like fa fa-heart-o"></span> -->
           </a>
         </li>
       </ul>

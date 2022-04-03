@@ -56,29 +56,27 @@
                     </div>
                     <div class="job-post-info">
                       <h4>{{ annonceDTO.libelle }}</h4>
-                      <ul>
-                        <li>
+                      <div class="d-flex">
+                        <div class="job-time mr-auto">
+                          {{ annonceDTO?.utilisateurDto.nomEntreprise }}
+                        </div>
+                        <div class="job-time align-center" style="margin-left: 90px;">
                           <i class="fa fa-map-marker"></i>
-                          Addresse : {{ annonceDTO.addresseDto?.ville }}
-                        </li>
-                        <li>
-                          Disponibilité :
-                          {{ annonceDTO.time }} <i class="fa fa-clock-o"></i>
-                        </li>
-                        <li>
-                          Expire le :
-                          {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
-                        </li>
-                      </ul>
+                          {{ annonceDTO?.addresseDto.ville }}
+                          ,  {{ annonceDTO?.addresseDto.pays }}
+                        </div>
+                        <div class="salary-bx" style="margin-left: 130px;">
+                          <span>{{ annonceDTO.typeContrat }}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="d-flex">
                     <div class="job-time mr-auto">
-                      Permis : {{ annonceDTO?.permisDto?.designation }}
+                      Disponobilité : {{ annonceDTO.time }}
                     </div>
-
                     <div class="salary-bx">
-                      Salaire : <span>{{ annonceDTO.salaire }} F.CFA</span>
+                      <span> Publié le : {{ annonceDTO.dateCandidature | date: "dd-MM-yyyy" }}</span>
                     </div>
                   </div>
                 </a>

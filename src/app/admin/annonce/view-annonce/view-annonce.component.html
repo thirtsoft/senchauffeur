@@ -37,7 +37,7 @@
           disabled
         >
           <option
-          
+
             *ngFor="let userDTO of listUtilisateurDTOs"
             [ngValue]="
               userDTO.id == addEditAnnonceDTO.utilisateurDto?.id
@@ -60,7 +60,7 @@
           readonly
         >
           <option
-            
+
             *ngFor="let permis of listPermisDTOs"
             [ngValue]="
               permis.id == addEditAnnonceDTO.permisDto?.id
@@ -149,7 +149,7 @@
           disabled
         >
           <option
-          
+
             *ngFor="let addDTO of listAddressDTOs"
             [ngValue]="
             addDTO.id == addEditAnnonceDTO.addresseDto?.id
@@ -180,15 +180,15 @@
         <input
           class="form-control"
           type="text"
-          [(ngModel)]="addEditAnnonceDTO.experience"
-          name="experience"
-          id="experience"
-          #experience="ngModel"
+          [(ngModel)]="addEditAnnonceDTO.proExperience"
+          name="proExperience"
+          id="proExperience"
+          #proExperience="ngModel"
           readonly
         />
       </div>
 
-     
+
 
       <div class="form-group">
         <label>date Cloture</label>
@@ -216,7 +216,7 @@
         />
       </div>
 
-      
+
     </div>
 
     <div class="col-sm-12">
@@ -236,7 +236,7 @@
         </textarea>
       </div>
     </div>
-   
+
 
   </div>
 

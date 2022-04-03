@@ -18,64 +18,46 @@
                 <li>
                     <a routerLink="/admin/accueil/dashboard" class="waves-effect">
                         <i class="mdi mdi-airplay"></i>
-                        <span> Dashboard <!-- <span class="badge badge-pill badge-primary float-right">7</span> --></span>
+                        <span> Tableaau Bord <!-- <span class="badge badge-pill badge-primary float-right">7</span> --></span>
                     </a>
                 </li>
 
-                <li class="has_sub">
+                <li class="has_sub" *ngIf="!this.showUserBoard">
                     <a routerLink="/admin/accueil/chauffeurs" class="waves-effect"><i class="mdi mdi-layers"></i>
                       <span> Chauffeurs </span> </a>
 
                 </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                     <a routerLink="/admin/accueil/recruteurs" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Recruteurs </span>
                     </a>
                 </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                   <a routerLink="/admin/accueil/annonceEncours" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Annonces-Encours </span>
                   </a>
               </li>
 
-              <li>
+              <li *ngIf="!this.showUserBoard">
                 <a routerLink="/admin/accueil/annonceValides" class="waves-effect">
                     <i class="mdi mdi-calendar-clock"></i><span> Annonces-Validées </span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="!this.showUserBoard">
               <a routerLink="/admin/accueil/annonceRejetes" class="waves-effect">
                   <i class="mdi mdi-calendar-clock"></i><span> Annonces-Rejetés </span>
               </a>
           </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                     <a routerLink="/admin/accueil/annonces" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Annonces </span>
                     </a>
                 </li>
 
-                <li>
-                  <a routerLink="/admin/accueil/reservationEncours" class="waves-effect">
-                      <i class="mdi mdi-calendar-clock"></i><span> Reservation-Encours </span>
-                  </a>
-              </li>
-
-              <li>
-                <a routerLink="/admin/accueil/reservationValides" class="waves-effect">
-                    <i class="mdi mdi-calendar-clock"></i><span> Reservation-Validée </span>
-                </a>
-            </li>
-
-            <li>
-              <a routerLink="/admin/accueil/reservations" class="waves-effect">
-                  <i class="mdi mdi-calendar-clock"></i><span> Reservations </span>
-              </a>
-          </li>
-
-                <li>
+                <li *ngIf="!this.showUserBoard">
                   <a routerLink="/admin/accueil/graphes" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Graphiques </span>
                   </a>
@@ -87,65 +69,65 @@
                     </a>
                 </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                   <a routerLink="/admin/accueil/tarifs" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Tarifs </span>
                   </a>
               </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                   <a routerLink="/admin/accueil/jetons" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Jetons </span>
                   </a>
               </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                     <a routerLink="/admin/accueil/listPermis" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Permis </span>
                     </a>
                 </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                     <a routerLink="/admin/accueil/localites" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Localité </span>
                     </a>
                 </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                     <a routerLink="/admin/accueil/notifications" class="waves-effect">
                         <i class="mdi mdi-calendar-clock"></i><span> Notifications </span>
                     </a>
                 </li>
 
-                <li>
+                <li *ngIf="!this.showUserBoard">
                   <a routerLink="/admin/accueil/emails" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Emails </span>
                   </a>
                 </li>
-                <li>
+                <li *ngIf="!this.showUserBoard">
                   <a routerLink="/admin/accueil/newsleters" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Newsleter </span>
                   </a>
                 </li>
-                <li>
+                <li *ngIf="this.showAdminBoard">
                   <a routerLink="/admin/accueil/historiqueAnnonces" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Histo Annonces </span>
                   </a>
                 </li>
 
-                <li>
+                <li *ngIf="this.showAdminBoard">
                   <a routerLink="/admin/accueil/historiqueLogins" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Historiques Logins </span>
                   </a>
                 </li>
 
-                <li>
+                <li *ngIf="this.showAdminBoard">
                   <a routerLink="/admin/accueil/utilisateurs" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Utilisateur </span>
                   </a>
                 </li>
 
-                <li>
+                <li *ngIf="this.showAdminBoard">
                   <a routerLink="/admin/accueil/signUp" class="waves-effect">
                       <i class="mdi mdi-calendar-clock"></i><span> Create Account </span>
                   </a>
