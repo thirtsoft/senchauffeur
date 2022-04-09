@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -62,7 +63,6 @@ export class AnnonceService {
   }
 
   public addAnnonceDTOWithUser(annonceDTO: AnnonceDto, id: number): Observable<AnnonceDto> {
-  //  return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/createAnnonceWithUser?id=`+id, annonceDTO);
     return this.http.post<AnnonceDto>(`${this.apiServerUrl}/annonces/createAnnonceWithUser?id=${id}`, annonceDTO);
   }
 
@@ -138,5 +138,54 @@ export class AnnonceService {
     const user = this.tokenService.getUser();
     this.id = user.id
   }
+
+  getAllAnnonceDtos(page,size): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/allAnnonces?page=${page}&size=${size}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getAllAnnonceDtosByPermisId(id,page,size): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/permis?id=${id}&page=${page}&size=${size}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getAllAnnonceDtosByKey(word,page,size): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/annoncekey?keyword=${word}&page=${page}&size=${size}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getAnnonceDtoLength(): Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/annonces/annonceSize`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getAnnoncesLengthByPermsId(id): Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/annonces/ctpermisIdSize?id=${id}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getAnnonceDtosLengthByKey(word): Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/annonces/keySize?keyword=${word}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
 
 }

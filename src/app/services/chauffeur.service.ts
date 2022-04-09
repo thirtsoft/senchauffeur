@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Chauffeur, ChauffeurDto } from './../models/chauffeur';
@@ -78,7 +79,6 @@ export class ChauffeurService {
   public getListChauffeurDTOByPageable(page: number, size: number): Observable<ChauffeurDto[]> {
     const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByPageables?page="+page+"&size="+size);
     return this.http.get<ChauffeurDto[]>(searchUrl);
-  //  return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/searchAnnonceByPageables?page=`+page+"&size="+size);
   }
 
   public getListChauffeurDTOBySelectedIsTrue(): Observable<ChauffeurDto[]> {
@@ -150,5 +150,103 @@ export class ChauffeurService {
   public countNumberOfChauffeurs(): Observable<any> {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/NumbersOfChauffeurs`);
   }
+
+  getAllChauffeurs(page,size): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/allChauffeurs?page=${page}&size=${size}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getChauffeursByAddressId(id,page,size): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/address?id=${id}&page=${page}&size=${size}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getChauffeursByKey(word,page,size): Observable<ChauffeurDto[]> {
+    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/chauffeurkey?keyword=${word}&page=${page}&size=${size}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getChauffeursLength(): Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/chauffeurs/chauffeurDtoSize`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getChauffeursLengthByAddressId(id): Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/chauffeurs/ctaddressIdSize?id=${id}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getChauffeursLengthByKey(word): Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/chauffeurs/keysize?key=${word}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  public addChauffeurWithPhotoAndCvFileInFolder(formData: FormData): Observable<any> {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurPhotoInFolder/`, formData, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
+  }
+
+  uploadPhotoOfChquffeurInFolder(file: File, id: number): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', this.apiServerUrl+'/chauffeurs/createWithFilesInFolder/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+  }
+
+  public getPhotoChquffeurInContext() {
+    return this.http.get(`${this.apiServerUrl}/chauffeurs/photoChauffeurInFolder`);
+  }
+
+  uploadCvOfChauffeurInFolder(file: File, id: number): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', this.apiServerUrl+'/chauffeurs/uploadChauffeurCvInFolder/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+  }
+
+  public getCvOfChauffeurFromContext() {
+    return this.http.get(`${this.apiServerUrl}/chauffeurs/cvChauffeurInFolder`);
+  }
+
+  downloadCvOfChauffeurFromFolder(file: File, id: number): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', this.apiServerUrl+'/chauffeurs/downloadCvFile/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+  }
+
 
 }

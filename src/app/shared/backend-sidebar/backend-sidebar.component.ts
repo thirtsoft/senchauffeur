@@ -36,6 +36,8 @@ export class BackendSidebarComponent implements OnInit {
       this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
       this.showUserBoard = this.roles.includes('ROLE_USER');
 
+
+
       this.userId = user.id;
     }
 
