@@ -11,10 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.chauffeur.models.Addresse;
-import com.chauffeur.models.Annonce;
 import com.chauffeur.models.Chauffeur;
-import com.chauffeur.models.HistoriqueAnnonce;
 
 @Repository
 public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
@@ -57,6 +54,17 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
     
     @Query("select chauff from Chauffeur chauff where chauff.permis.id =:permId")
     Page<Chauffeur> findChauffeurByPermisPageables(@Param("permId") Long permisId, Pageable pageable);
+    
+    Page<Chauffeur> findByAddresseId(Long id, Pageable pageable);
+    
+ // Like  key%  %key  %key%
+    Page<Chauffeur> findByReferenceContaining(String reference, Pageable pageable);
+
+    @Query("select count (id) from Chauffeur where addresse.id = ?1")
+    long getChauffeurLengthByAddressId(long id);
+
+    @Query("select count (id) from Chauffeur where libelle LIKE %?1%")
+    long getChauffeurSizeByKey(String key);
 	
 	
 

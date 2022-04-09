@@ -4,7 +4,7 @@ public interface EmailConstants {
 	
 	String managerName = "Sunuchauffeur";
 
-    String from = "thirdiallo@gmail.com";
+    String from = "contact@sunuchauffeur.com";
 
     String to = "thirdiallo@gmail.com";
 

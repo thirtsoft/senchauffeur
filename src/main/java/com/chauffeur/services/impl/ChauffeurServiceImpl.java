@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -239,6 +240,42 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeurRepository.deleteById(id);
 
     }
+
+	@Override
+	public List<ChauffeurDto> getAllChauffeurDtos(int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+	    return chauffeurRepository.findAll(pageable)
+	    		 .map(ChauffeurDto::fromEntityToDto).getContent();
+	}
+
+	@Override
+	public List<ChauffeurDto> getAllChauffeurDtosByIdAddress(Long id, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+	    return chauffeurRepository.findByAddresseId(id, pageable)
+	    		 .map(ChauffeurDto::fromEntityToDto).getContent();
+	}
+
+	@Override
+	public List<ChauffeurDto> getAllChauffeurDtosByKey(String key, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+	    return chauffeurRepository.findByReferenceContaining(key, pageable)
+	    		 .map(ChauffeurDto::fromEntityToDto).getContent();
+	}
+
+	@Override
+	public long getAllChauffeurDtosSize() {
+		return chauffeurRepository.count();
+	}
+
+	@Override
+	public long getChauffeurDtosByAddressIdLength(Long id) {
+		return chauffeurRepository.getChauffeurLengthByAddressId(id);
+	}
+
+	@Override
+	public long getChauffeurDtosSizeByKey(String key) {
+		return chauffeurRepository.getChauffeurSizeByKey(key);
+	}
 
 
 }

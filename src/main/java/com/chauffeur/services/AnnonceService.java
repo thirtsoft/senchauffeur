@@ -60,6 +60,18 @@ public interface AnnonceService {
     Page<AnnonceDto> findAnnonceByPermisByPageable(Long permisId, Pageable pageable);
     
     void delete(Long id);
+    
+    List<AnnonceDto> getAllAnnonceDtos(int page, int size);
+
+    List<AnnonceDto> getAllAnnonceDtosByIdPermis(Long id, int page, int size);
+   
+    List<AnnonceDto> getAllAnnonceDtosByKey(String key, int page, int size);
+
+    long getAllAnnonceDtosSize();
+
+    long getAnnonceDtosByPermisIdLength(Long id);
+    
+    long getAnnonceDtosSizeByKey(String key);
 
 
 }

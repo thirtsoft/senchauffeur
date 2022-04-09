@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -275,6 +276,42 @@ public class AnnonceServiceImpl implements AnnonceService {
 		}
 		annonceRepository.deleteById(id);
 
+	}
+
+	@Override
+	public List<AnnonceDto> getAllAnnonceDtos(int page, int size) {
+		 Pageable pageable = PageRequest.of(page, size);
+	     return annonceRepository.findAll(pageable)
+	    		 .map(AnnonceDto::fromEntityToDto).getContent();
+	}
+
+	@Override
+	public List<AnnonceDto> getAllAnnonceDtosByIdPermis(Long id, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+	    return annonceRepository.findByPermisId(id, pageable)
+	    		 .map(AnnonceDto::fromEntityToDto).getContent();
+	}
+
+	@Override
+	public List<AnnonceDto> getAllAnnonceDtosByKey(String key, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+	    return annonceRepository.findByLibelleContaining(key, pageable)
+	    		 .map(AnnonceDto::fromEntityToDto).getContent();
+	}
+
+	@Override
+	public long getAllAnnonceDtosSize() {
+		return annonceRepository.count();
+	}
+
+	@Override
+	public long getAnnonceDtosByPermisIdLength(Long id) {
+		return annonceRepository.getAnnonceLengthByPermisId(id);
+	}
+
+	@Override
+	public long getAnnonceDtosSizeByKey(String key) {
+		return annonceRepository.getAnnonceSizeByKey(key);
 	}
 
 	

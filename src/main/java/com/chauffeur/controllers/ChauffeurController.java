@@ -271,6 +271,39 @@ public class ChauffeurController implements ChauffeurApi {
 	public List<?> countNumberOfChauffeurByYear() {
 		return chauffeurService.countNumberOfChauffeurByYear();
 	}
+
+	@Override
+	public ResponseEntity<List<ChauffeurDto>> getAllChauffeurDtos(int page, int size) {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.getAllChauffeurDtos(page, size);
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<List<ChauffeurDto>> getAllChauffeurDtosByAddressId(Long id, int page, int size) {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.getAllChauffeurDtosByIdAddress(id, page, size);
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<List<ChauffeurDto>> getChauffeurDtosByKeyWord(String keyWord, int page, int size) {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.getAllChauffeurDtosByKey(keyWord, page, size);
+        return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
+	}
+
+	@Override
+	public long chauffeurSize() {
+		return chauffeurService.getAllChauffeurDtosSize();
+	}
+
+	@Override
+	public long getChauffeursByIdAddressSize(Long id) {
+		return chauffeurService.getChauffeurDtosByAddressIdLength(id);
+	}
+
+	@Override
+	public long sizeOfChauffeursByKey(String keyWord) {
+		return chauffeurService.getChauffeurDtosSizeByKey(keyWord);
+	}
 	
 
 }

@@ -262,6 +262,39 @@ public class AnnonceController implements AnnonceApi {
 	    
 		annonceService.delete(id);
 	}
+
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getAllAnnonces(int page, int size) {
+		List<AnnonceDto> annonceDtoList = annonceService.getAllAnnonceDtos(page, size);
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getAllAnnoncesByPermisId(Long id, int page, int size) {
+		List<AnnonceDto> annonceDtoList = annonceService.getAllAnnonceDtosByIdPermis(id, page, size);
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<List<AnnonceDto>> getAnnoncesByKeyWord(String keyWord, int page, int size) {
+		List<AnnonceDto> annonceDtoList = annonceService.getAllAnnonceDtosByKey(keyWord, page, size);
+        return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
+	}
+
+	@Override
+	public long annonceSize() {
+		return annonceService.getAllAnnonceDtosSize();
+	}
+
+	@Override
+	public long getAnnoncesByIdPermisSize(Long id) {
+		return annonceService.getAnnonceDtosByPermisIdLength(id);
+	}
+
+	@Override
+	public long sizeOfAnnoncesByKey(String keyWord) {
+		return annonceService.getAnnonceDtosSizeByKey(keyWord);
+	}
 	
 
 }

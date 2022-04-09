@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.chauffeur.dto.ChauffeurDto;
@@ -261,6 +260,60 @@ public interface ChauffeurApi {
 	
 	})
     void delete(@PathVariable("idChauffeur") Long id);
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/allChauffeurs")
+    @ApiOperation(value = "Afficher la listes des Chauffeur par pages",
+	    notes = "Cette méthode permet d'afficher des Chauffeurs par pages")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La liste des Chauffeur est")
+	
+	})
+    ResponseEntity<List<ChauffeurDto>> getAllChauffeurDtos(@RequestParam int page,@RequestParam int size);
+
+    @GetMapping(value = APP_ROOT + "/chauffeurs/address")
+    @ApiOperation(value = "Afficher la listes des Annonces par adresse par pages",
+	    notes = "Cette méthode permet d'afficher des Annonces par address par pages")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La liste des Chauffeurs est")
+
+	})
+    ResponseEntity<List<ChauffeurDto>> getAllChauffeurDtosByAddressId(@RequestParam Long id,@RequestParam int page,@RequestParam int size);
+
+    @GetMapping(value = APP_ROOT + "/chauffeurs/chauffeurkey")
+    @ApiOperation(value = "Afficher la listes des Chauffeurs par mot clé par pages",
+	    notes = "Cette méthode permet d'afficher des Chauffeurs par mot clé par pages")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La liste des Chauffeurs est")
+	
+	})
+    ResponseEntity<List<ChauffeurDto>> getChauffeurDtosByKeyWord(@RequestParam String keyWord,@RequestParam int page,@RequestParam int size);
+
+    @GetMapping(value = APP_ROOT + "/chauffeurs/chauffeurDtoSize")
+    @ApiOperation(value = "Calculer la longueur des Chauffeurs",
+	    notes = "Cette méthode permet de calculer la taille des Chauffeurs")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La taille des Chauffeurs")
+	
+	})
+    long chauffeurSize();
+
+    @GetMapping(value = APP_ROOT + "/chauffeurs/ctaddressIdSize")
+    @ApiOperation(value = "Calculer la longueur des Chauffeurs par Id addresse",
+	    notes = "Cette méthode permet de calculer la taille des Chauffeurs par Id addresse")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La taille est")
+	
+	})
+    long getChauffeursByIdAddressSize(@RequestParam Long id);
+
+    @GetMapping(value = APP_ROOT + "/chauffeurs/keySize")
+    @ApiOperation(value = "Calculer la longueur des Chauffeurs par mot clé",
+	    notes = "Cette méthode permet de calculer la taille des Chauffeurs par mot clé")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La taille des Chauffeurs par mot clé est")
+	
+	})
+    long sizeOfChauffeursByKey(@RequestParam String keyWord);
 
 
 }

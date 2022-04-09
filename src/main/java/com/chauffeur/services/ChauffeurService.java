@@ -46,12 +46,22 @@ public interface ChauffeurService {
     
     Page<ChauffeurDto> findChauffeurByKeywordByPageable(String mc, Pageable pageable);
 
-
     Page<ChauffeurDto> findChauffeurByLocalityPageables(Long addId, Pageable pageable);
     
     Page<ChauffeurDto> findChauffeurByPermisPageables(@Param("permId") Long permisId, Pageable pageable);
 	
     void delete(Long id);
+    
+    List<ChauffeurDto> getAllChauffeurDtos(int page, int size);
 
+    List<ChauffeurDto> getAllChauffeurDtosByIdAddress(Long id, int page, int size);
+   
+    List<ChauffeurDto> getAllChauffeurDtosByKey(String key, int page, int size);
 
+    long getAllChauffeurDtosSize();
+
+    long getChauffeurDtosByAddressIdLength(Long id);
+    
+    long getChauffeurDtosSizeByKey(String key);
+    
 }

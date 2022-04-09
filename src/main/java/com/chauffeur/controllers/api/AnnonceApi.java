@@ -299,4 +299,58 @@ public interface AnnonceApi {
 	})
 	void delete(@PathVariable("idAnnonce") Long idAnnonce);
 
+    @GetMapping(value = APP_ROOT + "/annonces/allAnnonces")
+    @ApiOperation(value = "Afficher la listes des Annonces par pages",
+	    notes = "Cette méthode permet d'afficher des Annonces par pages")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La liste des Annonces est")
+	
+	})
+    ResponseEntity<List<AnnonceDto>> getAllAnnonces(@RequestParam int page,@RequestParam int size);
+
+    @GetMapping(value = APP_ROOT + "/annonces/permis")
+    @ApiOperation(value = "Afficher la listes des Annonces par permis clé par pages",
+	    notes = "Cette méthode permet d'afficher des Annonces par permis clé par pages")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La liste des Annonces est")
+
+	})
+    ResponseEntity<List<AnnonceDto>> getAllAnnoncesByPermisId(@RequestParam Long id,@RequestParam int page,@RequestParam int size);
+
+    @GetMapping(value = APP_ROOT + "/annonces/annoncekey")
+    @ApiOperation(value = "Afficher la listes des Annonces par mot clé par pages",
+	    notes = "Cette méthode permet d'afficher des Annonces par mot clé par pages")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La liste des Annonces est")
+	
+	})
+    ResponseEntity<List<AnnonceDto>> getAnnoncesByKeyWord(@RequestParam String keyWord,@RequestParam int page,@RequestParam int size);
+
+    @GetMapping(value = APP_ROOT + "/annonces/annonceSize")
+    @ApiOperation(value = "Calculer la longueur des Annonces",
+	    notes = "Cette méthode permet de calculer la taille des Annonces")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La taille des Annonces")
+	
+	})
+    long annonceSize();
+
+    @GetMapping(value = APP_ROOT + "/annonces/ctpermisIdSize")
+    @ApiOperation(value = "Calculer la longueur des Annonces par Id permis",
+	    notes = "Cette méthode permet de calculer la taille des Annonces par Id perms")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La taille est")
+	
+	})
+    long getAnnoncesByIdPermisSize(@RequestParam Long id);
+
+    @GetMapping(value = APP_ROOT + "/annonces/keySize")
+    @ApiOperation(value = "Calculer la longueur des Annonces par mot clé",
+	    notes = "Cette méthode permet de calculer la taille des Annonces par mot clé")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La taille des Annonces par mot clé est")
+	
+	})
+    long sizeOfAnnoncesByKey(@RequestParam String keyWord);
+
 }
