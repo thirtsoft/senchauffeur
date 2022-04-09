@@ -1,0 +1,42 @@
+Les types de chauffeurs:
+1/ chauffeur personnel
+2/ chauffeur privé
+3/ Chauffeur particulier
+4/ chauffeur livreur
+5/ chauffeur touristique
+6/ chauffeur poids lourds
+7/ chauffeur camion
+8/ chauffeur bus
+9/ chauffeur taxi
+10/chauffeur transport
+11/ chauffeur engin
+
+Yéma docteur: 778079989
+
+https://www.pexels.com/fr-fr/chercher/conducteur%20de%20camion/: link image chauffeur gratuit 
+
+https://fr.dreamstime.com/photos-images/chauffeur.html : link photo chauffeur
+
+Type de Permis:
+1/  Poids Léger,  
+2/ Poids Lourd, 
+3/ Permis Transport (de personne),  
+4/ Permis Conducteur d’Engin (grue, niveleuse, tractopelle, compacteur, Pelle etc.)
+
+
+Terme d'accroche:
+1/ Engagez les meilleurs chauffeurs
+2/ Trouver les meileur chauffeurs
+
+Plateforme de service de taxi au senegal
+
+1/ https://www.taxisenegal.com/contact/
+2/ https://cmontaxi.com/votre-pays/gabon/reservez-votre-course-gabon/ : service de taxi
+
+Modification à apporter sur niveau d'expérience 
+1/ changer int en string exple Niv expérience: "1 à 2 ans", "2 à 5ans", "5 à 15ans" et "+15ans"
+2/ Ajouter le type de contrat sur l'annonce ie CDD ou CDI
+3/ disponibilité = immédiatement
+4/ Ajouter le champs mettre en Object "Chauffeur-Livreur"
+5/ Ajouter le field Mission du candidat
+6/ Ajout le field Profile Recherché

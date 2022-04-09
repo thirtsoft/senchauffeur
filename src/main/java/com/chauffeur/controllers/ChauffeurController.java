@@ -12,9 +12,12 @@ import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import com.chauffeur.controllers.api.ChauffeurApi;
 import com.chauffeur.dto.ChauffeurDto;
@@ -42,6 +46,9 @@ public class ChauffeurController implements ChauffeurApi {
 	private final String chauffeurCvDir = "C://Users//Folio9470m//senchauffeur//chauffeur//cvs//";
 		
 	private ChauffeurService chauffeurService;
+	
+	@Autowired
+    ServletContext context;
 
 	@Autowired
 	public ChauffeurController(ChauffeurService chauffeurService) {
@@ -83,29 +90,35 @@ public class ChauffeurController implements ChauffeurApi {
 		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findListChauffeurBySelected();
         return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
 	}
-	/*
+
+	
 	@Override
-	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
+	public ResponseEntity<ChauffeurDto> saveChauffeurWithFilesInFolder(String chauffeur, 
 			MultipartFile photoChauffeur,
 			MultipartFile cvChauffeur) throws IOException {
 		
 		ChauffeurDto chauffeurDto = new ObjectMapper().readValue(chauffeur, ChauffeurDto.class);
-		
 		chauffeurDto.setDateInscription(new Date());
-	    
+				
 		if (photoChauffeur != null && !photoChauffeur.isEmpty()) {
-	      	chauffeurDto.setPhotoChauffeur(photoChauffeur.getOriginalFilename());
-	      	photoChauffeur.transferTo(new File(chauffeurPhotosDir + photoChauffeur.getOriginalFilename()));
+			String filename = photoChauffeur.getOriginalFilename();
+	        String newFileName = FilenameUtils.getBaseName(filename) + "." + FilenameUtils.getExtension(filename);
+	        File serverFile = new File(context.getRealPath("/Chauffeurs/photos/" + File.separator + newFileName));
+			FileUtils.writeByteArrayToFile(serverFile, photoChauffeur.getBytes());
+			
+			chauffeurDto.setPhotoChauffeur(filename);
 	    }
 		
 		if (cvChauffeur != null && !cvChauffeur.isEmpty()) {
-        	chauffeurDto.setCvChauffeur(cvChauffeur.getOriginalFilename());
-        	cvChauffeur.transferTo(new File(chauffeurCvDir + cvChauffeur.getOriginalFilename()));
+			String fileCV = cvChauffeur.getOriginalFilename();
+	        String newFileName = FilenameUtils.getBaseName(fileCV) + "." + FilenameUtils.getExtension(fileCV);
+	        File serverFile = new File(context.getRealPath("/Chauffeurs/cvs/" + File.separator + newFileName));
+			FileUtils.writeByteArrayToFile(serverFile, cvChauffeur.getBytes());
+			
         }
 		
 		return ResponseEntity.ok(chauffeurService.save(chauffeurDto));
 	}
-	*/
 	
 	@Override
 	public ResponseEntity<ChauffeurDto> saveChauffeurWithFiles(String chauffeur, 
@@ -141,30 +154,36 @@ public class ChauffeurController implements ChauffeurApi {
         return chauffeurService.findChauffeurByPageable(pageable);
 	}
 	
+	@Override
+	public byte[] getPhotoChauffeurInFolder(Long id) throws Exception {
+		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
+	    return Files.readAllBytes(Paths.get(context.getRealPath("/Chauffeurs/photos/") + chauffeurDto.getPhotoChauffeur()));
+	}
 	
 	@Override
 	public byte[] getPhotoChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
-
-        System.out.println("Article DTO -- " + chauffeurDto);
-         
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/" + chauffeurDto.getPhotoChauffeur()));
-
 	}
 	
-	
-	
-/*
 	@Override
-	public byte[] getPhotoChauffeur(Long id) throws Exception {
+	public void uploadPhotoChauffeurInFolder(MultipartFile file, Long id) throws IOException {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
+        String filename = file.getOriginalFilename();
+        String newFileName = FilenameUtils.getBaseName(filename) + "." + FilenameUtils.getExtension(filename);
+        File serverFile = new File(context.getRealPath("/Chauffeurs/photos/" + File.separator + newFileName));
+        try {
+            System.out.println("Image");
+            FileUtils.writeByteArrayToFile(serverFile, file.getBytes());
 
-        System.out.println("Article DTO -- " + chauffeurDto);
-      
-        return Files.readAllBytes(Paths.get("./src/main/resources//static//images//" + chauffeurDto.getPhotoChauffeur()));
+            chauffeurDto.setPhotoChauffeur(filename);
 
+            chauffeurService.save(chauffeurDto);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
-	*/
 	
 	@Override
 	public void uploadPhotoChauffeur(MultipartFile file, Long id) throws IOException {
@@ -175,18 +194,37 @@ public class ChauffeurController implements ChauffeurApi {
 	    		file.getBytes());
 
 	    chauffeurService.save(chauffeurDto);
-		
 	}
 	
+	@Override
+	public byte[] getCvChauffeurInFolder(Long id) throws Exception {
+		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
+	    return Files.readAllBytes(Paths.get(context.getRealPath("/Chauffeurs/cvs/") + chauffeurDto.getCvChauffeur()));
+	}
 	
-
 	@Override
 	public byte[] getCvChauffeur(Long id) throws Exception {
 		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
-        System.out.println("Article DTO -- " + chauffeurDto);
-     
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/" + chauffeurDto.getCvChauffeur()));
-
+	}
+	
+	@Override
+	public void downloadChauffeurCvFile(HttpServletRequest request, HttpServletResponse response, String fileName)
+			throws IOException {
+        File serverFile = new File(context.getRealPath("/Chauffeurs/cvs/" + File.separator + fileName));
+        if (serverFile.exists()) {
+  		  String mimeType = URLConnection.guessContentTypeFromName(serverFile.getName());
+  		  if (mimeType == null) {
+  			  mimeType = "application/octet-stream";
+  	       }
+  		  response.setContentType(mimeType);
+  		  response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + serverFile.getName() + "\""));
+  		  response.setContentLength((int) serverFile.length());
+  		  InputStream inputStream = new BufferedInputStream(new FileInputStream(serverFile));
+  			
+  		  FileCopyUtils.copy(inputStream, response.getOutputStream());
+        }
+		
 	}
 	
 	public void downloadChauffeurFile(HttpServletRequest request, HttpServletResponse response,
@@ -197,7 +235,6 @@ public class ChauffeurController implements ChauffeurApi {
 		  if (mimeType == null) {
 			  mimeType = "application/octet-stream";
 	       }
-	  
 		  response.setContentType(mimeType);
 		  response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() + "\""));
 		  response.setContentLength((int) file.length());
@@ -206,8 +243,27 @@ public class ChauffeurController implements ChauffeurApi {
 		  FileCopyUtils.copy(inputStream, response.getOutputStream());
       }
 	  
-
     }
+	
+	@Override
+	public void uploadCvChauffeurInFolder(MultipartFile file, Long id) throws IOException {
+		ChauffeurDto chauffeurDto = chauffeurService.findById(id);
+        String filename = file.getOriginalFilename();
+        String newFileName = FilenameUtils.getBaseName(filename) + "." + FilenameUtils.getExtension(filename);
+        File serverFile = new File(context.getRealPath("/Chauffeurs/cvs/" + File.separator + newFileName));
+        try {
+            System.out.println("Image");
+            FileUtils.writeByteArrayToFile(serverFile, file.getBytes());
+            
+            chauffeurDto.setCvChauffeur(filename);
+
+            chauffeurService.save(chauffeurDto);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		
+	}
 	
 	@Override
 	public void uploadCvChauffeur(MultipartFile file, Long id) throws IOException {
@@ -216,7 +272,7 @@ public class ChauffeurController implements ChauffeurApi {
 	    Files.write(Paths.get(
 	    		System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/" + chauffeurDto.getCvChauffeur()), 
 	    		file.getBytes());
-
+	    
 	    chauffeurService.save(chauffeurDto);
 	}
 	
@@ -247,7 +303,6 @@ public class ChauffeurController implements ChauffeurApi {
 	public ResponseEntity<List<ChauffeurDto>> getListChauffeurByDisponibility(String disponibility) {
 		List<ChauffeurDto> chauffeurDtoList = chauffeurService.findChauffeurByDisponibility("%" + disponibility + "%");
         return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
-		
 	}
 	
 	@Override
@@ -258,8 +313,7 @@ public class ChauffeurController implements ChauffeurApi {
 	
 	@Override
 	public void delete(Long id) {
-		chauffeurService.delete(id);
-		
+		chauffeurService.delete(id);		
 	}
 	
 	@Override
@@ -304,6 +358,7 @@ public class ChauffeurController implements ChauffeurApi {
 	public long sizeOfChauffeursByKey(String keyWord) {
 		return chauffeurService.getChauffeurDtosSizeByKey(keyWord);
 	}
+
 	
 
 }

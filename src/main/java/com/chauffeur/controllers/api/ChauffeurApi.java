@@ -54,6 +54,19 @@ public interface ChauffeurApi {
             @RequestParam(name = "photoChauffeur") MultipartFile photoChauffeur,
             @RequestParam(name = "cvChauffeur") MultipartFile cvChauffeur) throws IOException;
     
+    @PostMapping(value = APP_ROOT + "/chauffeurs/createWithFilesInFolder")
+    @ApiOperation(value = "Enregistrer un Chauffeur avec une photo et un cv",
+    notes = "Cette méthode permet d'ajouter un chauffeur avec sa photo et son cv", response = ChauffeurDto.class)
+	@ApiResponses(value = {
+	    @ApiResponse(code = 201, message = "Le Chauffeur a été crée"),
+	    @ApiResponse(code = 400, message = "Aucun Chauffeur  crée / modifié")
+	
+	})
+    ResponseEntity<ChauffeurDto> saveChauffeurWithFilesInFolder(
+    		@RequestParam(name = "chauffeur") String chauffeurDto,
+            @RequestParam(name = "photoChauffeur") MultipartFile photoChauffeur,
+            @RequestParam(name = "cvChauffeur") MultipartFile cvChauffeur) throws IOException;
+    
     
     @PutMapping(value = APP_ROOT + "/chauffeurs/update/{idChauffeur}", consumes = MediaType.APPLICATION_JSON_VALUE, 
     		produces = MediaType.APPLICATION_JSON_VALUE)
@@ -161,6 +174,14 @@ public interface ChauffeurApi {
 	Page<ChauffeurDto> getListChauffeurByPageable(@RequestParam(name = "page") int page, 
 			@RequestParam(name = "size") int size);
 	
+	@GetMapping(value = APP_ROOT + "/chauffeurs/photoChauffeurInFolder/{idChauffeur}")
+	@ApiOperation(value = "Recuperer la photo d'un chauffeur",
+	    notes = "Cette méthode permet de recuperer et d'afficher la photo d'un chauffeur depuis le dossier webapp")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La photo a été recuperer depuis le dossier webapp")
+	
+	})
+    byte[] getPhotoChauffeurInFolder(@PathVariable("idChauffeur") Long id) throws Exception;
 	
 	@GetMapping(value = APP_ROOT + "/chauffeurs/photoChauffeur/{idChauffeur}")
 	@ApiOperation(value = "Recuperer la photo d'un chauffeur",
@@ -171,6 +192,15 @@ public interface ChauffeurApi {
 	})
     byte[] getPhotoChauffeur(@PathVariable("idChauffeur") Long id) throws Exception;
 
+    @PostMapping(path = APP_ROOT + "/chauffeurs/uploadChauffeurPhotoInFolder/{id}")
+    @ApiOperation(value = "Enregistrer la photo d'un chauffeur dans webapp",
+	    notes = "Cette méthode permet d'enregistrer la photo d'un chauffeur dans un dossier webapp")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "La photo a été enregistré dans le dossier webapp")
+	
+	})
+    void uploadPhotoChauffeurInFolder(MultipartFile file, @PathVariable("id") Long id) throws IOException;
+    
     @PostMapping(path = APP_ROOT + "/chauffeurs/uploadChauffeurPhoto/{id}")
     @ApiOperation(value = "Enregistrer la photo d'un chauffeur dans un dossier",
 	    notes = "Cette méthode permet d'enregistrer la photo d'un chauffeur dans un dossier externe utilisateur")
@@ -179,6 +209,15 @@ public interface ChauffeurApi {
 	
 	})
     void uploadPhotoChauffeur(MultipartFile file, @PathVariable("id") Long id) throws IOException;
+    
+    @GetMapping(value = APP_ROOT + "/chauffeurs/cvChauffeurInFolder/{idChauffeur}")
+    @ApiOperation(value = "Recuperer le cv d'un chauffeur",
+	    notes = "Cette méthode permet de recuperer et d'afficher le cv d'un chauffeur depuis un dossier wabapp")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Le cv a été recuperer depuis le dossier wabapp")
+	
+	})
+    byte[] getCvChauffeurInFolder(@PathVariable("idChauffeur") Long id) throws Exception;
     
     @GetMapping(value = APP_ROOT + "/chauffeurs/cvChauffeur/{idChauffeur}")
     @ApiOperation(value = "Recuperer le cv d'un chauffeur",
@@ -189,6 +228,15 @@ public interface ChauffeurApi {
 	})
     byte[] getCvChauffeur(@PathVariable("idChauffeur") Long id) throws Exception;
 
+    @PostMapping(path = APP_ROOT + "/chauffeurs/uploadChauffeurCvInFolder/{id}")
+    @ApiOperation(value = "Enregistrer le cv d'un chauffeur dans un dossier webapp",
+	    notes = "Cette méthode permet d'enregistrer le cv d'un chauffeur dans un dossier webapp")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Le cv a été enregistré dans le dossier webapp")
+	
+	})
+    void uploadCvChauffeurInFolder(MultipartFile file, @PathVariable("id") Long id) throws IOException;
+    
     @PostMapping(path = APP_ROOT + "/chauffeurs/uploadChauffeurCv/{id}")
     @ApiOperation(value = "Enregistrer le cv d'un chauffeur dans un dossier",
 	    notes = "Cette méthode permet d'enregistrer le cv d'un chauffeur dans un dossier externe utilisateur")
@@ -197,6 +245,16 @@ public interface ChauffeurApi {
 	
 	})
     void uploadCvChauffeur(MultipartFile file, @PathVariable("id") Long id) throws IOException;
+    
+    @RequestMapping(value = APP_ROOT + "/chauffeurs/downloadCvFile/{fileName:.+}")
+    @ApiOperation(value = "Télécharger le cv d'un chauffeur",
+	    notes = "Cette méthode permet de télécharger le cv d'un chauffeur depuis un dossier webapp")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Le cv a été télécharger depuis le dossier webapp")
+	
+	})
+    void downloadChauffeurCvFile(HttpServletRequest request, HttpServletResponse response,
+            @PathVariable("fileName") String fileName) throws IOException;
     
     @RequestMapping(value = APP_ROOT + "/chauffeurs/downloadContratFile/{fileName:.+}")
     @ApiOperation(value = "Télécharger le cv d'un chauffeur",
