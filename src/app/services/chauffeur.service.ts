@@ -218,7 +218,7 @@ export class ChauffeurService {
     return this.http.request(req);
   }
 
-  public getPhotoChquffeurInContext() {
+  public getPhotoChauffeurInContext() {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/photoChauffeurInFolder`);
   }
 

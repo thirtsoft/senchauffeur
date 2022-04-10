@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from './../security/token-storage.service';
 import { AuthService } from './../security/auth.service';
 import { Login } from './../security/login';
-import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-login',
