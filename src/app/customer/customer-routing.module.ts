@@ -116,6 +116,10 @@ const routes: Routes = [
     component: CandidatebrowerComponent
   },
   {
+    path: 'locality',
+    component: CandidatebrowerComponent
+  },
+  {
     path: 'searchInCandidates/:disponibility',
     component: CandidatebrowerComponent
   },

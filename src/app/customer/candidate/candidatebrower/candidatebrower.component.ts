@@ -14,18 +14,23 @@ export class CandidatebrowerComponent implements OnInit {
 
   chauffeurListDTO: ChauffeurDto[];
 
-  public size: number = 4;
-  public currentPage: number = 1;
-  public totalPages: number;
-  public pages: Array<number>;
+  size: number = 4;
+  currentPage: number = 1;
+  totalPages: number;
+  pages: Array<number>;
 
-  public currentTime: number = 0;
-
+  currentTime: number = 0;
   currentLocalityId: number;
-
   previousLocalityId: number = 1;
-
   searchMode: boolean = false;
+
+  starRating = 0;
+  currentRating = 4;
+
+  chauffeursListDTOs: ChauffeurDto[] = [];
+  page: number = 1;
+  pageLength: number = 6;
+  chauffeurSize: number = 0;
 
   constructor(public chauffService: ChauffeurService,
               private router: Router,
@@ -35,11 +40,75 @@ export class CandidatebrowerComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(()=> {
-      this.getListChauffeurDTOs();
+   //   this.getListChauffeurDTOs();
+      this.finishChauffeurs();
     });
   }
 
-  public getChauffeurListDTOs() {
+  finishChauffeurs(){
+    let result1 = this.route.snapshot.paramMap.has('id');
+    let result2 = this.route.snapshot.paramMap.has('disponibility');
+    if(result1){
+      this.getChauffeursByAddressId()
+    } else if (result2) {
+      this.getAllChauffeursContainingKey()
+    } else {
+      this.getChauffeurs();
+    }
+  }
+
+  getChauffeurs() {
+    this.chauffService.getChauffeursLength().subscribe(
+      data => {
+        this.chauffeurSize = data
+      }
+    )
+    this.chauffService.getAllChauffeursByPageables(this.page-1,this.pageLength).subscribe(
+      data => {
+        this.chauffeursListDTOs = data
+        console.log(data)
+      }
+    )
+  }
+
+  getChauffeursByAddressId(){
+    let idCategory = this.route.snapshot.paramMap.get('id');
+    this.chauffService.getChauffeursLengthByAddressId(idCategory).subscribe(
+      data => {
+        this.chauffeurSize = data
+      }
+    )
+    this.chauffService.getChauffeursByAddressId(idCategory,this.page-1,this.pageLength).subscribe(
+      data => {
+        this.chauffeursListDTOs = data
+      }
+    )
+  }
+
+  getAllChauffeursContainingKey(){
+    let disponibility = this.route.snapshot.paramMap.get('disponibility');
+    this.chauffService.getChauffeursLengthByKey(disponibility).subscribe(
+      data => {
+        this.chauffeurSize = data
+      }
+    )
+    this.chauffService.getChauffeursByKey(disponibility,this.page-1,this.pageLength).subscribe(
+      data => {
+        this.chauffeursListDTOs = data
+      }
+    )
+  }
+
+  doing() {
+    this.finishChauffeurs()
+  }
+
+  pageSize(event: Event) {
+    this.pageLength = +(<HTMLInputElement>event.target).value
+    this.finishChauffeurs()
+  }
+
+  getChauffeurListDTOs() {
     this.chauffService.getChauffeurDTOs().subscribe(
       (response: ChauffeurDto[]) => {
         this.chauffeurListDTO = response;
@@ -51,6 +120,8 @@ export class CandidatebrowerComponent implements OnInit {
     );
 
   }
+
+  
 
   public getListChauffeurDTOs() {
     this.searchMode = this.route.snapshot.paramMap.has('disponibility');

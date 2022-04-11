@@ -43,23 +43,23 @@ export class ChauffeurService {
   }
 
   /*************************** ChauffeurDTO ********************/
-  public getChauffeurDTOs(): Observable<ChauffeurDto[]> {
+  getChauffeurDTOs(): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/all`);
   }
 
-  public getChauffeurDTOOrderByIdDesc(): Observable<ChauffeurDto[]> {
+  getChauffeurDTOOrderByIdDesc(): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurOrderByIdDesc`);
   }
 
-  public getChauffeurDTOById(chauffId: number): Observable<ChauffeurDto> {
+  getChauffeurDTOById(chauffId: number): Observable<ChauffeurDto> {
     return this.http.get<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/findById/${chauffId}`);
   }
 
-  public addChauffeurDTO(chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {
+  addChauffeurDTO(chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {
     return this.http.post<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/create`, chauffeurDTO);
   }
 
-  public addChauffeurDTOWithFiles(formData: FormData): Observable<any> {
+  addChauffeurDTOWithFiles(formData: FormData): Observable<any> {
     const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/createWithFiles`, formData, {
       reportProgress: true,
       responseType: 'text'
@@ -68,50 +68,50 @@ export class ChauffeurService {
 
   }
 
-  public updateChauffeurDTO(chauffId: number, chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {
+  updateChauffeurDTO(chauffId: number, chauffeurDTO: ChauffeurDto): Observable<ChauffeurDto> {
     return this.http.put<ChauffeurDto>(`${this.apiServerUrl}/chauffeurs/update/${chauffId}`, chauffeurDTO);
   }
 
-  public deleteChauffeurDTO(chauffId: number): Observable<void> {
+  deleteChauffeurDTO(chauffId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/chauffeurs/delete/${chauffId}`);
   }
 
-  public getListChauffeurDTOByPageable(page: number, size: number): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOByPageable(page: number, size: number): Observable<ChauffeurDto[]> {
     const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByPageables?page="+page+"&size="+size);
     return this.http.get<ChauffeurDto[]>(searchUrl);
   }
 
-  public getListChauffeurDTOBySelectedIsTrue(): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOBySelectedIsTrue(): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurBySelectedIsTrue`);
   }
 
-  public getListChauffeurDTOByKeyword(keyword: string): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOByKeyword(keyword: string): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByKeyword?keyword=`+keyword);
   }
 
-  public getListChauffeurDTOByDisponibility(disponility: string): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOByDisponibility(disponility: string): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeurByDisponibilite?disponible=`+disponility);
   }
 
-  public getListChauffeurDTOByKeywordPageable(mc: string, page: number, size: number): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOByKeywordPageable(mc: string, page: number, size: number): Observable<ChauffeurDto[]> {
     const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByDisponibityByPageables?id="+mc+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
     return this.http.get<ChauffeurDto[]>(searchUrl);
   }
 
-  public getListChauffeurDTOByPermisPageable(permisId: number, page: number, size: number): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOByPermisPageable(permisId: number, page: number, size: number): Observable<ChauffeurDto[]> {
     const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByPermisPageables?id="+permisId+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
     return this.http.get<ChauffeurDto[]>(searchUrl);
   }
 
-  public getListChauffeurDTOByLocalityPageable(locId: number, page: number, size: number): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOByLocalityPageable(locId: number, page: number, size: number): Observable<ChauffeurDto[]> {
     const searchUrl = (this.apiServerUrl+"/chauffeurs/searchChauffeurByLocalityPageables?id="+locId+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
     return this.http.get<ChauffeurDto[]>(searchUrl);
   }
 
-  public getListChauffeurDTOByPermis(pId: number): Observable<ChauffeurDto[]> {
+  getListChauffeurDTOByPermis(pId: number): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/searchChauffeursByPermis/${pId}`);
   }
 
@@ -127,7 +127,7 @@ export class ChauffeurService {
 
   }
 
-  public getPhotoChauffeur() {
+  getPhotoChauffeur() {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/photoChauffeur`);
   }
 
@@ -143,15 +143,15 @@ export class ChauffeurService {
 
   }
 
-  public getCvChauffeur() {
+  getCvChauffeur() {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/cvChauffeur`);
   }
 
-  public countNumberOfChauffeurs(): Observable<any> {
+  countNumberOfChauffeurs(): Observable<any> {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/NumbersOfChauffeurs`);
   }
 
-  getAllChauffeurs(page,size): Observable<ChauffeurDto[]> {
+  getAllChauffeursByPageables(page,size): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/allChauffeurs?page=${page}&size=${size}`).pipe(
       map(
         response => response
@@ -168,7 +168,7 @@ export class ChauffeurService {
   }
 
   getChauffeursByKey(word,page,size): Observable<ChauffeurDto[]> {
-    return this.http.get<ChauffeurDto[]>(`${this.apiServerUrl}/chauffeurs/chauffeurkey?keyword=${word}&page=${page}&size=${size}`).pipe(
+    return this.http.get<ChauffeurDto[]>(this.apiServerUrl+"/chauffeurs/chauffeurkey?disponibility="+word+"&page="+page+"&size="+size).pipe(
       map(
         response => response
       )
@@ -192,7 +192,7 @@ export class ChauffeurService {
   }
 
   getChauffeursLengthByKey(word): Observable<number> {
-    return this.http.get<number>(`${this.apiServerUrl}/chauffeurs/keysize?key=${word}`).pipe(
+    return this.http.get<number>(`${this.apiServerUrl}/chauffeurs/keySize?disponibility=${word}`).pipe(
       map(
         response => response
       )
@@ -218,7 +218,7 @@ export class ChauffeurService {
     return this.http.request(req);
   }
 
-  public getPhotoChauffeurInContext() {
+  getPhotoChauffeurInContext() {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/photoChauffeurInFolder`);
   }
 
@@ -233,7 +233,7 @@ export class ChauffeurService {
     return this.http.request(req);
   }
 
-  public getCvOfChauffeurFromContext() {
+  getCvOfChauffeurFromContext() {
     return this.http.get(`${this.apiServerUrl}/chauffeurs/cvChauffeurInFolder`);
   }
 

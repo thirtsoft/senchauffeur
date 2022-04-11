@@ -1,106 +1,90 @@
 <!-- Content -->
 <div class="page-content bg-white">
-  <!-- inner page banner -->
-  <div
-    class="dez-bnr-inr overlay-black-middle"
-    style="background-image: url(assets/customer/images/banner/bnr1.jpg)"
-  >
-    <div class="container">
-      <div class="dez-bnr-inr-entry">
-        <h1 class="text-white">Voir tous les annonces</h1>
+    <!-- inner page banner -->
+    <div class="dez-bnr-inr overlay-black-middle" style="background-image: url(assets/customer/images/banner/bnr1.jpg)">
+        <div class="container">
+            <div class="dez-bnr-inr-entry">
+                <h1 class="text-white">Voir tous les annonces</h1>
 
-        <div class="breadcrumb-row">
-          <ul class="list-inline">
-            <li><a routerLink="/">Accueil</a></li>
-            <li>Liste des Annonces</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- inner page banner END -->
-  <!-- contact area -->
-  <div class="content-block">
-    <!-- Browse Jobs -->
-    <div class="section-full bg-white browse-job content-inner-2">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-4 col-lg-5">
-            <div class="sticky-top" style="margin-top: 15px">
-              <div class="clearfix m-b30"></div>
-
-              <div class="clearfix m-b30">
-                <h6 class="widget-title font-weight-700 text-uppercase">
-                  Rechercher par Permis
-                </h6>
-              </div>
-
-              <div class="clearfix m-b10">
-                <app-list-job-permis></app-list-job-permis>
-              </div>
+                <div class="breadcrumb-row">
+                    <ul class="list-inline">
+                        <li><a routerLink="/">Accueil</a></li>
+                        <li>Liste des Annonces</li>
+                    </ul>
+                </div>
             </div>
-          </div>
-          <div class="col-xl-8 col-lg-7">
-            <app-search-job-by-reference></app-search-job-by-reference>
-            <ul
-              class="post-job-bx"
-              *ngFor="let annonceDTO of annonceListDTO; let i = index"
-            >
-              <li *ngIf="annonceDTO.status == 'VALIDEE'">
-                <a [routerLink]="['/job-detail', annonceDTO.reference]">
-                  <div class="d-flex m-b30">
-                    <div class="job-post-company">
-                      <span
-                        ><img src="assets/customer/images/logo/icon1.png"
+        </div>
+    </div>
+    <!-- inner page banner END -->
+    <!-- contact area -->
+    <div class="content-block">
+        <!-- Browse Jobs -->
+        <div class="section-full bg-white browse-job content-inner-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="sticky-top" style="margin-top: 15px">
+                            <div class="clearfix m-b30"></div>
+
+                            <div class="clearfix m-b30">
+                                <h6 class="widget-title font-weight-700 text-uppercase">
+                                    Rechercher par Permis
+                                </h6>
+                            </div>
+
+                            <div class="clearfix m-b10">
+                                <app-list-job-permis></app-list-job-permis>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7">
+                        <app-search-job-by-reference></app-search-job-by-reference>
+                        <ul class="post-job-bx" *ngFor="let annonceDTO of annonceListDTO; let i = index">
+                            <li *ngIf="annonceDTO.status == 'VALIDEE'">
+                                <a [routerLink]="['/job-detail', annonceDTO.reference]">
+                                    <div class="d-flex m-b30">
+                                        <div class="job-post-company">
+                                            <span><img src="assets/customer/images/logo/icon1.png"
                       /></span>
-                    </div>
-                    <div class="job-post-info">
-                      <h4>{{ annonceDTO.libelle }}</h4>
-                      <div class="d-flex">
-                        <div class="job-time mr-auto">
-                          {{ annonceDTO?.utilisateurDto.nomEntreprise }}
-                        </div>
-                        <div class="job-time align-center" style="margin-left: 90px;">
-                          <i class="fa fa-map-marker"></i>
-                          {{ annonceDTO?.addresseDto.ville }}
-                          ,  {{ annonceDTO?.addresseDto.pays }}
-                        </div>
-                        <div class="salary-bx" style="margin-left: 130px;">
-                          <span>{{ annonceDTO.typeContrat }}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <div class="job-time mr-auto">
-                      Disponobilité : {{ annonceDTO.time }}
-                    </div>
-                    <div class="salary-bx">
-                      <span> Publié le : {{ annonceDTO.dateCandidature | date: "dd-MM-yyyy" }}</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <div class="pagination-bx m-t30">
-            <!--   <ul *ngFor="let p of pages; let i = index;">  -->
-                
-             
-             <ul class="pagination" *ngIf="pages">
-                <li
-                  class="active"
-                  class="clikable"
-                  [ngClass]="i == this.currentPage ? 'active' : ''"
-                  *ngFor="let p of pages; let i = index"
-                >
-                  <a (click)="onPageAnnonce(i)" style="cursor: pointer">{{
+                                        </div>
+                                        <div class="job-post-info">
+                                            <h4>{{ annonceDTO.libelle }}</h4>
+                                            <div class="d-flex">
+                                                <div class="job-time mr-auto">
+                                                    {{ annonceDTO?.utilisateurDto.nomEntreprise }}
+                                                </div>
+                                                <div class="job-time align-center" style="margin-left: 90px;">
+                                                    <i class="fa fa-map-marker"></i> {{ annonceDTO?.addresseDto.ville }} , {{ annonceDTO?.addresseDto.pays }}
+                                                </div>
+                                                <div class="salary-bx" style="margin-left: 130px;">
+                                                    <span>{{ annonceDTO.typeContrat }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="job-time mr-auto">
+                                            Disponobilité : {{ annonceDTO.time }}
+                                        </div>
+                                        <div class="salary-bx">
+                                            <span> Publié le : {{ annonceDTO.dateCandidature | date: "dd-MM-yyyy" }}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="pagination-bx m-t30">
+
+                            <ul class="pagination" *ngIf="pages">
+                                <li class="active" class="clikable" [ngClass]="i == this.currentPage ? 'active' : ''" *ngFor="let p of pages; let i = index">
+                                    <a (click)="onPageAnnonce(i)" style="cursor: pointer">{{
                     i
                   }}</a>
-                </li>
+                                </li>
 
-              </ul> 
+                            </ul>
 
-             <!--   <ngb-pagination [(page)]="this.currentPage" [pageSize]="size" [collectionSize]="processResult()"
+                            <!--   <ngb-pagination [(page)]="this.currentPage" [pageSize]="size" [collectionSize]="processResult()"
                 (pageChange)="onPageAnnonce(i)" [maxSize]="5" [boundaryLinks]="true">
                 {{
                   i
@@ -109,12 +93,12 @@
               </ngb-pagination>
             </ul>  -->
 
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+        <!-- Browse Jobs END -->
     </div>
-    <!-- Browse Jobs END -->
-  </div>
 </div>
 <!-- Content END-->

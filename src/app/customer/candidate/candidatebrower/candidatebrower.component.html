@@ -1,111 +1,123 @@
 <!-- Content -->
 <div class="page-content bg-white">
-  <!-- inner page banner -->
-  <div
-    class="dez-bnr-inr overlay-black-middle"
-    style="background-image: url(assets/customer/images/banner/bnr1.jpg)"
-  >
-    <div class="container">
-      <div class="dez-bnr-inr-entry">
-        <h1 class="text-white">Liste de Chauffeurs</h1>
-        <!-- Breadcrumb row -->
-        <div class="breadcrumb-row">
-          <ul class="list-inline">
-            <li><a routerLink="/">Accueil</a></li>
-            <li>Chercher un chauffeur</li>
-          </ul>
+    <!-- inner page banner -->
+    <div class="dez-bnr-inr overlay-black-middle" style="background-image: url(assets/customer/images/banner/bnr1.jpg)">
+        <div class="container">
+            <div class="dez-bnr-inr-entry">
+                <h1 class="text-white">Liste de Chauffeurs</h1>
+                <!-- Breadcrumb row -->
+                <div class="breadcrumb-row">
+                    <ul class="list-inline">
+                        <li><a routerLink="/">Accueil</a></li>
+                        <li>Chercher un chauffeur</li>
+                    </ul>
+                </div>
+                <!-- Breadcrumb row END -->
+            </div>
         </div>
-        <!-- Breadcrumb row END -->
-      </div>
     </div>
-  </div>
-  <!-- inner page banner END -->
-  <div class="content-block">
-    <div class="section-full bg-white browse-job content-inner-2">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-3 col-lg-4 col-xs-3 col-sm-4 col-md-3">
-            <div class="sticky-top" style="margin-top:8px">
-              
-                <h5 class="widget-title font-weight-700 text-uppercase">
-                  Rechercher par ville
-                </h5>
-               
-              </div>
+    <!-- inner page banner END -->
+    <div class="content-block">
+        <div class="section-full bg-white browse-job content-inner-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-xs-3 col-sm-4 col-md-3">
+                        <div class="sticky-top" style="margin-top:8px">
 
-              <div class="clearfix m-b10">
-                <app-list-locality></app-list-locality>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-9 col-lg-8" col-xs-9 col-sm-8 col-md-9>
-            <app-search-in-candidates></app-search-in-candidates>
-            <ul class="post-job-bx">
-              <li *ngFor="let chauffDTO of chauffeurListDTO; let i = index">
-                <a [routerLink]="['/detail-chauffeur', chauffDTO.id]">
-                  <div class="d-flex m-b30">
-                    <div class="job-post-company">
-                      <span
-                        ><img
-                          width="550"
-                          height="450"
-                          src="{{
-                            this.chauffService.apiServerUrl +
-                              '/chauffeurs/photoChauffeur/' +
-                              chauffDTO.id
-                          }}"
-                      /></span>
+                            <h5 class="widget-title font-weight-700">
+                                Rechercher par ville
+                            </h5>
+
+                        </div>
+
+                        <div class="clearfix m-b10">
+                            <app-list-locality></app-list-locality>
+                        </div>
                     </div>
-                    <div class="job-post-info">
-                      <h4>
-                        {{ chauffDTO.firstName }}, {{ chauffDTO.lastName }}
-                      </h4>
-                      <ul>
-                        <li>
-                          <i class="fa fa-map-marker"></i
-                          >{{ chauffDTO.addressActuel }}
-                        </li>
-                        <li>
-                          <i class="fa fa-usd"></i
-                          >{{ chauffDTO.permisDto?.designation }}
-                        </li>
-                        <li>
-                          <i class="fa fa-clock-o"></i
-                          >{{ chauffDTO.disponibity }}
-                        </li>
-                      </ul>
+
+                    <div class="col-xl-9 col-lg-8 col-xs-9 col-sm-8 col-md-9">
+                        <app-search-in-candidates></app-search-in-candidates>
+                        <ul class="post-job-bx">
+                            <p *ngFor="let chauffDTO of chauffeursListDTOs; let i = index">
+                                <a [routerLink]="['/detail-chauffeur', chauffDTO.id]">
+                                    <div class="d-flex m-b30">
+                                        <div class="job-post-company">
+                                            <span>
+                                              <img
+                                                  width="550"
+                                                  height="450"
+                                                  src="{{
+                                                    this.chauffService.apiServerUrl +
+                                                      '/chauffeurs/photoChauffeurInFolder/' +
+                                                      chauffDTO.id
+                                                  }}"
+                                              /></span>
+                                        </div>
+                                        <div class="job-post-info">
+                                            <h6>
+                                                {{ chauffDTO.firstName }} {{ chauffDTO.lastName }} - {{ chauffDTO.reference }}
+                                            </h6>
+                                            <ul>
+                                                <li>
+                                                    <i class="fa fa-car" aria-hidden="true"></i> {{ chauffDTO.permisDto?.designation }}
+                                                </li>
+                                                <li style="font-size: 16px; margin-left: 55px;"> Expérience : {{ chauffDTO.nbreAnneeExperience }}
+                                                </li>
+                                                <li style="font-size: 16px; margin-left: 55px;">Disponibilité :
+                                                    <i class="fa fa-clock-o"></i
+                                                >{{ chauffDTO.disponibity }}
+                                              </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                    <div class="d-flex">
+                      <div class="job-time mr-auto">
+                        <i class="fa fa-map-marker"></i
+                          >
+                        Addresse : {{ chauffDTO?.addresseDto?.ville }}
+                      </div>
+                      <div class="job-time mr-auto">
+                        Mobilité : {{ chauffDTO.mobilite }}
+                      </div>
+                      <div class="salary-bx">
+                        <span>{{ chauffDTO.pretentionSalaire }}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div class="d-flex">
-                    <div class="job-time mr-auto">
-                      Addresse : {{ chauffDTO?.addresseDto?.quartier }}
-                    </div>
-                    <div class="job-time mr-auto">
-                      Mobilité : {{ chauffDTO.mobilite }}
-                    </div>
-                    <div class="salary-bx">
-                      <span>${{ chauffDTO.pretentionSalaire }}</span>
-                    </div>
-                  </div>
-                  <!--  <span class="post-like fa fa-heart-o"></span> -->
-                </a>
-              </li>
-            </ul>
-            <div class="pagination-bx m-t30">
-              <ul class="pagination" *ngIf="pages">
-                <li
-                  class="active"
-                  class="clikable"
-                  [ngClass]="i == this.currentPage ? 'active' : ''"
-                  *ngFor="let p of pages; let i = index"
-                >
-                  <a (click)="onPageChauffeur(i)" style="cursor: pointer">{{
-                    i
-                  }}</a>
-                </li>
-          
+
+                  </a>
+                </p>
               </ul>
-            </div>
+              <div class="pagination-bx m-t30">
+                <ul class="pagination">
+
+                  <li class="clikable">
+                    <ngb-pagination [(page)]="page" [pageSize]="pageLength" [collectionSize]="chauffeurSize" (pageChange)="doing()" [maxSize]="8" [boundaryLinks]="true">
+                    </ngb-pagination>
+                </li>
+            
+                </ul>
+
+               <!--  <ul class="pagination" *ngIf="pages">
+                  <li
+                    class="active"
+                    class="clikable"
+                    [ngClass]="i == this.currentPage ? 'active' : ''"
+                    *ngFor="let p of pages; let i = index"
+                  >
+                    <a (click)="onPageChauffeur(i)" style="cursor: pointer">{{
+                      i
+                    }}</a>
+                  </li>
+            
+                </ul> -->
+
+                
+              </div>
+            
+                </div>
+
+              
           </div>
          
         </div>

@@ -1,261 +1,136 @@
 <div class="page-content bg-white">
-  <div
-    class="dez-bnr-inr overlay-black-middle"
-    style="background-image: url(assets/customer/images/banner/bnr1.jpg)"
-  >
-    <div class="container">
-      <div class="dez-bnr-inr-entry">
-        <h1 class="text-white">Mes Annonces</h1>
-        <div class="breadcrumb-row">
-          <ul class="list-inline">
-            <li><a routerLink="/">Accueil</a></li>
-            <li>La liste de mes annonces</li>
-          </ul>
+    <div class="dez-bnr-inr overlay-black-middle" style="background-image: url(assets/customer/images/banner/bnr1.jpg)">
+        <div class="container">
+            <div class="dez-bnr-inr-entry">
+                <h1 class="text-white">Mes Annonces</h1>
+                <div class="breadcrumb-row">
+                    <ul class="list-inline">
+                        <li><a routerLink="/">Accueil</a></li>
+                        <li>La liste de mes annonces</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="content-block">
-    <div class="section-full bg-white browse-job content-inner-2">
-      <div class="container">
-        <div class="row">
-          <!--  <div class="col-xl-2 col-lg-2" style="margin-left: -30px">
-            <div class="clearfix m-b10">
-              <a
-                type="button"
-                (click)="onAddNewJob()"
-                class="btn btn-success btn-lg btn-block"
-                style="color: white"
-                >Add Annonce</a
-              >
-            </div>
-            <div class="clearfix m-b10">
-              <a
-                type="button"
-                class="btn btn-primary btn-lg btn-block"
-                style="color: white"
-                >Annonces</a
-              >
-            </div>
-            <div class="clearfix m-b10">
-              <a
-                type="button"
-                class="btn btn-dark btn-lg btn-block"
-                style="color: white"
-                >Jetons</a
-              >
-            </div>
-            <div class="clearfix m-b10">
-              <a
-                type="button"
-                class="btn btn-info btn-lg btn-block"
-                style="color: white"
-                >Informations</a
-              >
-            </div>
-            <div class="clearfix m-b10">
-              <a
-                type="button"
-                class="btn btn-warning btn-lg btn-block"
-                style="color: white"
-                >Autres</a
-              >
-            </div>
-            <div class="clearfix m-b10">
-              <a
-                type="button"
-                class="btn btn-danger btn-lg btn-block"
-                style="color: white"
-                >Logout</a
-              >
-            </div>
-          </div> -->
-          <div class="col-md-3">
-            <div
-              class="nav flex-column nav-pills"
-              role="tablist"
-              aria-orientation="vertical"
-            >
-              <a
-                class="nav-link active"
-                id="dashboard-nav"
-                data-toggle="pill"
-                href="#dashboard-tab"
-                role="tab"
-              >
-                <i class="fa fa-tachometer-alt"></i>Tableau de bord</a
-              >
-              <a
-                class="nav-link"
-                id="orders-nav"
-                data-toggle="pill"
-                href="#orders-tab"
-                role="tab"
-              >
-                <i class="fa fa-shopping-bag"></i> Mes Annonces</a
-              >
-              <a
-                class="nav-link"
-                id="payment-nav"
-                data-toggle="pill"
-                href="#payment-tab"
-                role="tab"
-              >
-                <i class="fa fa-plus"></i> Ajouter Annonce</a
-              >
-              <a
-                class="nav-link"
-                id="address-nav"
-                data-toggle="pill"
-                href="#address-tab"
-                role="tab"
-              >
-                <i class="fa fa-dollar"></i> Mes Jetons</a
-              >
-              <a
-                class="nav-link"
-                id="account-nav"
-                data-toggle="pill"
-                href="#account-tab"
-                role="tab"
-              >
-                <i class="fa fa-user"></i> Votre compte</a
-              >
-              <a class="nav-link" (click)="logout()" style="cursor: pointer">
-                <i class="fa fa-sign-out-alt"></i>Deconnexion</a
-              >
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="tab-content">
-              <div
-                class="tab-pane fade show active"
-                id="dashboard-tab"
-                role="tabpanel"
-                aria-labelledby="dashboard-nav"
-              >
-                <h4>Tableau de bord</h4>
-                <div class="table-responsive">
-                  <table class="table table-bordered" aria-label="">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th>#</th>
-                        <th>Libellé</th>
-                        <th>Email Poste</th>
-                        <th>Salaire</th>
-                        <th>Status</th>
-                        <th>Expiration</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        *ngFor="
-                          let annonceDTO of listAnnonceDataDTO
-                            | paginate: { itemsPerPage: 15, currentPage: p };
-                          let i = index
-                        "
-                      >
-                        <td>{{ annonceDTO.id }}</td>
-                        <td>{{ annonceDTO.libelle }}</td>
-                        <td>{{ annonceDTO.emailPoste }}</td>
-                        <td>{{ annonceDTO.salaire }}</td>
-                        <td>{{ annonceDTO.status }}</td>
-                        <td>
-                          {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="pagination">
-                    <pagination-controls
-                      (pageChange)="p = $event"
-                    ></pagination-controls>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="orders-tab"
-                role="tabpanel"
-                aria-labelledby="orders-nav"
-              >
-                <h4>Annonces</h4>
+    <div class="content-block">
+        <div class="section-full bg-white browse-job content-inner-2">
+            <div class="container">
                 <div class="row">
-                  <div class="col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Chercher"
-                      [(ngModel)]="searchText"
-                    />
-                  </div>
-
-                  <div class="col-sm-6">
-                    <!--  <button
-                      (click)="onAddEditAnnonce(null)"
-                      class="btn btn-primary"
-                      type="submit"
-                    >
-                      <em class="fa fa-plus"> </em> Ajouter Annonce
-                    </button> -->
-                  </div>
-                </div>
-                &nbsp;
-                <div class="table-responsive">
-                  <table class="table table-bordered" aria-label="">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th>Reference</th>
-                        <th>Libelle</th>
-                        <th>Email Poste</th>
-                        <th>Salaire</th>
-                        <th>Disponibilité</th>
-                        <th>Expérience</th>
-                        <th>Contrat</th>
-                        <th>Permis</th>
-                        <th>Addresse</th>
-                        <th>Description</th>
-                        <th>status</th>
-                        <th>Publiée</th>
-                        <th>Expire</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        *ngFor="
+                    <div class="col-md-3">
+                        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab">
+                                <i class="fa fa-tachometer-alt"></i>Tableau de bord</a>
+                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab">
+                                <i class="fa fa-shopping-bag"></i> Mes Annonces</a>
+                            <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab">
+                                <i class="fa fa-plus"></i> Ajouter Annonce</a>
+                            <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab">
+                                <i class="fa fa-dollar"></i> Mes Jetons</a>
+                            <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab">
+                                <i class="fa fa-user"></i> Votre compte</a>
+                            <a class="nav-link" (click)="logout()" style="cursor: pointer">
+                                <i class="fa fa-sign-out-alt"></i>Deconnexion</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
+                                <h4>Tableau de bord</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" aria-label="">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Libellé</th>
+                                                <th>Email Poste</th>
+                                                <th>Salaire</th>
+                                                <th>Status</th>
+                                                <th>Expiration</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="
                           let annonceDTO of listAnnonceDataDTO
                             | paginate: { itemsPerPage: 15, currentPage: p };
                           let i = index
-                        "
-                      >
-                        <td>{{ annonceDTO.reference }}</td>
-                        <td>{{ annonceDTO.libelle }}</td>
-                        <td>{{ annonceDTO.emailPoste }}</td>
-                        <td>{{ annonceDTO.salaire }}</td>
-                        <td>{{ annonceDTO.time }}</td>
-                        <td>{{ annonceDTO.proExperience }}</td>
-                        <td>{{ annonceDTO.typeContrat }}</td>
-                        <td>{{ annonceDTO.permisDto.designation }}</td>
-                        <td>{{ annonceDTO.addresseDto.ville }}</td>
-                        <td>{{ annonceDTO.description }}</td>
-                        <td>{{ annonceDTO.status }}</td>
-                        <td>
-                          {{ annonceDTO.dateCandidature | date: "dd-MM-yyyy" }}
-                        </td>
+                        ">
+                                                <td>{{ annonceDTO.id }}</td>
+                                                <td>{{ annonceDTO.libelle }}</td>
+                                                <td>{{ annonceDTO.emailPoste }}</td>
+                                                <td>{{ annonceDTO.salaire }}</td>
+                                                <td>{{ annonceDTO.status }}</td>
+                                                <td>
+                                                    {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                                <h4>Annonces</h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Chercher" [(ngModel)]="searchText" />
+                                    </div>
 
-                        <td>
-                          {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
-                        </td>
+                                    <div class="col-sm-6">
 
-                        <td class="text-right">
-                          <button
-                            class="btn btn-primary btn-sm"
-                            [routerLink]="['/createJob', annonceDTO.id]"
-                            [ngClass]="{
+                                    </div>
+                                </div>
+                                &nbsp;
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" aria-label="">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Reference</th>
+                                                <th>Libelle</th>
+                                                <th>Email Poste</th>
+                                                <th>Salaire</th>
+                                                <th>Disponibilité</th>
+                                                <th>Expérience</th>
+                                                <th>Contrat</th>
+                                                <th>Permis</th>
+                                                <th>Addresse</th>
+                                                <th>Description</th>
+                                                <th>status</th>
+                                                <th>Publiée</th>
+                                                <th>Expire</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="
+                          let annonceDTO of listAnnonceDataDTO
+                            | paginate: { itemsPerPage: 15, currentPage: p };
+                          let i = index
+                        ">
+                                                <td>{{ annonceDTO.reference }}</td>
+                                                <td>{{ annonceDTO.libelle }}</td>
+                                                <td>{{ annonceDTO.emailPoste }}</td>
+                                                <td>{{ annonceDTO.salaire }}</td>
+                                                <td>{{ annonceDTO.time }}</td>
+                                                <td>{{ annonceDTO.proExperience }}</td>
+                                                <td>{{ annonceDTO.typeContrat }}</td>
+                                                <td>{{ annonceDTO.permisDto.designation }}</td>
+                                                <td>{{ annonceDTO.addresseDto.ville }}</td>
+                                                <td>{{ annonceDTO.description }}</td>
+                                                <td>{{ annonceDTO.status }}</td>
+                                                <td>
+                                                    {{ annonceDTO.dateCandidature | date: "dd-MM-yyyy" }}
+                                                </td>
+
+                                                <td>
+                                                    {{ annonceDTO.dateCloture | date: "dd-MM-yyyy" }}
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <button class="btn btn-primary btn-sm" [routerLink]="['/createJob', annonceDTO.id]" [ngClass]="{
                               disabled: annonceDTO.status == 'VALIDEE'
-                            }"
-                          >
+                            }">
                             <i
                               class="fa fa-edit"
                               aria-hidden="true"
@@ -786,27 +661,23 @@
                     >
                       Modifier Votre Information
                     </button>
-                    <br /><br />
-                  </div>
-                </div>
+                                                    <br /><br />
+                                </div>
+                            </div>
 
-                <h5>Editer Password</h5>
-                <div class="row">
-                  <div class="col-md-12">
-                    <button
-                      class="btn btn-primary btn-block"
-                      (click)="addEditCustomerPassword(listDataProfil)"
-                      style="cursor: pointer"
-                    >
+                            <h5>Editer Password</h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-block" (click)="addEditCustomerPassword(listDataProfil)" style="cursor: pointer">
                       Modifer Password
                     </button>
-                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 </div>
