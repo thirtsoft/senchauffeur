@@ -10,22 +10,13 @@ import { AccueilComponent } from './layouts/accueil/accueil.component';
 
 
 const routes: Routes = [
-  /* {
-    path: '',
-    component: AccueilComponent
-
-  }, */
+  
   {
     path: '',
     component: DefaultLayoutComponent,
     children: DEFAULT_ROUTES
   },
-  /*
-  {
-    path: 'backend',
-    component: AdminLayoutComponent,
-    children: BACKEND_ROUTES
-  }, */
+ 
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
