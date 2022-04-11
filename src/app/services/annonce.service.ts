@@ -12,18 +12,16 @@ import { AnnonceDto } from './../models/annonce';
 })
 export class AnnonceService {
 
-  public apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
   choixmenu : string  = 'A';
-
   formData:  FormGroup;
-
-//  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
   id;
   currentUser: any = {};
 
   private listners = new Subject<any>();
+
   listen(): Observable<any> {
     return this.listners.asObservable();
   }
@@ -139,7 +137,7 @@ export class AnnonceService {
     this.id = user.id
   }
 
-  getAllAnnonceDtos(page,size): Observable<AnnonceDto[]> {
+  getAllAnnoncesDtos(page,size): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/allAnnonces?page=${page}&size=${size}`).pipe(
       map(
         response => response
@@ -156,7 +154,7 @@ export class AnnonceService {
   }
 
   getAllAnnonceDtosByKey(word,page,size): Observable<AnnonceDto[]> {
-    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/annoncekey?keyword=${word}&page=${page}&size=${size}`).pipe(
+    return this.http.get<AnnonceDto[]>(this.apiServerUrl+"/annonces/annoncekey?libelle="+word+"&page="+page+"&size="+size).pipe(
       map(
         response => response
       )
@@ -180,7 +178,7 @@ export class AnnonceService {
   }
 
   getAnnonceDtosLengthByKey(word): Observable<number> {
-    return this.http.get<number>(`${this.apiServerUrl}/annonces/keySize?keyword=${word}`).pipe(
+    return this.http.get<number>(`${this.apiServerUrl}/annonces/keySize?libelle=${word}`).pipe(
       map(
         response => response
       )

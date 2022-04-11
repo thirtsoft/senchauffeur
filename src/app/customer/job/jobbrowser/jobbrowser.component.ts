@@ -20,12 +20,14 @@ export class JobbrowserComponent implements OnInit {
   pages: Array<number>;
 
   currentTime: number = 0;
-
   currentAnnonceId: number;
-
   previousAnnonceId: number = 1;
-
   searchMode: boolean = false;
+
+  annoncesListDTO: AnnonceDto[] = [];
+  page: number = 1;
+  pageLength: number = 5;
+  annonceSize: number = 0;
 
   constructor(private annonceService: AnnonceService,
               private router: Router,
@@ -35,8 +37,71 @@ export class JobbrowserComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(()=> {
-      this.getListAnnonceDTOs();
+      this.finishAnnonces();
     });
+  }
+
+  finishAnnonces(){
+    let result1 = this.route.snapshot.paramMap.has('id');
+    let result2 = this.route.snapshot.paramMap.has('libelle');
+    if(result1){
+      this.getAnnoncesByPermisId()
+    } else if (result2) {
+      this.getAllAnnoncesContainingKey()
+    } else {
+      this.getAnnonces();
+    }
+  }
+
+  getAnnonces(){
+    this.annonceService.getAnnonceDtoLength().subscribe(
+      data => {
+        this.annonceSize = data
+      }
+    )
+    this.annonceService.getAllAnnoncesDtos(this.page-1,this.pageLength).subscribe(
+      data => {
+        this.annoncesListDTO = data
+        console.log(data)
+      }
+    )
+  }
+
+  getAnnoncesByPermisId(){
+    let idCategory = this.route.snapshot.paramMap.get('id');
+    this.annonceService.getAnnoncesLengthByPermsId(idCategory).subscribe(
+      data => {
+        this.annonceSize = data
+      }
+    )
+    this.annonceService.getAllAnnonceDtosByPermisId(idCategory,this.page-1,this.pageLength).subscribe(
+      data => {
+        this.annoncesListDTO = data
+      }
+    )
+  }
+
+  getAllAnnoncesContainingKey(){
+    let libelle = this.route.snapshot.paramMap.get('libelle');
+    this.annonceService.getAnnonceDtosLengthByKey(libelle).subscribe(
+      data => {
+        this.annonceSize = data
+      }
+    )
+    this.annonceService.getAllAnnonceDtosByKey(libelle,this.page-1,this.pageLength).subscribe(
+      data => {
+        this.annoncesListDTO = data
+      }
+    )
+  }
+
+  doing() {
+    this.finishAnnonces()
+  }
+
+  pageSize(event: Event) {
+    this.pageLength = +(<HTMLInputElement>event.target).value
+    this.finishAnnonces()
   }
 
   getListAnnonceDTOs() {
@@ -75,9 +140,6 @@ export class JobbrowserComponent implements OnInit {
 
   }
 
-  doing() {
-    this.getListAnnonceDTOs();
-  }
 
   getAnnonceListDTOsByReferenceJob() {
     const libelle: string = this.route.snapshot.paramMap.get('libelle');

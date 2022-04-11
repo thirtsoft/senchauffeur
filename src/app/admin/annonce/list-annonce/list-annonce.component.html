@@ -1,81 +1,60 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List of Annonces</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> List des Annonces</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-            <button
-              class="btn-meeting"
-              type="submit"
-              style="margin-left: 5%; width: 30%"
-              (click)="onAddAnnonce()"
-            >
-              Add Annonce
+                        <button class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddAnnonce()">
+                          <i class="fa fa-plus"></i>
+              Ajouter Annonce
             </button>
-          </div>
+                    </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Reference</th>
-                <th>Libellé</th>
-                <th>Annonceur</th>
-                <th>Permis</th>
-                <th>Salaire</th>
-                <th>Email</th>
-                <th>Dispo</th>
-                <th>Status</th>
-                <th>Publié</th>
-                <th>Cloture</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Libellé</th>
+                                <th>Annonceur</th>
+                                <th>Permis</th>
+                                <th>Salaire</th>
+                                <th>Email</th>
+                                <th>Dispo</th>
+                                <th>Status</th>
+                                <th>Publié</th>
+                                <th>Cloture</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let annonceDTO of annonceListDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 35, currentPage: p }
-                "
-              >
-                <td>{{ annonceDTO?.reference }}</td>
-                <td>{{ annonceDTO?.libelle }}</td>
-                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
-                <td>{{ annonceDTO?.permisDto?.designation }}</td>
-                <td>{{ annonceDTO?.salaire }}</td>
-                <td>{{ annonceDTO?.emailPoste }}</td>
-                <td>{{ annonceDTO?.time }}</td>
-                <td>
-                  {{ annonceDTO?.status }}
+                ">
+                                <td>{{ annonceDTO?.reference }}</td>
+                                <td>{{ annonceDTO?.libelle }}</td>
+                                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
+                                <td>{{ annonceDTO?.permisDto?.designation }}</td>
+                                <td>{{ annonceDTO?.salaire }}</td>
+                                <td>{{ annonceDTO?.emailPoste }}</td>
+                                <td>{{ annonceDTO?.time }}</td>
+                                <td>
+                                    {{ annonceDTO?.status }}
 
-                  <span
-                    type="button"
-                    class="btn-warning btn-sm pull-right"
-                    [ngClass]="{ disabled: annonceDTO.status == 'VALIDEE' }"
-                    (click)="addEditStatusAnnonce(annonceDTO)"
-                    style="cursor: pointer"
-                  >
+                                    <button type="button" class="btn-warning btn-sm pull-right" [ngClass]="{ disabled: annonceDTO.status == 'VALIDEE' }" (click)="addEditStatusAnnonce(annonceDTO)" style="cursor: pointer">
                     <i class="fa fa-edit" aria-hidden="true"></i
-                  ></span>
-                </td>
-                <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
+                  ></button>
+                                </td>
+                                <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
 
-                <td>{{ annonceDTO?.dateCloture | date: "dd-MM-yyyy" }}</td>
+                                <td>{{ annonceDTO?.dateCloture | date: "dd-MM-yyyy" }}</td>
 
-                <td>
-                  <button
-                    class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/annonce', annonceDTO.id]"
-                    [ngClass]="{ disabled: annonceDTO.status == 'ARCHIVEE' }"
-                  >
+                                <td>
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/annonce', annonceDTO.id]" [ngClass]="{ disabled: annonceDTO.status == 'ARCHIVEE' }">
                     <i class="fa fa-edit" aria-hidden="true"></i></button
                   >&nbsp;
                   <button

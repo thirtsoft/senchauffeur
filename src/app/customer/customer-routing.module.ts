@@ -75,13 +75,14 @@ const routes: Routes = [
     component: JobbrowserComponent
   },
   {
+    path: 'jobPermis',
+    component: JobbrowserComponent
+  },
+  {
     path: 'searchInJob/:libelle',
     component: JobbrowserComponent
   },
- /*  {
-    path: 'jobs',
-    component: ListJobComponent
-  }, */
+ 
   {
     path: 'jobs/:id',
     component: ListJobComponent
@@ -98,15 +99,7 @@ const routes: Routes = [
     path: 'createJob/:id',
     component: CreateJobComponent
   },
-  /*
-  {
-    path: 'createJob/:id',
-    component: CreateJobComponent
-  },*/
- /*  {
-    path: 'createJob/:id',
-    component: CreateJobComponent
-  }, */
+ 
   {
     path: 'browse-candidate',
     component: CandidatebrowerComponent
