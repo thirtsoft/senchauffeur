@@ -340,8 +340,8 @@ public class ChauffeurController implements ChauffeurApi {
 	}
 
 	@Override
-	public ResponseEntity<List<ChauffeurDto>> getChauffeurDtosByKeyWord(String keyWord, int page, int size) {
-		List<ChauffeurDto> chauffeurDtoList = chauffeurService.getAllChauffeurDtosByKey(keyWord, page, size);
+	public ResponseEntity<List<ChauffeurDto>> getChauffeurDtosByKeyWord(String disponibility, int page, int size) {
+		List<ChauffeurDto> chauffeurDtoList = chauffeurService.getAllChauffeurDtosByKey(disponibility, page, size);
         return new ResponseEntity<>(chauffeurDtoList, HttpStatus.OK);
 	}
 
@@ -356,8 +356,8 @@ public class ChauffeurController implements ChauffeurApi {
 	}
 
 	@Override
-	public long sizeOfChauffeursByKey(String keyWord) {
-		return chauffeurService.getChauffeurDtosSizeByKey(keyWord);
+	public long sizeOfChauffeursByKey(String disponibility) {
+		return chauffeurService.getChauffeurDtosSizeByKey(disponibility);
 	}
 
 	

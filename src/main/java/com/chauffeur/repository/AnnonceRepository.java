@@ -81,11 +81,11 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long> {
 	// Like  key%  %key  %key%
     Page<Annonce> findByLibelleContaining(String libelle, Pageable pageable);
 
-    @Query("select count (id) from Annonce where permis.id = ?1")
+    @Query("select count(id) from Annonce where permis.id = ?1")
     long getAnnonceLengthByPermisId(long id);
 
-    @Query("select count (id) from Annonce where libelle LIKE %?1%")
-    long getAnnonceSizeByKey(String key);
+    @Query("select count(id) from Annonce where libelle LIKE %?1%")
+    long getAnnonceSizeByKey(String libelle);
 				
 		
 

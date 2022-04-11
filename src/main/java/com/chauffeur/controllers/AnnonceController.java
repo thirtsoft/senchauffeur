@@ -276,8 +276,8 @@ public class AnnonceController implements AnnonceApi {
 	}
 
 	@Override
-	public ResponseEntity<List<AnnonceDto>> getAnnoncesByKeyWord(String keyWord, int page, int size) {
-		List<AnnonceDto> annonceDtoList = annonceService.getAllAnnonceDtosByKey(keyWord, page, size);
+	public ResponseEntity<List<AnnonceDto>> getAnnoncesByKeyWord(String libelle, int page, int size) {
+		List<AnnonceDto> annonceDtoList = annonceService.getAllAnnonceDtosByKey(libelle, page, size);
         return new ResponseEntity<>(annonceDtoList, HttpStatus.OK);
 	}
 
@@ -292,8 +292,8 @@ public class AnnonceController implements AnnonceApi {
 	}
 
 	@Override
-	public long sizeOfAnnoncesByKey(String keyWord) {
-		return annonceService.getAnnonceDtosSizeByKey(keyWord);
+	public long sizeOfAnnoncesByKey(String libelle) {
+		return annonceService.getAnnonceDtosSizeByKey(libelle);
 	}
 	
 

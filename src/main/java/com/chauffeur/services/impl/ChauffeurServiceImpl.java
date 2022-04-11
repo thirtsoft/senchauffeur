@@ -256,9 +256,9 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 	}
 
 	@Override
-	public List<ChauffeurDto> getAllChauffeurDtosByKey(String key, int page, int size) {
+	public List<ChauffeurDto> getAllChauffeurDtosByKey(String disponibility, int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
-	    return chauffeurRepository.findByReferenceContaining(key, pageable)
+	    return chauffeurRepository.findByDisponibityContaining(disponibility, pageable)
 	    		 .map(ChauffeurDto::fromEntityToDto).getContent();
 	}
 
@@ -273,8 +273,8 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 	}
 
 	@Override
-	public long getChauffeurDtosSizeByKey(String key) {
-		return chauffeurRepository.getChauffeurSizeByKey(key);
+	public long getChauffeurDtosSizeByKey(String disponibility) {
+		return chauffeurRepository.getChauffeurSizeByKey(disponibility);
 	}
 
 

@@ -324,7 +324,7 @@ public interface AnnonceApi {
 	    @ApiResponse(code = 200, message = "La liste des Annonces est")
 	
 	})
-    ResponseEntity<List<AnnonceDto>> getAnnoncesByKeyWord(@RequestParam String keyWord,@RequestParam int page,@RequestParam int size);
+    ResponseEntity<List<AnnonceDto>> getAnnoncesByKeyWord(@RequestParam String libelle,@RequestParam int page,@RequestParam int size);
 
     @GetMapping(value = APP_ROOT + "/annonces/annonceSize")
     @ApiOperation(value = "Calculer la longueur des Annonces",
@@ -351,6 +351,6 @@ public interface AnnonceApi {
 	    @ApiResponse(code = 200, message = "La taille des Annonces par mot clé est")
 	
 	})
-    long sizeOfAnnoncesByKey(@RequestParam String keyWord);
+    long sizeOfAnnoncesByKey(@RequestParam String libelle);
 
 }

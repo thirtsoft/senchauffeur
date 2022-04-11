@@ -56,12 +56,12 @@ public interface ChauffeurService {
 
     List<ChauffeurDto> getAllChauffeurDtosByIdAddress(Long id, int page, int size);
    
-    List<ChauffeurDto> getAllChauffeurDtosByKey(String key, int page, int size);
+    List<ChauffeurDto> getAllChauffeurDtosByKey(String disponibility, int page, int size);
 
     long getAllChauffeurDtosSize();
 
     long getChauffeurDtosByAddressIdLength(Long id);
     
-    long getChauffeurDtosSizeByKey(String key);
+    long getChauffeurDtosSizeByKey(String disponibility);
     
 }

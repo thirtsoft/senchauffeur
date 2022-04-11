@@ -344,7 +344,7 @@ public interface ChauffeurApi {
 	    @ApiResponse(code = 200, message = "La liste des Chauffeurs est")
 	
 	})
-    ResponseEntity<List<ChauffeurDto>> getChauffeurDtosByKeyWord(@RequestParam String keyWord,@RequestParam int page,@RequestParam int size);
+    ResponseEntity<List<ChauffeurDto>> getChauffeurDtosByKeyWord(@RequestParam String disponibility,@RequestParam int page,@RequestParam int size);
 
     @GetMapping(value = APP_ROOT + "/chauffeurs/chauffeurDtoSize")
     @ApiOperation(value = "Calculer la longueur des Chauffeurs",
@@ -371,7 +371,7 @@ public interface ChauffeurApi {
 	    @ApiResponse(code = 200, message = "La taille des Chauffeurs par mot clé est")
 	
 	})
-    long sizeOfChauffeursByKey(@RequestParam String keyWord);
+    long sizeOfChauffeursByKey(@RequestParam String disponibility);
 
 
 }
