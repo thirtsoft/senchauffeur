@@ -106,7 +106,7 @@ export class CreateChauffeurComponent implements OnInit {
     )
   }
 
-  public onAddChauffeur() {
+  onAddChauffeur() {
     this.chauffeurService.addChauffeurDTO(this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
         alert('Chauffeur created');
@@ -118,7 +118,7 @@ export class CreateChauffeurComponent implements OnInit {
     );
   }
 
-  public onUpdateChauffeur() {
+  onUpdateChauffeur() {
     this.chauffeurService.updateChauffeurDTO(this.formDataChauffeurDTO.id, this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
         this.router.navigate(['/backend/admin/chauffeurs']);
@@ -128,18 +128,6 @@ export class CreateChauffeurComponent implements OnInit {
       }
     );
   }
-/*
-  onSelectPhotoFile(event) {
-    const file = event.target.files[0];
-    this.chauffeurPhotoFile = file;
-  }*/
-
-  /*
-  onSelectCvFile(event) {
-    const file = event.target.files[0];
-    this.chauffeurCvFile = file;
-  }
-  */
 
   onSaveChauffeurWithFiles() {
     let formData = new FormData();
@@ -152,7 +140,7 @@ export class CreateChauffeurComponent implements OnInit {
     formData.append('photoChauffeur', this.currentPhotoFileUpload);
     formData.append('cvChauffeur', this.currentCvFileUpload);
     console.log("FormData--", formData);
-    this.chauffeurService.addChauffeurDTOWithFiles(formData)
+    this.chauffeurService.addChauffeurWithPhotoAndCvFileInFolder(formData)
       .subscribe((response: ChauffeurDto)=> {
         console.log('Response--', response);
         this.toastr.success('avec succès','Chauffeur Ajoutée', {
@@ -160,7 +148,7 @@ export class CreateChauffeurComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/chauffeurs").then(() => {
-    
+  
         });
       },
       (error: HttpErrorResponse) => {
@@ -192,7 +180,7 @@ export class CreateChauffeurComponent implements OnInit {
     this.currentPhotoFileUpload = this.chauffeurPhotoFile.item(0)
     console.log(this.currentPhotoFileUpload);
     console.log(this.paramId);
-    this.chauffeurService.uploadPhotoChauffeurDto(this.currentPhotoFileUpload, this.formDataChauffeurDTO.id)
+    this.chauffeurService.uploadPhotoOfChauffeurInFolder(this.currentPhotoFileUpload, this.formDataChauffeurDTO.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -201,7 +189,7 @@ export class CreateChauffeurComponent implements OnInit {
             positionClass: 'toast-top-right',
           });
           this.router.navigateByUrl("admin/accueil/chauffeurs").then(() => {
-            window.location.reload();
+  
           });
         } else if (event instanceof HttpResponse) {
           this.editPhoto=false;
@@ -223,7 +211,7 @@ export class CreateChauffeurComponent implements OnInit {
     this.currentCvFileUpload = this.chauffeurCvFile.item(0)
     console.log(this.currentCvFileUpload);
     console.log(this.paramId);
-    this.chauffeurService.uploadCvChauffeurDto(this.currentCvFileUpload, this.formDataChauffeurDTO.id)
+    this.chauffeurService.uploadCvOfChauffeurInFolder(this.currentCvFileUpload, this.formDataChauffeurDTO.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -232,7 +220,7 @@ export class CreateChauffeurComponent implements OnInit {
             positionClass: 'toast-top-right',
           });
           this.router.navigateByUrl("admin/accueil/chauffeurs").then(() => {
-            window.location.reload();
+  
           });
         } else if (event instanceof HttpResponse) {
           this.editCv=false;

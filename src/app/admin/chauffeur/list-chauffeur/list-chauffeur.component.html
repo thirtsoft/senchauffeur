@@ -1,116 +1,79 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> Liste des Chauffeurs</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> Liste des Chauffeurs</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-            <button
-              class="btn-meeting"
-              type="submit"
-              style="margin-left: 5%; width: 30%"
-              (click)="onAddChauffeur()"
-            >
+                        <button class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddChauffeur()">
               Ajouter Chauffeur
             </button>
-          </div>
+                    </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Photo</th>
-                <th>CV</th>
-                <th>Permis</th>
-                <th>Chauffeur</th>
-                <th>Téléphone</th>
-                <th>Email</th>
-                <th>Expérience</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>CV</th>
+                                <th>Permis</th>
+                                <th>Chauffeur</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                                <th>Expérience</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let chauffDTO of chauffeurListDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 30, currentPage: p };
                   let i = index
-                "
-              >
-                <td>
-                  <img
-                    height="90"
-                    width="90"
-                    class="img-circle"
-                    src="{{
+                ">
+                                <td>
+                                    <img height="90" width="90" class="img-circle" src="{{
                       this.chauffeurService.apiServerUrl +
-                        '/chauffeurs/photoChauffeur/' +
+                        '/chauffeurs/photoChauffeurInFolder/' +
                         chauffDTO.id
-                    }}"
-                  />
-                  <!--  <a (click)="addEditPhotoChauffeur(i)" style="cursor: pointer">
-                    <i class="fa fa-edit" aria-hidden="true"></i>
-                  </a> -->
-                </td>
+                    }}" />
 
-                <td>
-                  {{ chauffDTO?.cvChauffeur }} &nbsp;
-                  <!--  <a
-                    (click)="addEditCvChauffeur(i)"
-                    style="cursor: pointer; align-items: flex-end"
-                  >
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a
-                  >&nbsp;&nbsp; -->
-                  <a
-                    href="{{
+                                </td>
+
+                                <td>
+                                    {{ chauffDTO?.cvChauffeur }} &nbsp;
+
+                                    <a href="{{
                       this.chauffeurService.apiServerUrl +
-                        '/chauffeurs/downloadContratFile/' +
+                        '/chauffeurs/downloadCvFile/' +
                         chauffDTO.cvChauffeur
-                    }}"
-                    class="cv"
-                    >&nbsp;&nbsp;
-                    <i
-                      class="fa fa-download"
-                      style="cursor: pointer; align-items: flex-end"
-                    ></i
-                    >&nbsp;&nbsp;
+                    }}" class="cv">
+                                        <i class="fa fa-download" style="cursor: pointer; align-items: flex-end"></i
+                    >&nbsp;
                   </a>
-                </td>
-                <td>{{ chauffDTO?.permisDto?.designation }}</td>
-                <td>{{ chauffDTO?.firstName }} {{ chauffDTO?.lastName }}</td>
-                <td>{{ chauffDTO?.phoneChauffeur }}</td>
-                <td>{{ chauffDTO?.email }}</td>
-                <td>{{ chauffDTO?.nbreAnneeExperience }}</td>
+                                </td>
+                                <td>{{ chauffDTO?.permisDto?.designation }}</td>
+                                <td>{{ chauffDTO?.firstName }} {{ chauffDTO?.lastName }}</td>
+                                <td>{{ chauffDTO?.phoneChauffeur }}</td>
+                                <td>{{ chauffDTO?.email }}</td>
+                                <td>{{ chauffDTO?.nbreAnneeExperience }}</td>
 
-                <td>
-                  <button
-                    class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/chauffeur', chauffDTO.id]"
-                  >
-                    <i class="fa fa-edit" aria-hidden="true"></i></button
-                  >&nbsp;
-                  <button
-                    class="btn btn-success btn-sm"
-                    [routerLink]="[
+                                <td>
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/chauffeur', chauffDTO.id]">
+                    <i class="fa fa-edit" aria-hidden="true"></i></button>&nbsp;
+                                        <button class="btn btn-success btn-sm" [routerLink]="[
                       '/admin/accueil/viewchauffeur',
                       chauffDTO.id
-                    ]"
-                  >
+                    ]">
                     <i class="fa fa-eye" aria-hidden="true"></i></button
                   >&nbsp;
 
                   <button
-                  class="btn btn-warning btn-sm"
+                  class="btn btn-primary btn-sm"
                   (click)="sendMailToChauffeur(chauffDTO)"
                 >
-                  <i class="fa fa-envelop" aria-hidden="true"></i></button
+                  <i class="fa fa-envelope" aria-hidden="true"></i></button
                 >&nbsp;
 
                   <button

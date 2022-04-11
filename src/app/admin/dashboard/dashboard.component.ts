@@ -9,6 +9,11 @@ import { ChauffeurService } from './../../services/chauffeur.service';
 import { AnnonceService } from './../../services/annonce.service';
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { UtilisateurDto } from 'src/app/models/utilisateur';
+import { Login } from 'src/app/auth/security/login';
+import { AuthService } from 'src/app/auth/security/auth.service';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,22 +23,46 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 export class DashboardComponent implements OnInit {
 
   listNotificationDTO: NotationDto[];
-  listRecruteurDTO: RecruteurDto[];
   listChauffeurDTO: ChauffeurDto[];
+  listUtilisateurDTO: UtilisateurDto[];
 
   numberOfChauffeur;
   numberOfAnnonce;
   numberOfRecruteur;
 
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  loginInfo: Login;
+
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
+
   constructor(public dasboardService: DashboardService,
-              private noteService: NotationService,
-              private chauffService: ChauffeurService,
-              private recService: RecruteurService,
-              private router: Router,
+              public noteService: NotationService,
+              public UserService: UtilisateurService,
+              public authService: AuthService,
+              public tokenStorage: TokenStorageService,
+              public chauffService: ChauffeurService,
+              public recService: RecruteurService,
+              public router: Router,
 
   ) {}
 
   ngOnInit(): void {
+    if(this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
 
     this.getNumberOfChauffeurs();
 
@@ -78,10 +107,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public getListRecruteurDTO() {
-    this.recService.getRecruteurDTOs().subscribe(
-      (response: RecruteurDto[]) => {
-        this.listRecruteurDTO = response;
-        console.log(this.listRecruteurDTO);
+    this.UserService.getAllUtilisateurDtosOrderByIdDesc().subscribe(
+      (response: UtilisateurDto[]) => {
+        this.listUtilisateurDTO = response;
+        console.log(this.listUtilisateurDTO);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

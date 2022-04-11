@@ -199,18 +199,18 @@ export class ChauffeurService {
     )
   }
 
-  public addChauffeurWithPhotoAndCvFileInFolder(formData: FormData): Observable<any> {
-    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurPhotoInFolder/`, formData, {
+  addChauffeurWithPhotoAndCvFileInFolder(formData: FormData): Observable<any> {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/createWithFilesInFolder/`, formData, {
       reportProgress: true,
       responseType: 'text'
     });
     return this.http.request(req);
   }
 
-  uploadPhotoOfChquffeurInFolder(file: File, id: number): Observable<HttpEvent<{}>> {
+  uploadPhotoOfChauffeurInFolder(file: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', this.apiServerUrl+'/chauffeurs/createWithFilesInFolder/' + id, formdata, {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurPhotoInFolder/${id}`, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
@@ -225,7 +225,7 @@ export class ChauffeurService {
   uploadCvOfChauffeurInFolder(file: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', this.apiServerUrl+'/chauffeurs/uploadChauffeurCvInFolder/' + id, formdata, {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/chauffeurs/uploadChauffeurCvInFolder/${id}`, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
