@@ -3,6 +3,7 @@ package com.chauffeur.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.chauffeur.models.Role;
 import com.chauffeur.models.Utilisateur;
 
 import lombok.AllArgsConstructor;
@@ -46,7 +47,7 @@ public class UtilisateurDto {
 	 
 	 private String message;
 
-	 private Set<RoleDto> roles = new HashSet<>();
+	 private Set<Role> roles = new HashSet<>();
 	 
 	 public UtilisateurDto(String username, String email, String password) {
 	        this.username = username;
@@ -74,6 +75,7 @@ public class UtilisateurDto {
 	            .photo(utilisateur.getPhoto())
 	            .information(utilisateur.getInformation())
 	            .password(utilisateur.getPassword())
+				 .roles(utilisateur.getRoles())
 	            .build();
 
 	 }

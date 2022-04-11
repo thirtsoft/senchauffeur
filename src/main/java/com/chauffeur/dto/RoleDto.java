@@ -15,9 +15,6 @@ public class RoleDto {
 
     private RoleName name;
 
-   /* public RoleDto() {
-    }
-*/
     public RoleDto(RoleName name) {
         this.name = name;
     }
@@ -27,7 +24,7 @@ public class RoleDto {
         this.name = name;
     }
 
-    public static RoleDto formEntityToDto(Role role) {
+    public static RoleDto fromEntityToDto(Role role) {
         if (role == null) {
             return null;
         }
