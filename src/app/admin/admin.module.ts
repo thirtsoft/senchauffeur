@@ -85,6 +85,7 @@ import { ListValidatedReservationComponent } from './reservation/list-validated-
 import { UpdateEtatJetonComponent } from './jeton/update-etat-jeton/update-etat-jeton.component';
 import { SendEmailToAllVisitorComponent } from './email/send-email-to-all-visitor/send-email-to-all-visitor.component';
 import { ResponseMailComponent } from './email/response-mail/response-mail.component';
+import { ActivatedUserComponent } from './recruteur/activated-user/activated-user.component';
 
 
 @NgModule({
@@ -146,7 +147,9 @@ import { ResponseMailComponent } from './email/response-mail/response-mail.compo
     ListValidatedReservationComponent,
     UpdateEtatJetonComponent,
     SendEmailToAllVisitorComponent,
-    ResponseMailComponent
+    ResponseMailComponent,
+    ActivatedUserComponent
+   
   ],
   imports: [
     CommonModule,
@@ -187,7 +190,8 @@ import { ResponseMailComponent } from './email/response-mail/response-mail.compo
     UpdatePasswordComponent, UpdateStatusOfReservationComponent,
     UpdateEtatJetonComponent, ResponseMailComponent,
     SendEmailToChauffeurComponent, SendEmailToEmployeurComponent,
-    SendEmailToNewsleterComponent, SendEmailToAllVisitorComponent
+    SendEmailToNewsleterComponent, SendEmailToAllVisitorComponent,
+    ActivatedUserComponent
 
   ]
 })

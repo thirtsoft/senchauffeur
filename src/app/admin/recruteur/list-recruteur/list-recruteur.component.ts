@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from "@angu
 import { UtilisateurService } from './../../../services/utilisateur.service';
 import { ToastrService } from 'ngx-toastr';
 import { UtilisateurDto } from './../../../models/utilisateur';
+import { ActivatedUserComponent } from '../activated-user/activated-user.component';
 
 @Component({
   selector: 'app-list-recruteur',
@@ -54,6 +55,17 @@ export class ListRecruteurComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  ActivatedUser(item : UtilisateurDto) {
+    this.crudApi.choixmenu = "M";
+    this.crudApi.formData = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(ActivatedUserComponent, dialogConfig);
+
   }
 
   sendMailToEmployeur(item: UtilisateurDto) {

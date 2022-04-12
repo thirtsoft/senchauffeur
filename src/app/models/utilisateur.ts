@@ -11,6 +11,7 @@ export class Utilisateur {
   website: string;
   secteurActivite: string;
   information: string;
+  active: boolean;
   photo: string;
   password: string;
 
@@ -29,6 +30,7 @@ export class UtilisateurDto {
   secteurActivite: string;
   information: string;
   photo: string;
+  active: boolean;
   password: string;
 
   roles?: Role[];

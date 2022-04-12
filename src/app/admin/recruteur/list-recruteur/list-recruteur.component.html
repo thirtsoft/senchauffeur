@@ -1,59 +1,51 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> Liste des Recruteurs</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
-          </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> Liste des Recruteurs</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+                    </div>
 
-          <table class="table table-striped">
-            <thead class="thead-inverse">
-              <tr>
-                <th>Recruteur</th>
-                <th>Username</th>
-                <th>Entreprise</th>
-                <th>Mobile</th>
-                <th>Email</th>
-                <th>Ville</th>
-                <th>Sect.Activité</th>
-                <th>Information</th>
-                <th>Website</th>
-                <th>Action</th>
-              </tr>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Recruteur</th>
+                                <th>Username</th>
+                                <th>Entreprise</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Ville</th>
+                                <th>Sect.Activité</th>
+                                <th>Active</th>
+                                <th>Action</th>
+                            </tr>
 
-            </thead>
-            <tbody
-              *ngFor="
+                        </thead>
+                        <tbody *ngFor="
               let recruteur of recruteurListDTO
                 | filter: searchText
                 | paginate: { itemsPerPage: 15, currentPage: p }
                 ">
-              <tr *ngIf="recruteur.roles[0]?.name == 'ROLE_USER'"
+                            <tr *ngIf="recruteur.roles[0]?.name == 'ROLE_USER'">
+                                <td>{{ recruteur?.name }}</td>
+                                <td>{{ recruteur?.username }}</td>
+                                <td>{{ recruteur?.nomEntreprise }}</td>
+                                <td>{{ recruteur?.mobile }}</td>
+                                <td>{{ recruteur?.email }}</td>
+                                <td>{{ recruteur?.villeRecruteur }}</td>
+                                <td>{{ recruteur?.secteurActivite }}</td>
+                                <td>{{ recruteur?.active }}
+                                    <button type="button" class="btn btn-primary btn-sm pull-right" (click)="ActivatedUser(recruteur)" style="cursor: pointer;">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </button>
 
-              >
-                <td>{{ recruteur?.name }}</td>
-                <td>{{ recruteur?.username }}</td>
-                <td>{{ recruteur?.nomEntreprise }}</td>
-                <td>{{ recruteur?.mobile }}</td>
-                <td>{{ recruteur?.email }}</td>
-                <td>{{ recruteur?.villeRecruteur }}</td>
-                <td>{{ recruteur?.secteurActivite }}</td>
-                <td>{{ recruteur?.information }}</td>
-                <td>{{ recruteur?.website }}</td>
+                                </td>
 
-                <td>
-                  <button
-                    class="btn btn-warning btn-sm"
-                    (click)="sendMailToEmployeur(recruteur)"
-                  >
-                    <i class="fa fa-envelop" aria-hidden="true"></i></button
+                                <td>
+                                    <button class="btn btn-warning btn-sm" (click)="sendMailToEmployeur(recruteur)">
+                    <i class="fa fa-envelope" aria-hidden="true"></i></button
                   >&nbsp;
                   <button
                     class="btn btn-success btn-sm"
@@ -62,7 +54,7 @@
                       recruteur.id
                     ]"
                   >
-                    <i class="fa fa-mobile-phone" aria-hidden="true"></i></button
+                    <i class="fa fa-eye" aria-hidden="true"></i></button
                   >&nbsp;
 
                 </td>

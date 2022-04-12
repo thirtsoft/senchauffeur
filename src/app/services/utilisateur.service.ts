@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Utilisateur, UtilisateurDto } from './../models/utilisateur';
 
@@ -15,8 +15,8 @@ export class UtilisateurService {
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
+  formData:  FormGroup;
 
-//  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
   constructor(private http: HttpClient) {
   }
@@ -41,7 +41,6 @@ export class UtilisateurService {
     return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${userId}`);
   }
 
-  /************************* UtilisateurDTO *****************/
   /*********************** UtilisateurDTO ********************/
 
   public getUtilisateurDTOs(): Observable<UtilisateurDto[]> {
@@ -64,11 +63,18 @@ export class UtilisateurService {
     return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${utilisateurId}`, utilisateurDTO);
   }
 
+  activatedUser(id: number, isActive: boolean): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    let data = {"isActive":isActive};
+    return this.http.patch(`${this.apiServerUrl}/utilisateurs/activatedUser/`+id+'?isActive='+data.isActive, {headers: headers});
+  }
+
   public getUserAvatar(id: number){
     return this.http.get(`${this.apiServerUrl}/utilisateurs/avatar/`+ id);
   }
 
-  uploadPhotoUtilisateur(file: File, id: number): Observable<HttpEvent<{}>> {
+  public uploadPhotoUtilisateur(file: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
     const req = new HttpRequest('POST', this.apiServerUrl+'/utilisateurs/uploadUserPhoto/' + id, formdata, {
