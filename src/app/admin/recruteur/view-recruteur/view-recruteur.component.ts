@@ -2,8 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RecruteurService } from './../../../services/recruteur.service';
-import { RecruteurDto } from './../../../models/recruteur';
+
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { UtilisateurDto } from 'src/app/models/utilisateur';
 
 @Component({
   selector: 'app-view-recruteur',
@@ -12,11 +13,11 @@ import { RecruteurDto } from './../../../models/recruteur';
 })
 export class ViewRecruteurComponent implements OnInit {
 
-  recruteurDTO: RecruteurDto;
+  recruteurDTO: UtilisateurDto;
 
   paramId :any = 0;
 
-  constructor(public recruService: RecruteurService,
+  constructor(public crudApi: UtilisateurService,
               private router: Router,
               private route: ActivatedRoute,
   ) {}
@@ -31,8 +32,8 @@ export class ViewRecruteurComponent implements OnInit {
 
   getRecruteurDTOById(id: number) {
     console.log('getOne');
-    this.recruService.getRecruteurDTOById(id).subscribe(
-      (response: RecruteurDto) => {
+    this.crudApi.getUtilisateurDTOById(id).subscribe(
+      (response: UtilisateurDto) => {
         console.log('data--', response);
         this.recruteurDTO = response;
       },
@@ -42,10 +43,5 @@ export class ViewRecruteurComponent implements OnInit {
     );
 
   }
-
-  onSelectCvFile(event){}
-
-  onSelectPhotoFile(event) {}
-
 
 }

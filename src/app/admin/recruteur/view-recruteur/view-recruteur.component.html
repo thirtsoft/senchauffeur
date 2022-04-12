@@ -1,140 +1,137 @@
 <!-- <div class="content-block">
   <div class="section-full content-inner-1"> -->
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-12 col-sm-12">
-                  <div class="container-fluid">
-                      <div class="row">
-                          <h3>Detail Recruteur</h3>
-                          <div class="col-lg-8" style="margin-top: 30px;">
-                            <h5>Information Personelle du Recruteur</h5>
-                          </div>
-                          <form #addChauffeurForm="ngForm" name="form">
-                              <div class="row">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Detail Recruteur</h3>
+                    <div class="col-lg-8" style="margin-top: 30px;">
+                        <h5>Information Personelle du Recruteur</h5>
+                    </div>
+                    <form #addChauffeurForm="ngForm" name="form">
+                        <div class="row">
 
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>FirstName</label>
-                                          <input type="text" class="form-control" [(ngModel)]="recruteurDTO.firstName" name="firstName" id="firstName" #firstName="ngModel" readonly />
-                                      </div>
-                                  </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nom complet</label>
+                                    <input type="text" class="form-control" [(ngModel)]="recruteurDTO.name" name="name" id="name" #name="ngModel" readonly />
+                                </div>
+                            </div>
 
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>LastName</label>
-                                          <input type="text" class="form-control" [(ngModel)]="recruteurDTO.lastName" name="lastName" id="lastName" #lastName="ngModel" readonly />
-                                      </div>
-
-                                  </div>
-
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>Addresse</label>
-                                          <div class="form-group">
-                                              <input type="text" class="form-control" [(ngModel)]="recruteurDTO.addressRecruteur" name="sexe" id="sexe" #sexe="ngModel" readonly />
-
-                                          </div>
-                                      </div>
-
-                                  </div>
-
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>Phone Personnelle</label>
-                                          <div class="form-group">
-                                              <input type="text" class="form-control" [(ngModel)]="recruteurDTO.phoneRecruteur" name="reference" id="reference" #reference="ngModel" readonly />
-
-                                          </div>
-                                      </div>
-
-                                  </div>
-
-                              </div>
-
-                          </form>
-
-                          <div class="col-lg-8" style="margin-top: 30px; text-align: center;">
-                            <h5>Information de l'entreprise</h5>
-                          </div>
-                          <form #addChauffeurForm="ngForm" name="form">
-
-                              <div class="row">
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>Entreprise</label>
-                                          <input type="text" class="form-control" [(ngModel)]="recruteurDTO.nomEntreprise" name="addressActuel" id="addressActuel" #addressActuel="ngModel" readonly />
-                                      </div>
-
-                                  </div>
-
-                                  <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Phone Profesionnelle</label>
-                                        <input type="text" class="form-control" [(ngModel)]="recruteurDTO.phoneRecruteur" name="phoneChauffeur" id="phoneChauffeur" #phoneChauffeur="ngModel" readonly />
-                                    </div>
-
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Addresse</label>
+                                    <input type="text" class="form-control" [(ngModel)]="recruteurDTO.addressRecruteur" name="addressRecruteur" id="addressRecruteur" #addressRecruteur="ngModel" readonly />
                                 </div>
 
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>Website</label>
-                                          <input type="text" class="form-control" [(ngModel)]="recruteurDTO.website" name="phoneChauffeur" id="phoneChauffeur" #phoneChauffeur="ngModel" readonly />
-                                      </div>
+                            </div>
 
-                                  </div>
-
-
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>Email Professionelle </label>
-                                          <input type="text" class="form-control" [(ngModel)]="recruteurDTO.email" name="email" id="email" #email="ngModel" readonly />
-
-                                      </div>
-                                  </div>
-
-                                  <div class="col-sm-6">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email</label>
                                     <div class="form-group">
-                                        <label>Secteur Activité </label>
-                                        <input type="text" class="form-control" [(ngModel)]="recruteurDTO.secteurActivite" name="secteurActivite" id="secteurActivite" #secteurActivite="ngModel" readonly />
+                                        <input type="text" class="form-control" [(ngModel)]="recruteurDTO.email" name="email" id="email" #email="ngModel" readonly />
 
                                     </div>
                                 </div>
 
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label>Description </label>
-                                          <textarea class="form-control" [(ngModel)]="recruteurDTO.information" name="information" id="information" #information="ngModel" readonly cols="5" rows="5"></textarea>
-                                      </div>
-                                  </div>
+                            </div>
 
-                              </div>
-                          </form>
-                      </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nom utilisateur</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="recruteurDTO.username" name="username" id="username" #username="ngModel" readonly />
 
-                  </div>
-              </div>
+                                    </div>
+                                </div>
 
-              <div class="col-lg-4">
-                  <div class="sticky-top">
-                      <div class="row">
-                          <div class="col-lg-12 col-md-6">
-                              <div class="m-b30">
-                                 <!--  <img src="{{this.chauffService.apiServerUrl+'/chauffeurs/photoChauffeur/'+recruteurDTO.id}}" alt="Product Image"> -->
-                              </div>
-                          </div>
+                            </div>
 
-                      </div>
-                  </div>
-              </div>
+                        </div>
+
+                    </form>
+
+                    <div class="col-lg-8" style="margin-top: 30px; text-align: center;">
+                        <h5>Information de l'entreprise</h5>
+                    </div>
+                    <form #addChauffeurForm="ngForm" name="form">
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Entreprise</label>
+                                    <input type="text" class="form-control" [(ngModel)]="recruteurDTO.nomEntreprise" name="nomEntreprise" id="nomEntreprise" #nomEntreprise="ngModel" readonly />
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Secteur Activité</label>
+                                    <input type="text" class="form-control" [(ngModel)]="recruteurDTO.secteurActivite" name="secteurActivite" id="secteurActivite" #secteurActivite="ngModel" readonly />
+                                </div>
+
+                            </div>
 
 
-          </div>
 
-          <div class="form-group" style="margin-bottom: 80px;">
-            <button routerLink="/backend/admin/recruteur" type="button" class="btn btn-warning btn-lg btn-block"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</button>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Website</label>
+                                    <input type="text" class="form-control" [(ngModel)]="recruteurDTO.website" name="website" id="website" #website="ngModel" readonly />
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Activé </label>
+                                    <input type="text" class="form-control" [(ngModel)]="recruteurDTO.active" name="active" id="active" #active="ngModel" readonly />
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Description </label>
+                                    <textarea class="form-control" [(ngModel)]="recruteurDTO.information" name="information" id="information" #information="ngModel" readonly cols="5" rows="5"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
 
-      </div>
+        <div class="col-lg-4">
+            <div class="sticky-top">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <div class="m-b30">
+                            <!--  <img src="{{this.chauffService.apiServerUrl+'/chauffeurs/photoChauffeur/'+recruteurDTO.id}}" alt="Product Image"> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="form-group" style="margin-bottom: 80px;">
+        <button routerLink="/admin/accueil/recruteurs" type="button" class="btn btn-warning btn-lg btn-block"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</button>
+    </div>
+
+</div>
 <!--   </div>
 
 
