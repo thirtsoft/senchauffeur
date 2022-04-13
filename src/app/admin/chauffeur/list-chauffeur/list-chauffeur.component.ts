@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ChauffeurService } from './../../../services/chauffeur.service';
 import { ChauffeurDto } from './../../../models/chauffeur';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-chauffeur',
@@ -17,12 +18,23 @@ import { ChauffeurDto } from './../../../models/chauffeur';
 export class ListChauffeurComponent implements OnInit {
 
   chauffeurListDTO: ChauffeurDto[];
+  
+  roles: string[];
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
+
+  userId;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(public chauffeurService: ChauffeurService,
+              private tokenService: TokenStorageService,
               public toastr: ToastrService,
               private router: Router,
               private matDialog: MatDialog,
@@ -30,6 +42,18 @@ export class ListChauffeurComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+
+      this.userId = user.id;
+    }
     this.getListChauffeurDTOs();
   }
 

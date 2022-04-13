@@ -7,7 +7,7 @@
                     <div class="row">
                         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-                        <button class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddAnnonce()">
+                        <button *ngIf="this.showAdminBoard || this.showManagerBoard" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddAnnonce()">
                           <i class="fa fa-plus"></i>
               Ajouter Annonce
             </button>
@@ -18,13 +18,13 @@
                             <tr>
                                 <th>Reference</th>
                                 <th>Libellé</th>
-                                <th>Annonceur</th>
+                                <th>Recruteur</th>
                                 <th>Permis</th>
                                 <th>Salaire</th>
                                 <th>Email</th>
                                 <th>Dispo</th>
                                 <th>Status</th>
-                                <th>Publié</th>
+
                                 <th>Cloture</th>
                                 <th>Action</th>
                             </tr>
@@ -45,18 +45,18 @@
                                 <td>
                                     {{ annonceDTO?.status }}
 
-                                    <button type="button" class="btn-warning btn-sm pull-right" [ngClass]="{ disabled: annonceDTO.status == 'VALIDEE' }" (click)="addEditStatusAnnonce(annonceDTO)" style="cursor: pointer">
-                    <i class="fa fa-edit" aria-hidden="true"></i
-                  ></button>
+                                    <button class="btn btn-warning btn-sm pull-right" (click)="addEditStatusAnnonce(annonceDTO)" [disabled]="annonceDTO.status==='VALIDEE'" style="cursor: pointer;">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                  </button>
+
                                 </td>
-                                <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
 
                                 <td>{{ annonceDTO?.dateCloture | date: "dd-MM-yyyy" }}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/annonce', annonceDTO.id]" [ngClass]="{ disabled: annonceDTO.status == 'ARCHIVEE' }">
-                    <i class="fa fa-edit" aria-hidden="true"></i></button
-                  >&nbsp;
+                                    <button class="btn btn-warning btn-sm" *ngIf="this.showAdminBoard || this.showManagerBoard" [routerLink]="['/admin/accueil/annonce', annonceDTO.id]" [disabled]="annonceDTO.status==='VALIDEE'">
+                                  <i class="fa fa-edit" aria-hidden="true"></i></button
+                                >&nbsp;
                   <button
                     class="btn btn-success btn-sm"
                     [routerLink]="['/admin/accueil/viewAnnonce', annonceDTO.id]"
@@ -65,6 +65,7 @@
                   >&nbsp;
 
                   <button
+                    *ngIf="this.showAdminBoard"
                     class="btn btn-danger btn-sm"
                     (click)="onDeleteAnnonce(annonceDTO.id)"
                   >

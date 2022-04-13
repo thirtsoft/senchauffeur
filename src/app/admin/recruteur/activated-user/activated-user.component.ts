@@ -51,7 +51,7 @@ export class ActivatedUserComponent implements OnInit {
     console.log(this.crudApi.formData.value.active);
     this.crudApi.activatedUser(this.crudApi.formData.value.id,this.crudApi.formData.value.active)
     .subscribe( data => {
-      this.toastr.success("Recruteur Activé avec Succès");
+      this.toastr.success("Compte Activé/Désactivé avec Succès");
     });
   }
 

@@ -1,7 +1,7 @@
 <div class="topbar">
-  <nav class="navbar-custom">
-    <ul class="list-inline float-right mb-0">
-      <!--  <li class="list-inline-item dropdown notification-list hide-phone">
+    <nav class="navbar-custom">
+        <ul class="list-inline float-right mb-0">
+            <!--  <li class="list-inline-item dropdown notification-list hide-phone">
         <a
           class="nav-link dropdown-toggle arrow-none waves-effect text-white"
           data-toggle="dropdown"
@@ -49,39 +49,24 @@
           >
         </div>
       </li> -->
-      <li class="list-inline-item dropdown notification-list">
-        <a
-          class="nav-link dropdown-toggle arrow-none waves-effect"
-          data-toggle="dropdown"
-          href="#"
-          role="button"
-          aria-haspopup="false"
-          aria-expanded="false"
-        >
-          <i class="ti-email noti-icon"></i>
-          <span class="badge badge-danger noti-icon-badge">{{numberOfCustomerEmail}}</span>
-        </a>
-        <div
-          class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg"
-        >
-          <div class="dropdown-item noti-title"
-            routerLink="/admin/accueil/emails">
-            <h5>
-              <span class="badge badge-danger float-right">{{numberOfCustomerEmail}}</span>Messages
-            </h5>
-          </div>
+            <li class="list-inline-item dropdown notification-list">
+                <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="ti-email noti-icon"></i>
+                    <span class="badge badge-danger noti-icon-badge">{{numberOfCustomerEmail}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
+                    <div class="dropdown-item noti-title" routerLink="/admin/accueil/emails">
+                        <h5>
+                            <span class="badge badge-danger float-right">{{numberOfCustomerEmail}}</span>Messages
+                        </h5>
+                    </div>
 
-          <a routerLink="/admin/accueil/emails" class="dropdown-item notify-item"
-           style="cursor: pointer;" >
-            <div class="notify-icon">
-              <img
-                src="assets/admin/images/users/avatar-3.jpg"
-                alt="user-img"
-                class="img-fluid rounded-circle"
-              />
-            </div>
-            <p class="notify-details">
-              <b>{{ username }}</b
+                    <a routerLink="/admin/accueil/emails" class="dropdown-item notify-item" style="cursor: pointer;">
+                        <div class="notify-icon">
+                            <img src="assets/admin/images/users/avatar-3.jpg" alt="user-img" class="img-fluid rounded-circle" />
+                        </div>
+                        <p class="notify-details">
+                            <b>{{ username }}</b
               ><small class="text-muted">Vous avez reçu {{numberOfCustomerEmail}} messages</small>
             </p>
           </a>
@@ -205,10 +190,10 @@
           >
 
           <a
+            *ngIf="this.showAdminBoard"
             class="dropdown-item"
             (click)="goToHistoriqueConnexion()"
             style="cursor: pointer"
-            ><span class="badge badge-success">5</span
             ><i class="mdi mdi-settings m-r-5 text-muted"></i> Activity Log</a
           >
           <div class="dropdown-divider"></div>

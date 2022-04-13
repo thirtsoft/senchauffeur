@@ -8,6 +8,7 @@ import { UtilisateurService } from './../../../services/utilisateur.service';
 import { ToastrService } from 'ngx-toastr';
 import { UtilisateurDto } from './../../../models/utilisateur';
 import { ActivatedUserComponent } from '../activated-user/activated-user.component';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-recruteur',
@@ -22,26 +23,38 @@ export class ListRecruteurComponent implements OnInit {
   p : number=1;
   searchText;
 
-  info: any;
   roles: string[];
 
   isLoggedIn = false;
-  showUserBoard = false;
-  showManagerBoard = false;
   showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   username: string;
   email: String;
   userId;
   currentTime: number = 0;
 
-  constructor(private crudApi: UtilisateurService,
+  constructor(public crudApi: UtilisateurService,
+              private tokenService: TokenStorageService,
               public toastr: ToastrService,
               private matDialog: MatDialog,
               private fb: FormBuilder
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
+
     this.getListRecruteurDTOs();
   }
 
@@ -76,6 +89,10 @@ export class ListRecruteurComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
     this.matDialog.open(SendEmailToEmployeurComponent, dialogConfig);
+  }
+
+  getTS() {
+    return this.currentTime;
   }
 
 

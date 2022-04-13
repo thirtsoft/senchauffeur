@@ -1,74 +1,62 @@
 <h3><i class="fa fa-angle-right"></i> List of utilisateurs</h3>
 <div>
-  <div class="row">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Search"
-      [(ngModel)]="searchText"
-    />
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-    <button
-      _ngcontent-roy-c3=""
-      class="btn-meeting"
-      type="submit"
-      style="margin-left: 5%; width: 30%"
-      (click)="onAddUtilisateur()"
-    >
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddUtilisateur()">
+        <i class="fa fa-plus"></i>
       Add utilisateur
     </button>
-  </div>
+    </div>
 
-  <table class="table table-striped">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Photo</th>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Mobile</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Active</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Active</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="
           let userDTO of utilisateurDTOList
             | filter: searchText
             | paginate: { itemsPerPage: 20, currentPage: p }
-        "
-      >
-        <td>
-          <img
-              [src]="
+        ">
+                <td>
+                    <img [src]="
                 this.userService.apiServerUrl +
                 '/utilisateurs/avatar/' +
                 userDTO.id +
                 '?ts=' +
                 getTS()
-              "
-              class="img-profile rounded-circle"
-              width="70"
-              height="30"
-              *ngIf="img"
-            />
-          
-          </td>
-        <td>{{ userDTO?.name }}</td>
-        <td>{{ userDTO?.username }}</td>
-        <td>{{ userDTO?.mobile }}</td>
-        <td>{{ userDTO?.email }}</td>
-        <td>{{ userDTO?.addressRecruteur }}</td>
-        <td>{{ userDTO?.activated }}</td>
+              " class="img-profile rounded-circle" width="70" height="30" *ngIf="img" />
 
-        <td>
-          <button
-            class="btn btn-warning btn-sm"
-            [routerLink]="['/admin/accueil/utilisateur', userDTO.id]"
-          >
+                </td>
+                <td>{{ userDTO?.name }}</td>
+                <td>{{ userDTO?.username }}</td>
+                <td>{{ userDTO?.mobile }}</td>
+                <td>{{ userDTO?.email }}</td>
+                <td>{{ userDTO?.roles[0].name }}</td>
+                <td>{{ userDTO?.activate }}
+                    <button type="button" class="btn btn-primary btn-sm pull-right" (click)="ActivatedUser(userDTO)" style="cursor: pointer;">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button>
+
+                </td>
+
+                <td>
+                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/utilisateur', userDTO.id]">
             <i class="fa fa-edit" aria-hidden="true"></i></button
+          >&nbsp;
+
+          <button class="btn btn-success btn-sm" (click)="sendMailToEmployeur(userDTO)">
+            <i class="fa fa-envelope" aria-hidden="true"></i></button
           >&nbsp;
 
           <button

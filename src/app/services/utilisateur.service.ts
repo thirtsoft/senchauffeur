@@ -16,6 +16,7 @@ export class UtilisateurService {
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
   formData:  FormGroup;
+  listData: UtilisateurDto;
 
 
   constructor(private http: HttpClient) {

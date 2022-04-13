@@ -27,3 +27,13 @@ export class UpdatePasswordInfo {
   oldPassword: string;
   newPassword: string;
 }
+
+export class UpdateProfileInfo {
+  name: string;
+  username: string;
+  newUsername: string;
+  email: string;
+  mobile: string;
+  addressRecruteur: string;
+}
+

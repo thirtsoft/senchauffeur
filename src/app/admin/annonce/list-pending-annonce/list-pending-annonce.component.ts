@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AnnonceService } from './../../../services/annonce.service';
 import { AnnonceDto } from './../../../models/annonce';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-pending-annonce',
@@ -16,6 +17,13 @@ import { AnnonceDto } from './../../../models/annonce';
 export class ListPendingAnnonceComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
+  roles: string[];
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   id : number;
   p : number=1;
@@ -23,6 +31,7 @@ export class ListPendingAnnonceComponent implements OnInit {
   formData: FormGroup;
 
   constructor(private crudApi: AnnonceService,
+              private tokenService: TokenStorageService,
               private matDialog: MatDialog,
               private router: Router,
               public fb: FormBuilder,
@@ -31,6 +40,17 @@ export class ListPendingAnnonceComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
+
     this.getListAnnonceDTOsByStatusPending();
   }
 

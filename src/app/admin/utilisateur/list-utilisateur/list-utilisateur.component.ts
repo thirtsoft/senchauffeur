@@ -1,12 +1,15 @@
 import { CreateUtilisateurComponent } from './../create-utilisateur/create-utilisateur.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UtilisateurService } from './../../../services/utilisateur.service';
 import { UtilisateurDto } from './../../../models/utilisateur';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedUserComponent } from '../../recruteur/activated-user/activated-user.component';
+import { SendEmailToEmployeurComponent } from '../../email/send-email-to-employeur/send-email-to-employeur.component';
 
 @Component({
   selector: 'app-list-utilisateur',
@@ -25,7 +28,9 @@ export class ListUtilisateurComponent implements OnInit {
 
   constructor(public userService: UtilisateurService,
               private router: Router,
-              public toastr: ToastrService
+              public toastr: ToastrService,
+              private matDialog: MatDialog,
+              private fb: FormBuilder
   ){}
 
   ngOnInit(): void {
@@ -53,9 +58,29 @@ export class ListUtilisateurComponent implements OnInit {
     return this.currentTime;
   }
 
-
   onAddUtilisateur() {
     this.router.navigate(['/admin/accueil/signUp']);
+  }
+
+  ActivatedUser(item : UtilisateurDto) {
+    this.userService.choixmenu = "M";
+    this.userService.formData = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(ActivatedUserComponent, dialogConfig);
+
+  }
+
+  sendMailToEmployeur(item: UtilisateurDto) {
+    this.userService.choixmenu = "M";
+    this.userService.dataForm = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(SendEmailToEmployeurComponent, dialogConfig);
   }
 
   onDeleteUtilisateur(id: number): void{

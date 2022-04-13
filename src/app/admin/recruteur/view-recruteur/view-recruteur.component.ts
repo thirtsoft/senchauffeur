@@ -16,6 +16,7 @@ export class ViewRecruteurComponent implements OnInit {
   recruteurDTO: UtilisateurDto;
 
   paramId :any = 0;
+  currentTime: number = 0;
 
   constructor(public crudApi: UtilisateurService,
               private router: Router,
@@ -42,6 +43,10 @@ export class ViewRecruteurComponent implements OnInit {
       }
     );
 
+  }
+
+  getTS() {
+    return this.currentTime;
   }
 
 }

@@ -11,6 +11,7 @@
                     <table class="table table-striped">
                         <thead class="thead-inverse">
                             <tr>
+                                <th>#</th>
                                 <th>Recruteur</th>
                                 <th>Username</th>
                                 <th>Entreprise</th>
@@ -29,6 +30,16 @@
                 | paginate: { itemsPerPage: 15, currentPage: p }
                 ">
                             <tr *ngIf="recruteur.roles[0]?.name == 'ROLE_USER'">
+                                <td>
+                                    <img [src]="
+                                  this.crudApi.apiServerUrl +
+                                  '/utilisateurs/avatar/' +
+                                  recruteur.id +
+                                  '?ts=' +
+                                  getTS()
+                                " class="img-profile rounded-circle" width="70" height="30" />
+
+                                </td>
                                 <td>{{ recruteur?.name }}</td>
                                 <td>{{ recruteur?.username }}</td>
                                 <td>{{ recruteur?.nomEntreprise }}</td>
@@ -37,7 +48,7 @@
                                 <td>{{ recruteur?.villeRecruteur }}</td>
                                 <td>{{ recruteur?.secteurActivite }}</td>
                                 <td>{{ recruteur?.active }}
-                                    <button type="button" class="btn btn-primary btn-sm pull-right" (click)="ActivatedUser(recruteur)" style="cursor: pointer;">
+                                    <button *ngIf="this.showAdminBoard || this.showManagerBoard" type="button" class="btn btn-primary btn-sm pull-right" (click)="ActivatedUser(recruteur)" style="cursor: pointer;">
                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </button>
 

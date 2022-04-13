@@ -30,7 +30,7 @@ export class DashboardService {
   }
 
   public countNumbersOfAnnoncePeerMonth(): Observable<AnnonceDto[]>  {
-    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/numberOfAnnonceByMont`);
+    return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/numberOfAnnonceByMonth`);
   }
 
   public countNumbersOfAnnoncePeerYear(): Observable<AnnonceDto[]>  {

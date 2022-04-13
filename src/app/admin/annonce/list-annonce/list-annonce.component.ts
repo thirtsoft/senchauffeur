@@ -7,6 +7,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angu
 import { AnnonceService } from './../../../services/annonce.service';
 import { Annonce, AnnonceDto } from './../../../models/annonce';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-annonce',
@@ -16,6 +17,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ListAnnonceComponent implements OnInit {
 
   annonceListDTO: AnnonceDto[];
+  roles: string[];
+  currentTime: number = 0;
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+
+  userId;
 
   id : number;
   p : number=1;
@@ -23,6 +33,7 @@ export class ListAnnonceComponent implements OnInit {
 
   constructor(private annonceService: AnnonceService,
               public toastr: ToastrService,
+              private tokenService: TokenStorageService,
               private matDialog: MatDialog,
               private router: Router,
               public fb: FormBuilder,
@@ -31,6 +42,17 @@ export class ListAnnonceComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      
+      this.userId = user.id;
+    }
     this.getListAnnonceDTOs();
   }
 

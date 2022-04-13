@@ -1,55 +1,42 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> Annonces Encours</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> Annonces Encours</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-          </div>
+                    </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Reference</th>
-                <th>Libelle</th>
-                <th>Annonceur</th>
-                <th>Permis</th>
-                 <th>Dispo</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Libelle</th>
+                                <th>Recruteur</th>
+                                <th>Permis</th>
+                                <th>Dispo</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let annonceDTO of annonceListDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 20, currentPage: p }
-                "
-              >
-                <td>{{ annonceDTO?.reference }}</td>
-                <td>{{ annonceDTO?.libelle }}</td>
-                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
-                <td>{{ annonceDTO?.permisDto?.designation }}</td>
-                <td>{{annonceDTO?.time}}</td>
-                <td>{{ annonceDTO?.status }}
-                  <button
-                  type="button"
-                  class="btn-success btn-sm pull-right"
-                  (click)="addEditStatusAnnonce(annonceDTO)"
-                  style="cursor: pointer"
-                  >
-                    <i class="fa fa-edit" aria-hidden="true"></i></button
-                  >&nbsp;
-
+                ">
+                                <td>{{ annonceDTO?.reference }}</td>
+                                <td>{{ annonceDTO?.libelle }}</td>
+                                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
+                                <td>{{ annonceDTO?.permisDto?.designation }}</td>
+                                <td>{{annonceDTO?.time}}</td>
+                                <td>{{ annonceDTO?.status }}
+                                    <button *ngIf="!this.showGestionnaireBoard" type="button" class="btn-success btn-sm pull-right" (click)="addEditStatusAnnonce(annonceDTO)" style="cursor: pointer">
+                                    <i class="fa fa-edit" aria-hidden="true"></i></button
+                                  >&nbsp;
                 </td>
 
                 <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
@@ -59,10 +46,7 @@
                     [routerLink]="['/admin/accueil/annonce', annonceDTO.id]">
                     <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
 
-                  <button
-                  class="btn btn-success btn-sm"
-                  [routerLink]="['/admin/accueil/viewAnnonce', annonceDTO.id]"
-                >
+                                    <button class="btn btn-success btn-sm" [routerLink]="['/admin/accueil/viewAnnonce', annonceDTO.id]">
                   <i class="fa fa-eye" aria-hidden="true"></i></button
                 >&nbsp;
                   <button

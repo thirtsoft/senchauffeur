@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TypeAnnonceService } from './../../../services/type-annonce.service';
 import { TypeAnnonceDto } from './../../../models/type-annonce';
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-type-annonce',
@@ -13,6 +14,13 @@ import { Component, OnInit } from '@angular/core';
 export class ListTypeAnnonceComponent implements OnInit {
 
   listTypeAnnonceDTO: TypeAnnonceDto[];
+  roles: string[];
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   id : number;
   p : number=1;
@@ -20,10 +28,22 @@ export class ListTypeAnnonceComponent implements OnInit {
 
   constructor(public crudApi: TypeAnnonceService,
               private router: Router,
-              public toastr: ToastrService
+              public toastr: ToastrService,
+              private tokenService: TokenStorageService
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
+
     this.getListTypeAnnonceDTOs();
   }
 

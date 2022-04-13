@@ -23,8 +23,8 @@ export class BackendHeaderComponent implements OnInit {
 
   isLoggedIn = false;
   showAdminBoard = false;
-  showUserBoard = false;
-  showVendeurBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
 
   username: string;
   email: String;
@@ -48,9 +48,9 @@ export class BackendHeaderComponent implements OnInit {
       this.roles = user.roles;
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showVendeurBoard = this.roles.includes("ROLE_VENDEUR");
-      this.showUserBoard = this.roles.includes('ROLE_USER');
-
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+    
       this.username = user.username;
       this.userId = user.id;
       this.photo = user.photo;

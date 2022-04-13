@@ -1,62 +1,49 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List of TypeAnnonce</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> List des TypeAnnonces</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-            <button
-              class="btn-meeting"
-              type="submit"
-              style="margin-left: 5%; width: 30%"
-              (click)="onAddTypeAnnonce()"
-            >
-              Add Tarif
+                        <button *ngIf="this.showAdminBoard || this.showManagerBoard" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddTypeAnnonce()">
+            <i class="fa fa-plus"></i>
+              Ajouter TypeAnnonce
             </button>
-          </div>
+                    </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Code</th>
-                <th>Libelle</th>
-                <th>Date Creation</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Code</th>
+                                <th>Libelle</th>
+                                <th>Date Creation</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let typeAnnonceDTO of listTypeAnnonceDTO
                     | filter: searchText
-                    | paginate: { itemsPerPage: 4, currentPage: p };
+                    | paginate: { itemsPerPage: 10, currentPage: p };
                   let i = index
-                "
-              >
-                <td>{{ typeAnnonceDTO?.id }}</td>
-                <td>{{ typeAnnonceDTO?.code }}</td>
-                <td>
-                  {{ typeAnnonceDTO?.libelle }}
-                </td>
-                <td>{{ typeAnnonceDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
+                ">
+                                <td>{{ typeAnnonceDTO?.id }}</td>
+                                <td>{{ typeAnnonceDTO?.code }}</td>
+                                <td>
+                                    {{ typeAnnonceDTO?.libelle }}
+                                </td>
+                                <td>{{ typeAnnonceDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
 
-                <td>
-                  <button
-                    class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/typeAnnonce', typeAnnonceDTO.id]"
-                  >
+                                <td>
+                                    <button *ngIf="this.showAdminBoard || this.showManagerBoard" class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/typeAnnonce', typeAnnonceDTO.id]">
                     <i class="fa fa-edit" aria-hidden="true"></i></button
                   >&nbsp;
 
                   <button
+                  *ngIf="this.showAdminBoard || this.showManagerBoard"
                     class="btn btn-danger btn-sm"
                     (click)="onDeleteTypeAnnonce(typeAnnonceDTO.id)"
                   >

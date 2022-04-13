@@ -8,10 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackendSidebarComponent implements OnInit {
 
-  info: any;
-  private roles: string[];
-
-  currentTime: number = 0;
+  roles: string[];
 
   isLoggedIn = false;
   showAdminBoard = false;
@@ -35,8 +32,6 @@ export class BackendSidebarComponent implements OnInit {
       this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
       this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
       this.showUserBoard = this.roles.includes('ROLE_USER');
-
-
 
       this.userId = user.id;
     }

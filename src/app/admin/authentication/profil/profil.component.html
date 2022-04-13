@@ -1,137 +1,77 @@
 <h1>PROFILE UTILISATEUR</h1>
 
-<form
-  #addArticleForm="ngForm"
-  name="form"
-  enctype="multipart/form-data"
-  (ngSubmit)="processForm()"
->
-  <div class="row">
-    <div class="col-md-6">
-      <label>Photo</label>
-      <div class="form-group">
-        <img
-        src="assets/admin/images/users/avatar-3.jpg"
-        alt="user-img"
-        class="img-fluid rounded-circle"
-        *ngIf="!img"
-      />
+<form #addArticleForm="ngForm" name="form" enctype="multipart/form-data" (ngSubmit)="processForm()">
+    <div class="row">
+        <div class="col-md-6">
+            <label>Photo</label>
+            <div class="form-group">
+                <img src="assets/admin/images/users/avatar-3.jpg" alt="user-img" class="img-fluid rounded-circle" *ngIf="!img" />
 
-        <img
-          [src]="
+                <img [src]="
             this.userService.apiServerUrl +
             '/utilisateurs/avatar/' +
             this.id +
             '?ts=' +
             getTS()
-          "
-          class="avatar"
-          height="120"
-          width="120"
-          alt=""
-          *ngIf="img"
-        />
-      </div>
+          " class="avatar" height="120" width="120" alt="" *ngIf="img" />
+            </div>
 
-      <br />
+            <br />
 
-      <input
-        type="file"
-        (change)="onSelectedFile($event)"
-        class="select"
-        accept="image/*"
-      />&nbsp;&nbsp;
-      <input
-        type="submit"
-        value="enregistrer photo"
-        class="btn btn-sm btn-primary"
-        style="cursor: pointer"
-      />
-      {{ progress }}
+            <input type="file" (change)="onSelectedFile($event)" class="select" accept="image/*" />&nbsp;&nbsp;
+            <input type="submit" value="enregistrer photo" class="btn btn-sm btn-primary" style="cursor: pointer" /> {{ progress }}
 
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <h2 class="form-control">
+                    Je m'appele {{ listDataProfil.name }}, employé à Sunuchauffeur.
+                </h2>
+            </div>
+        </div>
     </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <h2 class="form-control">
-          Je m'appele {{ listDataProfil.name }}, employé à Sunuchauffeur.
-        </h2>
-      </div>
-    </div>
-  </div>
 </form>
 
 <h1 style="margin-top: 30px">Biobliographie</h1>
 <form>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label>Nom et Prénom </label>
-        <input
-          type="text"
-          class="form-control"
-          value="{{ listDataProfil.name }}"
-          readonly
-        />
-      </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Nom et Prénom </label>
+                <input type="text" class="form-control" value="{{ listDataProfil.name }}" readonly />
+            </div>
 
-      <div class="form-group">
-        <label>Nom utilisateur </label>
-        <input
-          type="text"
-          class="form-control"
-          value="{{ listDataProfil.username }}"
-          readonly
-        />
-      </div>
+            <div class="form-group">
+                <label>Nom utilisateur </label>
+                <input type="text" class="form-control" value="{{ listDataProfil.username }}" readonly />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Address Email</label>
+                <input type="text" class="form-control" value="{{ listDataProfil.email }}" readonly />
+            </div>
+
+            <div class="form-group">
+                <label>Identifiant </label>
+                <input type="text" class="form-control" value="{{ listDataProfil.id }}" readonly />
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="form-group">
-        <label>Address Email</label>
-        <input
-          type="text"
-          class="form-control"
-          value="{{ listDataProfil.email }}"
-          readonly
-        />
-      </div>
+    <div class="form-group">
+        <button (click)="addEditUsername(listDataProfil)" type="button" class="btn btn-lg btn-warning ml-1">
+      Edit Profil
+    </button>
 
-      <div class="form-group">
-        <label>Identifiant </label>
-        <input
-          type="text"
-          class="form-control"
-          value="{{ listDataProfil.id }}"
-          readonly
-        />
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <!-- <button
-      (click)="addEditUsername(listDataProfil)"
-      type="button"
-      class="btn btn-lg btn-warning ml-1"
-    >
-      Edit Username
-    </button> -->
-
-    <button
-      (click)="addEditPassword(listDataProfil)"
-      type="button"
-      class="btn btn-lg btn-info ml-1"
-    >
+        <button (click)="addEditPassword(listDataProfil)" type="button" class="btn btn-lg btn-info ml-1">
       Edit Password
     </button>
 
-    <button
-      (click)="goToDashboard()"
-      type="button"
-      class="btn btn-lg btn-danger ml-1"
-    >
+        <button (click)="goToDashboard()" type="button" class="btn btn-lg btn-danger ml-1">
       <span class="fa fa-arrow-left">Retour</span>&nbsp;
     </button>
-  </div>
+    </div>
 </form>

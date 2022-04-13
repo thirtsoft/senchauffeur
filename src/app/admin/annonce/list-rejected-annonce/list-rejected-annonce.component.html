@@ -1,56 +1,46 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> Annonces Encours</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> Annonces Rejetées</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-          </div>
+                    </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Reference</th>
-                <th>Libelle</th>
-                <th>Recruteur</th>
-                <th>Entreprise</th>
-                <th>Permis</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Libelle</th>
+                                <th>Recruteur</th>
+                                <th>Entreprise</th>
+                                <th>Permis</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let annonceDTO of annonceListDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 20, currentPage: p }
-                "
-              >
-                <td>{{ annonceDTO?.reference }}</td>
-                <td>{{ annonceDTO?.libelle }}</td>
-                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
-                <td>{{ annonceDTO?.utilisateurDto?.nomEntreprise }}</td>
-                <td>{{ annonceDTO?.permisDto?.designation }}</td>
-                <td>{{ annonceDTO?.status }}
-                 
-                </td>
+                ">
+                                <td>{{ annonceDTO?.reference }}</td>
+                                <td>{{ annonceDTO?.libelle }}</td>
+                                <td>{{ annonceDTO?.utilisateurDto?.name }}</td>
+                                <td>{{ annonceDTO?.utilisateurDto?.nomEntreprise }}</td>
+                                <td>{{ annonceDTO?.permisDto?.designation }}</td>
+                                <td>{{ annonceDTO?.status }}
 
-                <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
+                                </td>
 
-                <td>
-                  <button
-                    class="btn btn-danger btn-sm"
-                    (click)="viewAllAnnonces()"
-                  >
+                                <td>{{ annonceDTO?.dateCandidature | date: "dd-MM-yyyy" }}</td>
+
+                                <td>
+                                    <button class="btn btn-danger btn-sm" (click)="viewAllAnnonces()">
                     <i class="fa fa-eye" aria-hidden="true"></i></button
                   >&nbsp;
                 </td>

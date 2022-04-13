@@ -7,7 +7,8 @@
                     <div class="row">
                         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-                        <button class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddChauffeur()">
+                        <button *ngIf="this.showAdminBoard || this.showManagerBoard" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddChauffeur()">
+                          <i class="fa fa-plus"></i>
               Ajouter Chauffeur
             </button>
                     </div>
@@ -44,7 +45,7 @@
                                 <td>
                                     {{ chauffDTO?.cvChauffeur }} &nbsp;
 
-                                    <a href="{{
+                                    <a *ngIf="this.showAdminBoard || this.showManagerBoard" href="{{
                       this.chauffeurService.apiServerUrl +
                         '/chauffeurs/downloadCvFile/' +
                         chauffDTO.cvChauffeur
@@ -60,7 +61,9 @@
                                 <td>{{ chauffDTO?.nbreAnneeExperience }}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/chauffeur', chauffDTO.id]">
+                                    <button
+                                    *ngIf="this.showAdminBoard || this.showManagerBoard"
+                                     class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/chauffeur', chauffDTO.id]">
                     <i class="fa fa-edit" aria-hidden="true"></i></button>&nbsp;
                                         <button class="btn btn-success btn-sm" [routerLink]="[
                       '/admin/accueil/viewchauffeur',
@@ -77,6 +80,7 @@
                 >&nbsp;
 
                   <button
+                  *ngIf="this.showAdminBoard"
                     class="btn btn-danger btn-sm"
                     (click)="onDeleteChauffeur(chauffDTO.id)"
                   >

@@ -19,7 +19,7 @@ export class SignUpComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   roles: any = [
-    { name: 'Assistant', id:1, selected: true },
+    { name: 'Gestionnaire', id:1, selected: true },
     { name: 'Manager', id:2, selected: false },
     { name: 'Admin', id:3, selected: false },
   ];
@@ -61,7 +61,6 @@ export class SignUpComponent implements OnInit {
 
   registerUser() {
     console.log(this.user);
-
     this.authService.signUp(this.user)
     .subscribe(response=> {
       console.log(response);

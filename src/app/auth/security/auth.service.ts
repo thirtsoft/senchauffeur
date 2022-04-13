@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
 import { FormGroup } from '@angular/forms';
-import { ProfileInfo, UpdateUsernameInfo, UpdatePasswordInfo, UpdateProfilInfo } from './profile-info';
+import { ProfileInfo, UpdateUsernameInfo, UpdatePasswordInfo, UpdateProfilInfo, UpdateProfileInfo } from './profile-info';
 import { Observable, throwError } from 'rxjs';
 import { Register } from './register';
 import { catchError, map } from 'rxjs/operators';
@@ -30,7 +30,6 @@ export class AuthService {
   apiServerUrl = environment.apiBaseUrl;
 
   loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
-//  public loginUrl = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/authenticated';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
@@ -80,13 +79,24 @@ export class AuthService {
     return this.http.get(`${this.apiServerUrl}/utilisateurs/findById/${id}`);
   }
 
-  updateProfil(item: UpdateProfilInfo): Observable<UpdateProfilInfo> {
-    return this.http.patch<UpdateProfilInfo>(`${this.apiServerUrl}/utilisateurs/updateProfil`, {
+  updateProfil(id: number, item: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${id}`, {
       name: item.name,
       username: item.username,
       email: item.email,
-      password: item.password,
-      confirmPassword: item.confirmPassword
+      mobile: item.mobile,
+      addressRecruteur: item.addressRecruteur
+    }, httpOptions);
+
+  }
+
+  updateProfilByUsername(item: UpdateProfileInfo): Observable<UpdateProfileInfo> {
+    return this.http.put<UpdateProfileInfo>(`${this.apiServerUrl}/utilisateurs/updateCustomerProfileByUsername`, {
+      name: item.name,
+      username: item.username,
+      email: item.email,
+      mobile: item.mobile,
+      addressRecruteur: item.addressRecruteur
     }, httpOptions);
 
   }
@@ -105,6 +115,10 @@ export class AuthService {
       oldPassword: item.oldPassword,
       newPassword: item.newPassword
     }, httpOptions);
+  }
+
+  public updateUtilisateurDTO(utilisateurId: number, utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${utilisateurId}`, utilisateurDTO);
   }
 
   handleError(error: HttpErrorResponse) {
