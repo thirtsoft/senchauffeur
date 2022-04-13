@@ -32,7 +32,7 @@ public interface TypeAnnonceApi {
 	})
 	ResponseEntity<TypeAnnonceDto> saveTypeAnnonce(@RequestBody TypeAnnonceDto typeAnnonceDto);
 	
-	@PutMapping(value = APP_ROOT + "/typeAnnonces/update/{idReservation}", 
+	@PutMapping(value = APP_ROOT + "/typeAnnonces/update/{idTypeAnnonce}",
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Modifier un TypeAnnonce",
     notes = "Cette méthode permet de modifier TypeAnnonce", response = TypeAnnonceDto.class)

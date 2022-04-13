@@ -1,19 +1,19 @@
 package com.chauffeur.services;
 
-import java.util.List;
-
 import com.chauffeur.dto.UtilisateurDto;
 import com.chauffeur.enumeration.RoleName;
 
-public interface UtilisateurService {
-	
-	UtilisateurDto save(UtilisateurDto utilisateurDto);
-	
-	UtilisateurDto update(Long id, UtilisateurDto utilisateurDto);
-	
-	void addRoleToUser(String username, RoleName roleName);
+import java.util.List;
 
-	UtilisateurDto findById(Long id);
+public interface UtilisateurService {
+
+    UtilisateurDto save(UtilisateurDto utilisateurDto);
+
+    UtilisateurDto update(Long id, UtilisateurDto utilisateurDto);
+
+    void addRoleToUser(String username, RoleName roleName);
+
+    UtilisateurDto findById(Long id);
 
     UtilisateurDto findByUsername(String username);
 
@@ -27,8 +27,10 @@ public interface UtilisateurService {
 
     boolean updateCustomerProfileByUsername(String username, String name, String newUsername, String email, String mobile);
 
+    UtilisateurDto activatedUser(String isActive, String id);
+
     List<UtilisateurDto> findAll();
-    
+
     List<UtilisateurDto> findByOrderByIdDesc();
 
     void delete(Long id);

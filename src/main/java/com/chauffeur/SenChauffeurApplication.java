@@ -1,14 +1,10 @@
 package com.chauffeur;
 
 
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import com.chauffeur.models.*;
+import com.chauffeur.enumeration.RoleName;
+import com.chauffeur.models.Utilisateur;
 import com.chauffeur.repository.*;
+import com.chauffeur.services.UtilisateurService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,85 +13,86 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.chauffeur.enumeration.RoleName;
-import com.chauffeur.services.UtilisateurService;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 @SpringBootApplication
 public class SenChauffeurApplication implements CommandLineRunner {
-	
-	private static final Logger LOG = LoggerFactory.getLogger(SenChauffeurApplication.class);
 
-	@Autowired
-	private PermisRepository permisRepository;
-	@Autowired
-	private ChauffeurRepository chauffeurRepository;
+    private static final Logger LOG = LoggerFactory.getLogger(SenChauffeurApplication.class);
 
-	@Autowired
-	private AddresseRepository addresseRepository;
+    @Autowired
+    private PermisRepository permisRepository;
+    @Autowired
+    private ChauffeurRepository chauffeurRepository;
 
-	@Autowired
-	private TarifRepository tarifRepository;
+    @Autowired
+    private AddresseRepository addresseRepository;
 
-	@Autowired
-	private RoleRepository roleRepository;
-	@Autowired
-	private UtilisateurRepository utilisateurRepository;
-	@Autowired
-	private UtilisateurService utilisateurService;
-	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	public static void main(String[] args) {
-		SpringApplication.run(SenChauffeurApplication.class, args);
-		
-		createChauffeursDirectoryPhotoIfItDoesntExist();
-		
-		createChauffeursDirectoryCvIfItDoesntExist();
-		
-		createAnnonceDirectoryIfItDoesntExist();
-	}
-	
-	 private static void createChauffeursDirectoryPhotoIfItDoesntExist() {
-	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/");
+    @Autowired
+    private TarifRepository tarifRepository;
 
-	        if (Files.notExists(path)) {
-	            try {
-	                Files.createDirectories(path);
-	            } catch (IOException ie) {
-	                LOG.error(String.format("Problem creating directory %s", path));
-	            }
-	        }
-	   }
-	 
-	 private static void createChauffeursDirectoryCvIfItDoesntExist() {
-	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/");
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private UtilisateurRepository utilisateurRepository;
+    @Autowired
+    private UtilisateurService utilisateurService;
 
-	        if (Files.notExists(path)) {
-	            try {
-	                Files.createDirectories(path);
-	            } catch (IOException ie) {
-	                LOG.error(String.format("Problem creating directory %s", path));
-	            }
-	        }
-	    }
-	 
-	 private static void createAnnonceDirectoryIfItDoesntExist() {
-	        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/annoncephotos/");
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	        if (Files.notExists(path)) {
-	            try {
-	                Files.createDirectories(path);
-	            } catch (IOException ie) {
-	                LOG.error(String.format("Problem creating directory %s", path));
-	            }
-	        }
-	    }
+    public static void main(String[] args) {
+        SpringApplication.run(SenChauffeurApplication.class, args);
 
-	@Override
-	public void run(String... args) throws Exception {
+        createChauffeursDirectoryPhotoIfItDoesntExist();
+
+        createChauffeursDirectoryCvIfItDoesntExist();
+
+        createAnnonceDirectoryIfItDoesntExist();
+    }
+
+    private static void createChauffeursDirectoryPhotoIfItDoesntExist() {
+        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/photos/");
+
+        if (Files.notExists(path)) {
+            try {
+                Files.createDirectories(path);
+            } catch (IOException ie) {
+                LOG.error(String.format("Problem creating directory %s", path));
+            }
+        }
+    }
+
+    private static void createChauffeursDirectoryCvIfItDoesntExist() {
+        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/chauffeur/cvs/");
+
+        if (Files.notExists(path)) {
+            try {
+                Files.createDirectories(path);
+            } catch (IOException ie) {
+                LOG.error(String.format("Problem creating directory %s", path));
+            }
+        }
+    }
+
+    private static void createAnnonceDirectoryIfItDoesntExist() {
+        Path path = Paths.get(System.getProperty("user.home") + "/senchauffeur/annoncephotos/");
+
+        if (Files.notExists(path)) {
+            try {
+                Files.createDirectories(path);
+            } catch (IOException ie) {
+                LOG.error(String.format("Problem creating directory %s", path));
+            }
+        }
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
 
 		/*
 		Permis p1 = permisRepository.save(new Permis(1L, "P1","Permis Poids Legere",10));
@@ -209,11 +206,19 @@ public class SenChauffeurApplication implements CommandLineRunner {
         utilisateurService.addRoleToUser("User", RoleName.ROLE_USER);
 
 */
-		
-		
-		
-		
-		
-	}
+        /*
+        Utilisateur admin = new Utilisateur();
+        admin.setId(5L);
+        admin.setUsername("thir");
+        admin.setName("thir diallo");
+        admin.setActive(true);
+        admin.setPassword(bCryptPasswordEncoder.encode("admin1234"));
+        utilisateurRepository.save(admin);
+        utilisateurService.addRoleToUser("thir", RoleName.ROLE_ADMIN);
+        */
+
+
+
+    }
 
 }

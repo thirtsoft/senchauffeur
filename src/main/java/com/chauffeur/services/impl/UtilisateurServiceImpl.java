@@ -65,7 +65,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(id);
 
         if (!optionalUtilisateur.isPresent()) {
-            throw new ResourceNotFoundException("State not found");
+            throw new ResourceNotFoundException("Utilisateur not found");
         }
 
         UtilisateurDto utilisateurDtoResult = UtilisateurDto.fromEntityToDto(optionalUtilisateur.get());
@@ -80,6 +80,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateurDtoResult.setSecteurActivite(utilisateurDto.getSecteurActivite());
         utilisateurDtoResult.setWebsite(utilisateurDto.getWebsite());
         utilisateurDtoResult.setInformation(utilisateurDto.getInformation());
+        utilisateurDtoResult.setPassword(bCryptPasswordEncoder.encode(utilisateurDto.getPassword()));
+        utilisateurDtoResult.setActive(utilisateurDto.isActive());
 
         return UtilisateurDto.fromEntityToDto(
                 utilisateurRepository.save(
@@ -166,6 +168,16 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
         }
         return false;
+    }
+
+    @Override
+    public UtilisateurDto activatedUser(String isActive, String id) {
+        Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(Long.valueOf(id));
+        Utilisateur utilisateur = optionalUtilisateur.get();
+        utilisateur.setActive(Boolean.valueOf(isActive));
+
+        return UtilisateurDto.fromEntityToDto(utilisateurRepository.save(utilisateur));
+
     }
 
     @Override

@@ -109,7 +109,9 @@ public class AuthController implements AuthApi {
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            roles.add(roleRepository.findByName(RoleName.ROLE_USER).get());
+            Role userRole = (roleRepository.findByName(RoleName.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found.")));
+            roles.add(userRole);
         }
 
         for (String role : strRoles) {
@@ -124,6 +126,7 @@ public class AuthController implements AuthApi {
                     
                 case "manager":
                 	roles.add(roleRepository.findByName(RoleName.ROLE_MANAGER).get());
+                    break;
 
                 case "user":
                     roles.add(roleRepository.findByName(RoleName.ROLE_USER).get());
@@ -135,8 +138,8 @@ public class AuthController implements AuthApi {
             }
         }
 
-
         utilisateur.setRoles(roles);
+        utilisateur.setActive(true);
         return ResponseEntity.ok(utilisateurRepository.save(utilisateur));
 
     }

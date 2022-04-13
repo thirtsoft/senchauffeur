@@ -50,7 +50,12 @@ public class UtilisateurController implements UtilisateurApi {
 		return ResponseEntity.ok(utilisateurService.save(utilisateurDto));
 	}
 
-	@Override
+    @Override
+    public ResponseEntity<Boolean> updateUserProfil(ObjectNode json) {
+        return null;
+    }
+
+    @Override
 	public ResponseEntity<UtilisateurDto> getUtilisateurById(Long id) {
 		return ResponseEntity.ok(utilisateurService.findById(id));
 	}
@@ -176,7 +181,13 @@ public class UtilisateurController implements UtilisateurApi {
         }
         return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
     }
-    
+
+    @Override
+    public ResponseEntity<?> activatedUser(String isActive, String id) {
+        UtilisateurDto activatedUserDTO = utilisateurService.activatedUser(isActive, id);
+        return new ResponseEntity<>(activatedUserDTO, HttpStatus.OK);
+    }
+
     @Override
     public byte[] getPhoto(Long id) throws Exception {
         UtilisateurDto user = utilisateurService.findById(id);

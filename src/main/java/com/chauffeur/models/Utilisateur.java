@@ -57,6 +57,7 @@ public class Utilisateur implements Serializable {
     
     private String photo = "avatar.jpg";
 
+	private boolean isActive;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
@@ -157,7 +158,6 @@ public class Utilisateur implements Serializable {
         this.email = email;
     }
 
-   
     public String getPassword() {
         return password;
     }
@@ -221,8 +221,12 @@ public class Utilisateur implements Serializable {
 	public void setInformation(String information) {
 		this.information = information;
 	}
-    
-    
-	
 
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean active) {
+		isActive = active;
+	}
 }
