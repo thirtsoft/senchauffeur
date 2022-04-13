@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { LocalityService } from './../../../services/locality.service';
 import { AddresseDto } from './../../../models/locality';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-locality',
@@ -14,18 +15,34 @@ import { AddresseDto } from './../../../models/locality';
 export class ListLocalityComponent implements OnInit {
 
   localityListDTO: AddresseDto[];
+  roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(private localiteService: LocalityService,
-              private dialog: MatDialog,
+              private tokenService: TokenStorageService,
               private router: Router,
               public toastr: ToastrService
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
     this.getListLocalitieDTOs();
   }
 

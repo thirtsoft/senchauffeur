@@ -15,7 +15,7 @@ import { NewsleterDto } from './../../../models/newsleter';
 })
 export class SendEmailToNewsleterComponent implements OnInit {
 
-  newsleterDTO: NewsleterDto = new NewsleterDto();
+  newsletterDTO: NewsleterDto = new NewsleterDto();
 
   constructor(public crudApi: NewsleterService,
               private mailService: EmailService,
@@ -35,7 +35,7 @@ export class SendEmailToNewsleterComponent implements OnInit {
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
       id: null,
-      email: ['', [Validators.required]],
+      emailVisiteur: ['', [Validators.required]],
       subject: ['', [Validators.required]],
       message: ['', [Validators.required]],
     });

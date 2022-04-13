@@ -1,44 +1,42 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> Liste Newsleter</h3>
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> Liste des Visiteurs</h3>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Email Visiteur</th>
-                <th>Date Inscription</th>
-                <th>Action</th>
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Email Visiteur</th>
+                                <th>Date Inscription</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let newsleterDTO of newsleterListDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 15, currentPage: p }
-                "
-              >
-                <td>{{ newsleterDTO?.id }}</td>
-                <td>{{ newsleterDTO?.emailVisiteur }}</td>
-                <td>{{ newsleterDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
-                <td>
-                  <button
-                  class="btn btn-warning btn-sm"
-                  (click)="sendMailToNewsleter(newsleterDTO)"
-                >
-                  <i class="fa fa-envelop" aria-hidden="true"></i></button
+                ">
+                                <td>{{ newsleterDTO?.id }}</td>
+                                <td>{{ newsleterDTO?.emailVisiteur }}</td>
+                                <td>{{ newsleterDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" (click)="sendMailToNewsleter(newsleterDTO)">
+                  <i class="fa fa-envelope" aria-hidden="true"></i></button
                 >&nbsp;
 
                   <button
+                  *ngIf="this.showAdminBoard"
                     class="btn btn-danger btn-sm"
                     (click)="onDeletegetNewsleterDTO(newsleterDTO.id)"
                   >
-                    <i class="fa fa-eye" aria-hidden="true"></i></button
+                    <i class="fa fa-trash" aria-hidden="true"></i></button
                   >&nbsp;
                 </td>
               </tr>

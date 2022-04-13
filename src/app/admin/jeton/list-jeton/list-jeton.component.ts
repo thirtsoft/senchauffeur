@@ -7,6 +7,7 @@ import { JetonService } from './../../../services/jeton.service';
 import { JetonDto } from './../../../models/jeton';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-jeton',
@@ -17,12 +18,20 @@ export class ListJetonComponent implements OnInit {
 
   jetonListDTO: JetonDto[];
 
+  roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
+
   id : number;
   p : number=1;
   searchText;
 
   constructor(private crudApi: JetonService,
               public toastr: ToastrService,
+              private tokenService: TokenStorageService,
               private matDialog: MatDialog,
               private router: Router,
               public fb: FormBuilder,
@@ -31,6 +40,16 @@ export class ListJetonComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
     this.getListJetonDTOs();
   }
 
@@ -68,7 +87,7 @@ export class ListJetonComponent implements OnInit {
           timeOut: 1500,
           positionClass: 'toast-top-right',
           });
-           this.getListJetonDTOs();
+          this.getListJetonDTOs();
         },
         (error: HttpErrorResponse) => {
           alert(error.message);

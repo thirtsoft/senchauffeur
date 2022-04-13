@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <h3><i class="fa fa-angle-right"></i> List of Notations</h3>
+                    <h3><i class="fa fa-angle-right"></i> List des Notations</h3>
                     <div class="row">
                         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
                     </div>
@@ -15,7 +15,7 @@
                                 <th>Nombre Etoile</th>
                                 <th>Observation</th>
                                 <th>Chauffeur</th>
-                                <th>Utilisateur</th>
+                                <th>Recruteur</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -28,12 +28,8 @@
                                 <td>{{noteDTO?.utilisateurDto?.name}}</td>
 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/notation', noteDTO.id]">
-                                  <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
-                                    <button class="btn btn-success btn-sm" [routerLink]="['/admin/accueil/viewchauffeur', noteDTO.id]">
-                                          <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
 
-                                    <button class="btn btn-danger btn-sm" (click)="onDeleteNotation(noteDTO.id)">
+                                    <button *ngIf=" this.showAdminBoard" class="btn btn-danger btn-sm" (click)="onDeleteNotation(noteDTO.id)">
                                             <i class="fa fa-eye" aria-hidden="true"></i> </button>&nbsp;
                                 </td>
 

@@ -1,58 +1,45 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List of Permis</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> List des Permis</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-            <button
-              class="btn-meeting"
-              type="submit"
-              (click)="onAddPermis()"
-              style="margin-left: 5%; width: 30%"
-            >
-              Add Permis
+                        <button *ngIf="this.showAdminBoard || this.showManagerBoard" class="btn-meeting" type="submit" (click)="onAddPermis()" style="margin-left: 5%; width: 30%">
+            <i class="fa fa-plus"></i>
+              Ajouter Permis
             </button>
-          </div>
+                    </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>type Permis</th>
-                <th>Designation</th>
-                <th>Validite</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>type Permis</th>
+                                <th>Designation</th>
+                                <th>Validite</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let permisDTO of permisListDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 10, currentPage: p }
-                "
-              >
-                <td>{{ permisDTO?.id }}</td>
-                <td>{{ permisDTO?.typePermis }}</td>
-                <td>{{ permisDTO?.designation }}</td>
-                <td>{{ permisDTO?.validite }}</td>
+                ">
+                                <td>{{ permisDTO?.id }}</td>
+                                <td>{{ permisDTO?.typePermis }}</td>
+                                <td>{{ permisDTO?.designation }}</td>
+                                <td>{{ permisDTO?.validite }}</td>
 
-                <td>
-                  <button
-                    class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/permis', permisDTO.id]"
-                  >
+                                <td>
+                                    <button *ngIf="this.showAdminBoard || this.showManagerBoard" class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/permis', permisDTO.id]">
                     <i class="fa fa-edit" aria-hidden="true"></i></button
                   >&nbsp;
                   <button
+                  *ngIf="this.showAdminBoard || this.showManagerBoard"
                     class="btn btn-danger btn-sm"
                     (click)="onDeletePermis(permisDTO.id)"
                   >

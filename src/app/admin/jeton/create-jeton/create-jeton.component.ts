@@ -6,6 +6,7 @@ import { JetonService } from './../../../services/jeton.service';
 import { UtilisateurDto } from './../../../models/utilisateur';
 import { JetonDto } from './../../../models/jeton';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-jeton',
@@ -23,7 +24,7 @@ export class CreateJetonComponent implements OnInit {
 
   constructor(private crudApi: JetonService,
               private userService: UtilisateurService,
-//              private toastr: ToastrService,
+              private toastr: ToastrService,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
               private router: Router,
@@ -75,9 +76,14 @@ export class CreateJetonComponent implements OnInit {
   onAddJeton() {
     this.crudApi.addJetonDTO(this.jetonDTO).subscribe(
       (response: JetonDto) => {
+        this.toastr.success('avec succès','Jeton ajouté', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
         this.router.navigate(['/admin/accueil/jetons']);
       },
       (error: HttpErrorResponse) => {
+        this.toastr.error("Jeton non ajouté")
         alert(error.message);
       }
     );
@@ -87,12 +93,20 @@ export class CreateJetonComponent implements OnInit {
     this.crudApi.updateJetonDTO(this.jetonDTO.id, this.jetonDTO)
       .subscribe(
         (response: JetonDto) => {
+          this.toastr.warning('avec succès','Jeton modidifié', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
         this.router.navigate(['/admin/accueil/jetons']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  goBack() {
+    this.router.navigate(['/admin/accueil/jetons']);
   }
 
 }

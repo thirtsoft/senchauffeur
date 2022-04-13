@@ -1,58 +1,44 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List of Tarifs</h3>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
-            />
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> List of Tarifs</h3>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-            <button
-              class="btn-meeting"
-              type="submit"
-              style="margin-left: 5%; width: 30%"
-              (click)="onAddTarif()"
-            >
-              Add Tarif
+                        <button class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%" (click)="onAddTarif()">
+            <i class="fa fa-plus"></i>
+              Ajouter Tarif
             </button>
-          </div>
+                    </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Reference</th>
-                <th>Montant</th>
-                <th>Annonce</th>
-                <th>Description</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Montant</th>
+                                <th>Annonce</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let tarifDTO of listTarifDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 4, currentPage: p };
                   let i = index
-                "
-              >
-                <td>{{ tarifDTO?.reference }}</td>
-                <td>{{ tarifDTO?.montantTarif }}</td>
-                <td>
-                  {{ tarifDTO?.typeAnnonceDto?.libelle }}
-                </td>
-                <td>{{ tarifDTO?.description }}</td>
+                ">
+                                <td>{{ tarifDTO?.reference }}</td>
+                                <td>{{ tarifDTO?.montantTarif }}</td>
+                                <td>
+                                    {{ tarifDTO?.typeAnnonceDto?.libelle }}
+                                </td>
+                                <td>{{ tarifDTO?.description }}</td>
 
-                <td>
-                  <button
-                    class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/accueil/tarif', tarifDTO.id]"
-                  >
+                                <td>
+                                    <button class="btn btn-warning btn-sm" [routerLink]="['/admin/accueil/tarif', tarifDTO.id]">
                     <i class="fa fa-edit" aria-hidden="true"></i></button
                   >&nbsp;
 

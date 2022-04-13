@@ -1,168 +1,90 @@
 <div class="container-fluid">
-  <div class="row">
-    <h1  *ngIf="!paramId">Nouveau Locality</h1>
-    <h1  *ngIf="paramId">Modifié Locality</h1>
-    <form #addLocalityForm="ngForm" name="form">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Reférence</label>
-            <input
-              type="text"
-              placeholder="Réference localité"
-              class="form-control"
-              [(ngModel)]="formDataLocalityDTO.reference"
-              name="reference"
-              id="reference"
-              #reference="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
+    <div class="row">
+        <h1 *ngIf="!paramId">Nouveau Localité</h1>
+        <h1 *ngIf="paramId">Modifié Localité</h1>
+        <form #addLocalityForm="ngForm" name="form">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Reférence</label>
+                        <input type="text" placeholder="Réference localité" class="form-control" [(ngModel)]="formDataLocalityDTO.reference" name="reference" id="reference" #reference="ngModel" required />
+                        <span class="text-danger" *ngIf="
                 (reference.touched || addLocalityForm.submitted) &&
                 reference.errors?.required
-              "
-            >
+              ">
               Reférence est obligatoire
             </span>
-          </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Quartier</label>
-            <input
-              type="text"
-              placeholder="Désignation de la localité"
-              class="form-control"
-              [(ngModel)]="formDataLocalityDTO.quartier"
-              name="quartier"
-              id="quartier"
-              #quartier="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Quartier</label>
+                        <input type="text" placeholder="Désignation de la localité" class="form-control" [(ngModel)]="formDataLocalityDTO.quartier" name="quartier" id="quartier" #quartier="ngModel" required />
+                        <span class="text-danger" *ngIf="
                 (quartier.touched || addLocalityForm.submitted) &&
                 quartier.errors?.required
-              "
-            >
+              ">
               quartier est obligatoire
             </span>
-          </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Ville</label>
-            <input
-              type="text"
-              placeholder="Ville"
-              class="form-control"
-              [(ngModel)]="formDataLocalityDTO.ville"
-              name="ville"
-              id="ville"
-              #ville="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Ville</label>
+                        <input type="text" placeholder="Ville" class="form-control" [(ngModel)]="formDataLocalityDTO.ville" name="ville" id="ville" #ville="ngModel" required />
+                        <span class="text-danger" *ngIf="
                 (ville.touched || addLocalityForm.submitted) &&
                 ville.errors?.required
-              "
-            >
+              ">
               ville est obligatoire
             </span>
-          </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Code Postal</label>
-            <input
-              type="text"
-              placeholder="Code postale"
-              class="form-control"
-              [(ngModel)]="formDataLocalityDTO.codePostal"
-              name="codePostal"
-              id="codePostal"
-              #codePostal="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Code Postal</label>
+                        <input type="text" placeholder="Code postale" class="form-control" [(ngModel)]="formDataLocalityDTO.codePostal" name="codePostal" id="codePostal" #codePostal="ngModel" required />
+                        <span class="text-danger" *ngIf="
                 (codePostal.touched || addLocalityForm.submitted) &&
                 codePostal.errors?.required
-              "
-            >
+              ">
               codePostal est obligatoire
             </span>
-          </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Rue</label>
-            <input
-              type="text"
-              placeholder="Rue"
-              class="form-control"
-              [(ngModel)]="formDataLocalityDTO.rue"
-              name="rue"
-              id="rue"
-              #rue="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Rue</label>
+                        <input type="text" placeholder="Rue" class="form-control" [(ngModel)]="formDataLocalityDTO.rue" name="rue" id="rue" #rue="ngModel" required />
+                        <span class="text-danger" *ngIf="
                 (rue.touched || addLocalityForm.submitted) &&
                 rue.errors?.required
-              "
-            >
+              ">
               rue est obligatoire
             </span>
-          </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label>Pays</label>
-            <input
-              type="text"
-              placeholder="Pays"
-              class="form-control"
-              [(ngModel)]="formDataLocalityDTO.pays"
-              name="pays"
-              id="pays"
-              #pays="ngModel"
-              required
-            />
-            <span
-              class="text-danger"
-              *ngIf="
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Pays</label>
+                        <input type="text" placeholder="Pays" class="form-control" [(ngModel)]="formDataLocalityDTO.pays" name="pays" id="pays" #pays="ngModel" required />
+                        <span class="text-danger" *ngIf="
                 (pays.touched || addLocalityForm.submitted) &&
                 pays.errors?.required
-              "
-            >
+              ">
               pays est obligatoire
             </span>
-          </div>
-        </div>
-      </div>
+                    </div>
+                </div>
+            </div>
 
-      <div class="form-group">
-        <button
-          *ngIf="!paramId"
-          type="submit"
-          class="btn btn-success"
-          (click)="onAddLocality()"
-          style="cursor: pointer;"
-        >
+            <div class="form-group">
+                <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="onAddLocality()" style="cursor: pointer;">
           <i class="fa fa-database"></i> Enregistrer</button
         >&nbsp;
         <button
@@ -173,12 +95,10 @@
         >
           <i class="fa fa-database"></i>Modifié
         </button>
-        <button type="button" class="btn btn-danger ml-1"
-        (click)="goBack()"
-          style="cursor: pointer;">
-          <i class="fa fa-close"></i> Close
+                <button type="button" class="btn btn-danger ml-1" (click)="goBack()" style="cursor: pointer;">
+          <i class="fa fa-close"></i> Fermer
         </button>
-      </div>
-    </form>
-  </div>
+            </div>
+        </form>
+    </div>
 </div>

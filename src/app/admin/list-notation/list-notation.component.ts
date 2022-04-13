@@ -4,6 +4,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotationService } from './../../services/notation.service';
 import { NotationDto } from './../../models/notation';
+import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 
 @Component({
@@ -14,19 +16,33 @@ import { NotationDto } from './../../models/notation';
 export class ListNotationComponent implements OnInit {
 
   notationListDTO: NotationDto[];
+  roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(private noteService: NotationService,
-              private router: Router,
-  //            public toastr: ToastrService,
-  //            private dialogService: DialogService,
-              private fb: FormBuilder
+              private tokenService: TokenStorageService,
+              public toastr: ToastrService,
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
     this.getListNotationDtos();
   }
 

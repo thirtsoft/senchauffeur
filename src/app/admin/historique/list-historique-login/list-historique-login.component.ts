@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { HistoriqueLoginService } from './../../../services/historique-login.service';
 import { HistoriqueLoginDto } from './../../../models/historique-login';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-historique-login',
@@ -13,21 +15,35 @@ import { Component, OnInit } from '@angular/core';
 export class ListHistoriqueLoginComponent implements OnInit {
 
   historiqueLoginListDTO: HistoriqueLoginDto[];
+  roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(private crudApi: HistoriqueLoginService,
-              private dialog: MatDialog,
-              private router: Router,
-
-     //         public toastr: ToastrService,
-     //         private dialogService: DialogService,
+              private tokenService: TokenStorageService,
+              public toastr: ToastrService,
 
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
+
     this.getListHistoriqueLoginDTOs();
   }
 

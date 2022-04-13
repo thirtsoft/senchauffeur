@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewsleterService } from './../../../services/newsleter.service';
 import { NewsleterDto } from './../../../models/newsleter';
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-newsleter',
@@ -16,12 +17,19 @@ import { Component, OnInit } from '@angular/core';
 export class ListNewsleterComponent implements OnInit {
 
   newsleterListDTO: NewsleterDto[];
+  roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(private crudApi: NewsleterService,
+              private tokenService: TokenStorageService,
               public toastr: ToastrService,
               private matDialog: MatDialog,
               private fb: FormBuilder,
@@ -29,6 +37,17 @@ export class ListNewsleterComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
+
     this.getListNewsleterDTOs();
   }
 
@@ -58,7 +77,7 @@ export class ListNewsleterComponent implements OnInit {
     if (window.confirm('Etes-vous sure de vouloir supprimer cet visiteur ?')) {
       this.crudApi.deleteNewsleterDTO(id)
         .subscribe(data => {
-          this.toastr.success("Email Envoyé avec Succès");
+          this.toastr.success("Visiteur supprimé avec Succès");
           this.router.navigate(['/admin/accueil/newsleters']);
         },
         (error: HttpErrorResponse) => {

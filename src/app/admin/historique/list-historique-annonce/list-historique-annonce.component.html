@@ -1,52 +1,38 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card m-b-30">
-        <div class="card-body">
-          <h3><i class="fa fa-angle-right"></i> List of Annonce History</h3>
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h3><i class="fa fa-angle-right"></i> List of Annonce History</h3>
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Annonce</th>
+                                <th>Permis</th>
+                                <th>Action</th>
+                                <th>Date of Action</th>
+                                <th>User</th>
+                                <th>Action</th>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Annonce</th>
-                <th>Permis</th>
-                <th>Action</th>
-                <th>Date of Action</th>
-                <th>Action</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="
                   let annonceHistoryDTO of historiqueAnnonceListDTO
                     | filter: searchText
                     | paginate: { itemsPerPage: 15, currentPage: p }
-                "
-              >
-                <td>{{ annonceHistoryDTO?.id }}</td>
-                <td>{{ annonceHistoryDTO?.annonceDto?.reference }}{{ annonceHistoryDTO?.annonceDto?.libelle }}</td>
-                <td>{{ annonceHistoryDTO?.annonceDto?.permisDto?.designation }}</td>
-                <td>{{ annonceHistoryDTO?.action }}</td>
-                <td>{{ annonceHistoryDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
-                <td>
-                  <button
-                    class="btn btn-warning btn-sm"
-                  >
-                    <i class="fa fa-edit" aria-hidden="true"></i></button
-                  >&nbsp;
-                  <button
-                    class="btn btn-success btn-sm"
-                  >
-                    <i class="fa fa-eye" aria-hidden="true"></i></button
-                  >&nbsp;
-
-                  <button
-                    class="btn btn-danger btn-sm"
-                    (click)="onDeleteHistoriqueAnnonce(annonceHistoryDTO.id)"
-                  >
-                    <i class="fa fa-eye" aria-hidden="true"></i></button
+                ">
+                                <td>{{ annonceHistoryDTO?.id }}</td>
+                                <td>{{ annonceHistoryDTO?.annonceDto?.reference }}{{ annonceHistoryDTO?.annonceDto?.libelle }}</td>
+                                <td>{{ annonceHistoryDTO?.annonceDto?.permisDto?.designation }}</td>
+                                <td>{{ annonceHistoryDTO?.action }}</td>
+                                <td>{{ annonceHistoryDTO?.createdDate | date : 'dd-MM-yyyy' }}</td>
+                                <td>{{ annonceHistoryDTO?.annonceDto?.utilisateurDto?.name }}</td>
+                                <td>
+                                    <button *ngIf="this.showAdminBoard" class="btn btn-danger btn-sm" (click)="onDeleteHistoriqueAnnonce(annonceHistoryDTO.id)">
+                    <i class="fa fa-trash" aria-hidden="true"></i></button
                   >&nbsp;
                 </td>
               </tr>

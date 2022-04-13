@@ -8,6 +8,7 @@ import { DialogService } from './../../../services/dialog.service';
 import { ToastrService } from 'ngx-toastr';
 import { PermisService } from './../../../services/permis.service';
 import { PermisDto } from './../../../models/permis';
+import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
 
 @Component({
   selector: 'app-list-permis',
@@ -17,19 +18,36 @@ import { PermisDto } from './../../../models/permis';
 export class ListPermisComponent implements OnInit {
 
   permisListDTO: PermisDto[];
-  addEditPermisDTO: PermisDto;
+
+  roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showManagerBoard = false;
+  showGestionnaireBoard = false;
+  showUserBoard = false;
 
   id : number;
   p : number=1;
   searchText;
 
   constructor(private permisService: PermisService,
+              private tokenService: TokenStorageService,
               private router: Router,
               public toastr: ToastrService,
               private fb: FormBuilder
   ){}
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showGestionnaireBoard = this.roles.includes("ROLE_GESTIONNAIRE");
+      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
     this.getListPermisDTOs();
   }
 
