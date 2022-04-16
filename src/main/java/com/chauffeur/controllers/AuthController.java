@@ -1,24 +1,5 @@
 package com.chauffeur.controllers;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.chauffeur.controllers.api.AuthApi;
 import com.chauffeur.dto.HistoriqueLoginDto;
 import com.chauffeur.dto.UtilisateurDto;
@@ -34,12 +15,24 @@ import com.chauffeur.repository.UtilisateurRepository;
 import com.chauffeur.security.jwt.JwtsProvider;
 import com.chauffeur.security.service.UserPrinciple;
 import com.chauffeur.services.HistoriqueLoginService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
 public class AuthController implements AuthApi {
-	
-	@Autowired
+
+    @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
@@ -53,16 +46,16 @@ public class AuthController implements AuthApi {
 
     @Autowired
     JwtsProvider jwtsProvider;
-    
+
     @Autowired
     private HistoriqueLoginService historiqueLoginService;
 
     @Override
     public ResponseEntity<?> authenticateUser(LoginForm loginForm) {
-    	
-    	Authentication authentication = authenticationManager.authenticate(
-    			new UsernamePasswordAuthenticationToken(
-    					loginForm.getUsername(), loginForm.getPassword()));
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginForm.getUsername(), loginForm.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtsProvider.generatedJwtToken(authentication);
@@ -71,7 +64,7 @@ public class AuthController implements AuthApi {
         List<String> roles = userPrinciple.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
-        
+
         Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(userPrinciple.getId());
         Utilisateur utilisateur = optionalUtilisateur.get();
         UtilisateurDto utilisateurDto = UtilisateurDto.fromEntityToDto(utilisateur);
@@ -87,7 +80,7 @@ public class AuthController implements AuthApi {
                 userPrinciple.getEmail(),
                 roles));
     }
-    
+
     @Override
     public ResponseEntity<?> registerUser(SignUpForm signUpForm) {
         if (utilisateurRepository.existsByUsername(signUpForm.getUsername())) {
@@ -98,13 +91,13 @@ public class AuthController implements AuthApi {
         }
         // Create new user's account
         Utilisateur utilisateur = new Utilisateur(
-        		signUpForm.getName(),
+                signUpForm.getName(),
                 signUpForm.getUsername(),
                 signUpForm.getEmail(),
                 encoder.encode(signUpForm.getPassword()
                 )
         );
-        //      Set<String> strRoles = signUpForm.getRole();
+
         String[] strRoles = signUpForm.getRoles();
         Set<Role> roles = new HashSet<>();
 
@@ -123,9 +116,9 @@ public class AuthController implements AuthApi {
                 case "gestionnaire":
                     roles.add(roleRepository.findByName(RoleName.ROLE_GESTIONNAIRE).get());
                     break;
-                    
+
                 case "manager":
-                	roles.add(roleRepository.findByName(RoleName.ROLE_MANAGER).get());
+                    roles.add(roleRepository.findByName(RoleName.ROLE_MANAGER).get());
                     break;
 
                 case "user":
@@ -143,7 +136,6 @@ public class AuthController implements AuthApi {
         return ResponseEntity.ok(utilisateurRepository.save(utilisateur));
 
     }
-	
-	
+
 
 }

@@ -1,9 +1,9 @@
 package com.chauffeur;
 
 
-import com.chauffeur.enumeration.RoleName;
-import com.chauffeur.models.Utilisateur;
+import com.chauffeur.dto.EmailDto;
 import com.chauffeur.repository.*;
+import com.chauffeur.services.EmailService;
 import com.chauffeur.services.UtilisateurService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,12 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 
 
 @SpringBootApplication
@@ -44,6 +47,13 @@ public class SenChauffeurApplication implements CommandLineRunner {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private JavaMailSender javaMailSender;
+    @Autowired
+    private EmailRepository emailRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(SenChauffeurApplication.class, args);
@@ -216,7 +226,6 @@ public class SenChauffeurApplication implements CommandLineRunner {
         utilisateurRepository.save(admin);
         utilisateurService.addRoleToUser("thir", RoleName.ROLE_ADMIN);
         */
-
 
 
     }

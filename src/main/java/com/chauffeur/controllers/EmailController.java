@@ -14,6 +14,8 @@ import com.chauffeur.dto.NewsleterDto;
 import com.chauffeur.dto.UtilisateurDto;
 import com.chauffeur.services.EmailService;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +48,7 @@ public class EmailController implements EmailApi {
         	emailDto.setCreateDate(new Date());
             emailService.responseEmailToCustomer(emailDto);
             return new ResponseEntity<EmailDto>(emailDto, HttpStatus.CREATED);
-        } catch (MailException e) {
+        } catch (MailException | MessagingException | UnsupportedEncodingException e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 	}
@@ -57,7 +59,7 @@ public class EmailController implements EmailApi {
         try {
             emailService.sendEmailToRecruteur(utilisateurDto);
             return new ResponseEntity<>(utilisateurDto, HttpStatus.OK);
-        } catch (MailException e) {
+        } catch (MailException | MessagingException | UnsupportedEncodingException e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -67,7 +69,7 @@ public class EmailController implements EmailApi {
     	 try {
              emailService.sendEmailToChauffeur(chauffeurDto);
              return new ResponseEntity<>(chauffeurDto, HttpStatus.OK);
-         } catch (MailException e) {
+         } catch (MailException | MessagingException | UnsupportedEncodingException e) {
              return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
          }
 	}
@@ -78,7 +80,7 @@ public class EmailController implements EmailApi {
         try {
             emailService.sendEmailToNewsletter(newsleterDto);
             return new ResponseEntity<>(newsleterDto, HttpStatus.OK);
-        } catch (MailException e) {
+        } catch (MailException | MessagingException | UnsupportedEncodingException e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

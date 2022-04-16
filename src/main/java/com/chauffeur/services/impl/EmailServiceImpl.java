@@ -1,16 +1,21 @@
 package com.chauffeur.services.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import com.chauffeur.dto.ChauffeurDto;
@@ -22,7 +27,6 @@ import com.chauffeur.models.Email;
 import com.chauffeur.repository.EmailRepository;
 import com.chauffeur.services.EmailService;
 import com.chauffeur.services.NewsleterService;
-import com.chauffeur.services.UtilisateurService;
 import com.chauffeur.utils.EmailConstants;
 
 
@@ -67,8 +71,9 @@ public class EmailServiceImpl implements EmailService {
         emailDto.setCustomerName(emailDto.getCustomerName());
 
         System.out.println(emailDto);
-
+/*
         javaMailSender.send(mail);
+        */
 
         EmailDto.fromEntityToDto(
                 emailRepository.save(
@@ -79,26 +84,21 @@ public class EmailServiceImpl implements EmailService {
 	}
 	
 	@Override
-	public void responseEmailToCustomer(EmailDto emailDto) throws MailException {
-		StringBuilder sb = new StringBuilder();
-        sb.append("Nom : " + EmailConstants.managerName).append(System.lineSeparator());
-        sb.append("\n Subject : " + emailDto.getSubject());
-        sb.append("\n Message : " + emailDto.getMessage());
+	public void responseEmailToCustomer(EmailDto emailDto) throws MailException, MessagingException, UnsupportedEncodingException {
 
-        SimpleMailMessage mail = new SimpleMailMessage();
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
-        mail.setTo(emailDto.getRecipient());
-        mail.setFrom(EmailConstants.to);
-        
-        mail.setSubject(emailDto.getSubject());
-        mail.setText(emailDto.getMessage());
+        mimeMessageHelper.setTo(emailDto.getRecipient());
+        mimeMessageHelper.setFrom(EmailConstants.from, EmailConstants.managerName);
+        mimeMessageHelper.setSubject(emailDto.getSubject());
+        mimeMessageHelper.setText(emailDto.getMessage());
 
         emailDto.setCreateDate(new Date());
-        emailDto.setCustomerName(emailDto.getCustomerName());
 
         System.out.println(emailDto);
 
-        javaMailSender.send(mail);
+        javaMailSender.send(mimeMessage);
 
         EmailDto.fromEntityToDto(
                 emailRepository.save(
@@ -109,56 +109,48 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void sendEmailToRecruteur(UtilisateurDto utilisateurDto) throws MailException {
-		StringBuilder sb = new StringBuilder();
-        sb.append("Nom : " + EmailConstants.managerName).append(System.lineSeparator());
-        sb.append("\n Subject : " + utilisateurDto.getSubject());
-        sb.append("\n Message : " + utilisateurDto.getMessage());
+	public void sendEmailToRecruteur(UtilisateurDto utilisateurDto) throws MailException, MessagingException, UnsupportedEncodingException {
 
-        SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setTo(utilisateurDto.getEmail());
-        mail.setFrom(EmailConstants.from);
-        mail.setSubject(utilisateurDto.getSubject());
-        mail.setText(utilisateurDto.getMessage());
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
-        javaMailSender.send(mail);
+        mimeMessageHelper.setTo(utilisateurDto.getEmail());
+        mimeMessageHelper.setFrom(EmailConstants.from, EmailConstants.managerName);
+        mimeMessageHelper.setSubject(utilisateurDto.getSubject());
+        mimeMessageHelper.setText(utilisateurDto.getMessage());
 
-		
+        javaMailSender.send(mimeMessage);
+
 	}
 	
 	@Override
-	public void sendEmailToChauffeur(ChauffeurDto chauffeurDto) throws MailException {
-		StringBuilder sb = new StringBuilder();
-        sb.append("Nom : " + EmailConstants.managerName).append(System.lineSeparator());
-        sb.append("\n Subject : " + chauffeurDto.getSubject());
-        sb.append("\n Message : " + chauffeurDto.getMessage());
+	public void sendEmailToChauffeur(ChauffeurDto chauffeurDto) throws MailException, MessagingException, UnsupportedEncodingException {
 
-        SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setTo(chauffeurDto.getEmail());
-        mail.setFrom(EmailConstants.from);
-        mail.setSubject(chauffeurDto.getSubject());
-        mail.setText(chauffeurDto.getMessage());
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
-        javaMailSender.send(mail);
+        mimeMessageHelper.setTo(chauffeurDto.getEmail());
+        mimeMessageHelper.setFrom(EmailConstants.from, EmailConstants.managerName);
+        mimeMessageHelper.setSubject(chauffeurDto.getSubject());
+        mimeMessageHelper.setText(chauffeurDto.getMessage());
+
+
+        javaMailSender.send(mimeMessage);
 		
 	}
 
 
 	@Override
-	public void sendEmailToNewsletter(NewsleterDto newsletterDto) throws MailException {
-		StringBuilder sb = new StringBuilder();
-        sb.append("Nom : " + EmailConstants.managerName).append(System.lineSeparator());
-        sb.append("\n Subject : " + newsletterDto.getSubject());
-        sb.append("\n Message : " + newsletterDto.getMessage());
+	public void sendEmailToNewsletter(NewsleterDto newsletterDto) throws MailException, MessagingException, UnsupportedEncodingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
-        SimpleMailMessage mail = new SimpleMailMessage();
+        mimeMessageHelper.setTo(newsletterDto.getEmailVisiteur());
+        mimeMessageHelper.setFrom(EmailConstants.from, EmailConstants.managerName);
+        mimeMessageHelper.setSubject(newsletterDto.getSubject());
+        mimeMessageHelper.setText(newsletterDto.getMessage());
 
-        mail.setTo(newsletterDto.getEmailVisiteur());
-        mail.setFrom(EmailConstants.from);
-        mail.setSubject(newsletterDto.getSubject());
-        mail.setText(newsletterDto.getMessage());
-
-        javaMailSender.send(mail);
+        javaMailSender.send(mimeMessage);
 		
 	}
 

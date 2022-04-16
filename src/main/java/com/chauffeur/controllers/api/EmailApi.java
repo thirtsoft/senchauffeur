@@ -21,6 +21,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import javax.mail.MessagingException;
+
 import static com.chauffeur.utils.Constants.APP_ROOT;
 
 public interface EmailApi {
@@ -43,7 +45,7 @@ public interface EmailApi {
             @ApiResponse(code = 200, message = "L'email a été envoyé / modifié"),
             @ApiResponse(code = 400, message = "Aucun Email  envoyé")
     })
-	ResponseEntity<EmailDto> responseEmailToCustomer(@RequestBody EmailDto emailDto); 
+	ResponseEntity<EmailDto> responseEmailToCustomer(@RequestBody EmailDto emailDto);
 
     @PostMapping(value = APP_ROOT + "/emails/sendToRecruteur")
     @ApiOperation(value = "Envoyer un email à un Recruteur",
