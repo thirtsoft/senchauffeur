@@ -41,7 +41,7 @@ export class ContactComponent implements OnInit {
           timeOut: 1500,
           positionClass: 'toast-top-right',
           });
-          this.router.navigateByUrl("contact").then(() => {
+          this.router.navigateByUrl("success-contact").then(() => {
           });
       },
       (error: HttpErrorResponse) => {

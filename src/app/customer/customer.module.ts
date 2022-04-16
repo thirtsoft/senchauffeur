@@ -67,6 +67,7 @@ import { AddNewsleterComponent } from './add-newsleter/add-newsleter.component';
 import { Top3RatingToChauffeurComponent } from './job/rating/top3-rating-to-chauffeur/top3-rating-to-chauffeur.component';
 import { ListCustomerReservationComponent } from './employeur/reservation/list-customer-reservation/list-customer-reservation.component';
 import { CreateCustomerReservationComponent } from './employeur/reservation/create-customer-reservation/create-customer-reservation.component';
+import { SuccessContactComponent } from './entreprise/success-contact/success-contact.component';
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { CreateCustomerReservationComponent } from './employeur/reservation/crea
     Top3RatingToChauffeurComponent,
     ListCustomerReservationComponent,
     CreateCustomerReservationComponent,
+    SuccessContactComponent,
   ],
   imports: [
     CommonModule,

@@ -121,7 +121,7 @@ export class CreateChauffeurComponent implements OnInit {
   onUpdateChauffeur() {
     this.chauffeurService.updateChauffeurDTO(this.formDataChauffeurDTO.id, this.formDataChauffeurDTO).subscribe(
       (response: ChauffeurDto) => {
-        this.router.navigate(['/backend/admin/chauffeurs']);
+        this.router.navigate(['/admin/accueil/chauffeurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -24,6 +24,7 @@ import { PublierOffreComponent } from './job/publier-offre/publier-offre.compone
 import { CompaniesComponent } from './entreprise/companies/companies.component';
 import { FaqComponent } from './entreprise/faq/faq.component';
 import { SubmitResumeComponent } from './submit-resume/submit-resume.component';
+import { SuccessContactComponent } from './entreprise/success-contact/success-contact.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: 'home', pathMatch: 'full' },
@@ -36,12 +37,7 @@ const routes: Routes = [
   { path: 'search/:keyword',
     component: HomeComponent
   },
-  /*
-  {
-    path: 'permis/:id',
-    component: HomeComponent
-  },
-  */
+ 
   {
     path: 'emploies',
     component: ListEmployeComponent
@@ -148,6 +144,10 @@ const routes: Routes = [
   {
     path: 'contact-us',
     component: ContactComponent
+  },
+  {
+    path: 'success-contact',
+    component: SuccessContactComponent
   },
   {
     path: 'faq',
