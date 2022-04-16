@@ -128,9 +128,7 @@
                                                 </td>
 
                                                 <td class="text-right">
-                                                    <button class="btn btn-primary btn-sm" [routerLink]="['/createJob', annonceDTO.id]" [ngClass]="{
-                              disabled: annonceDTO.status == 'VALIDEE'
-                            }">
+                                                    <button class="btn btn-primary btn-sm" [routerLink]="['/createJob', annonceDTO.id]" [disabled]="annonceDTO.status==='VALIDEE'" state="cursor: pointer;">
                             <i
                               class="fa fa-edit"
                               aria-hidden="true"
