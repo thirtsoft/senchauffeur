@@ -13,7 +13,6 @@ export class EmailDto {
   recipient: string;
   subject: string;
   message: string;
-
   createDate: Date;
 
   utilisateurDto: UtilisateurDto;

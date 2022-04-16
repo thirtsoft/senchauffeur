@@ -30,7 +30,7 @@ export class ResponseMailComponent implements OnInit {
   infoForm() {
     this.mailService.dataForm = this.fb.group({
       id: null,
-      email: ['', [Validators.required]],
+      recipient: ['', [Validators.required]],
       subject: ['', [Validators.required]],
       message: ['', [Validators.required]],
     });
@@ -38,11 +38,12 @@ export class ResponseMailComponent implements OnInit {
   }
 
   onSubmit() {
-    this.mailService.responseMailToCustomer(this.mailService.dataForm.value).
+    console.log(this.mailService.dataForm.value);
+    this.mailService.responseToEmailByManager(this.mailService.dataForm.value).
     subscribe( data => {
       this.dialogRef.close();
       this.toastr.success("Email Envoyé avec Succès");
-      this.router.navigate(['/admin/accueil/recruteurs']);
+      this.router.navigate(['/admin/accueil/emails']);
     });
   }
 

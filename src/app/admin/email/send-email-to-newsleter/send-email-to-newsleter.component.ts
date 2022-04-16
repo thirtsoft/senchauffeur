@@ -47,7 +47,7 @@ export class SendEmailToNewsleterComponent implements OnInit {
     subscribe( data => {
       this.dialogRef.close();
       this.toastr.success("Email Envoyé avec Succès");
-      this.router.navigate(['/admin/accueil/recruteurs']);
+      this.router.navigate(['/admin/accueil/newsletters']);
     });
   }
 

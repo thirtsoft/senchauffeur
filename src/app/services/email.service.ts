@@ -29,7 +29,7 @@ export class EmailService {
 
   public getEmailDtoById(emailId: number): Observable<EmailDto> {
     return this.http.get<EmailDto>(`${this.apiServerUrl}/emails/findById/${emailId}`);
-  } responseMailToCustomer
+  } 
 
   public senEmailToManager(emailDto: EmailDto): Observable<EmailDto> {
     return this.http.post<EmailDto>(`${this.apiServerUrl}/emails/sendMailToManager`, emailDto);
