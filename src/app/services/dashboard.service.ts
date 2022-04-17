@@ -25,8 +25,15 @@ export class DashboardService {
     return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonceByStatusPending`);
   }
 
+  public countNumberOfAnnonceByStatusValidated(): Observable<any>  {
+    return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonceByStatusValidated`);
+  }
+
   public countNumberOfAnnonceByInMonth(): Observable<any>  {
     return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonceInMonth`);
+  }
+  public countNumberOfAnnoncesInYear(): Observable<any>  {
+    return this.http.get(`${this.apiServerUrl}/annonces/NumbersOfAnnonceInYear`);
   }
 
   public countNumbersOfAnnoncePeerMonth(): Observable<AnnonceDto[]>  {
@@ -67,7 +74,7 @@ export class DashboardService {
   }
 
   public countNumberOfRecruteurs(): Observable<any> {
-    return this.http.get(`${this.apiServerUrl}/recruteurs/NumbersOfRecruteurs`);
+    return this.http.get(`${this.apiServerUrl}/utilisateurs/NumbersOfRecruteurs`);
   }
 
   public countNumberOfNotification(): Observable<NotationDto[]> {

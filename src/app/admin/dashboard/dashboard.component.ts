@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
 
   numberOfChauffeur;
   numberOfAnnonce;
+  numberOfValidatedAnnonces;
+  numberOfAnnoncesInYear;
   numberOfRecruteur;
 
   form: any = {};
@@ -68,7 +70,11 @@ export class DashboardComponent implements OnInit {
 
     this.getNumberOfRecruteurs();
 
-    this.getNumberOfAnnonces();
+ //   this.getNumberOfAnnonces();
+
+    this.getNumberOfValidatedAnnonces();
+
+    this.getNumberOfAnnoncesInYear();
 
     this.getListNotationDtos();
 
@@ -85,6 +91,22 @@ export class DashboardComponent implements OnInit {
     this.dasboardService.countNumberOfAnnonces().subscribe(data => {
       this.numberOfAnnonce = data;
     });
+  }
+
+  getNumberOfValidatedAnnonces(): void {
+    this.dasboardService.countNumberOfAnnonceByStatusValidated()
+      .subscribe(data => {
+        this.numberOfValidatedAnnonces = data;
+      }
+    );
+  }
+
+  getNumberOfAnnoncesInYear(): void {
+    this.dasboardService.countNumberOfAnnoncesInYear()
+      .subscribe(data => {
+        this.numberOfAnnoncesInYear = data;
+      }
+    );
   }
 
   getNumberOfRecruteurs(): void {

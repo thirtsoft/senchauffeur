@@ -26,7 +26,7 @@
                         <div class="col-9 text-center align-self-center">
                             <div class="m-l-10">
                                 <h5 class="mt-0 round-inner">{{ numberOfChauffeur }}</h5>
-                                <p class="mb-0 text-muted">Chauffeurs</p>
+                                <p class="mb-0 text-muted" routerLink="/admin/accueil/chauffeurs" style="cursor: pointer;">Chauffeurs</p>
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                         <div class="col-9 text-center align-self-center">
                             <div class="m-l-10">
                                 <h5 class="mt-0 round-inner">{{ numberOfRecruteur }}</h5>
-                                <p class="mb-0 text-muted">Recruteurs</p>
+                                <p class="mb-0 text-muted" routerLink="/admin/accueil/recruteurs" style="cursor: pointer;">Recruteurs</p>
                             </div>
                         </div>
 
@@ -68,9 +68,12 @@
                         </div>
                         <div class="col-9 align-self-center text-center">
                             <div class="m-l-10">
-                                <h5 class="mt-0 round-inner">{{ numberOfAnnonce }}</h5>
-                                <p class="mb-0 text-muted">Annonces</p>
+                                <h5 class="mt-0 round-inner">{{ numberOfAnnoncesInYear }}</h5>
+                                <p class="mb-0 text-muted" routerLink="/admin/accueil/annonces" style="cursor: pointer;">
+                                    Annonces/Années</p>
                             </div>
+
+
                         </div>
 
                     </div>
@@ -89,13 +92,13 @@
                         </div>
                         <div class="col-6 align-self-center text-center">
                             <div class="m-l-10">
-                                <h5 class="mt-0 round-inner">$32874</h5>
-                                <p class="mb-0 text-muted">Total Sales</p>
+                                <h5 class="mt-0 round-inner">{{ numberOfValidatedAnnonces }}</h5>
+                                <p class="mb-0 text-muted">Annonces/Validées</p>
                             </div>
                         </div>
                         <div class="col-3 align-self-end align-self-center">
                             <h6 class="m-0 float-right text-center text-success">
-                                <i class="mdi mdi-arrow-up"></i> <span>2.35%</span>
+                                <i class="mdi mdi-arrow-up"></i> <span>{{ numberOfValidatedAnnonces }}</span>
                             </h6>
                         </div>
                     </div>
