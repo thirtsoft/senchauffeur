@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.toastr.success('veuillez vérifier vos identifiants','Error de connection', {
+        this.toastr.error('veuillez vérifier vos identifiants','Error de connection', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
           });

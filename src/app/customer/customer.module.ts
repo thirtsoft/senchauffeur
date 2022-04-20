@@ -26,12 +26,10 @@ import { CustomerRoutingModule } from './customer-routing.module';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
 
-import { SearchOffreEmployeComponent } from './job/search-offre-employe/search-offre-employe.component';
 import { CreateNotificationComponent } from './notation/create-notification/create-notification.component';
 import { ListNotificationComponent } from './notation/list-notification/list-notification.component';
 import { ContactComponent } from './entreprise/contact/contact.component';
 
-import { AideComponent } from './aide/aide.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutUsComponent } from './entreprise/about-us/about-us.component';
 import { CompaniesComponent } from './entreprise/companies/companies.component';
@@ -49,24 +47,14 @@ import { RecentJobComponent } from './job/recent-job/recent-job.component';
 import { HomeComponent } from './home/home.component';
 import { JobersComponent } from './job/jobers/jobers.component';
 import { SearchInCandidatesComponent } from './candidate/search-in-candidates/search-in-candidates.component';
-import { ListJobParmisComponent } from './job/list-job-parmis/list-job-parmis.component';
 import { SearchJobByReferenceComponent } from './job/search-job-by-reference/search-job-by-reference.component';
 import { ListJobPermisComponent } from './job/list-job-permis/list-job-permis.component';
 import { PublierOffreComponent } from './job/publier-offre/publier-offre.component';
 import { ListTarifCustomerComponent } from './job/list-tarif-customer/list-tarif-customer.component';
 import { TermeConditionsComponent } from './entreprise/terme-conditions/terme-conditions.component';
-import { DetailEmployeurComponent } from './employeur/detail-employeur/detail-employeur.component';
-import { JetonEmployeurComponent } from './employeur/jeton-employeur/jeton-employeur.component';
-import { InfoEmployeurComponent } from './employeur/info-employeur/info-employeur.component';
-import { ModifyInfoEmployeurComponent } from './employeur/modify-info-employeur/modify-info-employeur.component';
-import { ModifyPasswordEmployeurComponent } from './employeur/modify-password-employeur/modify-password-employeur.component';
 import { CreateRatingComponent } from './rating/create-rating/create-rating.component';
 import { ListRatingComponent } from './rating/list-rating/list-rating.component';
-import { ViewJobDetailComponent } from './job/view-job-detail/view-job-detail.component';
 import { AddNewsleterComponent } from './add-newsleter/add-newsleter.component';
-import { Top3RatingToChauffeurComponent } from './job/rating/top3-rating-to-chauffeur/top3-rating-to-chauffeur.component';
-import { ListCustomerReservationComponent } from './employeur/reservation/list-customer-reservation/list-customer-reservation.component';
-import { CreateCustomerReservationComponent } from './employeur/reservation/create-customer-reservation/create-customer-reservation.component';
 import { SuccessContactComponent } from './entreprise/success-contact/success-contact.component';
 
 
@@ -74,7 +62,6 @@ import { SuccessContactComponent } from './entreprise/success-contact/success-co
   declarations: [
     DetailChauffeurComponent,
     SearchChauffeurComponent,
-    SearchOffreEmployeComponent,
     CreateNotificationComponent,
     ListNotificationComponent,
     ContactComponent,
@@ -82,7 +69,6 @@ import { SuccessContactComponent } from './entreprise/success-contact/success-co
     JobDetailComponent,
     CandidatebrowerComponent,
     ListLocalityComponent,
-    AideComponent,
     PageNotFoundComponent,
     AboutUsComponent,
     CompaniesComponent,
@@ -94,24 +80,14 @@ import { SuccessContactComponent } from './entreprise/success-contact/success-co
     HomeComponent,
     JobersComponent,
     SearchInCandidatesComponent,
-    ListJobParmisComponent,
     SearchJobByReferenceComponent,
     ListJobPermisComponent,
     PublierOffreComponent,
     ListTarifCustomerComponent,
     TermeConditionsComponent,
-    DetailEmployeurComponent,
-    JetonEmployeurComponent,
-    InfoEmployeurComponent,
-    ModifyInfoEmployeurComponent,
-    ModifyPasswordEmployeurComponent,
     CreateRatingComponent,
     ListRatingComponent,
-    ViewJobDetailComponent,
     AddNewsleterComponent,
-    Top3RatingToChauffeurComponent,
-    ListCustomerReservationComponent,
-    CreateCustomerReservationComponent,
     SuccessContactComponent,
   ],
   imports: [
@@ -139,9 +115,9 @@ import { SuccessContactComponent } from './entreprise/success-contact/success-co
     NgbModule,
   ],
   entryComponents: [
-    ListJobComponent, CreateJobComponent, ViewJobDetailComponent, JetonEmployeurComponent, PublierOffreComponent,
-    DetailEmployeurComponent, JobbrowserComponent, InfoEmployeurComponent,
-    ModifyInfoEmployeurComponent, ModifyPasswordEmployeurComponent
+    ListJobComponent, CreateJobComponent, PublierOffreComponent,
+    JobbrowserComponent,
+    
   ]
 })
 export class CustomerModule { }

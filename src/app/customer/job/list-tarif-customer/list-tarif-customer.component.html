@@ -1,30 +1,12 @@
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-12 m-b30" *ngFor="let tafDTO of tarifListDTO; let i=index;">
-      <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
-          <div class="icon-md text-primary m-b20"> <a href="#" class="icon-cell text-primary"><i class="ti-desktop"></i></a> </div>
-          <div class="icon-content">
-              <h5 class="dlab-tilte text-uppercase">{{tafDTO?.reference}}</h5>
-              <h6 class="dlab-tilte text-uppercase">{{tafDTO?.montantTarif}}</h6>
-              <p>{{tafDTO?.description}}</p>
-          </div>
-      </div>
-  </div>
-<!--   <div class="col-lg-4 col-md-4 col-sm-12 m-b30">
-      <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
-          <div class="icon-md text-primary m-b20"> <a href="#" class="icon-cell text-primary"><i class="ti-image"></i></a> </div>
-          <div class="icon-content">
-              <h5 class="dlab-tilte text-uppercase">Make it Simple</h5>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod..</p>
-          </div>
-      </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-12 m-b30">
-      <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
-          <div class="icon-md text-primary m-b20"> <a href="#" class="icon-cell text-primary"><i class="ti-cup"></i></a> </div>
-          <div class="icon-content">
-              <h5 class="dlab-tilte text-uppercase">Different Layout Type</h5>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod..</p>
-          </div>
-      </div>
-  </div> -->
+    <div class="col-lg-4 col-md-4 col-sm-12 m-b30" *ngFor="let tafDTO of tarifListDTO; let i=index;">
+        <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
+            <div class="icon-md text-primary m-b20"> <a href="#" class="icon-cell text-primary"><i class="ti-desktop"></i></a> </div>
+            <div class="icon-content">
+                <h5 class="dlab-tilte text-uppercase">{{tafDTO?.reference}}</h5>
+                <h6 class="dlab-tilte text-uppercase">{{tafDTO?.montantTarif}}</h6>
+                <p>{{tafDTO?.description}}</p>
+            </div>
+        </div>
+    </div>
 </div>
