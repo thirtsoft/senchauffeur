@@ -147,7 +147,9 @@ export class ListJobComponent implements OnInit {
       libelle: ['', Validators.required],
       lieuPoste: [''],
       salaire: ['',0],
-      emailPoste: ['', Validators.required],
+      emailPoste: ['', 
+        Validators.required,
+        Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
       time: ['', Validators.required],
       proExperience: ['', Validators.required],
       typeContrat: ['', Validators.required],
@@ -223,25 +225,19 @@ export class ListJobComponent implements OnInit {
 
   }
 
-
   onAddNewJob() {
     this.router.navigate(['/createJob']);
   }
 
   getEmploye() {
     const user = this.tokenService.getUser();
-    console.log(user.id);
     this.userService.getUtilisateurDTOById(user.id).subscribe(
       response => {
-        console.log(response);
         this.listDataProfil = response;
         this.customerName = this.listDataProfil.name;
         this.customerUsername = this.listDataProfil.username;
         this.customerEmail = this.listDataProfil.email;
         this.customerMobile = this.listDataProfil.mobile;
-        console.log(this.listDataProfil.name);
-        console.log(this.listDataProfil.username);
-        console.log(this.listDataProfil.email);
       }
     );
   }
@@ -251,8 +247,6 @@ export class ListJobComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "50%";
-  //  this.authService.listData = Object.assign({}, item);
-  //  this.matDialog.open(UpdateCustomerUsernameComponent, dialogConfig);
   }
 
   addEditCustomerPassword(item: UtilisateurDto) {
@@ -261,11 +255,8 @@ export class ListJobComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "50%";
-  //  this.authService.listData = Object.assign({}, item);
-  //  this.matDialog.open(UpdateCustomerPasswordComponent, dialogConfig);
 
   }
-
 
 
   update() {
@@ -279,7 +270,6 @@ export class ListJobComponent implements OnInit {
           this.router.navigateByUrl("/").then(() => {
             window.location.reload();
           });
-
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -334,7 +324,6 @@ export class ListJobComponent implements OnInit {
           this.router.navigateByUrl("jobs/" + this.userId).then(() => {
             window.location.reload();
           });
-
       },
       (error: HttpErrorResponse) => {
         this.toastr.error("Veuillez remplir tous les champs");
@@ -377,7 +366,6 @@ export class ListJobComponent implements OnInit {
       );
     }
   }
-
 
   logout() {
     this.tokenService.signOut();

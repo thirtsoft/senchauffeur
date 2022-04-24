@@ -17,9 +17,9 @@
                                 <th>Entreprise</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
-                                <th>Ville</th>
                                 <th>Sect.Activité</th>
                                 <th>Active</th>
+                                <th>Inscription</th>
                                 <th>Action</th>
                             </tr>
 
@@ -37,7 +37,7 @@
                                   recruteur.id +
                                   '?ts=' +
                                   getTS()
-                                " class="img-profile rounded-circle" width="70" height="30" />
+                                " class="img-profile rounded-circle" width="50" height="10" />
 
                                 </td>
                                 <td>{{ recruteur?.name }}</td>
@@ -45,7 +45,6 @@
                                 <td>{{ recruteur?.nomEntreprise }}</td>
                                 <td>{{ recruteur?.mobile }}</td>
                                 <td>{{ recruteur?.email }}</td>
-                                <td>{{ recruteur?.villeRecruteur }}</td>
                                 <td>{{ recruteur?.secteurActivite }}</td>
                                 <td>{{ recruteur?.active }}
                                     <button *ngIf="this.showAdminBoard || this.showManagerBoard" type="button" class="btn btn-primary btn-sm pull-right" (click)="ActivatedUser(recruteur)" style="cursor: pointer;">
@@ -53,6 +52,7 @@
                               </button>
 
                                 </td>
+                                <td>{{ recruteur?.dateInscription | date:'dd-MM-yyyy' }}</td>
 
                                 <td>
                                     <button class="btn btn-warning btn-sm" (click)="sendMailToEmployeur(recruteur)">

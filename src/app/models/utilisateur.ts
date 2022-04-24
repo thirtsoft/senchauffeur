@@ -14,6 +14,7 @@ export class Utilisateur {
   active: boolean;
   photo: string;
   password: string;
+  dateInscription: Date;
 
 }
 
@@ -32,6 +33,7 @@ export class UtilisateurDto {
   photo: string;
   active: boolean;
   password: string;
+  dateInscription: Date;
 
   roles?: Role[];
 }

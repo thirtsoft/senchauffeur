@@ -23,12 +23,12 @@ export class RecentJobComponent implements OnInit {
   permId;
   validated: boolean=false;
 
-  public size: number = 6;
-  public currentPage: number = 1;
-  public totalPages: number;
-  public pages: Array<number>;
+  size: number = 6;
+  currentPage: number = 1;
+  totalPages: number;
+  pages: Array<number>;
 
-  public currentTime: number = 0;
+  currentTime: number = 0;
 
   currentCategoryId: number;
 
@@ -42,14 +42,12 @@ export class RecentJobComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.get6LatestAnnonceListDTOs();
-
+    
     this.getNumberOfAnnonces();
-
   }
 
-  public get6LatestAnnonceListDTOs() {
+  get6LatestAnnonceListDTOs() {
     this.annonceService.get5LatestAnnonceDTOByOrderByIdDesc().subscribe(
       (response: AnnonceDto[]) => {
         this.annonceListDTO = response;
@@ -63,13 +61,12 @@ export class RecentJobComponent implements OnInit {
   }
 
   getNumberOfAnnonces(): void {
-    this.dashboardService.countNumberOfAnnonces().subscribe(data => {
+    this.dashboardService.countNumberOfAnnonceByStatusValidated().subscribe(data => {
       this.numberOfAnnonce = data;
     });
   }
 
-
-  public getAnnonceListDTOsByPermiss() {
+  getAnnonceListDTOsByPermiss() {
     const hasPermId: boolean = this.route.snapshot.paramMap.has('id');
     this.annonceService.getListAnnonceDTOByPermis(this.permId).subscribe(
       (response: AnnonceDto[]) => {
@@ -83,7 +80,6 @@ export class RecentJobComponent implements OnInit {
 
   }
 
-  // Liste des produits par page
   getAnnonceDTOByPageable() {
     this.annonceService.getListAnnonceDTOByPageable(this.currentPage, this.size)
       .subscribe(data=> {
@@ -94,7 +90,6 @@ export class RecentJobComponent implements OnInit {
       },err=> {
         console.log(err);
       });
-
   }
 
   getAnnonceListDTOsBySearchKeyword() {
@@ -103,9 +98,7 @@ export class RecentJobComponent implements OnInit {
       data  => {
         this.annonceListDTO = data;
       }
-
     )
-
   }
 
   processResult() {

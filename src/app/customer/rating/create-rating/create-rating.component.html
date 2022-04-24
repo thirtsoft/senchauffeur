@@ -1,30 +1,16 @@
-
-  <div class="page-content bg-white">
-      <div class="content-block">
+<div class="page-content bg-white">
+    <div class="content-block">
         <h4> Votre Avis:</h4>
-          <form [formGroup]="this.formData" name="form">
+        <form [formGroup]="this.formData" name="form">
 
-              <div class="form-group ">
-                <!--   <label>Nbre Etoile</label> -->
-                  <ngb-rating
-                    formControlName="nbreEtoile"
-                    [(rate)]="currentRating"
-                    [max]="maxRatingValue"
-                    [readonly]="false"
-                    [id]="'rating3'"
-                    [readonly]="false"
-                    (rateChange)="onRateChange($event)"
-                  >
-                  </ngb-rating>
-                  <div
-                      *ngIf="
+            <div class="form-group ">
+                <ngb-rating formControlName="nbreEtoile" [(rate)]="currentRating" [max]="maxRatingValue" [readonly]="false" [id]="'rating3'" [readonly]="false" (rateChange)="onRateChange($event)">
+                </ngb-rating>
+                <div *ngIf="
                         f['nbreEtoile'].invalid &&
                         (f['nbreEtoile'].dirty || f['nbreEtoile'].touched)
-                      "
-                      class="alert alert-danger"
-                    >
-                      <span *ngIf="f['nbreEtoile'].errors.required"
-                        >Le choix du nombre d'étoiles est obligatoire.</span
+                      " class="alert alert-danger">
+                    <span *ngIf="f['nbreEtoile'].errors.required">Le choix du nombre d'étoiles est obligatoire.</span
                       >
 
                   </div>
@@ -32,7 +18,6 @@
               </div>
 
               <div class="form-group ">
-                 <!--  <label>Observation</label> -->
                   <textarea class="form-control"
                     formControlName="observation"
                     id="observation" required placeholder="Votre commentaire"></textarea>
@@ -61,4 +46,3 @@
 
       </div>
   </div>
-

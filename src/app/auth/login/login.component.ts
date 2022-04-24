@@ -68,15 +68,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  reloadPage() {
-    location.reload();
-  }
-
-  reloadHomePage() {
-    this.router.navigateByUrl("/home", { skipLocationChange: true }).then(() => {
-      this.router.navigate(['login']);
-    });
-  }
 
 
 }

@@ -6,7 +6,6 @@ import { ReactiveFormsModule  } from '@angular/forms';
 import { FormsModule }   from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
-import { ConfirmRegisterComponent } from './confirm-register/confirm-register.component';
 import { SuccessRegisterComponent } from './success-register/success-register.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RegisterComponent } from './register/register.component';
@@ -17,7 +16,6 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ConfirmRegisterComponent,
     SuccessRegisterComponent,
     ProfilComponent
   ],

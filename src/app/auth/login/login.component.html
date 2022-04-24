@@ -34,21 +34,21 @@
                                 <div class="form-group">
                                     <label class="font-weight-700">NOM-UTILISATEUR *</label>
                                     <input type="text" name="username" [(ngModel)]="form.username" #username="ngModel" class="form-control" required placeholder="Nom utilisateur" />
-                                    <div *ngIf="f.submitted && username.invalid">
+                                    <div class="alert alert-danger" *ngIf="f.submitted && username.invalid">
                                         <div *ngIf="username.errors.required">
-                                            Nom utilisateur est incorrect
+                                            Nom utilisateur est obligatoire
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-700">PASSWORD *</label>
                                     <input type="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" class="form-control" required placeholder="Mot de Password" />
-                                    <div *ngIf="f.submitted && password.invalid">
+                                    <div class="alert alert-danger" *ngIf="f.submitted && password.invalid">
                                         <div *ngIf="password.errors.required">
-                                            Password is required
+                                            Indiquer votr mot de Passe
                                         </div>
                                         <div *ngIf="password.errors.minlength">
-                                            Password doit contenir au moins 6 caractères
+                                            Votre mot Password doit contenir au moins 6 caractères
                                         </div>
                                     </div>
                                 </div>

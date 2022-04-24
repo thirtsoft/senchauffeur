@@ -207,10 +207,10 @@
                             <thead>
                                 <tr>
                                     <th class="border-top-0" style="width: 60px">Member</th>
-                                    <th class="border-top-0">Name</th>
+                                    <th class="border-top-0">Chauffeur</th>
                                     <th class="border-top-0">Locality</th>
-                                    <th class="border-top-0">Earnings</th>
-                                    <th class="border-top-0">Sales</th>
+                                    <th class="border-top-0">Salaire</th>
+                                    <th class="border-top-0">Expérience</th>
                                     <th class="border-top-0">Reviews</th>
                                     <th class="border-top-0">Progress</th>
                                 </tr>
@@ -226,7 +226,7 @@
                       }}</a
                     >
                   </td>
-                  <td>{{ noteDTO?.chauffeurDto?.addresseDto?.quartier }}</td>
+                  <td>{{ noteDTO?.chauffeurDto?.addresseDto?.ville }}</td>
                   <td>${{ noteDTO?.chauffeurDto?.pretentionSalaire }}</td>
                   <td>{{ noteDTO?.chauffeurDto?.nbreAnneeExperience }}</td>
                   <td>

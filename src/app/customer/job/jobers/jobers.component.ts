@@ -68,10 +68,8 @@ export class JobersComponent implements OnInit {
   getListChauffeurDTOs() {
     this.searchText = this.activeRoute.snapshot.paramMap.has('keyword');
     if (this.searchText) {
-      // do search work
       this.getChauffeurListDTOsBySearchKeyword();
     } else {
-      //display product list
       this.getChauffeurListDTOsBySelectedIsTrue();
     }
   }
@@ -107,7 +105,7 @@ export class JobersComponent implements OnInit {
   }
 
   getNumberOfAnnonces(): void {
-    this.dashboardService.countNumberOfAnnonces().subscribe(data => {
+    this.dashboardService.countNumberOfAnnonceByStatusValidated().subscribe(data => {
       this.numberOfAnnonce = data;
     });
   }

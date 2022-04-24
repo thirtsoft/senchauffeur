@@ -1,190 +1,88 @@
-
-  <div class="page-content bg-white">
-    <div
-      class="dez-bnr-inr overlay-black-middle"
-      style="background-image: url(assets/customer/images/banner/bnr1.jpg)"
-    >
-      <div class="container">
-        <div class="dez-bnr-inr-entry">
-          <h1 class="text-white">Mes Annonces</h1>
-          <div class="breadcrumb-row">
-            <ul class="list-inline">
-              <li><a routerLink="/">Accueil</a></li>
-              <li>La liste de mes annonces</li>
-            </ul>
-          </div>
+<div class="page-content bg-white">
+    <div class="dez-bnr-inr overlay-black-middle" style="background-image: url(assets/customer/images/banner/bnr1.jpg)">
+        <div class="container">
+            <div class="dez-bnr-inr-entry">
+                <h1 class="text-white">Mes Annonces</h1>
+                <div class="breadcrumb-row">
+                    <ul class="list-inline">
+                        <li><a routerLink="/">Accueil</a></li>
+                        <li>La liste de mes annonces</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <div class="content-block">
-      <div class="section-full bg-white browse-job content-inner-2">
-        <div class="container">
-          <div class="row">
+        <div class="section-full bg-white browse-job content-inner-2">
+            <div class="container">
+                <div class="row">
 
-            <div class="col-md-3">
-              <div
-                class="nav flex-column nav-pills"
-                role="tablist"
-                aria-orientation="vertical"
-              >
-                <a
-                  class="nav-link active"
-                  id="dashboard-nav"
-                  data-toggle="pill"
-                  href="#dashboard-tab"
-                  role="tab"
-                  (click)="goToAnnonce()"
+                    <div class="col-md-3">
+                        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab" (click)="goToAnnonce()">
+                                <i class="fa fa-tachometer-alt"></i>Tableau de bord</a>
+                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab" (click)="goToAnnonce()">
+                                <i class="fa fa-shopping-bag"></i> Mes Annonces</a>
+                            <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab">
+                                <i class="fa fa-edit"></i> Modifier Annonce</a>
+                            <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab" (click)="goToAnnonce()">
+                                <i class="fa fa-dollar"></i> Mes Jetons</a>
+                            <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab" (click)="goToAnnonce()">
+                                <i class="fa fa-user"></i> Votre compte</a>
+                            <a class="nav-link" (click)="logout()" style="cursor: pointer">
+                                <i class="fa fa-sign-out-alt"></i>Deconnexion</a>
+                        </div>
+                    </div>
 
-                >
-                  <i class="fa fa-tachometer-alt"></i>Tableau de bord</a
-                >
-                <a
-                  class="nav-link"
-                  id="orders-nav"
-                  data-toggle="pill"
-                  href="#orders-tab"
-                  role="tab"
-                  (click)="goToAnnonce()"
-                >
-                  <i class="fa fa-shopping-bag"></i> Mes Annonces</a
-                >
-                <a
-                  class="nav-link"
-                  id="payment-nav"
-                  data-toggle="pill"
-                  href="#payment-tab"
-                  role="tab"
-                >
-                  <i class="fa fa-edit"></i> Modifier Annonce</a
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
+                                <h4>Dashboard</h4>
+                            </div>
 
-                >
-                <a
-                  class="nav-link"
-                  id="address-nav"
-                  data-toggle="pill"
-                  href="#address-tab"
-                  role="tab"
-                  (click)="goToAnnonce()"
-
-                >
-                  <i class="fa fa-dollar"></i> Mes Jetons</a
-                >
-                <a
-                  class="nav-link"
-                  id="account-nav"
-                  data-toggle="pill"
-                  href="#account-tab"
-                  role="tab"
-                  (click)="goToAnnonce()"
-                >
-                  <i class="fa fa-user"></i> Votre compte</a
-                >
-                <a class="nav-link" (click)="logout()" style="cursor: pointer">
-                  <i class="fa fa-sign-out-alt"></i>Deconnexion</a
-                >
-              </div>
-            </div>
-
-            <div class="col-md-9">
-              <div class="tab-content">
-                <div
-                  class="tab-pane fade show active"
-                  id="dashboard-tab"
-                  role="tabpanel"
-                  aria-labelledby="dashboard-nav"
-                >
-                  <h4>Dashboard</h4>
-
-                </div>
-
-                <div
-                  class="tab-pane fade"
-                  id="payment-tab"
-                  role="tabpanel"
-                  aria-labelledby="payment-nav"
-                >
-                  <h4 *ngIf="this.paramId">Modifier Annonce</h4>
-                  <form #addJobForm="ngForm" name="form">
-                    <div class="form-group">
-                      <label>Reference</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        [(ngModel)]="addEditAnnonceDTO.reference"
-                        name="reference"
-                        id="reference"
-                        #reference="ngModel"
-                        placeholder="Donnez la référence"
-                        required
-                      />
-                      <span
-                        class="text-danger"
-                        *ngIf="
+                            <div class="tab-pane fade" id="payment-tab" role="tabpanel" aria-labelledby="payment-nav">
+                                <h4 *ngIf="this.paramId">Modifier Annonce</h4>
+                                <form #addJobForm="ngForm" name="form">
+                                    <div class="form-group">
+                                        <label>Reference</label>
+                                        <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.reference" name="reference" id="reference" #reference="ngModel" placeholder="Donnez la référence" required />
+                                        <span class="text-danger" *ngIf="
                           (reference.touched || addJobForm.submitted) &&
                           reference.errors?.required
-                        "
-                      >
+                        ">
                         Reference Obligatoire
                       </span>
-                    </div>
+                                    </div>
 
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Libellé Post</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.libelle"
-                          name="libelle"
-                          id="libelle"
-                          #libelle="ngModel"
-                          placeholder="Donnez le titre de l'offre"
-                          required
-                        />
-                        <span
-                          class="text-danger"
-                          *ngIf="
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Libellé Post</label>
+                                            <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.libelle" name="libelle" id="libelle" #libelle="ngModel" placeholder="Donnez le titre de l'offre" required />
+                                            <span class="text-danger" *ngIf="
                             (libelle.touched || addJobForm.submitted) &&
                             libelle.errors?.required
-                          "
-                        >
+                          ">
                           libelle Obligatoire
                         </span>
-                      </div>
+                                        </div>
 
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Email Post</label>
-                        <input
-                          type="text"
-                          placeholder="Email pour le poste"
-                          class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.emailPoste"
-                          name="emailPoste"
-                          id="emailPoste"
-                          #emailPoste="ngModel"
-                          required
-                        />
-                        <span
-                          class="text-danger"
-                          *ngIf="
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Email Post</label>
+                                            <input type="text" placeholder="Email pour le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.emailPoste" name="emailPoste" id="emailPoste" #emailPoste="ngModel" required />
+                                            <span class="text-danger" *ngIf="
                             (emailPoste.touched || addJobForm.submitted) &&
                             emailPoste.errors?.required
-                          "
-                        >
-                          emailPoste est obligatoire
+                          ">
+                          email Poste est obligatoire
                         </span>
-                      </div>
-                    </div>
+                                        </div>
+                                    </div>
 
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Permis</label>
-                        <div class="form-group">
-                          <select
-                            name="permisDto"
-                            [(ngModel)]="addEditAnnonceDTO.permisDto"
-                            class="form-control"
-                          >
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Permis</label>
+                                            <div class="form-group">
+                                                <select name="permisDto" [(ngModel)]="addEditAnnonceDTO.permisDto" class="form-control">
                             <option value="0">--choisir Permis--</option>
                             <option
                               *ngFor="let pmDTO of listPermisDTOs"
@@ -198,17 +96,13 @@
                               {{ pmDTO.designation }}
                             </option>
                           </select>
-                        </div>
-                      </div>
+                                            </div>
+                                        </div>
 
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Ville Poste</label>
-                        <div class="form-group">
-                          <select
-                            name="addresseDto"
-                            [(ngModel)]="addEditAnnonceDTO.addresseDto"
-                            class="form-control"
-                          >
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Ville Poste</label>
+                                            <div class="form-group">
+                                                <select name="addresseDto" [(ngModel)]="addEditAnnonceDTO.addresseDto" class="form-control">
                             <option value="0">--choisir Ville--</option>
                             <option
                               *ngFor="let addDTO of listAddressDTOs"
@@ -222,186 +116,106 @@
                               {{ addDTO.ville }}
                             </option>
                           </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Lieu poste</label>
-                        <input
-                          type="text"
-                          placeholder="Lieu de l'entreprise le poste"
-                          class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.lieuPoste"
-                          name="lieuPoste"
-                          id="lieuPoste"
-                          #lieuPoste="ngModel"
-                          required
-                        />
-                        <span
-                          class="text-danger"
-                          *ngIf="
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Lieu poste</label>
+                                            <input type="text" placeholder="Lieu de l'entreprise le poste" class="form-control" [(ngModel)]="addEditAnnonceDTO.lieuPoste" name="lieuPoste" id="lieuPoste" #lieuPoste="ngModel" required />
+                                            <span class="text-danger" *ngIf="
                             (lieuPoste.touched || addJobForm.submitted) &&
                             lieuPoste.errors?.required
-                          "
-                        >
+                          ">
                           lieuPoste est obligatoire
                         </span>
-                      </div>
+                                        </div>
 
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Salaire</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.salaire"
-                          name="salaire"
-                          id="salaire"
-                          #salaire="ngModel"
-                          placeholder="salaire pour ce poste"
-                          required
-                        />
-                        <span
-                          class="text-danger"
-                          *ngIf="
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Salaire</label>
+                                            <input type="number" class="form-control" [(ngModel)]="addEditAnnonceDTO.salaire" name="salaire" id="salaire" #salaire="ngModel" placeholder="salaire pour ce poste" required />
+                                            <span class="text-danger" *ngIf="
                             (salaire.touched || addJobForm.submitted) &&
                             salaire.errors?.required
-                          "
-                        >
+                          ">
                           salaire est obligatoire
                         </span>
-                      </div>
-                    </div>
+                                        </div>
+                                    </div>
 
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Disponibilité</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.time"
-                          name="time"
-                          id="time"
-                          #time="ngModel"
-                          placeholder="disponibilité pour le poste"
-                          required
-                        />
-                        <span
-                          class="text-danger"
-                          *ngIf="
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Disponibilité</label>
+                                            <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.time" name="time" id="time" #time="ngModel" placeholder="disponibilité pour le poste" required />
+                                            <span class="text-danger" *ngIf="
                             (time.touched || addJobForm.submitted) && time.errors?.required
-                          "
-                        >
+                          ">
                           Disponibilité est obligatoire
                         </span>
-                      </div>
+                                        </div>
 
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Nombre Années Experience</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          [(ngModel)]="addEditAnnonceDTO.proExperience"
-                          name="proproExperience"
-                          id="proExperience"
-                          #proExperience="ngModel"
-                          placeholder="Nombre d'année d'expérience pour ce poste"
-                          required
-                        />
-                        <span
-                          class="text-danger"
-                          *ngIf="
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Nombre Années Experience</label>
+                                            <input type="text" class="form-control" [(ngModel)]="addEditAnnonceDTO.proExperience" name="proproExperience" id="proExperience" #proExperience="ngModel" placeholder="Nombre d'année d'expérience pour ce poste" required />
+                                            <span class="text-danger" *ngIf="
                             (proExperience.touched || addJobForm.submitted) &&
                             proExperience.errors?.required
-                          "
-                        >
+                          ">
                           proExperience est obligatoire
                         </span>
-                      </div>
-                    </div>
+                                        </div>
+                                    </div>
 
-                    <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label>Type de Contrat </label>
-                        <select
-                          name="typeContrat"
-                          [(ngModel)]="addEditAnnonceDTO.typeContrat"
-                          id="typeContrat"
-                          #typeContrat="ngModel"
-                          class="form-control"
-                          required
-                        >
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label>Type de Contrat </label>
+                                            <select name="typeContrat" [(ngModel)]="addEditAnnonceDTO.typeContrat" id="typeContrat" #typeContrat="ngModel" class="form-control" required>
                           <option [ngValue]="0" disabled>--choisir Contrat--</option>
                           <option *ngFor="let item of listTypeContrats" [ngValue]="item">
                             {{ item }}
                           </option>
                         </select>
-                        <span
-                          class="text-danger"
-                          *ngIf="
+                                            <span class="text-danger" *ngIf="
                             (typeContrat.touched || addJobForm.submitted) &&
                             typeContrat.errors?.required
-                          "
-                        >
+                          ">
                           typeContrat est obligatoire
                         </span>
-                      </div>
+                                        </div>
 
-                      <!--  <div class="form-group col-md-6 col-sm-12">
+                                        <!--  <div class="form-group col-md-6 col-sm-12">
                           <label>Logo Entreprise (optional)</label>
                           <div class="custom-file">
                               <input type="file" placeholder="choisir logo entreprise" class="site-button" id="customFile">
                           </div>
                        </div> -->
 
-                      <div class="form-group col-md-6 col-sm-12">
-                        <label for="">Date cloture</label>
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label for="">Date cloture</label>
 
-                            <div class="input-group">
-                              <input
-                              type="date"
-                              placeholder="Date limite candidature"
-                              class="form-control"
-                              [(ngModel)]="addEditAnnonceDTO.dateCloture"
-                              name="dateCloture"
-                              id="dateCloture"
-                              #dateCloture="ngModel"
-                              required
-                            />
+                                            <div class="input-group">
+                                                <input type="date" placeholder="Date limite candidature" class="form-control" [(ngModel)]="addEditAnnonceDTO.dateCloture" name="dateCloture" id="dateCloture" #dateCloture="ngModel" required />
 
-                              <span
-                                class="text-danger"
-                                *ngIf="
+                                                <span class="text-danger" *ngIf="
                                   (dateCloture.touched || addJobForm.submitted) &&
                                   dateCloture.errors?.required
-                                "
-                              >
+                                ">
                                 dateCloture est obligatoire
                               </span>
 
 
-                            </div>
+                                            </div>
 
-                      </div>
-                    </div>
+                                        </div>
+                                    </div>
 
-                    <div class="form-group">
-                      <label>Description</label>
-                      <editor
-                        [(ngModel)]="addEditAnnonceDTO.description"
-                        [init]="{ plugins: 'link' }"
-                        name="description"
-                        #description="ngModel"
-                      ></editor>
-                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <editor [(ngModel)]="addEditAnnonceDTO.description" [init]="{ plugins: 'link' }" name="description" #description="ngModel"></editor>
+                                    </div>
 
-                    <div class="form-group">
-                      <button
-                        *ngIf="paramId"
-                        type="submit"
-                        class="btn btn-success btn-block"
-                        (click)="onUpdateJob()"
-                      >
+                                    <div class="form-group">
+                                        <button *ngIf="paramId" type="submit" class="btn btn-success btn-block" (click)="onUpdateJob()">
                         <i class="fa fa-database"></i> Modifier</button
                       >
                     </div>
@@ -410,4 +224,3 @@
 
               </div>
             </div>
-

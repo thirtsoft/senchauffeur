@@ -214,7 +214,7 @@
                         name="emailPoste"
                         id="emailPoste"
                         required
-                        placeholder="emailPoste du poste"
+                        placeholder=" example....@gmail.com"
                       />
                       <div
                         *ngIf="
@@ -225,6 +225,9 @@
                       >
                         <span *ngIf="f['emailPoste'].errors.required"
                           >Le emailPoste est obligatoire.</span
+                        >
+                        <span *ngIf="f['emailPoste'].errors.pattern"
+                          >Donner un email valide.</span
                         >
                       </div>
                     </div>
@@ -253,6 +256,17 @@
                           </option>
                         </select>
                       </div>
+                      <div
+                        *ngIf="
+                          f['permisDto'].invalid &&
+                          (f['permisDto'].dirty || f['permisDto'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['permisDto'].errors.required"
+                          >Le Permis est obligatoire.</span
+                        >
+                      </div>
                     </div>
 
                     <div class="form-group col-md-6 col-sm-12">
@@ -277,6 +291,17 @@
                           </option>
                         </select>
                       </div>
+                      <div
+                        *ngIf="
+                          f['addresseDto'].invalid &&
+                          (f['addresseDto'].dirty || f['addresseDto'].touched)
+                        "
+                        class="alert alert-danger"
+                      >
+                        <span *ngIf="f['addresseDto'].errors.required"
+                          >La ville est obligatoire.</span
+                        >
+                      </div>
                     </div>
                   </div>
                   <div class="row">
@@ -288,7 +313,6 @@
                         formControlName="lieuPoste"
                         name="lieuPoste"
                         id="lieuPoste"
-                        required
                         placeholder="lieuPoste du poste"
                       />
                      
@@ -302,10 +326,8 @@
                         formControlName="salaire"
                         name="salaire"
                         id="salaire"
-                        required
                         placeholder="salaire du poste"
                       />
-                     
                     </div>
                   </div>
 
@@ -337,7 +359,7 @@
                         class="alert alert-danger"
                       >
                         <span *ngIf="f['time'].errors.required"
-                          >Le time est obligatoire.</span
+                          >Le disponilité est obligatoire.</span
                         >
                       </div>
                     </div>
@@ -362,7 +384,7 @@
                         class="alert alert-danger"
                       >
                         <span *ngIf="f['proExperience'].errors.required"
-                          >Le experience est obligatoire.</span
+                          >Le nombre d'années experience est obligatoire.</span
                         >
                       </div>
                     </div>
@@ -397,7 +419,7 @@
                         class="alert alert-danger"
                       >
                         <span *ngIf="f['typeContrat'].errors.required"
-                          >Le typeContrat est obligatoire.</span
+                          >Le type de Contrat est obligatoire.</span
                         >
                       </div>
                     </div>
@@ -423,7 +445,7 @@
                         class="alert alert-danger"
                       >
                         <span *ngIf="f['dateCloture'].errors.required"
-                          >Le dateCloture est obligatoire.</span
+                          >Le date de Cloture est obligatoire.</span
                         >
                       </div>
                     </div>

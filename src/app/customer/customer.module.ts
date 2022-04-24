@@ -53,7 +53,6 @@ import { PublierOffreComponent } from './job/publier-offre/publier-offre.compone
 import { ListTarifCustomerComponent } from './job/list-tarif-customer/list-tarif-customer.component';
 import { TermeConditionsComponent } from './entreprise/terme-conditions/terme-conditions.component';
 import { CreateRatingComponent } from './rating/create-rating/create-rating.component';
-import { ListRatingComponent } from './rating/list-rating/list-rating.component';
 import { AddNewsleterComponent } from './add-newsleter/add-newsleter.component';
 import { SuccessContactComponent } from './entreprise/success-contact/success-contact.component';
 
@@ -86,7 +85,6 @@ import { SuccessContactComponent } from './entreprise/success-contact/success-co
     ListTarifCustomerComponent,
     TermeConditionsComponent,
     CreateRatingComponent,
-    ListRatingComponent,
     AddNewsleterComponent,
     SuccessContactComponent,
   ],
