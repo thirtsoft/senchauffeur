@@ -70,8 +70,6 @@ export class DashboardComponent implements OnInit {
 
     this.getNumberOfRecruteurs();
 
- //   this.getNumberOfAnnonces();
-
     this.getNumberOfValidatedAnnonces();
 
     this.getNumberOfAnnoncesInYear();
@@ -115,7 +113,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  public getListNotationDtos() {
+  getListNotationDtos() {
     this.noteService.getNotationDTOs().subscribe(
       (response: NotationDto[]) => {
         this.listNotificationDTO = response;
@@ -128,8 +126,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  public getListRecruteurDTO() {
-    this.UserService.getAllUtilisateurDtosOrderByIdDesc().subscribe(
+  getListRecruteurDTO() {
+    this.UserService.getAllNewsUtilisateurDtosOrderByIdDesc().subscribe(
       (response: UtilisateurDto[]) => {
         this.listUtilisateurDTO = response;
         console.log(this.listUtilisateurDTO);

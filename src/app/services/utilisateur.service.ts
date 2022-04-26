@@ -52,6 +52,10 @@ export class UtilisateurService {
     return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAllUtilisateurOrderByIdDesc`);
   }
 
+  public getAllNewsUtilisateurDtosOrderByIdDesc(): Observable<UtilisateurDto[]> {
+    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAllNewsRecruteursOrderByIdDesc`);
+  }
+
   public getUtilisateurDTOById(userId: number): Observable<UtilisateurDto> {
     return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/findById/${userId}`);
   }

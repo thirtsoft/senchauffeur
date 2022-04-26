@@ -258,7 +258,7 @@
     <div class="col-md-12 col-lg-12 col-xl-4">
       <div class="card bg-white m-b-30">
         <div class="card-body new-user">
-          <h5 class="header-title mt-0 mb-4">New Users</h5>
+          <h5 class="header-title mt-0 mb-4">Nouveaux Recruteurs</h5>
           <ul
             class="list-unstyled mb-0 pr-3"
             id=""
@@ -270,7 +270,7 @@
               class="p-3"
               *ngFor="let recruteurDTO of listUtilisateurDTO; let i = index;"
             >
-              <div class="media"  *ngIf="recruteurDTO?.roles[0].name=='ROLE_USER'">
+              <div class="media"  *ngIf="recruteurDTO.roles[0]?.name == 'ROLE_USER'">
                 <div class="thumb float-left">
                   <a href="#">
                     <img
