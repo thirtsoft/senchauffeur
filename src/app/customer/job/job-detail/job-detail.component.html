@@ -42,15 +42,12 @@
                                                 </span>
                                             </li>
                                             <li>
-                                                <i class="ti-money"></i
-                        ><strong class="font-weight-700 text-black"
-                          ></strong
-                        >
+                                                <strong class="font-weight-700 text-black"></strong
+                        >Contrat : 
                         {{ annonceDTO?.typeContrat }}
                       </li>
                       <li>
-                        <i class="ti-shield"></i
-                        ><strong class="font-weight-700 text-black"
+                        <strong class="font-weight-700 text-black"
                           ></strong
                         >{{ annonceDTO?.proExperience }} Experience
                       </li>
@@ -63,7 +60,7 @@
           <div class="col-lg-8">
             <div class="job-info-box">
 
-              <h4 class="m-t0 font-weight-700 title-head">
+              <h4 class="m-t0 font-weight-500 title-head">
                 
                 <a href="#" class="text-secondry">{{
                   annonceDTO?.libelle
@@ -74,20 +71,15 @@
                   <strong>{{
                     annonceDTO?.utilisateurDto.nomEntreprise
                   }}</strong></a> :
-                <a
-                  >
-                  <strong>{{
+                                                <a>
+                                                    <strong>{{
                     annonceDTO?.utilisateurDto.secteurActivite
-                  }}</strong></a
-                ><br>
-                {{
-                  annonceDTO?.utilisateurDto.information
-                }}
-              </p>
-             
-              <ul class="job-info">
-                <li> Publié le :
-                  <strong> {{ annonceDTO?.dateCandidature | date: 'dd-MM-yyyy' }} </strong
+                  }}</strong></a><br> {{ annonceDTO?.utilisateurDto.information }}
+                                                </p>
+
+                                                <ul class="job-info">
+                                                    <li> Publié le :
+                                                        <strong> {{ annonceDTO?.dateCandidature | date: 'dd-MM-yyyy' }} </strong
                   >
                 </li>
               </ul>&nbsp;&nbsp;
@@ -121,45 +113,45 @@
                 <li>
                   Type de Permis:
                   <strong>{{ annonceDTO?.permisDto.typePermis }}</strong>
-                </li>
-                <li>
-                  Libelle Permis :
-                  <strong>{{ annonceDTO?.permisDto.designation }}</strong>
-                </li>
-                <li>
-                  Disponibilité :
-                  <strong>{{ annonceDTO?.time }}</strong>
+                                                    </li>
+                                                    <li>
+                                                        Libelle Permis :
+                                                        <strong>{{ annonceDTO?.permisDto.designation }}</strong>
+                                                    </li>
+                                                    <li>
+                                                        Disponibilité :
+                                                        <strong>{{ annonceDTO?.time }}</strong>
 
-                </li>
-                <li>
-                  Expérience :
-                  <strong>{{ annonceDTO?.proExperience }}</strong>
+                                                    </li>
+                                                    <li>
+                                                        Expérience :
+                                                        <strong>{{ annonceDTO?.proExperience }}</strong>
 
-                </li>
-                <li>
-                  Email Poste :
-                  <strong>{{ annonceDTO?.emailPoste }}</strong>
-                </li>
+                                                    </li>
+                                                    <li>
+                                                        Email Poste :
+                                                        <strong>{{ annonceDTO?.emailPoste }}</strong>
+                                                    </li>
 
-                <li>
-                  Date limite :
-                  <strong>{{ annonceDTO?.dateCloture | date: 'dd-MM-yyyy' }}</strong>
-                </li>
-              </ul>
-              <!--
+                                                    <li>
+                                                        Date limite :
+                                                        <strong>{{ annonceDTO?.dateCloture | date: 'dd-MM-yyyy' }}</strong>
+                                                    </li>
+                                                </ul>
+                                                <!--
               <a href="#"
                 class="site-button">
                 Apply This Job</a>
               -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Job Detail -->
-    <!-- Our Jobs -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Job Detail -->
+                    <!-- Our Jobs -->
 
-    <!-- Our Jobs END -->
-  </div>
-</div>
-<!-- Content END-->
+                    <!-- Our Jobs END -->
+                </div>
+            </div>
+            <!-- Content END-->
