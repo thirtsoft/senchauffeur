@@ -12,8 +12,6 @@ export class LocalityService {
 
   public apiServerUrl = environment.apiBaseUrl;
 
- // public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
-
   constructor(private http: HttpClient) {
   }
 

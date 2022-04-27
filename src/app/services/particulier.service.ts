@@ -12,31 +12,9 @@ export class ParticulierService {
 
   public apiServerUrl = environment.apiBaseUrl;
 
-//  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
-
   constructor(private http: HttpClient) {
   }
-
-  public getParticuliers(): Observable<Particulier[]> {
-    return this.http.get<Particulier[]>(`${this.apiServerUrl}/particuliers/all`);
-  }
-
-  public getParticulierById(partId: number): Observable<Particulier> {
-    return this.http.get<Particulier>(`${this.apiServerUrl}/particuliers/${partId}`);
-  }
-
-  public addParticulier(particulier: Particulier): Observable<Particulier> {
-    return this.http.post<Particulier>(`${this.apiServerUrl}/particuliers/create`, particulier);
-  }
-
-  public updateParticulier(utilisateur: Particulier): Observable<Particulier> {
-    return this.http.put<Particulier>(`${this.apiServerUrl}/particuliers/create`, utilisateur);
-  }
-
-  public deleteParticulier(partId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/particuliers/delete/${partId}`);
-  }
-
+  
   /************************ ParticulierDTO ****************/
   public getParticulierDTOs(): Observable<ParticulierDto[]> {
     return this.http.get<ParticulierDto[]>(`${this.apiServerUrl}/particuliers/all`);

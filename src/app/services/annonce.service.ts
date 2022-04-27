@@ -128,16 +128,15 @@ export class AnnonceService {
 
   public getListAnnonceDTOByPermisPageable(permisId: number, page: number, size: number): Observable<AnnonceDto[]> {
     const searchUrl = (this.apiServerUrl+"/annonces/searchAnnonceByPermisPageables?id="+permisId+"&page="+page+"&size="+size);
-    console.log("Search Url---", searchUrl);
     return this.http.get<AnnonceDto[]>(searchUrl);
   }
 
-  getUserId() {
+  public getUserId() {
     const user = this.tokenService.getUser();
     this.id = user.id
   }
 
-  getAllAnnoncesDtos(page,size): Observable<AnnonceDto[]> {
+  public getAllAnnoncesDtos(page,size): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/allAnnonces?page=${page}&size=${size}`).pipe(
       map(
         response => response
@@ -145,7 +144,7 @@ export class AnnonceService {
     )
   }
 
-  getAllAnnonceDtosByPermisId(id,page,size): Observable<AnnonceDto[]> {
+  public getAllAnnonceDtosByPermisId(id,page,size): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(`${this.apiServerUrl}/annonces/permis?id=${id}&page=${page}&size=${size}`).pipe(
       map(
         response => response
@@ -153,7 +152,7 @@ export class AnnonceService {
     )
   }
 
-  getAllAnnonceDtosByKey(word,page,size): Observable<AnnonceDto[]> {
+  public getAllAnnonceDtosByKey(word,page,size): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(this.apiServerUrl+"/annonces/annoncekey?libelle="+word+"&page="+page+"&size="+size).pipe(
       map(
         response => response
@@ -161,7 +160,7 @@ export class AnnonceService {
     )
   }
 
-  getAnnonceDtoLength(): Observable<number> {
+  public getAnnonceDtoLength(): Observable<number> {
     return this.http.get<number>(`${this.apiServerUrl}/annonces/annonceSize`).pipe(
       map(
         response => response
@@ -169,7 +168,7 @@ export class AnnonceService {
     )
   }
 
-  getAnnoncesLengthByPermsId(id): Observable<number> {
+  public getAnnoncesLengthByPermsId(id): Observable<number> {
     return this.http.get<number>(`${this.apiServerUrl}/annonces/ctpermisIdSize?id=${id}`).pipe(
       map(
         response => response
@@ -177,7 +176,7 @@ export class AnnonceService {
     )
   }
 
-  getAnnonceDtosLengthByKey(word): Observable<number> {
+  public getAnnonceDtosLengthByKey(word): Observable<number> {
     return this.http.get<number>(`${this.apiServerUrl}/annonces/keySize?libelle=${word}`).pipe(
       map(
         response => response

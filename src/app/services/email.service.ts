@@ -51,7 +51,7 @@ export class EmailService {
     return this.http.post<NewsleterDto>(`${this.apiServerUrl}/emails/sendToNewsletter`, visitorDto);
   }
 
-   public senEmailAllToVisitor(visitorDto: NewsleterDto[]): Observable<NewsleterDto[]> {
+  public senEmailAllToVisitor(visitorDto: NewsleterDto[]): Observable<NewsleterDto[]> {
     return this.http.post<NewsleterDto[]>(`${this.apiServerUrl}/emails/sendMailToAllCustomers`, visitorDto);
   }
 

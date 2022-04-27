@@ -13,9 +13,8 @@ import { Login } from './login';
 
 import { environment } from './../../../environments/environment';
 
-const AUTH_API = 'http://localhost:8081/sen-chauffeurs/v1/auth/';
-//const AUTH_API = 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1/auth/';
-
+//const AUTH_API = 'http://localhost:8081/sen-chauffeurs/v1/auth/';
+const AUTH_API = 'http://62.171.128.8:8081/sen-chauffeurs/v1/auth/';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -29,7 +28,8 @@ export class AuthService {
 
   apiServerUrl = environment.apiBaseUrl;
 
-  loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
+ // loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
+  loginUrl = 'http://62.171.128.8:8081/sen-chauffeurs/v1/auth/authenticated';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
@@ -51,11 +51,11 @@ export class AuthService {
               public router: Router) {
   }
 
-  signUp(info: Register): Observable<Register> {
+  public signUp(info: Register): Observable<Register> {
     return this.http.post<Register>(AUTH_API + 'registerUser', info , httpOptions);
   }
 
-  attemptAuth(credentials: Login): Observable<any> {
+  public attemptAuth(credentials: Login): Observable<any> {
     return this.http.post(this.loginUrl, {
       username: credentials.username,
       password: credentials.password
@@ -63,7 +63,7 @@ export class AuthService {
     this.islogin = true;
   }
 
-  getUserProfile(id): Observable<any> {
+  public getUserProfile(id): Observable<any> {
     return this.http.get(`${this.apiServerUrl}/utilisateurs/findById/${id}`, httpOptions).pipe(
       map((res: Response) => {
         return res || {}
@@ -72,14 +72,15 @@ export class AuthService {
     )
   }
 
-  getUserByUsername(username: string): Observable<any> {
+  public getUserByUsername(username: string): Observable<any> {
     return this.http.get<any>(this.apiServerUrl + `/getUserByUsername/${username}`);
   }
-  getUserById(id: any) {
+
+  public getUserById(id: any) {
     return this.http.get(`${this.apiServerUrl}/utilisateurs/findById/${id}`);
   }
 
-  updateProfil(id: number, item: UtilisateurDto): Observable<UtilisateurDto> {
+  public updateProfil(id: number, item: UtilisateurDto): Observable<UtilisateurDto> {
     return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${id}`, {
       name: item.name,
       username: item.username,
@@ -90,7 +91,7 @@ export class AuthService {
 
   }
 
-  updateProfilByUsername(item: UpdateProfileInfo): Observable<UpdateProfileInfo> {
+  public updateProfilByUsername(item: UpdateProfileInfo): Observable<UpdateProfileInfo> {
     return this.http.put<UpdateProfileInfo>(`${this.apiServerUrl}/utilisateurs/updateCustomerProfileByUsername`, {
       name: item.name,
       username: item.username,
@@ -101,7 +102,7 @@ export class AuthService {
 
   }
 
-  updateUsername(item: UpdateUsernameInfo): Observable<UpdateUsernameInfo> {
+  public updateUsername(item: UpdateUsernameInfo): Observable<UpdateUsernameInfo> {
     return this.http.patch<UpdateUsernameInfo>(`${this.apiServerUrl}/utilisateurs/updateUsernameOfUserByUsername`, {
       username: item.username,
       newUsername: item.newUsername
@@ -109,7 +110,7 @@ export class AuthService {
 
   }
 
-  updatePassword(item: UpdatePasswordInfo): Observable<UpdatePasswordInfo> {
+  public updatePassword(item: UpdatePasswordInfo): Observable<UpdatePasswordInfo> {
     return this.http.patch<UpdatePasswordInfo>(`${this.apiServerUrl}/utilisateurs/updatePasswordByUsername`, {
       username: item.username,
       oldPassword: item.oldPassword,
@@ -121,7 +122,7 @@ export class AuthService {
     return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${utilisateurId}`, utilisateurDTO);
   }
 
-  handleError(error: HttpErrorResponse) {
+  public handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
       // client-side error

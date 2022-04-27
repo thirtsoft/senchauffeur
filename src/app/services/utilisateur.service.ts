@@ -68,7 +68,7 @@ export class UtilisateurService {
     return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${utilisateurId}`, utilisateurDTO);
   }
 
-  activatedUser(id: number, isActive: boolean): Observable<any> {
+  public activatedUser(id: number, isActive: boolean): Observable<any> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8');
     let data = {"isActive":isActive};

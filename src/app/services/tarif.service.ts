@@ -50,11 +50,9 @@ export class TarifService {
     return this.http.get<TarifDto[]>(searchUrl);
   }
 
-
   public getListTarifDTOsByAnnonce(pId: number): Observable<TarifDto[]> {
     return this.http.get<TarifDto[]>(`${this.apiServerUrl}/tarifs/searchTarifsByAnnonce/${pId}`);
   }
-
 
 
 }

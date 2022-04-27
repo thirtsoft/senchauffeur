@@ -36,7 +36,6 @@ export class TypeAnnonceService {
     return this.http.put<TypeAnnonceDto>(`${this.apiServerUrl}/typeAnnonces/update/${typeAnId}`, typeAnnonceDto);
   }
 
-
   public deleteTypeAnnonceDtos(tarifId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/typeAnnonces/delete/${tarifId}`);
   }

@@ -17,8 +17,6 @@ export class NewsleterService {
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
 
-  //public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-NewsleterDtos/v1";
-
   constructor(private http: HttpClient) {
   }
 

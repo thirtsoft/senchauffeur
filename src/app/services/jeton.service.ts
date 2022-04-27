@@ -16,8 +16,6 @@ export class JetonService {
   choixmenu : string  = 'A';
   formData:  FormGroup;
 
-  //public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-JetonDtos/v1";
-
   constructor(private http: HttpClient) {
   }
 

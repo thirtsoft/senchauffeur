@@ -60,7 +60,7 @@ export class NotationService {
     return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete/${noteId}`);
   }
 
-  getUserId() {
+  public getUserId() {
     const user = this.tokenService.getUser();
     this.id = user.id
   }

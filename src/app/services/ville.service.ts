@@ -13,31 +13,9 @@ export class VilleService {
 
   public apiServerUrl = environment.apiBaseUrl;
 
-//  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
-
   constructor(private http: HttpClient) {
   }
-
-  public getVille(): Observable<Ville[]> {
-    return this.http.get<Ville[]>(`${this.apiServerUrl}/villes/all`);
-  }
-
-  public getVilleById(VilleId: number): Observable<Ville> {
-    return this.http.get<Ville>(`${this.apiServerUrl}/villes/${VilleId}`);
-  }
-
-  public addVille(Ville: Ville): Observable<Ville> {
-    return this.http.post<Ville>(`${this.apiServerUrl}/Ville/create`, Ville);
-  }
-
-  public updateVille(Ville: Ville): Observable<Ville> {
-    return this.http.put<Ville>(`${this.apiServerUrl}/Ville/create`, Ville);
-  }
-
-  public deleteVille(VilleId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/Ville/delete/${VilleId}`);
-  }
-
+ 
   /************************  VilleDto ****************/
   public getVilleDTOs(): Observable<VilleDto[]> {
     return this.http.get<VilleDto[]>(`${this.apiServerUrl}/villes/all`);

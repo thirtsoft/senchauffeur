@@ -18,26 +18,6 @@ export class PermisService {
   constructor(private http: HttpClient) {
   }
 
-  public getPermis(): Observable<Permis[]> {
-    return this.http.get<Permis[]>(`${this.apiServerUrl}/permis/all`);
-  }
-
-  public getPermisById(permisId: number): Observable<Permis> {
-    return this.http.get<Permis>(`${this.apiServerUrl}/permis/findById/${permisId}`);
-  }
-
-  public addPermis(permis: Permis): Observable<Permis> {
-    return this.http.post<Permis>(`${this.apiServerUrl}/permis/create`, permis);
-  }
-
-  public updatePermis(id: number, permis: Permis): Observable<Permis> {
-    return this.http.put<Permis>(`${this.apiServerUrl}/permis/update/${id}`, permis);
-  }
-
-  public deletePermis(permisId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/permis/delete/${permisId}`);
-  }
-
   /************************  PermisDTO ****************/
   public getPermisDTOs(): Observable<PermisDto[]> {
     return this.http.get<PermisDto[]>(`${this.apiServerUrl}/permis/all`);

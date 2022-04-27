@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-//  apiBaseUrl: 'https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1'
+  production: true,
+  apiBaseUrl: "http://62.171.128.8:8081/sen-chauffeurs/v1"
 };
