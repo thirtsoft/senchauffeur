@@ -11,7 +11,6 @@ import { Injectable } from '@angular/core';
 })
 export class DashboardService {
 
-
   public apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
