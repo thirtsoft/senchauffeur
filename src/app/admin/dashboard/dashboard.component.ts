@@ -14,6 +14,7 @@ import { UtilisateurDto } from 'src/app/models/utilisateur';
 import { Login } from 'src/app/auth/security/login';
 import { AuthService } from 'src/app/auth/security/auth.service';
 import { TokenStorageService } from 'src/app/auth/security/token-storage.service';
+import { FacebookService } from 'src/app/services/facebook.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -42,6 +43,10 @@ export class DashboardComponent implements OnInit {
   showGestionnaireBoard = false;
   showUserBoard = false;
 
+  numberOfUserWhoFollowsPage;
+
+  numberOfUserWhoLikesPage;
+
   constructor(public dasboardService: DashboardService,
               public noteService: NotationService,
               public UserService: UtilisateurService,
@@ -49,6 +54,7 @@ export class DashboardComponent implements OnInit {
               public tokenStorage: TokenStorageService,
               public chauffService: ChauffeurService,
               public recService: RecruteurService,
+              private facebookService: FacebookService,
               public router: Router,
 
   ) {}
@@ -73,6 +79,11 @@ export class DashboardComponent implements OnInit {
     this.getListNotationDtos();
 
     this.getListRecruteurDTO();
+
+    this.getNumberOfUsersWhoFollowsPages();
+
+    this.getNumberOfUsersWhoLikesPages();
+
   }
 
   getNumberOfChauffeurs(): void {
@@ -92,6 +103,19 @@ export class DashboardComponent implements OnInit {
       this.numberOfRecruteur = data;
     });
   }
+
+  getNumberOfUsersWhoFollowsPages(): void {
+    this.facebookService.countNumberOfPagesFollowers().subscribe(data => {
+      this.numberOfUserWhoFollowsPage = data;
+    });
+  }
+
+  getNumberOfUsersWhoLikesPages(): void {
+    this.facebookService.countNumberOfPagesLikes().subscribe(data => {
+      this.numberOfUserWhoLikesPage = data;
+    });
+  }
+
 
   public getListNotationDtos() {
     this.noteService.getNotationDTOs().subscribe(
