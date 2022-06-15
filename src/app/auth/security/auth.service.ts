@@ -14,7 +14,8 @@ import { Login } from './login';
 import { environment } from './../../../environments/environment';
 
 //const AUTH_API = 'http://localhost:8081/sen-chauffeurs/v1/auth/';
-const AUTH_API = 'http://62.171.128.8:8081/sen-chauffeurs/v1/auth/';
+//const AUTH_API = 'http://62.171.128.8:8081/sen-chauffeurs/v1/auth/';
+const AUTH_API = 'http://sunuchauffeur.com/api/v1/auth/';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -29,7 +30,7 @@ export class AuthService {
   apiServerUrl = environment.apiBaseUrl;
 
  // loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
-  loginUrl = 'http://62.171.128.8:8081/sen-chauffeurs/v1/auth/authenticated';
+  //loginUrl = 'http://62.171.128.8:8081/sen-chauffeurs/v1/auth/authenticated';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
@@ -56,7 +57,7 @@ export class AuthService {
   }
 
   public attemptAuth(credentials: Login): Observable<any> {
-    return this.http.post(this.loginUrl, {
+    return this.http.post(AUTH_API + 'authenticated', {
       username: credentials.username,
       password: credentials.password
     }, httpOptions);
